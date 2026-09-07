@@ -210,6 +210,9 @@
                   <span id="profileEstBadge" class="text-xs font-semibold px-2.5 py-0.5 rounded-md bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 font-mono">
                     EST-00000
                   </span>
+                  <span id="profileMyCutBadge" class="text-xs font-extrabold px-2.5 py-0.5 rounded-md bg-amber-400/25 text-amber-200 border border-amber-400/50 font-mono shadow-xs">
+                    💰 My Fee: --
+                  </span>
                 </div>
               </div>
             </div>
@@ -241,33 +244,61 @@
           <!-- Profile Details Body -->
           <div class="p-5 sm:p-6 space-y-5 flex-1 bg-white">
 
-            <!-- Folio Numbers Cards -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+            <!-- Folio Numbers & Commission Valuation Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
               
               <!-- Folio ID Card -->
-              <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
-                <div class="flex items-center justify-between">
-                  <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Folio ID</span>
-                  <span class="p-1 rounded bg-indigo-100 text-indigo-700">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14" />
-                    </svg>
-                  </span>
+              <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Folio ID</span>
+                    <span class="p-1 rounded bg-indigo-100 text-indigo-700">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14" />
+                      </svg>
+                    </span>
+                  </div>
+                  <p id="profileFolioId" class="text-sm sm:text-base font-extrabold text-slate-900 mt-1 font-mono break-all leading-snug">--</p>
                 </div>
-                <p id="profileFolioId" class="text-base sm:text-lg font-extrabold text-slate-900 mt-1 font-mono">--</p>
+                <span class="text-[10px] text-slate-400 mt-1">NSDL / CDSL Depository</span>
               </div>
 
-              <!-- EST. Folio Card -->
-              <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
-                <div class="flex items-center justify-between">
-                  <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">EST. Folio</span>
-                  <span class="p-1 rounded bg-emerald-100 text-emerald-700">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                    </svg>
-                  </span>
+              <!-- EST. Folio Card (Client Total Portfolio) -->
+              <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Client Portfolio</span>
+                    <span class="p-1 rounded bg-blue-100 text-blue-700">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                      </svg>
+                    </span>
+                  </div>
+                  <p id="profileEstFolio" class="text-sm sm:text-base font-extrabold text-blue-950 mt-1 font-mono leading-snug">--</p>
                 </div>
-                <p id="profileEstFolio" class="text-base sm:text-lg font-extrabold text-slate-900 mt-1 font-mono">--</p>
+                <span class="text-[10px] text-slate-400 mt-1">Gross Asset Valuation</span>
+              </div>
+
+              <!-- MY EST. VALUE (COMMISSION / EARNINGS) CARD -->
+              <div class="p-4 rounded-xl bg-gradient-to-br from-amber-500/10 via-emerald-500/10 to-teal-500/10 border-2 border-amber-400 shadow-sm relative overflow-hidden flex flex-col justify-between">
+                <div class="absolute -top-0.5 -right-0.5 bg-gradient-to-r from-amber-500 to-amber-600 text-white text-[9px] font-extrabold px-2.5 py-0.5 rounded-bl-lg uppercase tracking-wider shadow-xs">
+                  My Cut
+                </div>
+                <div>
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-extrabold text-amber-900 uppercase tracking-wider">💰 My Est. Value</span>
+                    <span class="p-1 rounded bg-amber-200 text-amber-800">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </span>
+                  </div>
+                  <p id="profileMyEstValue" class="text-base sm:text-lg font-black text-emerald-800 mt-1 font-mono leading-snug">--</p>
+                </div>
+                <p class="text-[10px] text-amber-800 font-bold mt-1 flex items-center">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1.5 inline-block shrink-0 animate-pulse"></span>
+                  100% Contingent on Credit
+                </p>
               </div>
 
             </div>
@@ -401,12 +432,18 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
             <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1">Folio ID</label>
-            <input type="text" id="formFolioId" placeholder="e.g. FOL-8921" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm font-mono focus:bg-white focus:border-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-100 transition">
+            <input type="text" id="formFolioId" placeholder="e.g. IN30034310432220" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm font-mono focus:bg-white focus:border-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-100 transition">
           </div>
           <div>
-            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1">EST. Folio</label>
-            <input type="text" id="formEstFolio" placeholder="e.g. EST-4500" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm font-mono focus:bg-white focus:border-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-100 transition">
+            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1">EST. Folio (Client Portfolio)</label>
+            <input type="text" id="formEstFolio" placeholder="e.g. ₹4.50 Cr — ₹6.50 Cr" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm font-mono focus:bg-white focus:border-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-100 transition">
           </div>
+        </div>
+
+        <!-- My Est. Value (Commission / Earnings) -->
+        <div>
+          <label class="block text-xs font-bold text-amber-800 uppercase tracking-wide mb-1">💰 My Est. Value (My Commission / Earnings)</label>
+          <input type="text" id="formMyEstValue" placeholder="e.g. ₹36L — ₹52L (8% Fee)" class="w-full px-3.5 py-2.5 bg-amber-50/60 border border-amber-300 rounded-lg text-sm font-bold text-amber-950 focus:bg-white focus:border-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-200 transition">
         </div>
 
         <!-- Contact Info -->
@@ -615,9 +652,10 @@
                 </h4>
                 ${cust.folio_id ? `<span class="text-[10px] sm:text-[11px] font-mono font-bold text-indigo-700 bg-indigo-50 border border-indigo-100 px-1.5 py-0.5 rounded truncate max-w-[100px]">${cust.folio_id}</span>` : ''}
               </div>
-              <div class="flex items-center text-xs text-slate-500 mt-1 space-x-2 truncate">
-                ${cust.contact_info ? `<span class="truncate">${cust.contact_info}</span>` : '<span class="text-slate-400">No contact info</span>'}
-                ${hasPdf > 0 ? `<span class="text-[10px] font-bold text-rose-600 bg-rose-50 px-1.5 py-0.2 rounded border border-rose-100 shrink-0">📄 ${hasPdf} PDF</span>` : ''}
+              <div class="flex flex-wrap items-center gap-1.5 text-xs text-slate-500 mt-1.5">
+                ${cust.my_est_value ? `<span class="text-[10px] sm:text-[11px] font-black text-amber-950 bg-amber-100 border border-amber-300 px-1.5 py-0.5 rounded-md shadow-2xs">💰 Fee: ${cust.my_est_value}</span>` : ''}
+                ${cust.contact_info ? `<span class="truncate text-[11px]">${cust.contact_info}</span>` : '<span class="text-slate-400">No contact info</span>'}
+                ${hasPdf > 0 ? `<span class="text-[10px] font-bold text-rose-600 bg-rose-50 px-1.5 py-0.5 rounded border border-rose-100 shrink-0">📄 ${hasPdf} PDF</span>` : ''}
               </div>
             </div>
           </div>
@@ -673,8 +711,18 @@
         eBadge.classList.add('hidden');
       }
 
+      // My Fee Badge in top banner
+      const mBadge = document.getElementById('profileMyCutBadge');
+      if (cust.my_est_value) {
+        mBadge.innerText = `💰 My Fee: ${cust.my_est_value}`;
+        mBadge.classList.remove('hidden');
+      } else {
+        mBadge.classList.add('hidden');
+      }
+
       document.getElementById('profileFolioId').innerText = cust.folio_id || '--';
       document.getElementById('profileEstFolio').innerText = cust.est_folio || '--';
+      document.getElementById('profileMyEstValue').innerText = cust.my_est_value || '--';
       document.getElementById('profileContactInfo').innerText = cust.contact_info || 'No contact info provided';
       document.getElementById('profileAddress').innerText = cust.address || 'No address provided';
 
@@ -773,6 +821,7 @@
         document.getElementById('formName').value = cust.name || '';
         document.getElementById('formFolioId').value = cust.folio_id || '';
         document.getElementById('formEstFolio').value = cust.est_folio || '';
+        document.getElementById('formMyEstValue').value = cust.my_est_value || '';
         document.getElementById('formContact').value = cust.contact_info || '';
         document.getElementById('formAddress').value = cust.address || '';
 
@@ -796,6 +845,7 @@
         saveBtn.innerText = "Save Customer";
         document.getElementById('customerForm').reset();
         document.getElementById('customerId').value = '';
+        document.getElementById('formMyEstValue').value = '';
         document.getElementById('formPdf1Current').classList.add('hidden');
         document.getElementById('formPdf2Current').classList.add('hidden');
       }
@@ -819,6 +869,7 @@
         name: document.getElementById('formName').value.trim(),
         folio_id: document.getElementById('formFolioId').value.trim(),
         est_folio: document.getElementById('formEstFolio').value.trim(),
+        my_est_value: document.getElementById('formMyEstValue').value.trim(),
         contact_info: document.getElementById('formContact').value.trim(),
         address: document.getElementById('formAddress').value.trim()
       };

@@ -80,6 +80,8 @@ def init_db():
             # Upgrade from older schema
             cursor.execute("DROP TABLE customers")
             table_exists = False
+        elif "my_est_value" not in columns:
+            cursor.execute("ALTER TABLE customers ADD COLUMN my_est_value TEXT")
 
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS customers (
@@ -88,6 +90,7 @@ def init_db():
             address TEXT,
             folio_id TEXT,
             est_folio TEXT,
+            my_est_value TEXT,
             contact_info TEXT,
             pdf1_filename TEXT,
             pdf1_path TEXT,
@@ -104,7 +107,8 @@ def init_db():
                 "Miten Ashwin Mehta",
                 "Flat No. 1602, 16th Floor, Vivarea Bldg A-Wing, Sane Guruji Marg, Jacob Circle, Mumbai - 400011",
                 "1201170000029668",
-                "₹8,00,00,000 - ₹12,00,00,000 (8% Fee: ₹64L - ₹96L)",
+                "₹8,00,00,000 — ₹12,00,00,000 (₹8 – ₹12 Cr)",
+                "₹64,00,000 — ₹96,00,000 (8% Fee)",
                 "+91 98202 22028 | miten@bellwethercapital.in | Raheja Chambers, Nariman Point",
                 "Executive_Recovery_Dossier_Miten_Mehta.pdf", "Executive_Dossier_Miten_Mehta_Astral.pdf",
                 "IEPF_Service_Agreement_8Percent.pdf", "IEPF_Service_Agreement_Miten_Mehta_8Percent.pdf"
@@ -113,7 +117,8 @@ def init_db():
                 "Dr. Sanjeev Ratnakar Phatak & Sanu Phatak",
                 "1, Tejdhara Bunglows Part-II, 100ft. Road, Behind Rahul Tower, Satellite, Ahmedabad, Gujarat - 380015",
                 "IN30034310432220",
-                "₹4,50,00,000 - ₹6,50,00,000 (8% Fee: ₹36L - ₹52L)",
+                "₹4,50,00,000 — ₹6,50,00,000 (₹4.5 – ₹6.5 Cr)",
+                "₹36,00,000 — ₹52,00,000 (8% Fee)",
                 "+91 94263 11101 | sanjeevphatak@hotmail.com | Director, Vijayratna Diabetes Centre",
                 "Executive_Recovery_Dossier_Dr_Phatak.pdf", "Executive_Dossier_Dr_Sanjeev_Phatak_Astral.pdf",
                 "IEPF_Service_Agreement_8Percent.pdf", "IEPF_Service_Agreement_Dr_Sanjeev_Phatak_8Percent.pdf"
@@ -122,7 +127,8 @@ def init_db():
                 "T. Syed Kabiruddin & I. Syed Ameeruddin",
                 "No. 93-A & No. 100, Weavers Street, Hosur, Krishnagiri District, Tamil Nadu - 635109",
                 "IN30192630460531 / IN30192630460611",
-                "₹1,20,00,000 - ₹1,60,00,000 (8% Fee: ₹9.6L - ₹12.8L)",
+                "₹1,20,00,000 — ₹1,60,00,000 (₹1.2 – ₹1.6 Cr)",
+                "₹9,60,000 — ₹12,80,000 (8% Fee)",
                 "+91 94430 58881 (Shiv Fancy) | 04344-241050 (Mk Paper Cups) | Weavers St",
                 "Executive_Recovery_Dossier_Syed_Family.pdf", "Executive_Dossier_Syed_Family_Hosur_Astral.pdf",
                 "IEPF_Service_Agreement_8Percent.pdf", "IEPF_Service_Agreement_Syed_Family_Hosur_8Percent.pdf"
@@ -131,7 +137,8 @@ def init_db():
                 "Shri S. Yugandhar",
                 "38-5, 1st Floor, Ramaling Jothi Nagar, II Cross, Ramanathapuram, Coimbatore, Tamil Nadu - 641045",
                 "1202300000104144",
-                "₹85,00,000 - ₹1,15,00,000 (8% Fee: ₹6.8L - ₹9.2L)",
+                "₹85,00,000 — ₹1,15,00,000 (₹85L – ₹1.15 Cr)",
+                "₹6,80,000 — ₹9,20,000 (8% Fee)",
                 "+91 99655 11562 (Balu Decorators) | 0422-4351562 | Ramanathapuram",
                 "Executive_Recovery_Dossier_S_Yugandhar.pdf", "Executive_Dossier_S_Yugandhar_Coimbatore_Astral.pdf",
                 "IEPF_Service_Agreement_8Percent.pdf", "IEPF_Service_Agreement_S_Yugandhar_Coimbatore_8Percent.pdf"
@@ -140,7 +147,8 @@ def init_db():
                 "Smt. B. Malarvizhi",
                 "No. 42, Ramakannu Street, Cheyyar, Thiruvannamalai District, Tamil Nadu - 604407",
                 "IN30039416574182",
-                "₹52,00,000 - ₹67,00,000 (15% Fee: ₹7.8L - ₹10L)",
+                "₹52,00,000 — ₹67,00,000 (₹52L – ₹67L)",
+                "₹7,80,000 — ₹10,05,000 (15% Fee)",
                 "+91 99653 05105 (Bringi Office) | +91 92400 30806 (My Kalyan) | Cheyyar",
                 "Digital_Advisory_Dossier_B_Malarvizhi.pdf", "Digital_Advisory_B_Malarvizhi_Astral.pdf",
                 "IEPF_Service_Agreement_15Percent.pdf", "IEPF_Service_Agreement_B_Malarvizhi_15Percent.pdf"
@@ -149,7 +157,8 @@ def init_db():
                 "Shri Anuj S. Mahruwala",
                 "83-387, Saraswati Nagar Society, Near Azad Society, Himmatlal Park, Ambawadi, Ahmedabad, Gujarat - 380015",
                 "IN30246110034580",
-                "₹1,50,00,000 - ₹2,20,00,000 (8% Fee: ₹12.0L - ₹17.6L)",
+                "₹1,50,00,000 — ₹2,20,00,000 (₹1.5 – ₹2.2 Cr)",
+                "₹12,00,000 — ₹17,60,000 (8% Fee)",
                 "079-4938 5496 | Ambawadi Society Office | Speed Post AD",
                 "Executive_Recovery_Dossier_Anuj_Mahruwala.pdf", "Executive_Dossier_Anuj_Mahruwala_Astral.pdf",
                 "IEPF_Service_Agreement_8Percent.pdf", "IEPF_Service_Agreement_Anuj_Mahruwala_8Percent.pdf"
@@ -158,7 +167,8 @@ def init_db():
                 "Ramkant Gangaram Walke & Rajani Walke",
                 "Flat No. 506, D-Wing, Akruti Orchid Park, Sakinaka, Andheri East, Mumbai, Maharashtra - 400072",
                 "IN30068510351403 / IN30068510351569",
-                "₹2,20,00,000 - ₹3,00,00,000 (8% Fee: ₹17.6L - ₹24.0L)",
+                "₹2,20,00,000 — ₹3,00,00,000 (₹2.2 – ₹3.0 Cr)",
+                "₹17,60,000 — ₹24,00,000 (8% Fee)",
                 "Akruti Orchid Park CHS Admin | Sakinaka, Andheri East | Speed Post AD",
                 "Executive_Recovery_Dossier_Ramkant_Walke.pdf", "Executive_Dossier_Ramkant_Walke_Astral.pdf",
                 "IEPF_Service_Agreement_8Percent.pdf", "IEPF_Service_Agreement_Ramkant_Walke_8Percent.pdf"
@@ -167,7 +177,8 @@ def init_db():
                 "Yusuf Kadir Malgundkar & Sayeeda Malgundkar",
                 "Zia Apts, 501, 5th Floor, B-Wing, 264 Bellasis Road, Mumbai Central, Mumbai, Maharashtra - 400008",
                 "IN30075711147162",
-                "₹1,20,00,000 - ₹1,80,00,000 (8% Fee: ₹9.6L - ₹14.4L)",
+                "₹1,20,00,000 — ₹1,80,00,000 (₹1.2 – ₹1.8 Cr)",
+                "₹9,60,000 — ₹14,40,000 (8% Fee)",
                 "Zia Apartments Society Office | 264 Bellasis Rd | Speed Post AD",
                 "Executive_Recovery_Dossier_Yusuf_Malgundkar.pdf", "Executive_Dossier_Yusuf_Malgundkar_Astral.pdf",
                 "IEPF_Service_Agreement_8Percent.pdf", "IEPF_Service_Agreement_Yusuf_Malgundkar_8Percent.pdf"
@@ -176,7 +187,8 @@ def init_db():
                 "Smt. Rajeshwari Gopalan",
                 "50/5, New No. 32, 3rd Floor, Giri Road, T. Nagar, Chennai, Tamil Nadu - 600017",
                 "IN30131320619201",
-                "₹50,00,000 - ₹75,00,000 (8% Fee: ₹4.0L - ₹6.0L)",
+                "₹50,00,000 — ₹75,00,000 (₹50L – ₹75L)",
+                "₹4,00,000 — ₹6,00,000 (8% Fee)",
                 "+91 98408 18454 (Hotel Nandini Palace, Giri Rd) | T. Nagar, Chennai",
                 "Executive_Recovery_Dossier_Rajeshwari_Gopalan.pdf", "Executive_Dossier_Rajeshwari_Gopalan_Astral.pdf",
                 "IEPF_Service_Agreement_8Percent.pdf", "IEPF_Service_Agreement_Rajeshwari_Gopalan_8Percent.pdf"
@@ -185,7 +197,8 @@ def init_db():
                 "Smt. Bhawari Bai",
                 "Old No. 86, New No. 26, Rasappa Chetty Street, 2nd Floor, Wall Tax Road, Park Town, Chennai, Tamil Nadu - 600003",
                 "IN30163740669134",
-                "₹40,00,000 - ₹60,00,000 (8% Fee: ₹3.2L - ₹4.8L)",
+                "₹40,00,000 — ₹60,00,000 (₹40L – ₹60L)",
+                "₹3,20,000 — ₹4,80,000 (8% Fee)",
                 "+91 94444 94565 / 044-4855 2102 (Durga Handicrafts) | Opp Kandaswami Kovil",
                 "Executive_Recovery_Dossier_Bhawari_Bai.pdf", "Executive_Dossier_Bhawari_Bai_Astral.pdf",
                 "IEPF_Service_Agreement_8Percent.pdf", "IEPF_Service_Agreement_Bhawari_Bai_8Percent.pdf"
@@ -194,9 +207,9 @@ def init_db():
 
         cursor.executemany("""
             INSERT INTO customers (
-                name, address, folio_id, est_folio, contact_info,
+                name, address, folio_id, est_folio, my_est_value, contact_info,
                 pdf1_filename, pdf1_path, pdf2_filename, pdf2_path
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """, verified_clients)
         conn.commit()
 
@@ -313,11 +326,11 @@ class CustomerHandler(BaseHTTPRequestHandler):
                 term = f"%{search_query}%"
                 cursor.execute("""
                     SELECT * FROM customers 
-                    WHERE name LIKE ? OR folio_id LIKE ? OR est_folio LIKE ? OR contact_info LIKE ? OR address LIKE ?
+                    WHERE name LIKE ? OR folio_id LIKE ? OR est_folio LIKE ? OR my_est_value LIKE ? OR contact_info LIKE ? OR address LIKE ?
                     ORDER BY 
                         CASE WHEN name LIKE ? THEN 0 WHEN folio_id LIKE ? THEN 1 ELSE 2 END,
                         name ASC
-                """, (term, term, term, term, term, f"{search_query}%", f"{search_query}%"))
+                """, (term, term, term, term, term, term, f"{search_query}%", f"{search_query}%"))
             else:
                 cursor.execute("SELECT * FROM customers ORDER BY name ASC")
                 
@@ -353,7 +366,7 @@ class CustomerHandler(BaseHTTPRequestHandler):
             conn = get_db()
             cursor = conn.cursor()
             cursor.execute("""
-                SELECT id, name, folio_id, est_folio, contact_info, address, 
+                SELECT id, name, folio_id, est_folio, my_est_value, contact_info, address, 
                        pdf1_filename, pdf2_filename, created_at 
                 FROM customers ORDER BY name ASC
             """)
@@ -363,7 +376,7 @@ class CustomerHandler(BaseHTTPRequestHandler):
             output = io.StringIO()
             output.write('\ufeff') # UTF-8 BOM for Excel
             writer = csv.writer(output)
-            writer.writerow(["ID", "Name", "Folio ID", "EST. Folio", "Contact Info", "Address", "PDF 1", "PDF 2", "Created At"])
+            writer.writerow(["ID", "Name", "Folio ID", "EST. Folio", "My Est. Value", "Contact Info", "Address", "PDF 1", "PDF 2", "Created At"])
             for row in rows:
                 writer.writerow(list(row))
 
@@ -394,6 +407,7 @@ class CustomerHandler(BaseHTTPRequestHandler):
                 address = data.get("address", "").strip()
                 folio_id = data.get("folio_id", "").strip()
                 est_folio = data.get("est_folio", "").strip()
+                my_est_value = data.get("my_est_value", "").strip()
                 contact_info = data.get("contact_info", "").strip()
 
                 # Handle PDF 1 & PDF 2 uploads
@@ -404,10 +418,10 @@ class CustomerHandler(BaseHTTPRequestHandler):
                 cursor = conn.cursor()
                 cursor.execute("""
                     INSERT INTO customers (
-                        name, address, folio_id, est_folio, contact_info,
+                        name, address, folio_id, est_folio, my_est_value, contact_info,
                         pdf1_filename, pdf1_path, pdf2_filename, pdf2_path
-                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-                """, (name, address, folio_id, est_folio, contact_info, pdf1_name, pdf1_file, pdf2_name, pdf2_file))
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                """, (name, address, folio_id, est_folio, my_est_value, contact_info, pdf1_name, pdf1_file, pdf2_name, pdf2_file))
                 new_id = cursor.lastrowid
                 conn.commit()
 
@@ -442,6 +456,7 @@ class CustomerHandler(BaseHTTPRequestHandler):
                 address = data.get("address", "").strip()
                 folio_id = data.get("folio_id", "").strip()
                 est_folio = data.get("est_folio", "").strip()
+                my_est_value = data.get("my_est_value", "").strip()
                 contact_info = data.get("contact_info", "").strip()
 
                 conn = get_db()
@@ -477,10 +492,10 @@ class CustomerHandler(BaseHTTPRequestHandler):
 
                 cursor.execute("""
                     UPDATE customers 
-                    SET name = ?, address = ?, folio_id = ?, est_folio = ?, contact_info = ?,
+                    SET name = ?, address = ?, folio_id = ?, est_folio = ?, my_est_value = ?, contact_info = ?,
                         pdf1_filename = ?, pdf1_path = ?, pdf2_filename = ?, pdf2_path = ?
                     WHERE id = ?
-                """, (name, address, folio_id, est_folio, contact_info, pdf1_name, pdf1_file, pdf2_name, pdf2_file, cust_id))
+                """, (name, address, folio_id, est_folio, my_est_value, contact_info, pdf1_name, pdf1_file, pdf2_name, pdf2_file, cust_id))
                 conn.commit()
 
                 cursor.execute("SELECT * FROM customers WHERE id = ?", (cust_id,))
