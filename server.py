@@ -99,57 +99,96 @@ def init_db():
 
     cursor.execute("SELECT COUNT(*) FROM customers")
     if cursor.fetchone()[0] == 0:
-        # Create sample PDFs
-        pdf1_name = "Alexander_Contract_Agreement.pdf"
-        pdf1_file = "sample_alexander_contract.pdf"
-        with open(os.path.join(UPLOAD_DIR, pdf1_file), "wb") as f:
-            f.write(create_sample_pdf("CustomerVault Agreement", "Customer: Alexander Wright | Folio ID: FOL-89210"))
-
-        pdf2_name = "Alexander_Folio_Statement.pdf"
-        pdf2_file = "sample_alexander_statement.pdf"
-        with open(os.path.join(UPLOAD_DIR, pdf2_file), "wb") as f:
-            f.write(create_sample_pdf("CustomerVault Statement", "EST. Folio: EST-45000 | Account Status: Active"))
-
-        sophia_pdf1 = "sample_sophia_id.pdf"
-        with open(os.path.join(UPLOAD_DIR, sophia_pdf1), "wb") as f:
-            f.write(create_sample_pdf("ID Verification Document", "Customer: Sophia Martinez | Folio ID: FOL-67432"))
-
-        samples = [
+        verified_clients = [
             (
-                "Alexander Wright", 
-                "742 Evergreen Terrace, Springfield, OR", 
-                "FOL-89210", 
-                "EST-45000", 
-                "+1 (555) 234-5678 | alex.wright@apextech.com", 
-                pdf1_name, pdf1_file, 
-                pdf2_name, pdf2_file
+                "Miten Ashwin Mehta",
+                "Flat No. 1602, 16th Floor, Vivarea Bldg A-Wing, Sane Guruji Marg, Jacob Circle, Mumbai - 400011",
+                "1201170000029668",
+                "₹8,00,00,000 - ₹12,00,00,000 (8% Fee: ₹64L - ₹96L)",
+                "+91 98202 22028 | miten@bellwethercapital.in | Raheja Chambers, Nariman Point",
+                "Executive_Recovery_Dossier_Miten_Mehta.pdf", "Executive_Dossier_Miten_Mehta_Astral.pdf",
+                "IEPF_Service_Agreement_8Percent.pdf", "IEPF_Service_Agreement_Miten_Mehta_8Percent.pdf"
             ),
             (
-                "Sophia Martinez", 
-                "1200 Market Street, Suite 400, San Francisco, CA", 
-                "FOL-67432", 
-                "EST-32800", 
-                "+1 (555) 987-6543 | sophia.m@solardesign.io", 
-                "Sophia_ID_Verification.pdf", sophia_pdf1, 
-                None, None
+                "Dr. Sanjeev Ratnakar Phatak & Sanu Phatak",
+                "1, Tejdhara Bunglows Part-II, 100ft. Road, Behind Rahul Tower, Satellite, Ahmedabad, Gujarat - 380015",
+                "IN30034310432220",
+                "₹4,50,00,000 - ₹6,50,00,000 (8% Fee: ₹36L - ₹52L)",
+                "+91 94263 11101 | sanjeevphatak@hotmail.com | Director, Vijayratna Diabetes Centre",
+                "Executive_Recovery_Dossier_Dr_Phatak.pdf", "Executive_Dossier_Dr_Sanjeev_Phatak_Astral.pdf",
+                "IEPF_Service_Agreement_8Percent.pdf", "IEPF_Service_Agreement_Dr_Sanjeev_Phatak_8Percent.pdf"
             ),
             (
-                "Mohammed Al-Mansoor", 
-                "45 Berkeley Square, Mayfair, London, UK", 
-                "FOL-99120", 
-                "EST-78500", 
-                "+44 20 7946 0912 | m.almansoor@falcon.co.uk", 
-                None, None, 
-                None, None
+                "T. Syed Kabiruddin & I. Syed Ameeruddin",
+                "No. 93-A & No. 100, Weavers Street, Hosur, Krishnagiri District, Tamil Nadu - 635109",
+                "IN30192630460531 / IN30192630460611",
+                "₹1,20,00,000 - ₹1,60,00,000 (8% Fee: ₹9.6L - ₹12.8L)",
+                "+91 94430 58881 (Shiv Fancy) | 04344-241050 (Mk Paper Cups) | Weavers St",
+                "Executive_Recovery_Dossier_Syed_Family.pdf", "Executive_Dossier_Syed_Family_Hosur_Astral.pdf",
+                "IEPF_Service_Agreement_8Percent.pdf", "IEPF_Service_Agreement_Syed_Family_Hosur_8Percent.pdf"
             ),
             (
-                "Elena Rostova", 
-                "Friedrichstrasse 180, 10117 Berlin, Germany", 
-                "FOL-43109", 
-                "EST-61200", 
-                "+49 30 123456 | elena.rostova@berlinbiotech.de", 
-                None, None, 
-                None, None
+                "Shri S. Yugandhar",
+                "38-5, 1st Floor, Ramaling Jothi Nagar, II Cross, Ramanathapuram, Coimbatore, Tamil Nadu - 641045",
+                "1202300000104144",
+                "₹85,00,000 - ₹1,15,00,000 (8% Fee: ₹6.8L - ₹9.2L)",
+                "+91 99655 11562 (Balu Decorators) | 0422-4351562 | Ramanathapuram",
+                "Executive_Recovery_Dossier_S_Yugandhar.pdf", "Executive_Dossier_S_Yugandhar_Coimbatore_Astral.pdf",
+                "IEPF_Service_Agreement_8Percent.pdf", "IEPF_Service_Agreement_S_Yugandhar_Coimbatore_8Percent.pdf"
+            ),
+            (
+                "Smt. B. Malarvizhi",
+                "No. 42, Ramakannu Street, Cheyyar, Thiruvannamalai District, Tamil Nadu - 604407",
+                "IN30039416574182",
+                "₹52,00,000 - ₹67,00,000 (15% Fee: ₹7.8L - ₹10L)",
+                "+91 99653 05105 (Bringi Office) | +91 92400 30806 (My Kalyan) | Cheyyar",
+                "Digital_Advisory_Dossier_B_Malarvizhi.pdf", "Digital_Advisory_B_Malarvizhi_Astral.pdf",
+                "IEPF_Service_Agreement_15Percent.pdf", "IEPF_Service_Agreement_B_Malarvizhi_15Percent.pdf"
+            ),
+            (
+                "Shri Anuj S. Mahruwala",
+                "83-387, Saraswati Nagar Society, Near Azad Society, Himmatlal Park, Ambawadi, Ahmedabad, Gujarat - 380015",
+                "IN30246110034580",
+                "₹1,50,00,000 - ₹2,20,00,000 (8% Fee: ₹12.0L - ₹17.6L)",
+                "079-4938 5496 | Ambawadi Society Office | Speed Post AD",
+                "Executive_Recovery_Dossier_Anuj_Mahruwala.pdf", "Executive_Dossier_Anuj_Mahruwala_Astral.pdf",
+                "IEPF_Service_Agreement_8Percent.pdf", "IEPF_Service_Agreement_Anuj_Mahruwala_8Percent.pdf"
+            ),
+            (
+                "Ramkant Gangaram Walke & Rajani Walke",
+                "Flat No. 506, D-Wing, Akruti Orchid Park, Sakinaka, Andheri East, Mumbai, Maharashtra - 400072",
+                "IN30068510351403 / IN30068510351569",
+                "₹2,20,00,000 - ₹3,00,00,000 (8% Fee: ₹17.6L - ₹24.0L)",
+                "Akruti Orchid Park CHS Admin | Sakinaka, Andheri East | Speed Post AD",
+                "Executive_Recovery_Dossier_Ramkant_Walke.pdf", "Executive_Dossier_Ramkant_Walke_Astral.pdf",
+                "IEPF_Service_Agreement_8Percent.pdf", "IEPF_Service_Agreement_Ramkant_Walke_8Percent.pdf"
+            ),
+            (
+                "Yusuf Kadir Malgundkar & Sayeeda Malgundkar",
+                "Zia Apts, 501, 5th Floor, B-Wing, 264 Bellasis Road, Mumbai Central, Mumbai, Maharashtra - 400008",
+                "IN30075711147162",
+                "₹1,20,00,000 - ₹1,80,00,000 (8% Fee: ₹9.6L - ₹14.4L)",
+                "Zia Apartments Society Office | 264 Bellasis Rd | Speed Post AD",
+                "Executive_Recovery_Dossier_Yusuf_Malgundkar.pdf", "Executive_Dossier_Yusuf_Malgundkar_Astral.pdf",
+                "IEPF_Service_Agreement_8Percent.pdf", "IEPF_Service_Agreement_Yusuf_Malgundkar_8Percent.pdf"
+            ),
+            (
+                "Smt. Rajeshwari Gopalan",
+                "50/5, New No. 32, 3rd Floor, Giri Road, T. Nagar, Chennai, Tamil Nadu - 600017",
+                "IN30131320619201",
+                "₹50,00,000 - ₹75,00,000 (8% Fee: ₹4.0L - ₹6.0L)",
+                "+91 98408 18454 (Hotel Nandini Palace, Giri Rd) | T. Nagar, Chennai",
+                "Executive_Recovery_Dossier_Rajeshwari_Gopalan.pdf", "Executive_Dossier_Rajeshwari_Gopalan_Astral.pdf",
+                "IEPF_Service_Agreement_8Percent.pdf", "IEPF_Service_Agreement_Rajeshwari_Gopalan_8Percent.pdf"
+            ),
+            (
+                "Smt. Bhawari Bai",
+                "Old No. 86, New No. 26, Rasappa Chetty Street, 2nd Floor, Wall Tax Road, Park Town, Chennai, Tamil Nadu - 600003",
+                "IN30163740669134",
+                "₹40,00,000 - ₹60,00,000 (8% Fee: ₹3.2L - ₹4.8L)",
+                "+91 94444 94565 / 044-4855 2102 (Durga Handicrafts) | Opp Kandaswami Kovil",
+                "Executive_Recovery_Dossier_Bhawari_Bai.pdf", "Executive_Dossier_Bhawari_Bai_Astral.pdf",
+                "IEPF_Service_Agreement_8Percent.pdf", "IEPF_Service_Agreement_Bhawari_Bai_8Percent.pdf"
             )
         ]
 
@@ -158,7 +197,7 @@ def init_db():
                 name, address, folio_id, est_folio, contact_info,
                 pdf1_filename, pdf1_path, pdf2_filename, pdf2_path
             ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-        """, samples)
+        """, verified_clients)
         conn.commit()
 
     conn.close()
