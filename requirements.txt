@@ -1,0 +1,2 @@
+# CustomerVault - Standard Library Python Application
+# No external pip dependencies required.
