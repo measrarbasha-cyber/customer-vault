@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: customervault
+    runtime: python
+    buildCommand: "echo 'No build dependencies needed'"
+    startCommand: "python server.py --port=$PORT --no-browser"
+    plan: free
+    disk:
+      name: customer-data
+      mountPath: /app/uploads
+      sizeGB: 1
