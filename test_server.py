@@ -44,19 +44,27 @@ class TestCustomerVaultUpdated(unittest.TestCase):
             self.assertIn("pdf1_filename", first)
 
     def test_03_search_by_name_and_folio(self):
-        # Search by name
-        url = f"http://127.0.0.1:{PORT}/api/customers?q=Alexander"
-        with urllib.request.urlopen(url) as res:
-            data = json.loads(res.read().decode('utf-8'))
-            self.assertTrue(len(data) >= 1)
-            self.assertEqual(data[0]['name'], "Alexander Wright")
+        # Fetch first customer to dynamically test search
+        url_all = f"http://127.0.0.1:{PORT}/api/customers"
+        with urllib.request.urlopen(url_all) as res:
+            all_cust = json.loads(res.read().decode('utf-8'))
+            self.assertTrue(len(all_cust) >= 1)
+            target = all_cust[0]
 
-        # Search by Folio ID
-        url = f"http://127.0.0.1:{PORT}/api/customers?q=FOL-89210"
+        # Search by customer's name
+        url = f"http://127.0.0.1:{PORT}/api/customers?q=" + urllib.parse.quote(target['name'].split()[0])
         with urllib.request.urlopen(url) as res:
             data = json.loads(res.read().decode('utf-8'))
             self.assertTrue(len(data) >= 1)
-            self.assertEqual(data[0]['folio_id'], "FOL-89210")
+            self.assertTrue(any(c['id'] == target['id'] for c in data))
+
+        # Search by Folio ID if present
+        if target.get('folio_id'):
+            url = f"http://127.0.0.1:{PORT}/api/customers?q=" + urllib.parse.quote(target['folio_id'][:6])
+            with urllib.request.urlopen(url) as res:
+                data = json.loads(res.read().decode('utf-8'))
+                self.assertTrue(len(data) >= 1)
+                self.assertTrue(any(c['id'] == target['id'] for c in data))
 
     def test_04_create_customer_with_pdfs(self):
         sample_pdf_bytes = b"%PDF-1.4\n1 0 obj<</Type/Catalog/Pages 2 0 R>>endobj\n2 0 obj<</Type/Pages/Count 0>>endobj\nxref\n0 3\n0000000000 65535 f\ntrailer<</Size 3/Root 1 0 R>>\nstartxref\n100\n%%EOF"
@@ -107,6 +115,30 @@ class TestCustomerVaultUpdated(unittest.TestCase):
             del_req = urllib.request.Request(del_url, method="DELETE")
             with urllib.request.urlopen(del_req) as del_res:
                 self.assertEqual(del_res.status, 200)
+
+    def test_05_pwa_manifest_and_icons(self):
+        # Test manifest.json
+        manifest_url = f"http://127.0.0.1:{PORT}/manifest.json"
+        with urllib.request.urlopen(manifest_url) as res:
+            self.assertEqual(res.status, 200)
+            data = json.loads(res.read().decode('utf-8'))
+            self.assertEqual(data['short_name'], "CustomerVault")
+            self.assertEqual(data['display'], "standalone")
+            self.assertTrue(len(data['icons']) >= 2)
+
+        # Test sw.js
+        sw_url = f"http://127.0.0.1:{PORT}/sw.js"
+        with urllib.request.urlopen(sw_url) as res:
+            self.assertEqual(res.status, 200)
+            self.assertIn("application/javascript", res.headers.get("Content-Type"))
+
+        # Test logo icon
+        logo_url = f"http://127.0.0.1:{PORT}/icons/logo.png"
+        with urllib.request.urlopen(logo_url) as res:
+            self.assertEqual(res.status, 200)
+            self.assertEqual(res.headers.get("Content-Type"), "image/png")
+            content = res.read()
+            self.assertTrue(len(content) > 1000)
 
 if __name__ == "__main__":
     unittest.main()

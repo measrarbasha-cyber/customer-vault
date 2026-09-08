@@ -5,11 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>CustomerVault - Directory & Folio Manager</title>
   
-  <!-- Apple Web App / iPhone PWA Support -->
+  <!-- Progressive Web App (Android & iOS) Support -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="CustomerVault">
   <meta name="theme-color" content="#4f46e5">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" type="image/png" href="/icons/favicon.png">
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
 
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Lightweight QR Code Generator -->
@@ -59,11 +63,7 @@
       
       <!-- Brand & Title -->
       <div class="flex items-center space-x-3">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-blue-500 flex items-center justify-center text-white shadow-md shadow-indigo-100 shrink-0">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-          </svg>
-        </div>
+        <img src="/icons/logo.png" alt="CustomerVault Logo" class="w-10 h-10 rounded-xl shadow-md border border-slate-200 object-cover shrink-0">
         <div>
           <h1 class="font-bold text-base sm:text-lg text-slate-900 leading-tight">CustomerVault</h1>
           <p class="text-[11px] text-slate-500 font-medium">Customer & Folio Directory</p>
@@ -73,13 +73,21 @@
       <!-- Header Action Buttons -->
       <div class="flex items-center space-x-2 sm:space-x-3">
         
-        <!-- Connect iPhone Button -->
+        <!-- Android 1-Tap Install Button (Appears when browser is installable) -->
+        <button id="androidInstallBtn" onclick="triggerAndroidInstall()" class="hidden inline-flex items-center px-3 py-2 text-xs sm:text-sm font-bold text-white bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 rounded-lg transition shadow-md shadow-emerald-200 animate-pulse">
+          <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+          </svg>
+          <span>Install Android App</span>
+        </button>
+
+        <!-- Mobile App Modal Button -->
         <button onclick="openPhoneModal()" class="inline-flex items-center px-3 py-2 text-xs sm:text-sm font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 rounded-lg transition">
           <svg class="w-4 h-4 mr-1.5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
           </svg>
-          <span class="hidden sm:inline">Open on iPhone</span>
-          <span class="sm:hidden">iPhone</span>
+          <span class="hidden sm:inline">📱 Mobile App (Android & iOS)</span>
+          <span class="sm:hidden">App</span>
         </button>
 
         <!-- Excel Export (CSV) -->
@@ -482,45 +490,76 @@
     </div>
   </div>
 
-  <!-- MODAL: CONNECT IPHONE / MOBILE -->
+  <!-- MODAL: CONNECT MOBILE (ANDROID & IPHONE) -->
   <div id="phoneModal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
     <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-200 text-center">
       
-      <div class="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center mx-auto mb-3">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
-        </svg>
+      <div class="flex items-center justify-center space-x-2 mb-3">
+        <img src="/icons/logo.png" alt="CustomerVault Logo" class="w-12 h-12 rounded-2xl shadow-md border border-slate-200 object-cover">
       </div>
 
-      <h3 class="text-xl font-bold text-slate-900">Download App on iPhone</h3>
-      <p class="text-xs text-slate-500 mt-1 max-w-xs mx-auto">Make sure your iPhone is connected to the same Wi-Fi as this PC.</p>
+      <h3 class="text-xl font-bold text-slate-900">Install CustomerVault App</h3>
+      <p class="text-xs text-slate-500 mt-1 max-w-xs mx-auto">Access your customer & folio data anytime from your phone.</p>
+
+      <!-- Platform Selection Tabs -->
+      <div class="flex rounded-xl bg-slate-100 p-1 mt-4 mb-3 border border-slate-200">
+        <button id="tabAndroidBtn" onclick="switchMobileTab('android')" class="flex-1 py-1.5 text-xs font-bold rounded-lg bg-white text-indigo-700 shadow-xs transition flex items-center justify-center space-x-1">
+          <span>🤖 Android App</span>
+        </button>
+        <button id="tabIosBtn" onclick="switchMobileTab('ios')" class="flex-1 py-1.5 text-xs font-bold rounded-lg text-slate-600 hover:text-slate-900 transition flex items-center justify-center space-x-1">
+          <span>🍏 iPhone (iOS)</span>
+        </button>
+      </div>
 
       <!-- Dynamic QR Code Container -->
-      <div class="my-5 p-4 bg-slate-50 rounded-2xl border border-slate-100 inline-block shadow-inner">
+      <div class="my-3 p-3 bg-slate-50 rounded-2xl border border-slate-100 inline-block shadow-inner">
         <div id="qrcode" class="flex justify-center"></div>
       </div>
 
-      <!-- iPhone Web Link -->
-      <div class="mb-4">
-        <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Direct iPhone Link</p>
-        <a id="phoneUrlLink" href="#" target="_blank" class="text-sm font-mono font-bold text-indigo-600 hover:underline break-all bg-indigo-50/70 py-1.5 px-3 rounded-lg inline-block">
+      <!-- Web Link -->
+      <div class="mb-3">
+        <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">Direct Phone Link</p>
+        <a id="phoneUrlLink" href="#" target="_blank" class="text-xs font-mono font-bold text-indigo-600 hover:underline break-all bg-indigo-50/70 py-1.5 px-3 rounded-lg inline-block">
           http://192.168.1.3:5000
         </a>
       </div>
 
-      <!-- Step-by-step PWA Instructions -->
-      <div class="text-left bg-slate-50 rounded-xl p-3.5 border border-slate-200 text-xs text-slate-600 space-y-2 mb-5">
+      <!-- Android Instructions Tab Content -->
+      <div id="androidTabContent" class="text-left bg-emerald-50/60 rounded-xl p-3 border border-emerald-200/80 text-xs text-slate-700 space-y-2 mb-4">
+        <div class="flex items-center justify-between pb-1 border-b border-emerald-100 font-bold text-emerald-800">
+          <span>🤖 Android Installation (Chrome)</span>
+          <span class="text-[10px] bg-emerald-100 px-1.5 py-0.5 rounded text-emerald-700">Native PWA</span>
+        </div>
+        <div class="flex items-start space-x-2">
+          <span class="font-bold text-emerald-600 shrink-0">1.</span>
+          <span>Open the link in <strong>Google Chrome</strong> on your Android phone.</span>
+        </div>
+        <div class="flex items-start space-x-2">
+          <span class="font-bold text-emerald-600 shrink-0">2.</span>
+          <span>Tap the <strong>"Install Android App"</strong> banner or Chrome menu (⋮) ➔ <strong>"Install app"</strong>.</span>
+        </div>
+        <div class="flex items-start space-x-2">
+          <span class="font-bold text-emerald-600 shrink-0">3.</span>
+          <span>CustomerVault will install directly into your <strong>Android App Drawer & Home Screen</strong> with its custom logo!</span>
+        </div>
+      </div>
+
+      <!-- iPhone Instructions Tab Content -->
+      <div id="iosTabContent" class="hidden text-left bg-slate-50 rounded-xl p-3 border border-slate-200 text-xs text-slate-600 space-y-2 mb-4">
+        <div class="flex items-center justify-between pb-1 border-b border-slate-200 font-bold text-slate-800">
+          <span>🍏 iPhone Installation (Safari)</span>
+        </div>
         <div class="flex items-start space-x-2">
           <span class="font-bold text-indigo-600 shrink-0">1.</span>
-          <span>Point your <strong>iPhone Camera</strong> at the QR code above and tap the yellow link.</span>
+          <span>Open the link in <strong>Safari</strong> on your iPhone.</span>
         </div>
         <div class="flex items-start space-x-2">
           <span class="font-bold text-indigo-600 shrink-0">2.</span>
-          <span>In Safari, tap the <strong>Share</strong> button (square icon with up arrow ⎋).</span>
+          <span>Tap the <strong>Share</strong> button (square icon with up arrow ⎋).</span>
         </div>
         <div class="flex items-start space-x-2">
           <span class="font-bold text-indigo-600 shrink-0">3.</span>
-          <span>Select <strong>"Add to Home Screen"</strong>. An app icon will be installed right on your phone!</span>
+          <span>Select <strong>"Add to Home Screen"</strong> to install as a full-screen app icon.</span>
         </div>
       </div>
 
@@ -964,6 +1003,63 @@
 
     function closePhoneModal() {
       document.getElementById('phoneModal').classList.add('hidden');
+    }
+
+    // Android & Mobile PWA Installation Logic
+    let deferredPrompt = null;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      const btn = document.getElementById('androidInstallBtn');
+      if (btn) btn.classList.remove('hidden');
+    });
+
+    async function triggerAndroidInstall() {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === 'accepted') {
+          const btn = document.getElementById('androidInstallBtn');
+          if (btn) btn.classList.add('hidden');
+        }
+        deferredPrompt = null;
+      } else {
+        openPhoneModal();
+        switchMobileTab('android');
+      }
+    }
+
+    window.addEventListener('appinstalled', () => {
+      const btn = document.getElementById('androidInstallBtn');
+      if (btn) btn.classList.add('hidden');
+    });
+
+    function switchMobileTab(tab) {
+      const aBtn = document.getElementById('tabAndroidBtn');
+      const iBtn = document.getElementById('tabIosBtn');
+      const aContent = document.getElementById('androidTabContent');
+      const iContent = document.getElementById('iosTabContent');
+
+      if (tab === 'android') {
+        aBtn.className = "flex-1 py-1.5 text-xs font-bold rounded-lg bg-white text-emerald-700 shadow-xs transition flex items-center justify-center space-x-1";
+        iBtn.className = "flex-1 py-1.5 text-xs font-bold rounded-lg text-slate-600 hover:text-slate-900 transition flex items-center justify-center space-x-1";
+        aContent.classList.remove('hidden');
+        iContent.classList.add('hidden');
+      } else {
+        iBtn.className = "flex-1 py-1.5 text-xs font-bold rounded-lg bg-white text-indigo-700 shadow-xs transition flex items-center justify-center space-x-1";
+        aBtn.className = "flex-1 py-1.5 text-xs font-bold rounded-lg text-slate-600 hover:text-slate-900 transition flex items-center justify-center space-x-1";
+        iContent.classList.remove('hidden');
+        aContent.classList.add('hidden');
+      }
+    }
+
+    // Register Service Worker for Android PWA
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').catch((err) => {
+          console.log('Service Worker skipped:', err);
+        });
+      });
     }
 
     // Init

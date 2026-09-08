@@ -277,6 +277,42 @@ class CustomerHandler(BaseHTTPRequestHandler):
                 self.wfile.write(content)
                 return
 
+        # Web App Manifest & Service Worker (Android & iOS PWA)
+        if path == "/manifest.json":
+            file_path = os.path.join(STATIC_DIR, "manifest.json")
+            if os.path.exists(file_path):
+                with open(file_path, "rb") as f:
+                    content = f.read()
+                self._set_headers(200, "application/manifest+json")
+                self.wfile.write(content)
+                return
+
+        if path == "/sw.js":
+            file_path = os.path.join(STATIC_DIR, "sw.js")
+            if os.path.exists(file_path):
+                with open(file_path, "rb") as f:
+                    content = f.read()
+                self._set_headers(200, "application/javascript")
+                self.wfile.write(content)
+                return
+
+        # App Icons & Logo
+        if path.startswith("/icons/") or path == "/favicon.ico":
+            filename = os.path.basename(path)
+            file_path = os.path.join(STATIC_DIR, "icons", filename)
+            if os.path.exists(file_path):
+                ext = filename.split(".")[-1].lower()
+                mime = "image/png" if ext == "png" else ("image/jpeg" if ext in ["jpg", "jpeg"] else "image/x-icon")
+                with open(file_path, "rb") as f:
+                    content = f.read()
+                self.send_response(200)
+                self.send_header("Content-Type", mime)
+                self.send_header("Content-Length", str(len(content)))
+                self.send_header("Access-Control-Allow-Origin", "*")
+                self.end_headers()
+                self.wfile.write(content)
+                return
+
         # Network Info for iPhone / Mobile connection
         if path == "/api/network-info":
             local_ip = get_local_ip()
