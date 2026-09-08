@@ -1,21 +1,9 @@
-// CustomerVault Service Worker for Android PWA
-const CACHE_NAME = 'customervault-v1';
-const ASSETS_TO_CACHE = [
-  '/',
-  '/index.html',
-  '/manifest.json',
-  '/icons/icon-192.png',
-  '/icons/icon-512.png',
-  '/icons/logo.png',
-  '/icons/favicon.png'
-];
+// CustomerVault Resilient Service Worker v2
+const CACHE_NAME = 'customervault-v2';
 
 self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(ASSETS_TO_CACHE);
-    }).then(() => self.skipWaiting())
-  );
+  // Activate immediately without waiting
+  self.skipWaiting();
 });
 
 self.addEventListener('activate', (event) => {
@@ -33,34 +21,48 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
+  // Only intercept GET requests
+  if (event.request.method !== 'GET') return;
+
   const url = new URL(event.request.url);
 
-  // API calls & documents: Always network-first so customer records are always fresh
-  if (url.pathname.startsWith('/api/')) {
-    event.respondWith(
-      fetch(event.request).catch(() => {
-        return new Response(JSON.stringify({ error: 'Offline - check connection' }), {
-          headers: { 'Content-Type': 'application/json' }
-        });
-      })
-    );
+  // Let all cross-origin requests (CDNs, fonts, Google scripts) pass through directly to browser network
+  if (url.origin !== self.location.origin) {
     return;
   }
 
-  // Static assets: Stale-while-revalidate for instant loading
+  // Handle same-origin requests with Network-First, Cache-Fallback
   event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      const fetchPromise = fetch(event.request).then((networkResponse) => {
-        if (networkResponse && networkResponse.status === 200 && networkResponse.type === 'basic') {
-          const responseToCache = networkResponse.clone();
+    fetch(event.request)
+      .then((response) => {
+        // Cache successful GET responses for static files
+        if (response && response.status === 200 && !url.pathname.startsWith('/api/')) {
+          const responseClone = response.clone();
           caches.open(CACHE_NAME).then((cache) => {
-            cache.put(event.request, responseToCache);
+            cache.put(event.request, responseClone);
           });
         }
-        return networkResponse;
-      }).catch(() => cachedResponse);
+        return response;
+      })
+      .catch(async () => {
+        // Fallback to cache if network fails
+        const cached = await caches.match(event.request);
+        if (cached) return cached;
 
-      return cachedResponse || fetchPromise;
-    })
+        // If it's a page navigation request, fallback to cached root
+        if (event.request.mode === 'navigate') {
+          const cachedRoot = await caches.match('/');
+          if (cachedRoot) return cachedRoot;
+        }
+
+        // Return a valid offline JSON if API was requested
+        if (url.pathname.startsWith('/api/')) {
+          return new Response(JSON.stringify([]), {
+            headers: { 'Content-Type': 'application/json' }
+          });
+        }
+
+        return new Response('Network error - please refresh', { status: 503 });
+      })
   );
 });

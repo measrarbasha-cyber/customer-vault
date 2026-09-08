@@ -147,7 +147,7 @@
     <div class="flex-1 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
 
       <!-- LEFT COLUMN: Search Results / Customer List -->
-      <div id="listPane" class="no-print lg:col-span-5 bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden flex flex-col h-[580px] lg:h-[660px]">
+      <div id="listPane" class="no-print lg:col-span-5 bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden flex flex-col min-h-[460px] h-[calc(100vh-200px)] lg:h-[680px]">
         <!-- List Header -->
         <div class="px-4 sm:px-5 py-3.5 border-b border-slate-100 bg-slate-50/80 flex items-center justify-between">
           <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">
@@ -158,12 +158,16 @@
 
         <!-- Scrollable Customer List -->
         <div id="customerList" class="divide-y divide-slate-100 overflow-y-auto flex-1">
-          <!-- Populated dynamically -->
+          <div class="p-8 text-center text-slate-500 flex flex-col items-center justify-center h-full">
+            <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-indigo-600 border-t-transparent mb-3"></div>
+            <p class="font-bold text-slate-700 text-sm">Loading Client Directory...</p>
+            <p class="text-xs text-slate-400 mt-1">Connecting to database...</p>
+          </div>
         </div>
       </div>
 
       <!-- RIGHT COLUMN: Customer Detail View (Printable / Mobile Full Screen) -->
-      <div id="detailPane" class="hidden lg:flex lg:col-span-7 bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden flex-col min-h-[580px] lg:min-h-[660px]">
+      <div id="detailPane" class="hidden lg:flex lg:col-span-7 bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden flex-col min-h-[460px] h-[calc(100vh-200px)] lg:h-[680px]">
 
         <!-- Mobile Back Button (Visible on phones when detail is active) -->
         <div class="no-print lg:hidden p-3 bg-slate-100 border-b border-slate-200 flex items-center justify-between">
@@ -622,18 +626,24 @@
       }
     }
 
-    async function loadCustomers(searchQuery = '') {
+    function safeSetText(id, text) {
+      const el = document.getElementById(id);
+      if (el) el.innerText = text;
+    }
+
+    async function loadCustomers(searchQuery = '', retryCount = 0) {
+      const container = document.getElementById('customerList');
       try {
         const url = searchQuery 
           ? `/api/customers?q=${encodeURIComponent(searchQuery)}`
           : '/api/customers';
         const res = await fetch(url);
-        customers = await res.json();
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        customers = Array.isArray(data) ? data : [];
 
-        document.getElementById('customerCount').innerText = customers.length;
-        document.getElementById('searchIndicator').innerText = searchQuery 
-          ? `Searching: "${searchQuery}"` 
-          : 'All records';
+        safeSetText('customerCount', customers.length);
+        safeSetText('searchIndicator', searchQuery ? `Searching: "${searchQuery}"` : 'All records');
 
         renderCustomerList(customers, searchQuery);
 
@@ -651,6 +661,21 @@
         }
       } catch (err) {
         console.error('Failed to load customers:', err);
+        if (container) {
+          container.innerHTML = `
+            <div class="p-8 text-center text-slate-600 flex flex-col items-center justify-center h-full">
+              <div class="w-12 h-12 rounded-full bg-amber-50 text-amber-600 flex items-center justify-center mb-3 text-xl font-bold">⚡</div>
+              <p class="font-bold text-slate-800 text-sm">Connecting to Server...</p>
+              <p class="text-xs text-slate-500 mt-1 max-w-xs mx-auto">Cloud server is spinning up. Retrying automatically...</p>
+              <button onclick="loadCustomers('${searchQuery}')" class="mt-4 px-4 py-2 bg-indigo-600 text-white rounded-lg text-xs font-bold hover:bg-indigo-700 shadow-sm transition">
+                Retry Now
+              </button>
+            </div>
+          `;
+        }
+        if (retryCount < 4) {
+          setTimeout(() => loadCustomers(searchQuery, retryCount + 1), 3000);
+        }
       }
     }
 
@@ -658,7 +683,7 @@
       const container = document.getElementById('customerList');
       if (list.length === 0) {
         container.innerHTML = `
-          <div class="p-8 text-center text-slate-400">
+          <div class="p-8 text-center text-slate-400 flex flex-col items-center justify-center h-full">
             <p class="font-medium text-slate-600">No customers found</p>
             <p class="text-xs mt-1">Try another name or add a new customer.</p>
           </div>
@@ -718,52 +743,68 @@
 
       // On mobile screen (<1024px) when user clicks, toggle panes
       if (isUserClick && window.innerWidth < 1024) {
-        document.getElementById('listPane').classList.add('hidden');
-        document.getElementById('detailPane').classList.remove('hidden');
-        document.getElementById('detailPane').classList.add('flex');
+        const listPane = document.getElementById('listPane');
+        const detailPane = document.getElementById('detailPane');
+        if (listPane) listPane.classList.add('hidden');
+        if (detailPane) {
+          detailPane.classList.remove('hidden');
+          detailPane.classList.add('flex');
+        }
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
 
-      document.getElementById('emptyDetailState').classList.add('hidden');
-      document.getElementById('activeCustomerProfile').classList.remove('hidden');
+      const emptyEl = document.getElementById('emptyDetailState');
+      if (emptyEl) emptyEl.classList.add('hidden');
 
-      // Populate details
-      document.getElementById('profileAvatar').innerText = getInitials(cust.name);
-      document.getElementById('profileAvatar').className = `w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-tr ${getGradient(cust.name)} text-white font-extrabold text-xl sm:text-2xl flex items-center justify-center shadow-md shadow-indigo-950 shrink-0`;
+      const profileEl = document.getElementById('activeCustomerProfile');
+      if (profileEl) profileEl.classList.remove('hidden');
+
+      // Populate details safely
+      const avatar = document.getElementById('profileAvatar');
+      if (avatar) {
+        avatar.innerText = getInitials(cust.name);
+        avatar.className = `w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-tr ${getGradient(cust.name)} text-white font-extrabold text-xl sm:text-2xl flex items-center justify-center shadow-md shadow-indigo-950 shrink-0`;
+      }
       
-      document.getElementById('profileName').innerText = cust.name;
+      safeSetText('profileName', cust.name);
       
       // Folio badges
       const fBadge = document.getElementById('profileFolioBadge');
-      if (cust.folio_id) {
-        fBadge.innerText = cust.folio_id;
-        fBadge.classList.remove('hidden');
-      } else {
-        fBadge.classList.add('hidden');
+      if (fBadge) {
+        if (cust.folio_id) {
+          fBadge.innerText = cust.folio_id;
+          fBadge.classList.remove('hidden');
+        } else {
+          fBadge.classList.add('hidden');
+        }
       }
 
       const eBadge = document.getElementById('profileEstBadge');
-      if (cust.est_folio) {
-        eBadge.innerText = cust.est_folio;
-        eBadge.classList.remove('hidden');
-      } else {
-        eBadge.classList.add('hidden');
+      if (eBadge) {
+        if (cust.est_folio) {
+          eBadge.innerText = cust.est_folio;
+          eBadge.classList.remove('hidden');
+        } else {
+          eBadge.classList.add('hidden');
+        }
       }
 
       // My Fee Badge in top banner
       const mBadge = document.getElementById('profileMyCutBadge');
-      if (cust.my_est_value) {
-        mBadge.innerText = `💰 My Fee: ${cust.my_est_value}`;
-        mBadge.classList.remove('hidden');
-      } else {
-        mBadge.classList.add('hidden');
+      if (mBadge) {
+        if (cust.my_est_value) {
+          mBadge.innerText = `💰 My Fee: ${cust.my_est_value}`;
+          mBadge.classList.remove('hidden');
+        } else {
+          mBadge.classList.add('hidden');
+        }
       }
 
-      document.getElementById('profileFolioId').innerText = cust.folio_id || '--';
-      document.getElementById('profileEstFolio').innerText = cust.est_folio || '--';
-      document.getElementById('profileMyEstValue').innerText = cust.my_est_value || '--';
-      document.getElementById('profileContactInfo').innerText = cust.contact_info || 'No contact info provided';
-      document.getElementById('profileAddress').innerText = cust.address || 'No address provided';
+      safeSetText('profileFolioId', cust.folio_id || '--');
+      safeSetText('profileEstFolio', cust.est_folio || '--');
+      safeSetText('profileMyEstValue', cust.my_est_value || '--');
+      safeSetText('profileContactInfo', cust.contact_info || 'No contact info provided');
+      safeSetText('profileAddress', cust.address || 'No address provided');
 
       // PDF 1
       const pdf1Actions = document.getElementById('pdf1Actions');
@@ -772,14 +813,16 @@
       const pdf1Dl = document.getElementById('pdf1DownloadBtn');
 
       if (cust.pdf1_path) {
-        pdf1Title.innerText = cust.pdf1_filename || 'Document 1.pdf';
-        pdf1View.href = `/api/documents/${cust.pdf1_path}`;
-        pdf1Dl.href = `/api/documents/${cust.pdf1_path}`;
-        pdf1Dl.setAttribute('download', cust.pdf1_filename || 'Document 1.pdf');
-        pdf1Actions.classList.remove('hidden');
+        if (pdf1Title) pdf1Title.innerText = cust.pdf1_filename || 'Document 1.pdf';
+        if (pdf1View) pdf1View.href = `/api/documents/${cust.pdf1_path}`;
+        if (pdf1Dl) {
+          pdf1Dl.href = `/api/documents/${cust.pdf1_path}`;
+          pdf1Dl.setAttribute('download', cust.pdf1_filename || 'Document 1.pdf');
+        }
+        if (pdf1Actions) pdf1Actions.classList.remove('hidden');
       } else {
-        pdf1Title.innerText = 'No document uploaded';
-        pdf1Actions.classList.add('hidden');
+        if (pdf1Title) pdf1Title.innerText = 'No document uploaded';
+        if (pdf1Actions) pdf1Actions.classList.add('hidden');
       }
 
       // PDF 2
@@ -789,14 +832,16 @@
       const pdf2Dl = document.getElementById('pdf2DownloadBtn');
 
       if (cust.pdf2_path) {
-        pdf2Title.innerText = cust.pdf2_filename || 'Document 2.pdf';
-        pdf2View.href = `/api/documents/${cust.pdf2_path}`;
-        pdf2Dl.href = `/api/documents/${cust.pdf2_path}`;
-        pdf2Dl.setAttribute('download', cust.pdf2_filename || 'Document 2.pdf');
-        pdf2Actions.classList.remove('hidden');
+        if (pdf2Title) pdf2Title.innerText = cust.pdf2_filename || 'Document 2.pdf';
+        if (pdf2View) pdf2View.href = `/api/documents/${cust.pdf2_path}`;
+        if (pdf2Dl) {
+          pdf2Dl.href = `/api/documents/${cust.pdf2_path}`;
+          pdf2Dl.setAttribute('download', cust.pdf2_filename || 'Document 2.pdf');
+        }
+        if (pdf2Actions) pdf2Actions.classList.remove('hidden');
       } else {
-        pdf2Title.innerText = 'No document uploaded';
-        pdf2Actions.classList.add('hidden');
+        if (pdf2Title) pdf2Title.innerText = 'No document uploaded';
+        if (pdf2Actions) pdf2Actions.classList.add('hidden');
       }
     }
 
