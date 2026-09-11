@@ -202,6 +202,56 @@ def init_db():
                 "+91 94444 94565 / 044-4855 2102 (Durga Handicrafts) | Opp Kandaswami Kovil",
                 "Executive_Recovery_Dossier_Bhawari_Bai.pdf", "Executive_Dossier_Bhawari_Bai_Astral.pdf",
                 "IEPF_Service_Agreement_8Percent.pdf", "IEPF_Service_Agreement_Bhawari_Bai_8Percent.pdf"
+            ),
+            (
+                "Rameshkumar & Kishorkumar Pansuriya (c/o Dr. M. V. Pansuriya)",
+                "49, Shubham Residency, Opp. Rajlaxmi Park, Moti Baug, Junagadh, Gujarat - 362001",
+                "IN30220110523394 / IN30220110703814",
+                "₹3,50,00,000 — ₹5,00,00,000 (₹3.5 – ₹5.0 Cr)",
+                "₹28,00,000 — ₹40,00,000 (8% Fee)",
+                "+91 99250 79009 (Doctor Mobile) | 0285-2628301 | Pansuriya Nidan Kendra, Moti Baug",
+                "Executive_Recovery_Dossier_Pansuriya_Junagadh.pdf", "Executive_Dossier_Pansuriya_Junagadh_Astral.pdf",
+                "IEPF_Service_Agreement_8Percent.pdf", "IEPF_Service_Agreement_Pansuriya_Junagadh_8Percent.pdf"
+            ),
+            (
+                "Kavish Sarawgi (Kavish Kumar Gadia)",
+                "Tower-A, Flat 201, Bestech Park View Spa, Near DPS Primary School, Sector 47, Gurgaon, Haryana - 122002",
+                "IN30154918973633",
+                "₹1,50,00,000 — ₹2,20,00,000 (₹1.5 – ₹2.2 Cr)",
+                "₹12,00,00,000 — ₹17,60,000 (8% Fee)",
+                "kavish@stones2milestones.com | admin@stones2milestones.com | CEO, Stones2Milestones",
+                "Executive_Recovery_Dossier_Kavish_Sarawgi.pdf", "Executive_Dossier_Kavish_Sarawgi_Astral.pdf",
+                "IEPF_Service_Agreement_8Percent.pdf", "IEPF_Service_Agreement_Kavish_Sarawgi_8Percent.pdf"
+            ),
+            (
+                "Pramod Kumar Garodia & Sajjan Garodia",
+                "Sanitary Sales Corporation, G-5 Narsaria Tower, Opp. Lalpur Thana, H.B. Road, Ranchi, Jharkhand - 834001",
+                "IN30051311165733",
+                "₹1,80,00,000 — ₹2,50,00,000 (₹1.8 – ₹2.5 Cr)",
+                "₹14,40,00,000 — ₹20,00,000 (8% Fee)",
+                "+91 93341 44844 | +91 7942703516 | Sanitary Sales Corporation (BNI Ranchi)",
+                "Executive_Recovery_Dossier_Pramod_Garodia.pdf", "Executive_Dossier_Pramod_Garodia_Ranchi_Astral.pdf",
+                "IEPF_Service_Agreement_8Percent.pdf", "IEPF_Service_Agreement_Pramod_Garodia_Ranchi_8Percent.pdf"
+            ),
+            (
+                "Dr. Lenin Pinnamaneni",
+                "Road No-10, Plot No-30, Dhanlakshmi Society, Mahindra Hills, Secunderabad / Hyderabad, Telangana - 500026",
+                "IN30182010040634",
+                "₹80,00,000 — ₹1,20,00,000 (₹80L – ₹1.20 Cr)",
+                "₹6,40,000 — ₹9,60,000 (8% Fee)",
+                "+1 (936) 876-5719 | Fax: +1 (936) 876-3308 | Pineywoods Diagnostic Clinic, TX, USA",
+                "Executive_Recovery_Dossier_Dr_Lenin_Pinnamaneni.pdf", "Executive_Dossier_Dr_Lenin_Pinnamaneni_Astral.pdf",
+                "IEPF_Service_Agreement_8Percent.pdf", "IEPF_Service_Agreement_Dr_Lenin_Pinnamaneni_8Percent.pdf"
+            ),
+            (
+                "Naniklal Bhatia / Shyam Bhatia (Chartered Accountants)",
+                "Bhatia Bhawan, 20 Jairampur Colony, Main Road, Indore, Madhya Pradesh - 452004",
+                "IN30048411367040",
+                "₹3,00,00,000 — ₹4,20,00,000 (₹3.0 – ₹4.2 Cr)",
+                "₹24,00,000 — ₹33,60,000 (8% Fee)",
+                "+91 98260 82720 | +91 94250 57953 | Shyam Bhatia & Company (Chartered Accountants)",
+                "Executive_Recovery_Dossier_Naniklal_Bhatia.pdf", "Executive_Dossier_Naniklal_Bhatia_Indore_Astral.pdf",
+                "IEPF_Service_Agreement_8Percent.pdf", "IEPF_Service_Agreement_Naniklal_Bhatia_Indore_8Percent.pdf"
             )
         ]
 
