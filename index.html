@@ -28,15 +28,19 @@
       -webkit-tap-highlight-color: transparent;
     }
     ::-webkit-scrollbar {
-      width: 5px;
-      height: 5px;
+      width: 7px;
+      height: 7px;
     }
     ::-webkit-scrollbar-track {
-      background: #f8fafc;
+      background: #f1f5f9;
+      border-radius: 4px;
     }
     ::-webkit-scrollbar-thumb {
-      background: #cbd5e1;
+      background: #94a3b8;
       border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #64748b;
     }
     @media print {
       body {
@@ -147,7 +151,7 @@
     <div class="flex-1 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
 
       <!-- LEFT COLUMN: Search Results / Customer List -->
-      <div id="listPane" class="no-print lg:col-span-5 bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden flex flex-col min-h-[460px] h-[calc(100vh-200px)] lg:h-[680px]">
+      <div id="listPane" class="no-print lg:col-span-5 bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden flex flex-col min-h-[520px] h-[calc(100vh-180px)]">
         <!-- List Header -->
         <div class="px-4 sm:px-5 py-3.5 border-b border-slate-100 bg-slate-50/80 flex items-center justify-between">
           <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">
@@ -167,7 +171,7 @@
       </div>
 
       <!-- RIGHT COLUMN: Customer Detail View (Printable / Mobile Full Screen) -->
-      <div id="detailPane" class="hidden lg:flex lg:col-span-7 bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden flex-col min-h-[460px] h-[calc(100vh-200px)] lg:h-[680px]">
+      <div id="detailPane" class="hidden lg:flex lg:col-span-7 bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden flex-col min-h-[520px] h-[calc(100vh-180px)]">
 
         <!-- Mobile Back Button (Visible on phones when detail is active) -->
         <div class="no-print lg:hidden p-3 bg-slate-100 border-b border-slate-200 flex items-center justify-between">
@@ -204,11 +208,11 @@
           <p class="text-xs sm:text-sm text-slate-500 max-w-sm mt-1">Type a name above or click a customer from the list to view their complete details.</p>
         </div>
 
-        <!-- Active Customer Profile Card -->
-        <div id="activeCustomerProfile" class="hidden flex-1 flex flex-col">
+        <!-- Active Customer Profile Card (Scrollable) -->
+        <div id="activeCustomerProfile" class="hidden flex-1 flex flex-col min-h-0 overflow-y-auto">
           
-          <!-- Profile Banner Card -->
-          <div class="p-5 sm:p-6 bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <!-- Profile Banner Card (Sticky Header) -->
+          <div class="sticky top-0 z-20 shrink-0 p-5 sm:p-6 bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-md">
             <div class="flex items-center space-x-3.5">
               <div id="profileAvatar" class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-indigo-600 text-white font-extrabold text-xl sm:text-2xl flex items-center justify-center shadow-md shadow-indigo-950 shrink-0">
                 CU
@@ -254,7 +258,7 @@
           </div>
 
           <!-- Profile Details Body -->
-          <div class="p-5 sm:p-6 space-y-5 flex-1 bg-white">
+          <div class="p-5 sm:p-6 space-y-5 bg-white pb-20">
 
             <!-- Folio Numbers & Commission Valuation Cards -->
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
@@ -826,7 +830,10 @@
       if (emptyEl) emptyEl.classList.add('hidden');
 
       const profileEl = document.getElementById('activeCustomerProfile');
-      if (profileEl) profileEl.classList.remove('hidden');
+      if (profileEl) {
+        profileEl.classList.remove('hidden');
+        profileEl.scrollTop = 0;
+      }
 
       // Populate details safely
       const avatar = document.getElementById('profileAvatar');
