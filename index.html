@@ -357,7 +357,7 @@
                     <h4 class="text-xs font-bold text-slate-800 uppercase tracking-wider">Send Dossier to Client</h4>
                   </div>
                   <p class="text-xs text-slate-500 mt-1">
-                    Auto-generates tailored recovery summary & direct confidential Dossier link
+                    Auto-downloads Dossier PDF to attach & prepares personalized client message
                   </p>
                 </div>
 
@@ -762,13 +762,13 @@
             <textarea id="dispatchWaMessage" rows="9" class="w-full p-3 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:bg-white focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-100 font-sans leading-relaxed"></textarea>
           </div>
 
-          <!-- Direct Dossier URL Badge -->
+          <!-- Dossier File to Attach Box -->
           <div class="p-3 bg-emerald-50/80 border border-emerald-200 rounded-xl flex items-center justify-between text-xs">
             <div class="flex items-center space-x-2 min-w-0">
-              <span class="font-bold text-emerald-800 shrink-0">📄 Attached Dossier:</span>
-              <span id="dispatchWaDossierLinkText" class="font-mono text-emerald-700 truncate">Loading link...</span>
+              <span class="font-bold text-emerald-800 shrink-0">📎 File to Attach:</span>
+              <span id="dispatchWaDossierLinkText" class="font-mono font-bold text-emerald-900 truncate">Recovery_Dossier.pdf</span>
             </div>
-            <a id="dispatchWaDossierPreview" href="#" target="_blank" class="text-emerald-700 font-bold hover:underline shrink-0 ml-2">Preview PDF</a>
+            <button type="button" onclick="triggerDossierDownload(customers.find(c => c.id === selectedCustomerId))" class="text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 px-3 py-1.5 rounded-lg transition shrink-0 ml-2 shadow-2xs cursor-pointer">📥 Download PDF</button>
           </div>
 
           <!-- Actions -->
@@ -808,13 +808,13 @@
             <textarea id="dispatchEmailBody" rows="8" class="w-full p-3 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:bg-white focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-100 font-sans leading-relaxed"></textarea>
           </div>
 
-          <!-- Direct Dossier URL Badge -->
+          <!-- Dossier File to Attach Box -->
           <div class="p-3 bg-indigo-50/80 border border-indigo-200 rounded-xl flex items-center justify-between text-xs">
             <div class="flex items-center space-x-2 min-w-0">
-              <span class="font-bold text-indigo-800 shrink-0">📄 Attached Dossier:</span>
-              <span id="dispatchEmailDossierLinkText" class="font-mono text-indigo-700 truncate">Loading link...</span>
+              <span class="font-bold text-indigo-800 shrink-0">📎 File to Attach:</span>
+              <span id="dispatchEmailDossierLinkText" class="font-mono font-bold text-indigo-900 truncate">Recovery_Dossier.pdf</span>
             </div>
-            <a id="dispatchEmailDossierPreview" href="#" target="_blank" class="text-indigo-700 font-bold hover:underline shrink-0 ml-2">Preview PDF</a>
+            <button type="button" onclick="triggerDossierDownload(customers.find(c => c.id === selectedCustomerId))" class="text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 px-3 py-1.5 rounded-lg transition shrink-0 ml-2 shadow-2xs cursor-pointer">📥 Download PDF</button>
           </div>
 
           <!-- Actions -->
@@ -1213,7 +1213,6 @@
     }
 
     function buildWhatsAppOutreachMessage(cust) {
-      const dossierUrl = getDossierAbsoluteUrl(cust);
       const name = cust.name || 'Investor';
       const folio = cust.folio_id || 'unclaimed folio';
       const est = cust.est_folio || 'verified portfolio';
@@ -1232,10 +1231,10 @@ This communication is regarding your long-standing unclaimed equity shareholding
 ${fee}💼 *Service Framework:* ₹0 Advance / 100% Contingent on Credit to your Demat Account
 🏦 *Payout Destination:* Transferred directly from IEPF Authority into your verified Demat & Bank account.
 
-We have prepared your complete *Executive Recovery Dossier & Audit Evidence Report*. You can review and download your confidential dossier directly here:
-👉 *Download Dossier:* ${dossierUrl}
+📎 *ATTACHED DOCUMENT:*
+Please find attached your confidential *Executive Recovery Dossier & Audit Evidence Report* (PDF file) for your review.
 
-Kindly let me know when it would be convenient for a brief 2-minute call to discuss the statutory IEPF Form 5 documentation.
+Kindly review the attached PDF dossier and let me know when it would be convenient for a brief 2-minute call to discuss the statutory IEPF Form 5 documentation.
 
 Warm regards,
 *MD ASRAR BASHA A*
@@ -1246,7 +1245,6 @@ Chennai & Ranipet, Tamil Nadu`;
     }
 
     function buildEmailOutreach(cust) {
-      const dossierUrl = getDossierAbsoluteUrl(cust);
       const name = cust.name || 'Investor';
       const folio = cust.folio_id || 'unclaimed folio';
       const est = cust.est_folio || 'verified portfolio';
@@ -1267,10 +1265,9 @@ We handle the complete statutory recovery end-to-end under a strict zero-risk fr
 2. Direct Government Settlement: All recovered shares and dividend disbursements are credited directly into your verified Demat and Bank account by the IEPF Authority.
 3. Complete Documentation: Physical share entitlement, RTA verification (Bigshare Services, Mumbai), and MCA e-filing managed by our office.
 
-Your comprehensive Executive Recovery Dossier and audit breakdown has been prepared and can be accessed and downloaded at the following link:
-${dossierUrl}
+Please find attached your comprehensive Executive Recovery Dossier and statutory audit breakdown (PDF document) for your review.
 
-Please review your dossier, and feel free to reply to this email or contact me directly at +91 7358882822 to coordinate the statutory paperwork.
+Kindly review the attached dossier, and feel free to reply to this email or contact me directly at +91 7358882822 to coordinate the statutory paperwork.
 
 Warm regards,
 
@@ -1283,9 +1280,20 @@ Chennai & Ranipet, Tamil Nadu`;
       return { subject, body };
     }
 
+    function triggerDossierDownload(cust) {
+      if (!cust || !cust.pdf1_path) return;
+      const dlLink = document.createElement('a');
+      dlLink.href = `/api/documents/${cust.pdf1_path}`;
+      dlLink.download = cust.pdf1_filename || `${cust.name.replace(/[^a-zA-Z0-9]/g, '_')}_Recovery_Dossier.pdf`;
+      document.body.appendChild(dlLink);
+      dlLink.click();
+      document.body.removeChild(dlLink);
+    }
+
     function dispatchWhatsAppDirect() {
       const cust = customers.find(c => c.id === selectedCustomerId);
       if (!cust) return;
+      triggerDossierDownload(cust);
       const details = extractContactDetails(cust.contact_info);
       if (details.phone) {
         const msg = buildWhatsAppOutreachMessage(cust);
@@ -1299,6 +1307,7 @@ Chennai & Ranipet, Tamil Nadu`;
     function dispatchGmailDirect() {
       const cust = customers.find(c => c.id === selectedCustomerId);
       if (!cust) return;
+      triggerDossierDownload(cust);
       const details = extractContactDetails(cust.contact_info);
       if (details.email) {
         const mail = buildEmailOutreach(cust);
@@ -1312,6 +1321,7 @@ Chennai & Ranipet, Tamil Nadu`;
     function dispatchOutlookDirect() {
       const cust = customers.find(c => c.id === selectedCustomerId);
       if (!cust) return;
+      triggerDossierDownload(cust);
       const details = extractContactDetails(cust.contact_info);
       if (details.email) {
         const mail = buildEmailOutreach(cust);
@@ -1330,7 +1340,7 @@ Chennai & Ranipet, Tamil Nadu`;
       }
 
       const details = extractContactDetails(cust.contact_info);
-      const dossierUrl = getDossierAbsoluteUrl(cust);
+      const dossierName = cust.pdf1_filename || 'Recovery_Dossier.pdf';
 
       document.getElementById('dispatchModalSubtitle').innerText = `Outreach for ${cust.name} (Folio: ${cust.folio_id || '--'})`;
 
@@ -1338,8 +1348,7 @@ Chennai & Ranipet, Tamil Nadu`;
       const waPhoneInput = document.getElementById('dispatchWaPhone');
       waPhoneInput.value = details.phone || '';
       document.getElementById('dispatchWaMessage').value = buildWhatsAppOutreachMessage(cust);
-      document.getElementById('dispatchWaDossierLinkText').innerText = dossierUrl || 'No dossier PDF found';
-      document.getElementById('dispatchWaDossierPreview').href = dossierUrl || '#';
+      document.getElementById('dispatchWaDossierLinkText').innerText = dossierName;
 
       // Email fields
       const emailToInput = document.getElementById('dispatchEmailTo');
@@ -1347,8 +1356,7 @@ Chennai & Ranipet, Tamil Nadu`;
       const mailData = buildEmailOutreach(cust);
       document.getElementById('dispatchEmailSubject').value = mailData.subject;
       document.getElementById('dispatchEmailBody').value = mailData.body;
-      document.getElementById('dispatchEmailDossierLinkText').innerText = dossierUrl || 'No dossier PDF found';
-      document.getElementById('dispatchEmailDossierPreview').href = dossierUrl || '#';
+      document.getElementById('dispatchEmailDossierLinkText').innerText = dossierName;
 
       switchDispatchTab(initialTab);
       document.getElementById('dispatchModal').classList.remove('hidden');
