@@ -46,8 +46,6 @@ def build_email_body(customer, dossier_filename):
     name = customer.get("name", "Investor")
     folio = customer.get("folio_id", "Unclaimed Folio")
     est_folio = customer.get("est_folio", "Audited Portfolio")
-    fee_val = customer.get("my_est_value", "")
-    fee_note = f"\n- Professional Contingent Success Fee: {fee_val}" if fee_val else ""
 
     body = f"""Dear {name},
 
@@ -58,7 +56,7 @@ I am writing to bring to your attention an important matter regarding your long-
 Our forensic verification and audit indicates a gross portfolio valuation of {est_folio} (inclusive of accumulated corporate benefits, bonus shares, and unpaid dividends).
 
 We handle the complete statutory recovery end-to-end under a strict zero-risk framework:
-1. ₹0 Upfront / Zero Advance Fee: 100% contingent on success.{fee_note}
+1. ₹0 Upfront / Zero Advance Fee: 100% contingent on success.
 2. Direct Government Settlement: All recovered shares and dividend disbursements are credited directly into your personal verified Demat and Bank account by the IEPF Authority.
 3. Complete Documentation: Physical share entitlement, RTA reconciliation (Bigshare Services, Mumbai), and MCA e-filing (IEPF Form 5) managed entirely by our office.
 

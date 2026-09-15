@@ -1211,7 +1211,6 @@
       const name = cust.name || 'Investor';
       const folio = cust.folio_id || 'unclaimed folio';
       const est = cust.est_folio || 'verified portfolio';
-      const fee = cust.my_est_value ? `💰 *Recovery Fee:* ${cust.my_est_value}\n` : '';
 
       return `*CONFIDENTIAL: IEPF EQUITY RECOVERY DOSSIER*
 *Astral Limited | Folio: ${folio}*
@@ -1223,7 +1222,7 @@ I hope this message finds you well.
 This communication is regarding your long-standing unclaimed equity shareholding in *Astral Limited* (Folio: *${folio}*), which was transferred to the statutory custody of the *IEPF Authority, Ministry of Corporate Affairs (Government of India)* under Section 124(6) of the Companies Act, 2013.
 
 📊 *Audited Portfolio Valuation:* ${est}
-${fee}💼 *Service Framework:* ₹0 Advance / 100% Contingent on Credit to your Demat Account
+💼 *Service Framework:* ₹0 Advance / 100% Contingent on Credit to your Demat Account
 🏦 *Payout Destination:* Transferred directly from IEPF Authority into your verified Demat & Bank account.
 
 📎 *ATTACHED DOCUMENT:*
@@ -1243,7 +1242,6 @@ Chennai & Ranipet, Tamil Nadu`;
       const name = cust.name || 'Investor';
       const folio = cust.folio_id || 'unclaimed folio';
       const est = cust.est_folio || 'verified portfolio';
-      const feeLine = cust.my_est_value ? `\n- Contingent Recovery Fee: ${cust.my_est_value}` : '';
 
       const subject = `Confidential: IEPF Equity Share Recovery Dossier - Astral Ltd (Folio: ${folio}) - ${name}`;
       
@@ -1256,7 +1254,7 @@ I am writing to bring to your attention an important matter regarding your long-
 Our forensic verification and audit indicates a gross portfolio valuation of ${est} (inclusive of accumulated corporate benefits, bonus shares, and unpaid dividends).
 
 We handle the complete statutory recovery end-to-end under a strict zero-risk framework:
-1. ₹0 Upfront / Zero Advance Fee: 100% contingent on success.${feeLine}
+1. ₹0 Upfront / Zero Advance Fee: 100% contingent on success.
 2. Direct Government Settlement: All recovered shares and dividend disbursements are credited directly into your verified Demat and Bank account by the IEPF Authority.
 3. Complete Documentation: Physical share entitlement, RTA verification (Bigshare Services, Mumbai), and MCA e-filing managed by our office.
 
@@ -1714,7 +1712,7 @@ Chennai & Ranipet, Tamil Nadu`;
     // Register Service Worker for Android PWA with cache invalidation
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js?v=3').then((reg) => {
+        navigator.serviceWorker.register('/sw.js?v=4').then((reg) => {
           reg.update();
         }).catch((err) => {
           console.log('Service Worker skipped:', err);

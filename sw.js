@@ -1,5 +1,5 @@
-// CustomerVault Resilient Service Worker v3
-const CACHE_NAME = 'customervault-v3';
+// CustomerVault Resilient Service Worker v4
+const CACHE_NAME = 'customervault-v4';
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();
