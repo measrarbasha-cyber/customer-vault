@@ -1,8 +1,7 @@
-// CustomerVault Resilient Service Worker v2
-const CACHE_NAME = 'customervault-v2';
+// CustomerVault Resilient Service Worker v3
+const CACHE_NAME = 'customervault-v3';
 
 self.addEventListener('install', (event) => {
-  // Activate immediately without waiting
   self.skipWaiting();
 });
 
@@ -31,12 +30,23 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Handle same-origin requests with Network-First, Cache-Fallback
+  // Never cache HTML page navigation, root, or API requests - always get fresh from network
+  if (event.request.mode === 'navigate' || url.pathname === '/' || url.pathname === '/index.html' || url.pathname.startsWith('/api/')) {
+    event.respondWith(
+      fetch(event.request, { cache: 'no-store' }).catch(async () => {
+        const cachedRoot = await caches.match('/');
+        if (cachedRoot) return cachedRoot;
+        return new Response('Network error - please refresh', { status: 503 });
+      })
+    );
+    return;
+  }
+
+  // Handle same-origin static assets with Network-First, Cache-Fallback
   event.respondWith(
     fetch(event.request)
       .then((response) => {
-        // Cache successful GET responses for static files
-        if (response && response.status === 200 && !url.pathname.startsWith('/api/')) {
+        if (response && response.status === 200) {
           const responseClone = response.clone();
           caches.open(CACHE_NAME).then((cache) => {
             cache.put(event.request, responseClone);
@@ -45,23 +55,8 @@ self.addEventListener('fetch', (event) => {
         return response;
       })
       .catch(async () => {
-        // Fallback to cache if network fails
         const cached = await caches.match(event.request);
         if (cached) return cached;
-
-        // If it's a page navigation request, fallback to cached root
-        if (event.request.mode === 'navigate') {
-          const cachedRoot = await caches.match('/');
-          if (cachedRoot) return cachedRoot;
-        }
-
-        // Return a valid offline JSON if API was requested
-        if (url.pathname.startsWith('/api/')) {
-          return new Response(JSON.stringify([]), {
-            headers: { 'Content-Type': 'application/json' }
-          });
-        }
-
         return new Response('Network error - please refresh', { status: 503 });
       })
   );

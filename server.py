@@ -328,13 +328,19 @@ class CustomerHandler(BaseHTTPRequestHandler):
         path = parsed.path
         query = urllib.parse.parse_qs(parsed.query)
 
-        # Static assets (UI)
+        # Static assets (UI) - explicitly no-cache so browsers always get the latest build
         if path == "/" or path == "/index.html":
             file_path = os.path.join(STATIC_DIR, "index.html")
             if os.path.exists(file_path):
                 with open(file_path, "rb") as f:
                     content = f.read()
-                self._set_headers(200, "text/html")
+                self.send_response(200)
+                self.send_header("Content-Type", "text/html; charset=utf-8")
+                self.send_header("Cache-Control", "no-cache, no-store, must-revalidate, max-age=0")
+                self.send_header("Pragma", "no-cache")
+                self.send_header("Expires", "0")
+                self.send_header("Access-Control-Allow-Origin", "*")
+                self.end_headers()
                 self.wfile.write(content)
                 return
 
@@ -348,12 +354,18 @@ class CustomerHandler(BaseHTTPRequestHandler):
                 self.wfile.write(content)
                 return
 
-        if path == "/sw.js":
+        if path.startswith("/sw.js"):
             file_path = os.path.join(STATIC_DIR, "sw.js")
             if os.path.exists(file_path):
                 with open(file_path, "rb") as f:
                     content = f.read()
-                self._set_headers(200, "application/javascript")
+                self.send_response(200)
+                self.send_header("Content-Type", "application/javascript; charset=utf-8")
+                self.send_header("Cache-Control", "no-cache, no-store, must-revalidate, max-age=0")
+                self.send_header("Pragma", "no-cache")
+                self.send_header("Expires", "0")
+                self.send_header("Access-Control-Allow-Origin", "*")
+                self.end_headers()
                 self.wfile.write(content)
                 return
 

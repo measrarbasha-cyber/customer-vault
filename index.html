@@ -1207,11 +1207,6 @@
       return { phone, email };
     }
 
-    function getDossierAbsoluteUrl(cust) {
-      if (!cust || !cust.pdf1_path) return '';
-      return `${window.location.origin}/api/documents/${cust.pdf1_path}`;
-    }
-
     function buildWhatsAppOutreachMessage(cust) {
       const name = cust.name || 'Investor';
       const folio = cust.folio_id || 'unclaimed folio';
@@ -1716,10 +1711,12 @@ Chennai & Ranipet, Tamil Nadu`;
       }
     }
 
-    // Register Service Worker for Android PWA
+    // Register Service Worker for Android PWA with cache invalidation
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js').catch((err) => {
+        navigator.serviceWorker.register('/sw.js?v=3').then((reg) => {
+          reg.update();
+        }).catch((err) => {
           console.log('Service Worker skipped:', err);
         });
       });
