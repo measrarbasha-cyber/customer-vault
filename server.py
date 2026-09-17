@@ -409,6 +409,9 @@ class CustomerHandler(BaseHTTPRequestHandler):
                         content = f.read()
                     self.send_response(200)
                     self.send_header("Content-Type", "application/pdf")
+                    self.send_header("Cache-Control", "no-cache, no-store, must-revalidate, max-age=0")
+                    self.send_header("Pragma", "no-cache")
+                    self.send_header("Expires", "0")
                     # 'inline' allows iPhone Safari and desktop browsers to preview the PDF directly
                     self.send_header("Content-Disposition", f'inline; filename="{filename}"')
                     self.send_header("Content-Length", str(len(content)))

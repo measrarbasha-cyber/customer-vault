@@ -1097,10 +1097,11 @@
       const pdf1Dl = document.getElementById('pdf1DownloadBtn');
 
       if (cust.pdf1_path) {
+        const p1Url = `/api/documents/${cust.pdf1_path}?t=${Date.now()}`;
         if (pdf1Title) pdf1Title.innerText = cust.pdf1_filename || 'Recovery_Dossier.pdf';
-        if (pdf1View) pdf1View.href = `/api/documents/${cust.pdf1_path}`;
+        if (pdf1View) pdf1View.href = p1Url;
         if (pdf1Dl) {
-          pdf1Dl.href = `/api/documents/${cust.pdf1_path}`;
+          pdf1Dl.href = p1Url;
           pdf1Dl.setAttribute('download', cust.pdf1_filename || 'Recovery_Dossier.pdf');
         }
         if (pdf1Actions) pdf1Actions.classList.remove('hidden');
@@ -1116,10 +1117,11 @@
       const pdf2Dl = document.getElementById('pdf2DownloadBtn');
 
       if (cust.pdf2_path) {
+        const p2Url = `/api/documents/${cust.pdf2_path}?t=${Date.now()}`;
         if (pdf2Title) pdf2Title.innerText = cust.pdf2_filename || 'Service_Agreement.pdf';
-        if (pdf2View) pdf2View.href = `/api/documents/${cust.pdf2_path}`;
+        if (pdf2View) pdf2View.href = p2Url;
         if (pdf2Dl) {
-          pdf2Dl.href = `/api/documents/${cust.pdf2_path}`;
+          pdf2Dl.href = p2Url;
           pdf2Dl.setAttribute('download', cust.pdf2_filename || 'Service_Agreement.pdf');
         }
         if (pdf2Actions) pdf2Actions.classList.remove('hidden');
@@ -1135,10 +1137,11 @@
       const pdf3Dl = document.getElementById('pdf3DownloadBtn');
 
       if (cust.pdf3_path) {
+        const p3Url = `/api/documents/${cust.pdf3_path}?t=${Date.now()}`;
         if (pdf3Title) pdf3Title.innerText = cust.pdf3_filename || 'Call_Playbook_English.pdf';
-        if (pdf3View) pdf3View.href = `/api/documents/${cust.pdf3_path}`;
+        if (pdf3View) pdf3View.href = p3Url;
         if (pdf3Dl) {
-          pdf3Dl.href = `/api/documents/${cust.pdf3_path}`;
+          pdf3Dl.href = p3Url;
           pdf3Dl.setAttribute('download', cust.pdf3_filename || 'Call_Playbook_English.pdf');
         }
         if (pdf3Actions) pdf3Actions.classList.remove('hidden');
@@ -1160,10 +1163,11 @@
       }
 
       if (cust.pdf4_path) {
+        const p4Url = `/api/documents/${cust.pdf4_path}?t=${Date.now()}`;
         if (pdf4Title) pdf4Title.innerText = cust.pdf4_filename || (isTN ? 'Call_Playbook_Tanglish.pdf' : 'Call_Playbook_Hinglish.pdf');
-        if (pdf4View) pdf4View.href = `/api/documents/${cust.pdf4_path}`;
+        if (pdf4View) pdf4View.href = p4Url;
         if (pdf4Dl) {
-          pdf4Dl.href = `/api/documents/${cust.pdf4_path}`;
+          pdf4Dl.href = p4Url;
           pdf4Dl.setAttribute('download', cust.pdf4_filename || (isTN ? 'Call_Playbook_Tanglish.pdf' : 'Call_Playbook_Hinglish.pdf'));
         }
         if (pdf4Actions) pdf4Actions.classList.remove('hidden');
@@ -1276,7 +1280,7 @@ Chennai & Ranipet, Tamil Nadu`;
     function triggerDossierDownload(cust) {
       if (!cust || !cust.pdf1_path) return;
       const dlLink = document.createElement('a');
-      dlLink.href = `/api/documents/${cust.pdf1_path}`;
+      dlLink.href = `/api/documents/${cust.pdf1_path}?t=${Date.now()}`;
       dlLink.download = cust.pdf1_filename || `${cust.name.replace(/[^a-zA-Z0-9]/g, '_')}_Recovery_Dossier.pdf`;
       document.body.appendChild(dlLink);
       dlLink.click();
@@ -1712,7 +1716,7 @@ Chennai & Ranipet, Tamil Nadu`;
     // Register Service Worker for Android PWA with cache invalidation
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js?v=4').then((reg) => {
+        navigator.serviceWorker.register('/sw.js?v=5').then((reg) => {
           reg.update();
         }).catch((err) => {
           console.log('Service Worker skipped:', err);
