@@ -404,7 +404,7 @@
                   <svg class="w-4 h-4 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                   </svg>
-                  <h4 class="text-xs font-bold text-slate-700 uppercase tracking-wider">Attached Documents & Call Playbooks (4 Files)</h4>
+                  <h4 class="text-xs font-bold text-slate-700 uppercase tracking-wider">Attached Documents & Call Playbooks (5 Files)</h4>
                 </div>
                 <span class="text-[10px] font-bold text-indigo-600 bg-indigo-50 border border-indigo-100 px-2 py-0.5 rounded-full">
                   Complete Suite
@@ -517,6 +517,32 @@
                   </div>
                 </div>
 
+                <!-- PDF 5 CARD: Share Audit & Trust Dossier -->
+                <div id="pdf5Card" class="p-3.5 sm:p-4 rounded-xl border border-teal-200/80 bg-teal-50/30 flex flex-col justify-between shadow-2xs hover:border-teal-300 transition sm:col-span-2">
+                  <div class="flex items-start space-x-3">
+                    <div class="p-2 rounded-lg bg-teal-100 text-teal-800 shrink-0">
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                      </svg>
+                    </div>
+                    <div class="min-w-0 flex-1">
+                      <span id="pdf5Badge" class="text-[10px] font-extrabold text-teal-800 uppercase tracking-wider">Doc 5 &bull; Statutory Share Certificate & Trust Dossier</span>
+                      <p id="pdf5Title" class="text-xs font-bold text-slate-900 truncate mt-0.5">No document uploaded</p>
+                    </div>
+                  </div>
+
+                  <div id="pdf5Actions" class="no-print mt-3 pt-2.5 border-t border-teal-100 flex items-center space-x-2">
+                    <a id="pdf5ViewBtn" href="#" target="_blank" class="flex-1 py-1 px-2 text-center text-xs font-bold text-teal-900 bg-teal-100 hover:bg-teal-200 rounded-md transition">
+                      View Share Certificate & Trust FAQ
+                    </a>
+                    <a id="pdf5DownloadBtn" href="#" download class="p-1 text-slate-500 hover:text-slate-800 rounded-md hover:bg-slate-200 transition" title="Download">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+
               </div>
             </div>
 
@@ -606,6 +632,12 @@
             <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1">Upload PDF 4 (Call Playbook - Regional / Hinglish / Tanglish)</label>
             <input type="file" id="formPdf4" accept="application/pdf" class="w-full text-xs text-slate-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-amber-50 file:text-amber-800 hover:file:bg-amber-100 cursor-pointer">
             <p id="formPdf4Current" class="text-[11px] text-slate-400 mt-1 hidden"></p>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1">Upload PDF 5 (Statutory Share Certificate & Trust Dossier)</label>
+            <input type="file" id="formPdf5" accept="application/pdf" class="w-full text-xs text-slate-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-teal-50 file:text-teal-800 hover:file:bg-teal-100 cursor-pointer">
+            <p id="formPdf5Current" class="text-[11px] text-slate-400 mt-1 hidden"></p>
           </div>
         </div>
 
@@ -961,7 +993,7 @@
         const isSelected = cust.id === selectedCustomerId;
         const initials = getInitials(cust.name);
         const bgGrad = getGradient(cust.name);
-        const hasPdf = (cust.pdf1_path ? 1 : 0) + (cust.pdf2_path ? 1 : 0) + (cust.pdf3_path ? 1 : 0) + (cust.pdf4_path ? 1 : 0);
+        const hasPdf = (cust.pdf1_path ? 1 : 0) + (cust.pdf2_path ? 1 : 0) + (cust.pdf3_path ? 1 : 0) + (cust.pdf4_path ? 1 : 0) + (cust.pdf5_path ? 1 : 0);
 
         return `
           <div 
@@ -1174,6 +1206,26 @@
       } else {
         if (pdf4Title) pdf4Title.innerText = 'No regional playbook generated';
         if (pdf4Actions) pdf4Actions.classList.add('hidden');
+      }
+
+      // PDF 5 (Statutory Share Certificate & Trust Dossier)
+      const pdf5Actions = document.getElementById('pdf5Actions');
+      const pdf5Title = document.getElementById('pdf5Title');
+      const pdf5View = document.getElementById('pdf5ViewBtn');
+      const pdf5Dl = document.getElementById('pdf5DownloadBtn');
+
+      if (cust.pdf5_path) {
+        const p5Url = `/api/documents/${cust.pdf5_path}?t=${Date.now()}`;
+        if (pdf5Title) pdf5Title.innerText = cust.pdf5_filename || 'Statutory_Share_Certificate_Trust_Dossier.pdf';
+        if (pdf5View) pdf5View.href = p5Url;
+        if (pdf5Dl) {
+          pdf5Dl.href = p5Url;
+          pdf5Dl.setAttribute('download', cust.pdf5_filename || 'Statutory_Share_Certificate_Trust_Dossier.pdf');
+        }
+        if (pdf5Actions) pdf5Actions.classList.remove('hidden');
+      } else {
+        if (pdf5Title) pdf5Title.innerText = 'No share certificate generated';
+        if (pdf5Actions) pdf5Actions.classList.add('hidden');
       }
     }
 
@@ -1527,6 +1579,14 @@ Chennai & Ranipet, Tamil Nadu`;
         } else {
           p4Current.classList.add('hidden');
         }
+
+        const p5Current = document.getElementById('formPdf5Current');
+        if (cust.pdf5_filename) {
+          p5Current.innerText = `Current: ${cust.pdf5_filename} (choose a new file to replace)`;
+          p5Current.classList.remove('hidden');
+        } else {
+          p5Current.classList.add('hidden');
+        }
       } else {
         title.innerText = "Add New Customer";
         saveBtn.innerText = "Save Customer";
@@ -1537,6 +1597,7 @@ Chennai & Ranipet, Tamil Nadu`;
         document.getElementById('formPdf2Current').classList.add('hidden');
         document.getElementById('formPdf3Current').classList.add('hidden');
         document.getElementById('formPdf4Current').classList.add('hidden');
+        document.getElementById('formPdf5Current').classList.add('hidden');
       }
 
       modal.classList.remove('hidden');
@@ -1581,6 +1642,11 @@ Chennai & Ranipet, Tamil Nadu`;
       const pdf4Input = document.getElementById('formPdf4');
       if (pdf4Input.files && pdf4Input.files[0]) {
         payload.pdf4 = await fileToBase64(pdf4Input.files[0]);
+      }
+
+      const pdf5Input = document.getElementById('formPdf5');
+      if (pdf5Input.files && pdf5Input.files[0]) {
+        payload.pdf5 = await fileToBase64(pdf5Input.files[0]);
       }
 
       try {
