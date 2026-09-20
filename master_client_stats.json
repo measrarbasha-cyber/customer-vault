@@ -6,7 +6,7 @@
     "address": "Flat No. 1602, 16th Floor, Vivarea Bldg A-Wing, Sane Guruji Marg, Jacob Circle, Mumbai - 400011",
     "is_tn": false,
     "total_unclaimed_div": 95625.0,
-    "est_folio": "\u20b98,00,00,000 \u2014 \u20b912,00,00,000 (\u20b98 \u2013 \u20b912 Cr)",
+    "est_folio": "₹144,000,525 (~₹14.40 Cr | 101,053 Shares)",
     "val_lower": 120000000.0,
     "val_upper": 167999999.99999997,
     "shares_pre_2019": 45474,
@@ -16,7 +16,8 @@
     "shares_pre_2023": 75790,
     "bonus_2023": 25263,
     "current_shares": 101053,
-    "current_val_inr": 144000525
+    "current_val_inr": 144000525,
+    "my_est_value": "₹11,520,042 (~₹1.15 Cr | 8% Fee)"
   },
   {
     "id": 7,
@@ -25,7 +26,7 @@
     "address": "1, Tejdhara Bunglows Part-II, 100ft. Road, Behind Rahul Tower, Satellite, Ahmedabad, Gujarat - 380015",
     "is_tn": false,
     "total_unclaimed_div": 57755.2,
-    "est_folio": "\u20b94,50,00,000 \u2014 \u20b96,50,00,000 (\u20b94.5 \u2013 \u20b96.5 Cr)",
+    "est_folio": "₹18,724,500 (~₹1.87 Cr | 13,140 Shares)",
     "val_lower": 65000000.0,
     "val_upper": 91000000.0,
     "shares_pre_2019": 24632,
@@ -34,8 +35,9 @@
     "bonus_2021": 10263,
     "shares_pre_2023": 41053,
     "bonus_2023": 13684,
-    "current_shares": 54737,
-    "current_val_inr": 78000225
+    "current_shares": 13140,
+    "current_val_inr": 18724500,
+    "my_est_value": "₹1,497,960 (~₹14.98 Lakhs | 8% Fee)"
   },
   {
     "id": 8,
@@ -44,7 +46,7 @@
     "address": "No. 93-A & No. 100, Weavers Street, Hosur, Krishnagiri District, Tamil Nadu - 635109",
     "is_tn": true,
     "total_unclaimed_div": 4626.16,
-    "est_folio": "\u20b91,20,00,000 \u2014 \u20b91,60,00,000 (\u20b91.2 \u2013 \u20b91.6 Cr)",
+    "est_folio": "₹19,200,450 (~₹1.92 Cr | 13,474 Shares)",
     "val_lower": 16000000.0,
     "val_upper": 22399999.999999996,
     "shares_pre_2019": 6064,
@@ -54,7 +56,8 @@
     "shares_pre_2023": 10106,
     "bonus_2023": 3368,
     "current_shares": 13474,
-    "current_val_inr": 19200450
+    "current_val_inr": 19200450,
+    "my_est_value": "₹1,536,036 (~₹15.36 Lakhs | 8% Fee)"
   },
   {
     "id": 9,
@@ -63,7 +66,7 @@
     "address": "38-5, 1st Floor, Ramaling Jothi Nagar, II Cross, Ramanathapuram, Coimbatore, Tamil Nadu - 641045",
     "is_tn": true,
     "total_unclaimed_div": 3531.13,
-    "est_folio": "\u20b985,00,000 \u2014 \u20b91,15,00,000 (\u20b985L \u2013 \u20b91.15 Cr)",
+    "est_folio": "₹13,799,700 (~₹1.38 Cr | 9,684 Shares)",
     "val_lower": 11500000.0,
     "val_upper": 16099999.999999998,
     "shares_pre_2019": 4358,
@@ -73,7 +76,8 @@
     "shares_pre_2023": 7263,
     "bonus_2023": 2421,
     "current_shares": 9684,
-    "current_val_inr": 13799700
+    "current_val_inr": 13799700,
+    "my_est_value": "₹1,103,976 (~₹11.04 Lakhs | 8% Fee)"
   },
   {
     "id": 10,
@@ -82,7 +86,7 @@
     "address": "No. 42, Ramakannu Street, Cheyyar, Thiruvannamalai District, Tamil Nadu - 604407",
     "is_tn": true,
     "total_unclaimed_div": 1941.0,
-    "est_folio": "\u20b952,00,000 \u2014 \u20b967,00,000 (\u20b952L \u2013 \u20b967L)",
+    "est_folio": "₹5,949,375 (~₹59.49 Lakhs | 4,175 Shares)",
     "val_lower": 5200000.0,
     "val_upper": 6700000.0,
     "shares_pre_2019": 1878,
@@ -92,7 +96,8 @@
     "shares_pre_2023": 3131,
     "bonus_2023": 1044,
     "current_shares": 4175,
-    "current_val_inr": 5949375
+    "current_val_inr": 5949375,
+    "my_est_value": "₹892,406 (~₹8.92 Lakhs | 15% Fee)"
   },
   {
     "id": 11,
@@ -101,7 +106,7 @@
     "address": "83-387, Saraswati Nagar Society, Near Azad Society, Himmatlal Park, Ambawadi, Ahmedabad, Gujarat - 380015",
     "is_tn": false,
     "total_unclaimed_div": 18550.13,
-    "est_folio": "\u20b91,50,00,000 \u2014 \u20b92,20,00,000 (\u20b91.5 \u2013 \u20b92.2 Cr)",
+    "est_folio": "₹26,399,550 (~₹2.64 Cr | 18,526 Shares)",
     "val_lower": 22000000.0,
     "val_upper": 30800000.0,
     "shares_pre_2019": 8336,
@@ -111,7 +116,8 @@
     "shares_pre_2023": 13894,
     "bonus_2023": 4632,
     "current_shares": 18526,
-    "current_val_inr": 26399550
+    "current_val_inr": 26399550,
+    "my_est_value": "₹2,111,964 (~₹21.12 Lakhs | 8% Fee)"
   },
   {
     "id": 12,
@@ -120,7 +126,7 @@
     "address": "Flat No. 506, D-Wing, Akruti Orchid Park, Sakinaka, Andheri East, Mumbai, Maharashtra - 400072",
     "is_tn": false,
     "total_unclaimed_div": 28381.3,
-    "est_folio": "\u20b92,20,00,000 \u2014 \u20b93,00,00,000 (\u20b92.2 \u2013 \u20b93.0 Cr)",
+    "est_folio": "₹35,999,775 (~₹3.60 Cr | 25,263 Shares)",
     "val_lower": 30000000.0,
     "val_upper": 41999999.99999999,
     "shares_pre_2019": 11368,
@@ -130,7 +136,8 @@
     "shares_pre_2023": 18947,
     "bonus_2023": 6316,
     "current_shares": 25263,
-    "current_val_inr": 35999775
+    "current_val_inr": 35999775,
+    "my_est_value": "₹2,879,982 (~₹28.80 Lakhs | 8% Fee)"
   },
   {
     "id": 13,
@@ -139,7 +146,7 @@
     "address": "Zia Apts, 501, 5th Floor, B-Wing, 264 Bellasis Road, Mumbai Central, Mumbai, Maharashtra - 400008",
     "is_tn": false,
     "total_unclaimed_div": 14089.5,
-    "est_folio": "\u20b91,20,00,000 \u2014 \u20b91,80,00,000 (\u20b91.2 \u2013 \u20b91.8 Cr)",
+    "est_folio": "₹21,600,150 (~₹2.16 Cr | 15,158 Shares)",
     "val_lower": 18000000.0,
     "val_upper": 25200000.0,
     "shares_pre_2019": 6821,
@@ -149,7 +156,8 @@
     "shares_pre_2023": 11368,
     "bonus_2023": 3790,
     "current_shares": 15158,
-    "current_val_inr": 21600150
+    "current_val_inr": 21600150,
+    "my_est_value": "₹1,728,012 (~₹17.28 Lakhs | 8% Fee)"
   },
   {
     "id": 14,
@@ -158,7 +166,7 @@
     "address": "50/5, New No. 32, 3rd Floor, Giri Road, T. Nagar, Chennai, Tamil Nadu - 600017",
     "is_tn": true,
     "total_unclaimed_div": 1200.0,
-    "est_folio": "\u20b950,00,000 \u2014 \u20b975,00,000 (\u20b950L \u2013 \u20b975L)",
+    "est_folio": "₹6,250,050 (~₹62.50 Lakhs | 4,386 Shares)",
     "val_lower": 5000000.0,
     "val_upper": 7500000.0,
     "shares_pre_2019": 1974,
@@ -168,7 +176,8 @@
     "shares_pre_2023": 3290,
     "bonus_2023": 1096,
     "current_shares": 4386,
-    "current_val_inr": 6250050
+    "current_val_inr": 6250050,
+    "my_est_value": "₹500,004 (~₹5.00 Lakhs | 8% Fee)"
   },
   {
     "id": 15,
@@ -177,7 +186,7 @@
     "address": "Old No. 86, New No. 26, Rasappa Chetty Street, 2nd Floor, Wall Tax Road, Park Town, Chennai, Tamil Nadu - 600003",
     "is_tn": true,
     "total_unclaimed_div": 814.08,
-    "est_folio": "\u20b940,00,000 \u2014 \u20b960,00,000 (\u20b940L \u2013 \u20b960L)",
+    "est_folio": "₹5,000,325 (~₹50.00 Lakhs | 3,509 Shares)",
     "val_lower": 4000000.0,
     "val_upper": 6000000.0,
     "shares_pre_2019": 1579,
@@ -187,7 +196,8 @@
     "shares_pre_2023": 2632,
     "bonus_2023": 877,
     "current_shares": 3509,
-    "current_val_inr": 5000325
+    "current_val_inr": 5000325,
+    "my_est_value": "₹400,026 (~₹4.00 Lakhs | 8% Fee)"
   },
   {
     "id": 19,
@@ -196,7 +206,7 @@
     "address": "49, Shubham Residency, Opp. Rajlaxmi Park, Moti Baug, Junagadh, Gujarat - 362001",
     "is_tn": false,
     "total_unclaimed_div": 1497.3,
-    "est_folio": "\u20b93,50,00,000 \u2014 \u20b95,00,00,000 (\u20b93.5 \u2013 \u20b95.0 Cr)",
+    "est_folio": "₹59,999,625 (~₹6.00 Cr | 42,105 Shares)",
     "val_lower": 50000000.0,
     "val_upper": 70000000.0,
     "shares_pre_2019": 18947,
@@ -206,7 +216,8 @@
     "shares_pre_2023": 31579,
     "bonus_2023": 10526,
     "current_shares": 42105,
-    "current_val_inr": 59999625
+    "current_val_inr": 59999625,
+    "my_est_value": "₹4,799,970 (~₹48.00 Lakhs | 8% Fee)"
   },
   {
     "id": 20,
@@ -215,7 +226,7 @@
     "address": "Tower-A, Flat 201, Bestech Park View Spa, Near DPS Primary School, Sector 47, Gurgaon, Haryana - 122002",
     "is_tn": false,
     "total_unclaimed_div": 624.5,
-    "est_folio": "\u20b91,50,00,000 \u2014 \u20b92,20,00,000 (\u20b91.5 \u2013 \u20b92.2 Cr)",
+    "est_folio": "₹26,399,550 (~₹2.64 Cr | 18,526 Shares)",
     "val_lower": 22000000.0,
     "val_upper": 30800000.0,
     "shares_pre_2019": 8336,
@@ -225,7 +236,8 @@
     "shares_pre_2023": 13894,
     "bonus_2023": 4632,
     "current_shares": 18526,
-    "current_val_inr": 26399550
+    "current_val_inr": 26399550,
+    "my_est_value": "₹2,111,964 (~₹21.12 Lakhs | 8% Fee)"
   },
   {
     "id": 21,
@@ -234,7 +246,7 @@
     "address": "Sanitary Sales Corporation, G-5 Narsaria Tower, Opp. Lalpur Thana, H.B. Road, Ranchi, Jharkhand - 834001",
     "is_tn": false,
     "total_unclaimed_div": 3091.0,
-    "est_folio": "\u20b91,80,00,000 \u2014 \u20b92,50,00,000 (\u20b91.8 \u2013 \u20b92.5 Cr)",
+    "est_folio": "₹30,000,525 (~₹3.00 Cr | 21,053 Shares)",
     "val_lower": 25000000.0,
     "val_upper": 35000000.0,
     "shares_pre_2019": 9474,
@@ -244,7 +256,8 @@
     "shares_pre_2023": 15790,
     "bonus_2023": 5263,
     "current_shares": 21053,
-    "current_val_inr": 30000525
+    "current_val_inr": 30000525,
+    "my_est_value": "₹2,400,042 (~₹24.00 Lakhs | 8% Fee)"
   },
   {
     "id": 22,
@@ -253,7 +266,7 @@
     "address": "Road No-10, Plot No-30, Dhanlakshmi Society, Mahindra Hills, Secunderabad / Hyderabad, Telangana - 500026",
     "is_tn": false,
     "total_unclaimed_div": 1105.0,
-    "est_folio": "\u20b980,00,000 \u2014 \u20b91,20,00,000 (\u20b980L \u2013 \u20b91.20 Cr)",
+    "est_folio": "₹14,399,625 (~₹1.44 Cr | 10,105 Shares)",
     "val_lower": 12000000.0,
     "val_upper": 16800000.0,
     "shares_pre_2019": 4547,
@@ -263,7 +276,8 @@
     "shares_pre_2023": 7579,
     "bonus_2023": 2526,
     "current_shares": 10105,
-    "current_val_inr": 14399625
+    "current_val_inr": 14399625,
+    "my_est_value": "₹1,151,970 (~₹11.52 Lakhs | 8% Fee)"
   },
   {
     "id": 23,
@@ -272,7 +286,7 @@
     "address": "Bhatia Bhawan, 20 Jairampur Colony, Main Road, Indore, Madhya Pradesh - 452004",
     "is_tn": false,
     "total_unclaimed_div": 6692.0,
-    "est_folio": "\u20b93,00,00,000 \u2014 \u20b94,20,00,000 (\u20b93.0 \u2013 \u20b94.2 Cr)",
+    "est_folio": "₹50,399,400 (~₹5.04 Cr | 35,368 Shares)",
     "val_lower": 42000000.0,
     "val_upper": 58800000.0,
     "shares_pre_2019": 15915,
@@ -282,7 +296,8 @@
     "shares_pre_2023": 26526,
     "bonus_2023": 8842,
     "current_shares": 35368,
-    "current_val_inr": 50399400
+    "current_val_inr": 50399400,
+    "my_est_value": "₹4,031,952 (~₹40.32 Lakhs | 8% Fee)"
   },
   {
     "id": 24,
@@ -291,7 +306,7 @@
     "address": "G-707, Rashmi Apartments, Harsh Vihar, Pitampura, Delhi - 110034",
     "is_tn": false,
     "total_unclaimed_div": 9586.16,
-    "est_folio": "\u20b92,80,00,000 \u2014 \u20b93,80,00,000 (\u20b92.8 \u2013 \u20b93.8 Cr)",
+    "est_folio": "₹45,600,000 (~₹4.56 Cr | 32,000 Shares)",
     "val_lower": 38000000.0,
     "val_upper": 53199999.99999999,
     "shares_pre_2019": 14400,
@@ -301,7 +316,8 @@
     "shares_pre_2023": 24000,
     "bonus_2023": 8000,
     "current_shares": 32000,
-    "current_val_inr": 45600000
+    "current_val_inr": 45600000,
+    "my_est_value": "₹3,648,000 (~₹36.48 Lakhs | 8% Fee)"
   },
   {
     "id": 26,
@@ -310,7 +326,7 @@
     "address": "Central Watch Co., 3116, Near Chandra Vilas Hotel, Gandhi Road, Ahmedabad, Gujarat - 380001",
     "is_tn": false,
     "total_unclaimed_div": 6612.33,
-    "est_folio": "\u20b91,80,00,000 \u2014 \u20b92,50,00,000 (\u20b91.8 \u2013 \u20b92.5 Cr)",
+    "est_folio": "₹30,000,525 (~₹3.00 Cr | 21,053 Shares)",
     "val_lower": 25000000.0,
     "val_upper": 35000000.0,
     "shares_pre_2019": 9474,
@@ -320,7 +336,8 @@
     "shares_pre_2023": 15790,
     "bonus_2023": 5263,
     "current_shares": 21053,
-    "current_val_inr": 30000525
+    "current_val_inr": 30000525,
+    "my_est_value": "₹2,400,042 (~₹24.00 Lakhs | 8% Fee)"
   },
   {
     "id": 27,
@@ -329,7 +346,7 @@
     "address": "Jyothi Illam, 9 Vallabai Road, Chokkikulam, Madurai, Tamil Nadu - 625002",
     "is_tn": true,
     "total_unclaimed_div": 290.13,
-    "est_folio": "\u20b912,00,000 \u2014 \u20b918,00,000 (\u20b912 \u2013 \u20b918 Lakhs)",
+    "est_folio": "₹2,160,300 (~₹21.60 Lakhs | 1,516 Shares)",
     "val_lower": 1800000.0,
     "val_upper": 2520000.0,
     "shares_pre_2019": 682,
@@ -339,7 +356,8 @@
     "shares_pre_2023": 1137,
     "bonus_2023": 379,
     "current_shares": 1516,
-    "current_val_inr": 2160300
+    "current_val_inr": 2160300,
+    "my_est_value": "₹172,824 (~₹1.73 Lakhs | 8% Fee)"
   },
   {
     "id": 28,
@@ -348,7 +366,7 @@
     "address": "Rajdeep Agency / Rajdeep Electric, Rajdev Sheri, Sanganva Chowk, Rajkot, Gujarat - 360001",
     "is_tn": false,
     "total_unclaimed_div": 2082.75,
-    "est_folio": "\u20b965,00,000 \u2014 \u20b985,00,000 (\u20b965 \u2013 \u20b985 Lakhs)",
+    "est_folio": "₹10,200,150 (~₹1.02 Cr | 7,158 Shares)",
     "val_lower": 8500000.0,
     "val_upper": 11899999.999999998,
     "shares_pre_2019": 3221,
@@ -358,7 +376,8 @@
     "shares_pre_2023": 5368,
     "bonus_2023": 1790,
     "current_shares": 7158,
-    "current_val_inr": 10200150
+    "current_val_inr": 10200150,
+    "my_est_value": "₹816,012 (~₹8.16 Lakhs | 8% Fee)"
   },
   {
     "id": 29,
@@ -367,7 +386,7 @@
     "address": "No. 54, Nammalwar Street, 4th Floor, Sowcarpet, Chennai, Tamil Nadu - 600079",
     "is_tn": true,
     "total_unclaimed_div": 2988.33,
-    "est_folio": "\u20b960,00,000 \u2014 \u20b990,00,000 (\u20b960 \u2013 \u20b990 Lakhs)",
+    "est_folio": "₹10,800,075 (~₹1.08 Cr | 7,579 Shares)",
     "val_lower": 9000000.0,
     "val_upper": 12599999.999999998,
     "shares_pre_2019": 3410,
@@ -377,7 +396,8 @@
     "shares_pre_2023": 5684,
     "bonus_2023": 1895,
     "current_shares": 7579,
-    "current_val_inr": 10800075
+    "current_val_inr": 10800075,
+    "my_est_value": "₹864,006 (~₹8.64 Lakhs | 8% Fee)"
   },
   {
     "id": 30,
@@ -386,7 +406,7 @@
     "address": "Opp. Old Post Office, Anand-Sojitra Highway, Karamsad, Anand District, Gujarat - 388325",
     "is_tn": false,
     "total_unclaimed_div": 2499.0,
-    "est_folio": "\u20b955,00,000 \u2014 \u20b980,00,000 (\u20b955 \u2013 \u20b980 Lakhs)",
+    "est_folio": "₹9,600,225 (~₹96.00 Lakhs | 6,737 Shares)",
     "val_lower": 8000000.0,
     "val_upper": 11200000.0,
     "shares_pre_2019": 3032,
@@ -396,7 +416,8 @@
     "shares_pre_2023": 5053,
     "bonus_2023": 1684,
     "current_shares": 6737,
-    "current_val_inr": 9600225
+    "current_val_inr": 9600225,
+    "my_est_value": "₹768,018 (~₹7.68 Lakhs | 8% Fee)"
   },
   {
     "id": 31,
@@ -405,7 +426,7 @@
     "address": "Rampuria Cloth Stores, Doranda Bazar, Tulsi Chowk, Ranchi, Jharkhand - 834002",
     "is_tn": false,
     "total_unclaimed_div": 1250.0,
-    "est_folio": "\u20b930,00,000 \u2014 \u20b945,00,000 (\u20b930 \u2013 \u20b945 Lakhs)",
+    "est_folio": "₹5,399,325 (~₹53.99 Lakhs | 3,789 Shares)",
     "val_lower": 4500000.0,
     "val_upper": 6299999.999999999,
     "shares_pre_2019": 1706,
@@ -415,7 +436,8 @@
     "shares_pre_2023": 2842,
     "bonus_2023": 947,
     "current_shares": 3789,
-    "current_val_inr": 5399325
+    "current_val_inr": 5399325,
+    "my_est_value": "₹431,946 (~₹4.32 Lakhs | 8% Fee)"
   },
   {
     "id": 32,
@@ -424,7 +446,7 @@
     "address": "Block No. 29 D, Sardar Nagar, Near Saibaba Mandir, Sindhi Colony, Ahmedabad, Gujarat - 382475",
     "is_tn": false,
     "total_unclaimed_div": 5525.5,
-    "est_folio": "\u20b91,15,00,000 \u2014 \u20b91,65,00,000 (\u20b91.15 \u2013 \u20b91.65 Cr)",
+    "est_folio": "₹19,800,375 (~₹1.98 Cr | 13,895 Shares)",
     "val_lower": 16500000.0,
     "val_upper": 23099999.999999996,
     "shares_pre_2019": 6253,
@@ -434,7 +456,8 @@
     "shares_pre_2023": 10421,
     "bonus_2023": 3474,
     "current_shares": 13895,
-    "current_val_inr": 19800375
+    "current_val_inr": 19800375,
+    "my_est_value": "₹1,584,030 (~₹15.84 Lakhs | 8% Fee)"
   },
   {
     "id": 33,
@@ -443,7 +466,7 @@
     "address": "178 Vaishali, Pitampura, North West Delhi, Delhi - 110088",
     "is_tn": false,
     "total_unclaimed_div": 160.0,
-    "est_folio": "\u20b912,00,000 \u2014 \u20b918,00,000 (\u20b912 \u2013 \u20b918 Lakhs)",
+    "est_folio": "₹2,160,300 (~₹21.60 Lakhs | 1,516 Shares)",
     "val_lower": 1800000.0,
     "val_upper": 2520000.0,
     "shares_pre_2019": 682,
@@ -453,7 +476,8 @@
     "shares_pre_2023": 1137,
     "bonus_2023": 379,
     "current_shares": 1516,
-    "current_val_inr": 2160300
+    "current_val_inr": 2160300,
+    "my_est_value": "₹172,824 (~₹1.73 Lakhs | 8% Fee)"
   },
   {
     "id": 34,
@@ -462,7 +486,7 @@
     "address": "82 / 85 Madhuvan Building, Near Madalpur Underbridge, Ellisbridge, Ahmedabad, Gujarat - 380006",
     "is_tn": false,
     "total_unclaimed_div": 3330.5,
-    "est_folio": "\u20b980,00,000 \u2014 \u20b91,15,00,000 (\u20b980L \u2013 \u20b91.15 Cr)",
+    "est_folio": "₹13,799,700 (~₹1.38 Cr | 9,684 Shares)",
     "val_lower": 11500000.0,
     "val_upper": 16099999.999999998,
     "shares_pre_2019": 4358,
@@ -472,7 +496,8 @@
     "shares_pre_2023": 7263,
     "bonus_2023": 2421,
     "current_shares": 9684,
-    "current_val_inr": 13799700
+    "current_val_inr": 13799700,
+    "my_est_value": "₹1,103,976 (~₹11.04 Lakhs | 8% Fee)"
   },
   {
     "id": 35,
@@ -481,13 +506,14 @@
     "address": "Gut No. 723, Opp. Airport, Chikalthana, Jalna Road, Aurangabad, Maharashtra - 431001",
     "is_tn": false,
     "total_unclaimed_div": 562.0,
-    "est_folio": "Rs. 20,00,000 \u2014 Rs. 35,00,000 (Rs. 20 \u2013 Rs. 35 Lakhs)",
+    "est_folio": "₹3,167,775 (~₹31.68 Lakhs | 2,223 Shares)",
     "shares_pre_2019": 1000,
     "bonus_2019": 250,
     "bonus_2021": 417,
     "bonus_2023": 556,
     "current_shares": 2223,
-    "current_val_inr": 3167775
+    "current_val_inr": 3167775,
+    "my_est_value": "₹253,422 (~₹2.53 Lakhs | 8% Fee)"
   },
   {
     "id": 36,
@@ -496,13 +522,14 @@
     "address": "Priyadarshini Polysacks Ltd, F41, Trade Centre, Station Road, Kolhapur, Maharashtra - 416001",
     "is_tn": false,
     "total_unclaimed_div": 62.5,
-    "est_folio": "Rs. 25,00,000 \u2014 Rs. 40,00,000 (Rs. 25 \u2013 Rs. 40 Lakhs)",
+    "est_folio": "₹3,800,475 (~₹38.00 Lakhs | 2,667 Shares)",
     "shares_pre_2019": 1200,
     "bonus_2019": 300,
     "bonus_2021": 500,
     "bonus_2023": 667,
     "current_shares": 2667,
-    "current_val_inr": 3800475
+    "current_val_inr": 3800475,
+    "my_est_value": "₹304,038 (~₹3.04 Lakhs | 8% Fee)"
   },
   {
     "id": 37,
@@ -511,13 +538,14 @@
     "address": "C/o Gandhi Children Hospital, Dolatgang Bazar, Dahod, Gujarat - 389151",
     "is_tn": false,
     "total_unclaimed_div": 309.25,
-    "est_folio": "Rs. 15,00,000 \u2014 Rs. 25,00,000 (Rs. 15 \u2013 Rs. 25 Lakhs)",
+    "est_folio": "₹2,375,475 (~₹23.75 Lakhs | 1,667 Shares)",
     "shares_pre_2019": 750,
     "bonus_2019": 188,
     "bonus_2021": 313,
     "bonus_2023": 416,
     "current_shares": 1667,
-    "current_val_inr": 2375475
+    "current_val_inr": 2375475,
+    "my_est_value": "₹190,038 (~₹1.90 Lakhs | 8% Fee)"
   },
   {
     "id": 38,
@@ -526,13 +554,14 @@
     "address": "Netra Hospital, Ingole Chowk, Arvi Road, Wardha, Maharashtra - 442001",
     "is_tn": false,
     "total_unclaimed_div": 273.5,
-    "est_folio": "Rs. 12,00,000 \u2014 Rs. 20,00,000 (Rs. 12 \u2013 Rs. 20 Lakhs)",
+    "est_folio": "₹1,899,525 (~₹19.00 Lakhs | 1,333 Shares)",
     "shares_pre_2019": 600,
     "bonus_2019": 150,
     "bonus_2021": 250,
     "bonus_2023": 333,
     "current_shares": 1333,
-    "current_val_inr": 1899525
+    "current_val_inr": 1899525,
+    "my_est_value": "₹151,962 (~₹1.52 Lakhs | 8% Fee)"
   },
   {
     "id": 39,
@@ -541,13 +570,14 @@
     "address": "Walse Hospital, Near Gojamagunde Hospital, Manthale Nagar, Tilak Nagar, Opp. Market Yard Gate No. 2, Latur, Maharashtra - 413531",
     "is_tn": false,
     "total_unclaimed_div": 135.0,
-    "est_folio": "Rs. 10,00,000 \u2014 Rs. 16,00,000 (Rs. 10 \u2013 Rs. 16 Lakhs)",
+    "est_folio": "₹1,583,175 (~₹15.83 Lakhs | 1,111 Shares)",
     "shares_pre_2019": 500,
     "bonus_2019": 125,
     "bonus_2021": 208,
     "bonus_2023": 278,
     "current_shares": 1111,
-    "current_val_inr": 1583175
+    "current_val_inr": 1583175,
+    "my_est_value": "₹126,654 (~₹1.27 Lakhs | 8% Fee)"
   },
   {
     "id": 40,
@@ -556,12 +586,13 @@
     "address": "Saurashtra Fuels (P) Ltd, 93 C, Mittal Tower, Nariman Point, Mumbai - 400021",
     "is_tn": false,
     "total_unclaimed_div": 1350.0,
-    "est_folio": "Rs. 45,00,000 \u2014 Rs. 70,00,000 (Rs. 45 \u2013 Rs. 70 Lakhs)",
+    "est_folio": "₹6,966,825 (~₹69.67 Lakhs | 4,889 Shares)",
     "shares_pre_2019": 2200,
     "bonus_2019": 550,
     "bonus_2021": 917,
     "bonus_2023": 1222,
     "current_shares": 4889,
-    "current_val_inr": 6966825
+    "current_val_inr": 6966825,
+    "my_est_value": "₹557,346 (~₹5.57 Lakhs | 8% Fee)"
   }
 ]
