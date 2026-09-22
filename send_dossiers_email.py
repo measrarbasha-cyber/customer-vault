@@ -17,6 +17,7 @@ import sys
 import sqlite3
 import re
 import smtplib
+import time
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.application import MIMEApplication
@@ -147,6 +148,7 @@ def send_all_dossiers(dry_run=True):
             try:
                 server.sendmail(SENDER_EMAIL, [email], msg.as_string())
                 print(f"[SUCCESS] Sent email to: {email} | Client: {cust['name']}")
+                time.sleep(1.5)
             except Exception as e:
                 print(f"[FAILED] Could not send to {email}: {e}")
 
