@@ -30,7 +30,7 @@ SMTP_HOST = os.environ.get("SMTP_HOST", "smtp.gmail.com")
 SMTP_PORT = int(os.environ.get("SMTP_PORT", 587))
 SENDER_NAME = "MD ASRAR BASHA A"
 SENDER_EMAIL = os.environ.get("SMTP_EMAIL", "amdasrarbasha@gmail.com")
-SENDER_PASSWORD = os.environ.get("SMTP_PASSWORD", "")  # 16-character Google App Password
+SENDER_PASSWORD = os.environ.get("SMTP_PASSWORD", "zenqaefujramczmo")  # 16-character Google App Password
 
 CONSULTANT_PHONE = "+91 7358882822"
 CONSULTANT_TITLE = "Independent Financial Consultant & IEPF Recovery Specialist"
