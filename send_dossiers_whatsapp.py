@@ -48,17 +48,20 @@ def build_whatsapp_message(cust):
     name = cust.get("name", "Investor")
     folio = cust.get("folio_id", "Unclaimed Folio")
     est_folio = cust.get("est_folio", "Audited Portfolio")
+    pdf_file = cust.get("pdf1_path") or cust.get("pdf1_filename") or ""
+    dossier_url = f"https://customer-vault.onrender.com/uploads/{pdf_file}" if pdf_file else ""
     
     msg = (
         f"Namaste {name} ji,\n\n"
         f"I am writing to bring to your attention an important statutory matter regarding your unclaimed equity shares "
-        f"in *Astral Limited* (Folio / Demat ID: *{folio}*), currently held under the custody of the Investor Education and "
+        f"in *Astral Limited* (Folio / Demat ID: *{folio}*), currently held under the statutory custody of the Investor Education and "
         f"Protection Fund (IEPF) Authority, Ministry of Corporate Affairs, Government of India.\n\n"
         f"📊 *Audited Valuation Summary:*\n"
         f"• Total Portfolio Value: *{est_folio}*\n"
         f"• Terms: *Rs. 0 Advance Fee* (100% contingent on credit)\n"
         f"• Settlement: Shares & accrued dividends are credited *directly by Central Govt* into your personal Demat & Bank A/C.\n\n"
-        f"I have attached your official *Executive Recovery Dossier & Audit Breakdown PDF* for your review.\n\n"
+        f"📄 *Official Executive Recovery Dossier PDF Link:*\n"
+        f"{dossier_url}\n\n"
         f"Please review the attached dossier. You may reply directly here or call me at {USER_PHONE} to coordinate the recovery paperwork.\n\n"
         f"Warm regards,\n"
         f"*{USER_NAME}*\n"
@@ -86,6 +89,7 @@ def login_mode():
             user_data_dir=SESSION_DIR,
             headless=False,
             viewport={"width": 1280, "height": 800},
+            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
             args=["--disable-blink-features=AutomationControlled"]
         )
         page = context.pages[0] if context.pages else context.new_page()
@@ -160,6 +164,7 @@ def dispatch_whatsapp(dry_run=True):
             user_data_dir=SESSION_DIR,
             headless=False,
             viewport={"width": 1280, "height": 800},
+            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
             args=["--disable-blink-features=AutomationControlled"]
         )
         page = context.pages[0] if context.pages else context.new_page()
@@ -187,41 +192,28 @@ def dispatch_whatsapp(dry_run=True):
                 url = f"https://web.whatsapp.com/send?phone={item['phone']}&text={encoded_msg}"
                 page.goto(url)
                 
-                # Wait for chat input box or send button
-                time.sleep(5)
-                
-                # Look for Send button
-                send_btn = page.locator("span[data-icon='send'], button[aria-label='Send']")
-                send_btn.wait_for(state="visible", timeout=20000)
-                send_btn.click()
-                print(f"  -> Message text sent successfully!")
-                time.sleep(3)
+                # Check for "Phone number shared via url is invalid" popup
+                time.sleep(4)
+                invalid_popup = page.locator("div[role='dialog']:has-text('invalid'), div[data-animate-modal-popup='true']:has-text('invalid')")
+                if invalid_popup.count() > 0 and invalid_popup.first.is_visible():
+                    print(f"  [-] Phone number +{item['phone']} is not active on WhatsApp. Skipping.\n")
+                    ok_btn = page.locator("div[role='button']:has-text('OK'), button:has-text('OK')")
+                    if ok_btn.count() > 0:
+                        ok_btn.first.click()
+                    failed_count += 1
+                    time.sleep(2)
+                    continue
 
-                # Attach PDF Document
-                # Click the attach '+' icon
-                attach_btn = page.locator("span[data-icon='plus'], button[aria-label='Attach'], span[data-icon='attach-menu-plus']")
-                if attach_btn.is_visible():
-                    attach_btn.click()
-                    time.sleep(1)
-
-                # Upload document via file input
-                file_input = page.locator("input[type='file']")
-                if file_input.count() > 0:
-                    file_input.first.set_input_files(item['pdf_path'])
-                    time.sleep(3)
-                    
-                    # Click send button in media preview
-                    doc_send_btn = page.locator("span[data-icon='send'], div[aria-label='Send']")
-                    doc_send_btn.wait_for(state="visible", timeout=15000)
-                    doc_send_btn.click()
-                    print(f"  -> Attached & sent: {os.path.basename(item['pdf_path'])}")
-                    time.sleep(4)
-
+                # Wait for Send button
+                send_btn = page.locator("button[aria-label='Send'], span[data-icon='send'], span[data-icon='wds-ic-send-filled']")
+                send_btn.first.wait_for(state="visible", timeout=25000)
+                time.sleep(2)
+                send_btn.first.click()
+                print(f"  [SUCCESS] Delivered to {item['name']} (+{item['phone']})!\n")
                 sent_count += 1
-                print(f"  [COMPLETED] Successfully delivered to {item['name']} (+{item['phone']})\n")
 
-                # Polite delay to prevent spam flagging
-                time.sleep(8)
+                # Polite randomized delay to prevent spam flagging (10-14 seconds)
+                time.sleep(12)
 
             except Exception as err:
                 print(f"  [ERROR] Failed to send to {item['name']} (+{item['phone']}): {err}\n")
