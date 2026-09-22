@@ -276,7 +276,7 @@
                   </div>
                   <p id="profileFolioId" class="text-sm sm:text-base font-extrabold text-slate-900 mt-1 font-mono break-all leading-snug">--</p>
                 </div>
-                <span class="text-[10px] text-slate-400 mt-1">NSDL / CDSL Depository</span>
+                <span id="profileFolioType" class="text-[10px] text-slate-400 mt-1">NSDL / CDSL Depository</span>
               </div>
 
               <!-- EST. Folio Card (Client Total Portfolio) -->
@@ -1012,7 +1012,7 @@
                 <h4 class="font-bold text-sm text-slate-900 truncate ${isSelected ? 'text-indigo-950 font-extrabold' : ''}">
                   ${highlightMatch(cust.name, query)}
                 </h4>
-                ${cust.folio_id ? `<span class="text-[10px] sm:text-[11px] font-mono font-bold text-indigo-700 bg-indigo-50 border border-indigo-100 px-1.5 py-0.5 rounded truncate max-w-[100px]">${cust.folio_id}</span>` : ''}
+                ${cust.folio_id ? `<span class="text-[10px] sm:text-[11px] font-mono font-bold text-indigo-700 bg-indigo-50 border border-indigo-100 px-1.5 py-0.5 rounded shrink-0 ml-1.5">${cust.folio_id}</span>` : ''}
               </div>
               <div class="flex flex-wrap items-center gap-1.5 text-xs text-slate-500 mt-1.5">
                 ${cust.my_est_value ? `<span class="text-[10px] sm:text-[11px] font-black text-amber-950 bg-amber-100 border border-amber-300 px-1.5 py-0.5 rounded-md shadow-2xs">💰 Fee: ${cust.my_est_value}</span>` : ''}
@@ -1102,6 +1102,19 @@
       }
 
       safeSetText('profileFolioId', cust.folio_id || '--');
+      const fTypeEl = document.getElementById('profileFolioType');
+      if (fTypeEl) {
+        const fid = (cust.folio_id || '').trim();
+        if (fid.startsWith('IN')) {
+          fTypeEl.innerText = 'NSDL Electronic Demat (DP ID + Client ID)';
+        } else if (/^\d{16}$/.test(fid.replace(/\s+/g, ''))) {
+          fTypeEl.innerText = 'CDSL Electronic Demat (16-Digit BO ID)';
+        } else if (fid.length > 0 && fid.length <= 10) {
+          fTypeEl.innerText = 'Physical Share Certificate Folio (Official Company Register)';
+        } else {
+          fTypeEl.innerText = 'Depository / Folio Identifier';
+        }
+      }
       safeSetText('profileEstFolio', cust.est_folio || '--');
       safeSetText('profileMyEstValue', cust.my_est_value || '--');
       safeSetText('profileContactInfo', cust.contact_info || 'No contact info provided');
