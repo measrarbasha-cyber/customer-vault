@@ -92,6 +92,9 @@ def init_db():
         if "pdf5_filename" not in columns:
             cursor.execute("ALTER TABLE customers ADD COLUMN pdf5_filename TEXT")
             cursor.execute("ALTER TABLE customers ADD COLUMN pdf5_path TEXT")
+        if "status" not in columns:
+            cursor.execute("ALTER TABLE customers ADD COLUMN status TEXT DEFAULT 'Pending'")
+            cursor.execute("UPDATE customers SET status = 'Pending' WHERE status IS NULL OR status = ''")
 
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS customers (
@@ -102,6 +105,7 @@ def init_db():
             est_folio TEXT,
             my_est_value TEXT,
             contact_info TEXT,
+            status TEXT DEFAULT 'Pending',
             pdf1_filename TEXT,
             pdf1_path TEXT,
             pdf2_filename TEXT,
@@ -433,24 +437,59 @@ class CustomerHandler(BaseHTTPRequestHandler):
                 self.wfile.write(b"PDF document not found")
                 return
 
-        # Search / List customers
+        # Stats summary endpoint (All, Pending, Completed, Rejected)
+        if path == "/api/customers/stats":
+            conn = get_db()
+            cursor = conn.cursor()
+            cursor.execute("SELECT status, COUNT(*) FROM customers GROUP BY status")
+            counts = {r[0]: r[1] for r in cursor.fetchall()}
+            cursor.execute("SELECT COUNT(*) FROM customers")
+            total = cursor.fetchone()[0]
+            conn.close()
+            data = {
+                "all": total,
+                "pending": counts.get("Pending", 0),
+                "completed": counts.get("Completed", 0),
+                "rejected": counts.get("Rejected", 0)
+            }
+            self._set_headers(200)
+            self.wfile.write(json.dumps(data).encode("utf-8"))
+            return
+
+        # Search / List customers (with optional ?status=Pending|Completed|Rejected|All)
         if path == "/api/customers":
             search_query = query.get("q", [""])[0].strip()
+            status_filter = query.get("status", [""])[0].strip().capitalize()
             conn = get_db()
             cursor = conn.cursor()
             
+            where_clauses = []
+            params = []
+            
+            if status_filter and status_filter != "All":
+                where_clauses.append("status = ?")
+                params.append(status_filter)
+                
             if search_query:
                 term = f"%{search_query}%"
-                cursor.execute("""
+                where_clauses.append("(name LIKE ? OR folio_id LIKE ? OR est_folio LIKE ? OR my_est_value LIKE ? OR contact_info LIKE ? OR address LIKE ?)")
+                params.extend([term, term, term, term, term, term])
+                
+            where_sql = ("WHERE " + " AND ".join(where_clauses)) if where_clauses else ""
+            
+            if search_query:
+                sql = f"""
                     SELECT * FROM customers 
-                    WHERE name LIKE ? OR folio_id LIKE ? OR est_folio LIKE ? OR my_est_value LIKE ? OR contact_info LIKE ? OR address LIKE ?
+                    {where_sql}
                     ORDER BY 
                         CASE WHEN name LIKE ? THEN 0 WHEN folio_id LIKE ? THEN 1 ELSE 2 END,
                         name ASC
-                """, (term, term, term, term, term, term, f"{search_query}%", f"{search_query}%"))
+                """
+                params.extend([f"{search_query}%", f"{search_query}%"])
             else:
-                cursor.execute("SELECT * FROM customers ORDER BY name ASC")
+                sql = f"SELECT * FROM customers {where_sql} ORDER BY name ASC"
                 
+            cursor.execute(sql, params)
             rows = [dict(row) for row in cursor.fetchall()]
             conn.close()
             
@@ -483,7 +522,7 @@ class CustomerHandler(BaseHTTPRequestHandler):
             conn = get_db()
             cursor = conn.cursor()
             cursor.execute("""
-                SELECT id, name, folio_id, est_folio, my_est_value, contact_info, address, 
+                SELECT id, status, name, folio_id, est_folio, my_est_value, contact_info, address, 
                        pdf1_filename, pdf2_filename, pdf3_filename, pdf4_filename, pdf5_filename, created_at 
                 FROM customers ORDER BY name ASC
             """)
@@ -493,7 +532,7 @@ class CustomerHandler(BaseHTTPRequestHandler):
             output = io.StringIO()
             output.write('\ufeff') # UTF-8 BOM for Excel
             writer = csv.writer(output)
-            writer.writerow(["ID", "Name", "Folio ID", "EST. Folio", "My Est. Value", "Contact Info", "Address", "PDF 1 (Dossier)", "PDF 2 (Agreement)", "PDF 3 (Call Playbook EN)", "PDF 4 (Call Playbook Regional)", "PDF 5 (Share Audit & Trust Dossier)", "Created At"])
+            writer.writerow(["ID", "Status", "Name", "Folio ID", "EST. Folio", "My Est. Value", "Contact Info", "Address", "PDF 1 (Dossier)", "PDF 2 (Agreement)", "PDF 3 (Call Playbook EN)", "PDF 4 (Call Playbook Regional)", "PDF 5 (Share Audit & Trust Dossier)", "Created At"])
             for row in rows:
                 writer.writerow(list(row))
 
@@ -510,6 +549,37 @@ class CustomerHandler(BaseHTTPRequestHandler):
         self.wfile.write(json.dumps({"error": "Not Found"}).encode("utf-8"))
 
     def do_POST(self):
+        # Quick status update endpoint: POST /api/customers/<id>/status
+        if re.match(r"^/api/customers/\d+/status$", self.path):
+            try:
+                cust_id = int(self.path.split("/")[3])
+                length = int(self.headers.get("Content-Length", 0))
+                body = self.rfile.read(length)
+                data = json.loads(body.decode("utf-8"))
+                new_status = data.get("status", "").strip().capitalize()
+                if new_status not in ["Pending", "Completed", "Rejected"]:
+                    self._set_headers(400)
+                    self.wfile.write(json.dumps({"error": "Status must be Pending, Completed, or Rejected"}).encode("utf-8"))
+                    return
+                
+                conn = get_db()
+                cursor = conn.cursor()
+                cursor.execute("UPDATE customers SET status = ? WHERE id = ?", (new_status, cust_id))
+                conn.commit()
+                cursor.execute("SELECT * FROM customers WHERE id = ?", (cust_id,))
+                row = cursor.fetchone()
+                conn.close()
+                if row:
+                    self._set_headers(200)
+                    self.wfile.write(json.dumps(dict(row)).encode("utf-8"))
+                else:
+                    self._set_headers(404)
+                    self.wfile.write(json.dumps({"error": "Customer not found"}).encode("utf-8"))
+            except Exception as e:
+                self._set_headers(500)
+                self.wfile.write(json.dumps({"error": str(e)}).encode("utf-8"))
+            return
+
         if self.path == "/api/customers":
             length = int(self.headers.get("Content-Length", 0))
             body = self.rfile.read(length)
@@ -526,6 +596,9 @@ class CustomerHandler(BaseHTTPRequestHandler):
                 est_folio = data.get("est_folio", "").strip()
                 my_est_value = data.get("my_est_value", "").strip()
                 contact_info = data.get("contact_info", "").strip()
+                status = data.get("status", "Pending").strip().capitalize() or "Pending"
+                if status not in ["Pending", "Completed", "Rejected"]:
+                    status = "Pending"
 
                 # Handle PDF 1, 2, 3, 4, 5 uploads
                 pdf1_name, pdf1_file = save_uploaded_file("pdf1", data.get("pdf1"))
@@ -538,12 +611,12 @@ class CustomerHandler(BaseHTTPRequestHandler):
                 cursor = conn.cursor()
                 cursor.execute("""
                     INSERT INTO customers (
-                        name, address, folio_id, est_folio, my_est_value, contact_info,
+                        name, address, folio_id, est_folio, my_est_value, contact_info, status,
                         pdf1_filename, pdf1_path, pdf2_filename, pdf2_path,
                         pdf3_filename, pdf3_path, pdf4_filename, pdf4_path,
                         pdf5_filename, pdf5_path
-                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-                """, (name, address, folio_id, est_folio, my_est_value, contact_info,
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                """, (name, address, folio_id, est_folio, my_est_value, contact_info, status,
                       pdf1_name, pdf1_file, pdf2_name, pdf2_file,
                       pdf3_name, pdf3_file, pdf4_name, pdf4_file,
                       pdf5_name, pdf5_file))
@@ -642,17 +715,22 @@ class CustomerHandler(BaseHTTPRequestHandler):
                     new_n5, new_f5 = save_uploaded_file(f"c{cust_id}_p5", data.get("pdf5"))
                     if new_f5:
                         pdf5_name, pdf5_file = new_n5, new_f5
-                elif data.get("pdf5_delete"):
-                    pdf5_name, pdf5_file = None, None
+                status = data.get("status")
+                if status:
+                    status = status.strip().capitalize()
+                    if status not in ["Pending", "Completed", "Rejected"]:
+                        status = "Pending"
+                else:
+                    status = existing["status"] if "status" in existing.keys() and existing["status"] else "Pending"
 
                 cursor.execute("""
                     UPDATE customers 
-                    SET name = ?, address = ?, folio_id = ?, est_folio = ?, my_est_value = ?, contact_info = ?,
+                    SET name = ?, address = ?, folio_id = ?, est_folio = ?, my_est_value = ?, contact_info = ?, status = ?,
                         pdf1_filename = ?, pdf1_path = ?, pdf2_filename = ?, pdf2_path = ?,
                         pdf3_filename = ?, pdf3_path = ?, pdf4_filename = ?, pdf4_path = ?,
                         pdf5_filename = ?, pdf5_path = ?
                     WHERE id = ?
-                """, (name, address, folio_id, est_folio, my_est_value, contact_info,
+                """, (name, address, folio_id, est_folio, my_est_value, contact_info, status,
                       pdf1_name, pdf1_file, pdf2_name, pdf2_file,
                       pdf3_name, pdf3_file, pdf4_name, pdf4_file,
                       pdf5_name, pdf5_file, cust_id))

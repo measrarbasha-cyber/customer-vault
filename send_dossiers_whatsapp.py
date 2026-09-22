@@ -4,7 +4,7 @@ send_dossiers_whatsapp.py
 -------------------------
 Autonomous WhatsApp outreach and document transmission system for CustomerVault.
 Uses Playwright with a persistent browser profile to send personalized IEPF recovery
-proposals and attach official Executive Recovery Dossier PDFs.
+proposals and directly attach official Executive Recovery Dossier PDFs (no links).
 
 Usage:
   python send_dossiers_whatsapp.py --login       # Opens browser to scan QR code once
@@ -30,8 +30,10 @@ os.makedirs(SESSION_DIR, exist_ok=True)
 
 USER_NAME = "MD ASRAR BASHA A"
 USER_PHONE = "+91 7358882822"
-USER_TITLE = "Independent Financial Consultant & IEPF Recovery Specialist"
-USER_LOC = "Chennai & Ranipet, Tamil Nadu"
+USER_TITLE = "Principal Advisor – Shareholder Rights & IEPF Recovery"
+USER_FIRM = "Legal & Compliance Desk | CustomerVault Advisory"
+USER_LOC = "Ranipet District & Chennai, Tamil Nadu - 632509"
+USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
 
 def extract_mobile_number(contact_info):
     """Extracts a valid 10-digit Indian mobile number (prefixed with 91)."""
@@ -45,11 +47,13 @@ def extract_mobile_number(contact_info):
     return None
 
 def build_whatsapp_message(cust):
+    """
+    Builds clean, high-trust WhatsApp message with ZERO URLs/links.
+    Explicitly informs the client that their official PDF Dossier is attached.
+    """
     name = cust.get("name", "Investor")
     folio = cust.get("folio_id", "Unclaimed Folio")
     est_folio = cust.get("est_folio", "Audited Portfolio")
-    pdf_file = cust.get("pdf1_path") or cust.get("pdf1_filename") or ""
-    dossier_url = f"https://customer-vault.onrender.com/uploads/{pdf_file}" if pdf_file else ""
     
     msg = (
         f"Namaste {name} ji,\n\n"
@@ -60,12 +64,13 @@ def build_whatsapp_message(cust):
         f"• Total Portfolio Value: *{est_folio}*\n"
         f"• Terms: *Rs. 0 Advance Fee* (100% contingent on credit)\n"
         f"• Settlement: Shares & accrued dividends are credited *directly by Central Govt* into your personal Demat & Bank A/C.\n\n"
-        f"📄 *Official Executive Recovery Dossier PDF Link:*\n"
-        f"{dossier_url}\n\n"
-        f"Please review the attached dossier. You may reply directly here or call me at {USER_PHONE} to coordinate the recovery paperwork.\n\n"
+        f"📄 *Official Executive Recovery Dossier:*\n"
+        f"I have attached your official Executive Recovery Dossier PDF directly to this message for your review.\n\n"
+        f"Please review the attached document. You may reply directly here on WhatsApp or call me at {USER_PHONE} to coordinate the recovery paperwork.\n\n"
         f"Warm regards,\n"
         f"*{USER_NAME}*\n"
         f"{USER_TITLE}\n"
+        f"{USER_FIRM}\n"
         f"Phone: {USER_PHONE}\n"
         f"Location: {USER_LOC}"
     )
@@ -89,7 +94,7 @@ def login_mode():
             user_data_dir=SESSION_DIR,
             headless=False,
             viewport={"width": 1280, "height": 800},
-            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+            user_agent=USER_AGENT,
             args=["--disable-blink-features=AutomationControlled"]
         )
         page = context.pages[0] if context.pages else context.new_page()
@@ -116,7 +121,21 @@ def dispatch_whatsapp(dry_run=True):
     print("=" * 80)
     print(f"CustomerVault Batch WhatsApp Sender | Mode: {'DRY RUN (Simulated)' if dry_run else 'LIVE DISPATCH'}")
     print(f"Sender Phone: {USER_PHONE} ({USER_NAME})")
+    print(f"Policy: NO external URL links | Direct PDF Dossier Attachments Only")
     print("=" * 80)
+
+    delivered_ids = set()
+    log_file = os.path.join(BASE_DIR, "whatsapp_dispatch_log.json")
+    results_log = []
+    if os.path.exists(log_file):
+        try:
+            with open(log_file, "r", encoding="utf-8") as f:
+                results_log = json.load(f)
+                for entry in results_log:
+                    if entry.get("status") == "DELIVERED":
+                        delivered_ids.add(entry.get("id"))
+        except Exception:
+            results_log = []
 
     queue = []
     skipped = []
@@ -126,6 +145,10 @@ def dispatch_whatsapp(dry_run=True):
         pdf1 = cust.get("pdf1_path") or cust.get("pdf1_filename")
         pdf_path = os.path.join(UPLOAD_DIR, pdf1) if pdf1 else None
         
+        if cust['id'] in delivered_ids:
+            skipped.append((cust['id'], cust['name'], "Already delivered today"))
+            continue
+
         if not phone:
             skipped.append((cust['id'], cust['name'], "No mobile number on record"))
             continue
@@ -144,17 +167,18 @@ def dispatch_whatsapp(dry_run=True):
             "message": build_whatsapp_message(cust)
         })
 
-    print(f"Ready for WhatsApp dispatch: {len(queue)} clients | Skipped: {len(skipped)}")
+    print(f"Ready for WhatsApp dispatch: {len(queue)} clients | Skipped / Already Sent: {len(skipped)}")
     print("-" * 80)
 
     if dry_run:
         for idx, item in enumerate(queue, 1):
             print(f"[{idx}/{len(queue)}] [SIMULATION] Client: {item['name']} (ID {item['id']})")
             print(f"  Target WhatsApp: +{item['phone']}")
-            print(f"  Attached Dossier: {os.path.basename(item['pdf_path'])}")
-            print(f"  Preview: {item['message'][:120]}...\n")
+            print(f"  Direct PDF Attachment: {os.path.basename(item['pdf_path'])}")
+            print(f"  Message contains link: {'YES (ERROR)' if 'http' in item['message'] else 'NO (Clean)'}")
+            print(f"  Preview: {item['message'][:140]}...\n")
         print("=" * 80)
-        print(f"Dry run complete. {len(queue)} clients ready to receive WhatsApp messages.")
+        print(f"Dry run complete. {len(queue)} clients ready to receive WhatsApp messages with attached PDFs.")
         print("To send live messages, run: python send_dossiers_whatsapp.py --live")
         return
 
@@ -162,9 +186,9 @@ def dispatch_whatsapp(dry_run=True):
     with sync_playwright() as p:
         context = p.chromium.launch_persistent_context(
             user_data_dir=SESSION_DIR,
-            headless=False,
+            headless=True,
             viewport={"width": 1280, "height": 800},
-            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+            user_agent=USER_AGENT,
             args=["--disable-blink-features=AutomationControlled"]
         )
         page = context.pages[0] if context.pages else context.new_page()
@@ -182,12 +206,13 @@ def dispatch_whatsapp(dry_run=True):
 
         sent_count = 0
         failed_count = 0
+        results_log = []
 
         for idx, item in enumerate(queue, 1):
-            print(f"[{idx}/{len(queue)}] Processing: {item['name']} (+{item['phone']})...")
+            print(f"[{idx}/{len(queue)}] Processing: {item['name']} (+{item['phone']})...", flush=True)
             
             try:
-                # Encode message into direct chat URL
+                # 1. Navigate to chat with personalized message (no links)
                 encoded_msg = urllib.parse.quote(item['message'])
                 url = f"https://web.whatsapp.com/send?phone={item['phone']}&text={encoded_msg}"
                 page.goto(url)
@@ -196,34 +221,61 @@ def dispatch_whatsapp(dry_run=True):
                 time.sleep(4)
                 invalid_popup = page.locator("div[role='dialog']:has-text('invalid'), div[data-animate-modal-popup='true']:has-text('invalid')")
                 if invalid_popup.count() > 0 and invalid_popup.first.is_visible():
-                    print(f"  [-] Phone number +{item['phone']} is not active on WhatsApp. Skipping.\n")
+                    print(f"  [-] Phone number +{item['phone']} is not active on WhatsApp. Skipping.\n", flush=True)
                     ok_btn = page.locator("div[role='button']:has-text('OK'), button:has-text('OK')")
                     if ok_btn.count() > 0:
                         ok_btn.first.click()
                     failed_count += 1
+                    results_log.append({"id": item['id'], "name": item['name'], "phone": item['phone'], "status": "INVALID_NUMBER"})
                     time.sleep(2)
                     continue
 
-                # Wait for Send button
+                # Wait for Send button and transmit text message
                 send_btn = page.locator("button[aria-label='Send'], span[data-icon='send'], span[data-icon='wds-ic-send-filled']")
                 send_btn.first.wait_for(state="visible", timeout=25000)
                 time.sleep(2)
                 send_btn.first.click()
-                print(f"  [SUCCESS] Delivered to {item['name']} (+{item['phone']})!\n")
-                sent_count += 1
+                print(f"  [+] Text message delivered to {item['name']} (+{item['phone']})", flush=True)
+                time.sleep(3)
 
-                # Polite randomized delay to prevent spam flagging (10-14 seconds)
-                time.sleep(12)
+                # 2. Attach and send official PDF Dossier
+                plus_btn = page.locator("footer button[aria-label='Attach'], footer span[data-icon='plus'], footer div[role='button']:has(span[data-icon='plus'])")
+                plus_btn.first.click()
+                time.sleep(2)
+
+                with page.expect_file_chooser(timeout=10000) as fc_info:
+                    doc_btn = page.locator("button[aria-label='Document']")
+                    doc_btn.first.click()
+                
+                file_chooser = fc_info.value
+                file_chooser.set_files(item['pdf_path'])
+                time.sleep(4)
+
+                # Click Send in preview modal
+                modal_send = page.locator("div[aria-label='Send'], button[aria-label='Send'], span[data-icon='send'], span[data-icon='wds-ic-send-filled']")
+                modal_send.first.click()
+                pdf_name = os.path.basename(item['pdf_path'])
+                print(f"  [SUCCESS] Attached & Delivered PDF Dossier ({pdf_name}) to {item['name']} (+{item['phone']})!\n", flush=True)
+                sent_count += 1
+                results_log.append({"id": item['id'], "name": item['name'], "phone": item['phone'], "status": "DELIVERED", "pdf": pdf_name})
+
+                # Save interim progress to disk
+                with open(os.path.join(BASE_DIR, "whatsapp_dispatch_log.json"), "w", encoding="utf-8") as f:
+                    json.dump(results_log, f, indent=2)
+
+                # Polite randomized delay to prevent spam flagging (12-16 seconds)
+                time.sleep(14)
 
             except Exception as err:
-                print(f"  [ERROR] Failed to send to {item['name']} (+{item['phone']}): {err}\n")
+                print(f"  [ERROR] Failed to send to {item['name']} (+{item['phone']}): {err}\n", flush=True)
                 failed_count += 1
+                results_log.append({"id": item['id'], "name": item['name'], "phone": item['phone'], "status": "FAILED", "error": str(err)})
                 time.sleep(3)
 
         context.close()
-        print("=" * 80)
-        print(f"WhatsApp Dispatch Complete! Total Sent: {sent_count} | Failed: {failed_count}")
-        print("=" * 80)
+        print("=" * 80, flush=True)
+        print(f"WhatsApp Dispatch Complete! Total Delivered: {sent_count} | Failed: {failed_count}", flush=True)
+        print("=" * 80, flush=True)
 
 if __name__ == "__main__":
     if "--login" in sys.argv:

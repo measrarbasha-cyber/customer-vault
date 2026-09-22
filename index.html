@@ -118,6 +118,43 @@
   <!-- MAIN VIEW -->
   <main class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 flex-1 flex flex-col">
 
+    <!-- 4 TABS / PAGES NAVIGATION BAR -->
+    <section class="no-print mb-4 sm:mb-5">
+      <div class="max-w-3xl mx-auto bg-slate-200/80 p-1.5 rounded-2xl shadow-inner grid grid-cols-2 sm:grid-cols-4 gap-1 sm:gap-1.5">
+        
+        <!-- Page 1: All Records -->
+        <button id="tabBtnAll" onclick="switchTab('All')" class="py-2.5 px-3 rounded-xl font-bold text-xs sm:text-sm transition flex items-center justify-center space-x-1.5 cursor-pointer bg-white text-indigo-900 shadow-sm">
+          <svg class="w-4 h-4 text-indigo-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+          </svg>
+          <span class="truncate">All Records</span>
+          <span id="tabCountAll" class="ml-1 px-2 py-0.5 text-[10px] sm:text-xs font-black rounded-full bg-indigo-100 text-indigo-800">0</span>
+        </button>
+
+        <!-- Page 2: Pending -->
+        <button id="tabBtnPending" onclick="switchTab('Pending')" class="py-2.5 px-3 rounded-xl font-bold text-xs sm:text-sm transition flex items-center justify-center space-x-1.5 cursor-pointer text-slate-600 hover:text-amber-800 hover:bg-white/60">
+          <span class="w-2.5 h-2.5 rounded-full bg-amber-500 shrink-0 animate-pulse"></span>
+          <span class="truncate">Pending</span>
+          <span id="tabCountPending" class="ml-1 px-2 py-0.5 text-[10px] sm:text-xs font-black rounded-full bg-amber-100 text-amber-800">0</span>
+        </button>
+
+        <!-- Page 3: Completed -->
+        <button id="tabBtnCompleted" onclick="switchTab('Completed')" class="py-2.5 px-3 rounded-xl font-bold text-xs sm:text-sm transition flex items-center justify-center space-x-1.5 cursor-pointer text-slate-600 hover:text-emerald-800 hover:bg-white/60">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 shrink-0"></span>
+          <span class="truncate">Completed</span>
+          <span id="tabCountCompleted" class="ml-1 px-2 py-0.5 text-[10px] sm:text-xs font-black rounded-full bg-emerald-100 text-emerald-800">0</span>
+        </button>
+
+        <!-- Page 4: Rejected -->
+        <button id="tabBtnRejected" onclick="switchTab('Rejected')" class="py-2.5 px-3 rounded-xl font-bold text-xs sm:text-sm transition flex items-center justify-center space-x-1.5 cursor-pointer text-slate-600 hover:text-rose-800 hover:bg-white/60">
+          <span class="w-2.5 h-2.5 rounded-full bg-rose-500 shrink-0"></span>
+          <span class="truncate">Rejected</span>
+          <span id="tabCountRejected" class="ml-1 px-2 py-0.5 text-[10px] sm:text-xs font-black rounded-full bg-rose-100 text-rose-800">0</span>
+        </button>
+
+      </div>
+    </section>
+
     <!-- SEARCH BAR (Auto-focused, type to view) -->
     <section class="no-print mb-4 sm:mb-6">
       <div class="relative max-w-3xl mx-auto">
@@ -229,6 +266,23 @@
                   <span id="profileMyCutBadge" class="text-xs font-extrabold px-2.5 py-0.5 rounded-md bg-amber-400/25 text-amber-200 border border-amber-400/50 font-mono shadow-xs">
                     💰 My Fee: --
                   </span>
+                  <span id="profileStatusBadge" class="text-xs font-extrabold px-2.5 py-0.5 rounded-md font-mono shadow-xs bg-amber-500/20 text-amber-300 border border-amber-400/30">
+                    ⏳ Pending
+                  </span>
+                </div>
+
+                <!-- One-click status changer in Profile Card -->
+                <div class="no-print flex flex-wrap items-center gap-1.5 bg-black/40 backdrop-blur-xs p-1.5 rounded-xl border border-white/15 mt-2.5 w-fit">
+                  <span class="text-[10px] uppercase tracking-wider font-extrabold text-slate-300 px-1.5">Page:</span>
+                  <button id="profileBtnPending" onclick="changeCustomerStatus(selectedCustomerId, 'Pending')" class="px-2.5 py-1 text-xs font-bold rounded-lg transition hover:scale-105 active:scale-95 cursor-pointer bg-amber-500 text-slate-950 shadow-xs">
+                    ⏳ Pending
+                  </button>
+                  <button id="profileBtnCompleted" onclick="changeCustomerStatus(selectedCustomerId, 'Completed')" class="px-2.5 py-1 text-xs font-bold rounded-lg transition hover:scale-105 active:scale-95 cursor-pointer text-slate-300 hover:text-white hover:bg-white/10">
+                    ✅ Completed
+                  </button>
+                  <button id="profileBtnRejected" onclick="changeCustomerStatus(selectedCustomerId, 'Rejected')" class="px-2.5 py-1 text-xs font-bold rounded-lg transition hover:scale-105 active:scale-95 cursor-pointer text-slate-300 hover:text-white hover:bg-white/10">
+                    ❌ Rejected
+                  </button>
                 </div>
               </div>
             </div>
@@ -596,6 +650,16 @@
           <input type="text" id="formMyEstValue" placeholder="e.g. ₹36L — ₹52L (8% Fee)" class="w-full px-3.5 py-2.5 bg-amber-50/60 border border-amber-300 rounded-lg text-sm font-bold text-amber-950 focus:bg-white focus:border-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-200 transition">
         </div>
 
+        <!-- Status / Category Page -->
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1">Page / Client Status</label>
+          <select id="formStatus" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm font-bold text-slate-800 focus:bg-white focus:border-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-100 transition">
+            <option value="Pending">⏳ Pending</option>
+            <option value="Completed">✅ Completed</option>
+            <option value="Rejected">❌ Rejected</option>
+          </select>
+        </div>
+
         <!-- Contact Info -->
         <div>
           <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1">Contact Info (Phone / Email)</label>
@@ -924,34 +988,205 @@
       }
     }
 
+    let currentTab = 'All';
+
     function safeSetText(id, text) {
       const el = document.getElementById(id);
       if (el) el.innerText = text;
     }
 
+    function showToast(message, type = 'success') {
+      let toast = document.getElementById('vaultToast');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'vaultToast';
+        toast.className = 'fixed bottom-5 right-5 z-50 px-4 py-3 rounded-xl shadow-xl border text-sm font-bold flex items-center space-x-2 transition-all duration-300 transform translate-y-10 opacity-0 pointer-events-none';
+        document.body.appendChild(toast);
+      }
+      
+      if (type === 'success') {
+        toast.className = 'fixed bottom-5 right-5 z-50 px-4 py-3 rounded-xl shadow-2xl border border-emerald-400 bg-emerald-600 text-white text-sm font-bold flex items-center space-x-2 transition-all duration-300 transform translate-y-0 opacity-100 pointer-events-auto';
+        toast.innerHTML = `<svg class="w-5 h-5 text-emerald-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>${message}</span>`;
+      } else {
+        toast.className = 'fixed bottom-5 right-5 z-50 px-4 py-3 rounded-xl shadow-2xl border border-rose-400 bg-rose-600 text-white text-sm font-bold flex items-center space-x-2 transition-all duration-300 transform translate-y-0 opacity-100 pointer-events-auto';
+        toast.innerHTML = `<svg class="w-5 h-5 text-rose-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg><span>${message}</span>`;
+      }
+
+      clearTimeout(toast.timer);
+      toast.timer = setTimeout(() => {
+        toast.className = 'fixed bottom-5 right-5 z-50 px-4 py-3 rounded-xl shadow-xl border text-sm font-bold flex items-center space-x-2 transition-all duration-300 transform translate-y-10 opacity-0 pointer-events-none';
+      }, 3000);
+    }
+
+    function updateTabCounters() {
+      const allCount = customers.length;
+      const pendingCount = customers.filter(c => (c.status || 'Pending') === 'Pending').length;
+      const completedCount = customers.filter(c => c.status === 'Completed').length;
+      const rejectedCount = customers.filter(c => c.status === 'Rejected').length;
+
+      safeSetText('tabCountAll', allCount);
+      safeSetText('tabCountPending', pendingCount);
+      safeSetText('tabCountCompleted', completedCount);
+      safeSetText('tabCountRejected', rejectedCount);
+    }
+
+    function switchTab(tab) {
+      currentTab = tab;
+      
+      const tabBtns = {
+        'All': document.getElementById('tabBtnAll'),
+        'Pending': document.getElementById('tabBtnPending'),
+        'Completed': document.getElementById('tabBtnCompleted'),
+        'Rejected': document.getElementById('tabBtnRejected')
+      };
+
+      for (const [key, btn] of Object.entries(tabBtns)) {
+        if (!btn) continue;
+        if (key === currentTab) {
+          if (key === 'All') {
+            btn.className = "py-2.5 px-3 rounded-xl font-bold text-xs sm:text-sm transition flex items-center justify-center space-x-1.5 cursor-pointer bg-white text-indigo-900 shadow-sm border border-indigo-200";
+          } else if (key === 'Pending') {
+            btn.className = "py-2.5 px-3 rounded-xl font-bold text-xs sm:text-sm transition flex items-center justify-center space-x-1.5 cursor-pointer bg-amber-500 text-slate-950 shadow-sm";
+          } else if (key === 'Completed') {
+            btn.className = "py-2.5 px-3 rounded-xl font-bold text-xs sm:text-sm transition flex items-center justify-center space-x-1.5 cursor-pointer bg-emerald-600 text-white shadow-sm";
+          } else if (key === 'Rejected') {
+            btn.className = "py-2.5 px-3 rounded-xl font-bold text-xs sm:text-sm transition flex items-center justify-center space-x-1.5 cursor-pointer bg-rose-600 text-white shadow-sm";
+          }
+        } else {
+          btn.className = "py-2.5 px-3 rounded-xl font-bold text-xs sm:text-sm transition flex items-center justify-center space-x-1.5 cursor-pointer text-slate-600 hover:bg-white/60";
+        }
+      }
+
+      applyFilterAndRender();
+    }
+
+    function getFilteredCustomers(searchQuery = '') {
+      let filtered = customers;
+
+      if (currentTab !== 'All') {
+        filtered = filtered.filter(c => (c.status || 'Pending') === currentTab);
+      }
+
+      if (searchQuery) {
+        const q = searchQuery.toLowerCase();
+        filtered = filtered.filter(c => 
+          (c.name || '').toLowerCase().includes(q) ||
+          (c.folio_id || '').toLowerCase().includes(q) ||
+          (c.est_folio || '').toLowerCase().includes(q) ||
+          (c.my_est_value || '').toLowerCase().includes(q) ||
+          (c.contact_info || '').toLowerCase().includes(q) ||
+          (c.address || '').toLowerCase().includes(q)
+        );
+      }
+
+      return filtered;
+    }
+
+    function applyFilterAndRender() {
+      const q = (document.getElementById('searchInput') ? document.getElementById('searchInput').value.trim() : '');
+      const filtered = getFilteredCustomers(q);
+
+      safeSetText('customerCount', filtered.length);
+      const tabLabel = currentTab === 'All' ? 'All records' : `${currentTab} records`;
+      safeSetText('searchIndicator', q ? `Searching in ${tabLabel}: "${q}"` : tabLabel);
+
+      renderCustomerList(filtered, q);
+
+      // Auto select first client in view if current selection is not visible
+      if (filtered.length > 0) {
+        const exists = filtered.some(c => c.id === selectedCustomerId);
+        if (!exists) {
+          if (window.innerWidth >= 1024 || q) {
+            selectCustomer(filtered[0].id, false);
+          }
+        }
+      } else {
+        deselectCustomer();
+      }
+    }
+
+    async function changeCustomerStatus(id, newStatus) {
+      if (!newStatus || !['Pending', 'Completed', 'Rejected'].includes(newStatus)) return;
+      
+      const cust = customers.find(c => c.id === id);
+      if (!cust) return;
+
+      const oldStatus = cust.status || 'Pending';
+      cust.status = newStatus;
+
+      updateTabCounters();
+      applyFilterAndRender();
+
+      if (selectedCustomerId === id) {
+        updateProfileStatusUI(newStatus);
+      }
+
+      showToast(`Moved ${cust.name.split(' ')[0]} to ${newStatus}!`);
+
+      try {
+        const res = await fetch(`/api/customers/${id}/status`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ status: newStatus })
+        });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      } catch (err) {
+        console.error('Failed to update status on server:', err);
+        cust.status = oldStatus;
+        updateTabCounters();
+        applyFilterAndRender();
+        showToast(`Failed to update status on server`, 'error');
+      }
+    }
+
+    function updateProfileStatusUI(status) {
+      const sBadge = document.getElementById('profileStatusBadge');
+      if (sBadge) {
+        if (status === 'Completed') {
+          sBadge.innerText = '✅ Completed';
+          sBadge.className = 'text-xs font-extrabold px-2.5 py-0.5 rounded-md font-mono shadow-xs bg-emerald-500/20 text-emerald-300 border border-emerald-400/30';
+        } else if (status === 'Rejected') {
+          sBadge.innerText = '❌ Rejected';
+          sBadge.className = 'text-xs font-extrabold px-2.5 py-0.5 rounded-md font-mono shadow-xs bg-rose-500/20 text-rose-300 border border-rose-400/30';
+        } else {
+          sBadge.innerText = '⏳ Pending';
+          sBadge.className = 'text-xs font-extrabold px-2.5 py-0.5 rounded-md font-mono shadow-xs bg-amber-500/20 text-amber-300 border border-amber-400/30';
+        }
+      }
+
+      const btnPending = document.getElementById('profileBtnPending');
+      const btnCompleted = document.getElementById('profileBtnCompleted');
+      const btnRejected = document.getElementById('profileBtnRejected');
+
+      if (btnPending) {
+        btnPending.className = `px-2.5 py-1 text-xs font-bold rounded-lg transition hover:scale-105 active:scale-95 cursor-pointer ${status === 'Pending' ? 'bg-amber-500 text-slate-950 shadow-xs' : 'text-slate-300 hover:text-white hover:bg-white/10'}`;
+      }
+      if (btnCompleted) {
+        btnCompleted.className = `px-2.5 py-1 text-xs font-bold rounded-lg transition hover:scale-105 active:scale-95 cursor-pointer ${status === 'Completed' ? 'bg-emerald-500 text-slate-950 shadow-xs' : 'text-slate-300 hover:text-white hover:bg-white/10'}`;
+      }
+      if (btnRejected) {
+        btnRejected.className = `px-2.5 py-1 text-xs font-bold rounded-lg transition hover:scale-105 active:scale-95 cursor-pointer ${status === 'Rejected' ? 'bg-rose-500 text-white shadow-xs' : 'text-slate-300 hover:text-white hover:bg-white/10'}`;
+      }
+    }
+
     async function loadCustomers(searchQuery = '', retryCount = 0) {
       const container = document.getElementById('customerList');
       try {
-        const url = searchQuery 
-          ? `/api/customers?q=${encodeURIComponent(searchQuery)}`
-          : '/api/customers';
+        const url = '/api/customers';
         const res = await fetch(url);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
         customers = Array.isArray(data) ? data : [];
 
-        safeSetText('customerCount', customers.length);
-        safeSetText('searchIndicator', searchQuery ? `Searching: "${searchQuery}"` : 'All records');
+        updateTabCounters();
+        applyFilterAndRender();
 
-        renderCustomerList(customers, searchQuery);
-
-        // Auto select first match if searching or if selected was deleted
         if (customers.length > 0) {
           const currentExists = customers.some(c => c.id === selectedCustomerId);
           if (!currentExists || searchQuery) {
-            // On desktop, auto-select first; on mobile, only if user explicitly clicks
-            if (window.innerWidth >= 1024 || searchQuery) {
-              selectCustomer(customers[0].id, false);
+            const filtered = getFilteredCustomers(searchQuery);
+            if (filtered.length > 0 && (window.innerWidth >= 1024 || searchQuery)) {
+              selectCustomer(filtered[0].id, false);
             }
           }
         } else {
@@ -980,10 +1215,14 @@
     function renderCustomerList(list, query) {
       const container = document.getElementById('customerList');
       if (list.length === 0) {
+        const pageName = currentTab === 'All' ? 'No customers' : `No ${currentTab.toLowerCase()} customers`;
         container.innerHTML = `
           <div class="p-8 text-center text-slate-400 flex flex-col items-center justify-center h-full">
-            <p class="font-medium text-slate-600">No customers found</p>
-            <p class="text-xs mt-1">Try another name or add a new customer.</p>
+            <div class="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center mb-2.5 text-xl">
+              ${currentTab === 'Pending' ? '⏳' : (currentTab === 'Completed' ? '✅' : (currentTab === 'Rejected' ? '❌' : '📂'))}
+            </div>
+            <p class="font-bold text-slate-700 text-sm">${pageName} found</p>
+            <p class="text-xs text-slate-400 mt-1">Move clients into this page using the dropdown or profile buttons.</p>
           </div>
         `;
         return;
@@ -994,32 +1233,67 @@
         const initials = getInitials(cust.name);
         const bgGrad = getGradient(cust.name);
         const hasPdf = (cust.pdf1_path ? 1 : 0) + (cust.pdf2_path ? 1 : 0) + (cust.pdf3_path ? 1 : 0) + (cust.pdf4_path ? 1 : 0) + (cust.pdf5_path ? 1 : 0);
+        const custStatus = cust.status || 'Pending';
+
+        let badgeBg = 'bg-amber-100 text-amber-800 border-amber-200';
+        let statusIcon = '⏳';
+        if (custStatus === 'Completed') {
+          badgeBg = 'bg-emerald-100 text-emerald-800 border-emerald-200';
+          statusIcon = '✅';
+        } else if (custStatus === 'Rejected') {
+          badgeBg = 'bg-rose-100 text-rose-800 border-rose-200';
+          statusIcon = '❌';
+        }
 
         return `
           <div 
             onclick="selectCustomer(${cust.id}, true)"
-            class="p-3.5 sm:p-4 cursor-pointer transition flex items-center space-x-3.5 ${
+            class="p-3.5 sm:p-4 cursor-pointer transition flex flex-col space-y-2 ${
               isSelected 
                 ? 'bg-indigo-50/90 border-l-4 border-indigo-600' 
                 : 'hover:bg-slate-50 border-l-4 border-transparent'
             }"
           >
-            <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-tr ${bgGrad} text-white font-bold text-xs sm:text-sm flex items-center justify-center shrink-0 shadow-xs">
-              ${initials}
-            </div>
-            <div class="flex-1 min-w-0">
-              <div class="flex items-center justify-between">
-                <h4 class="font-bold text-sm text-slate-900 truncate ${isSelected ? 'text-indigo-950 font-extrabold' : ''}">
-                  ${highlightMatch(cust.name, query)}
-                </h4>
-                ${cust.folio_id ? `<span class="text-[10px] sm:text-[11px] font-mono font-bold text-indigo-700 bg-indigo-50 border border-indigo-100 px-1.5 py-0.5 rounded shrink-0 ml-1.5">${cust.folio_id}</span>` : ''}
+            <div class="flex items-center space-x-3.5">
+              <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-tr ${bgGrad} text-white font-bold text-xs sm:text-sm flex items-center justify-center shrink-0 shadow-xs">
+                ${initials}
               </div>
-              <div class="flex flex-wrap items-center gap-1.5 text-xs text-slate-500 mt-1.5">
-                ${cust.my_est_value ? `<span class="text-[10px] sm:text-[11px] font-black text-amber-950 bg-amber-100 border border-amber-300 px-1.5 py-0.5 rounded-md shadow-2xs">💰 Fee: ${cust.my_est_value}</span>` : ''}
-                ${cust.contact_info ? `<span class="truncate text-[11px]">${cust.contact_info}</span>` : '<span class="text-slate-400">No contact info</span>'}
-                ${hasPdf > 0 ? `<span class="text-[10px] font-bold text-rose-600 bg-rose-50 px-1.5 py-0.5 rounded border border-rose-100 shrink-0">📄 ${hasPdf} PDFs</span>` : ''}
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between">
+                  <h4 class="font-bold text-sm text-slate-900 truncate ${isSelected ? 'text-indigo-950 font-extrabold' : ''}">
+                    ${highlightMatch(cust.name, query)}
+                  </h4>
+                  ${cust.folio_id ? `<span class="text-[10px] sm:text-[11px] font-mono font-bold text-indigo-700 bg-indigo-50 border border-indigo-100 px-1.5 py-0.5 rounded shrink-0 ml-1.5">${cust.folio_id}</span>` : ''}
+                </div>
+                <div class="flex flex-wrap items-center gap-1.5 text-xs text-slate-500 mt-1">
+                  ${cust.my_est_value ? `<span class="text-[10px] sm:text-[11px] font-black text-amber-950 bg-amber-100 border border-amber-300 px-1.5 py-0.5 rounded-md shadow-2xs">💰 Fee: ${cust.my_est_value}</span>` : ''}
+                  ${cust.contact_info ? `<span class="truncate text-[11px]">${cust.contact_info}</span>` : '<span class="text-slate-400">No contact info</span>'}
+                  ${hasPdf > 0 ? `<span class="text-[10px] font-bold text-rose-600 bg-rose-50 px-1.5 py-0.5 rounded border border-rose-100 shrink-0">📄 ${hasPdf} PDFs</span>` : ''}
+                </div>
               </div>
             </div>
+
+            <!-- Page / Status Selector for each client -->
+            <div class="pt-2 border-t border-slate-100/80 flex items-center justify-between" onclick="event.stopPropagation()">
+              <span class="text-[11px] font-semibold text-slate-500 flex items-center gap-1.5">
+                <span>Page:</span>
+                <span class="text-[10px] font-extrabold px-1.5 py-0.5 rounded border ${badgeBg}">
+                  ${statusIcon} ${custStatus}
+                </span>
+              </span>
+              <div class="flex items-center space-x-1">
+                <label class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Move to:</label>
+                <select 
+                  onchange="changeCustomerStatus(${cust.id}, this.value)" 
+                  class="text-[11px] font-bold py-1 px-2 rounded-lg border border-slate-200 bg-white text-slate-700 shadow-2xs hover:border-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-100 cursor-pointer"
+                >
+                  <option value="Pending" ${custStatus === 'Pending' ? 'selected' : ''}>⏳ Pending</option>
+                  <option value="Completed" ${custStatus === 'Completed' ? 'selected' : ''}>✅ Completed</option>
+                  <option value="Rejected" ${custStatus === 'Rejected' ? 'selected' : ''}>❌ Rejected</option>
+                </select>
+              </div>
+            </div>
+
           </div>
         `;
       }).join('');
@@ -1036,10 +1310,9 @@
       const cust = customers.find(c => c.id === id);
       if (!cust) return;
 
-      // Update active state in list
-      renderCustomerList(customers, document.getElementById('searchInput').value.trim());
+      const q = document.getElementById('searchInput') ? document.getElementById('searchInput').value.trim() : '';
+      renderCustomerList(getFilteredCustomers(q), q);
 
-      // On mobile screen (<1024px) when user clicks, toggle panes
       if (isUserClick && window.innerWidth < 1024) {
         const listPane = document.getElementById('listPane');
         const detailPane = document.getElementById('detailPane');
@@ -1060,7 +1333,6 @@
         profileEl.scrollTop = 0;
       }
 
-      // Populate details safely
       const avatar = document.getElementById('profileAvatar');
       if (avatar) {
         avatar.innerText = getInitials(cust.name);
@@ -1069,7 +1341,6 @@
       
       safeSetText('profileName', cust.name);
       
-      // Folio badges
       const fBadge = document.getElementById('profileFolioBadge');
       if (fBadge) {
         if (cust.folio_id) {
@@ -1090,7 +1361,6 @@
         }
       }
 
-      // My Fee Badge in top banner
       const mBadge = document.getElementById('profileMyCutBadge');
       if (mBadge) {
         if (cust.my_est_value) {
@@ -1100,6 +1370,8 @@
           mBadge.classList.add('hidden');
         }
       }
+
+      updateProfileStatusUI(cust.status || 'Pending');
 
       safeSetText('profileFolioId', cust.folio_id || '--');
       const fTypeEl = document.getElementById('profileFolioType');
@@ -1560,6 +1832,9 @@ Chennai & Ranipet, Tamil Nadu`;
         document.getElementById('formMyEstValue').value = cust.my_est_value || '';
         document.getElementById('formContact').value = cust.contact_info || '';
         document.getElementById('formAddress').value = cust.address || '';
+        if (document.getElementById('formStatus')) {
+          document.getElementById('formStatus').value = cust.status || 'Pending';
+        }
 
         const p1Current = document.getElementById('formPdf1Current');
         if (cust.pdf1_filename) {
@@ -1611,6 +1886,9 @@ Chennai & Ranipet, Tamil Nadu`;
         document.getElementById('formPdf3Current').classList.add('hidden');
         document.getElementById('formPdf4Current').classList.add('hidden');
         document.getElementById('formPdf5Current').classList.add('hidden');
+        if (document.getElementById('formStatus')) {
+          document.getElementById('formStatus').value = (currentTab !== 'All') ? currentTab : 'Pending';
+        }
       }
 
       modal.classList.remove('hidden');
@@ -1634,6 +1912,7 @@ Chennai & Ranipet, Tamil Nadu`;
         est_folio: document.getElementById('formEstFolio').value.trim(),
         my_est_value: document.getElementById('formMyEstValue').value.trim(),
         contact_info: document.getElementById('formContact').value.trim(),
+        status: document.getElementById('formStatus') ? document.getElementById('formStatus').value : 'Pending',
         address: document.getElementById('formAddress').value.trim()
       };
 

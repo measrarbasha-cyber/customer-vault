@@ -28,14 +28,14 @@ UPLOAD_DIR = os.path.join(BASE_DIR, "uploads")
 
 # --- CONFIGURATION ---
 SMTP_HOST = os.environ.get("SMTP_HOST", "smtp.gmail.com")
-SMTP_PORT = int(os.environ.get("SMTP_PORT", 587))
+SMTP_PORT = int(os.environ.get("SMTP_PORT", 465))
 SENDER_NAME = "MD ASRAR BASHA A"
 SENDER_EMAIL = os.environ.get("SMTP_EMAIL", "amdasrarbasha@gmail.com")
 SENDER_PASSWORD = os.environ.get("SMTP_PASSWORD", "zenqaefujramczmo")  # 16-character Google App Password
 
 CONSULTANT_PHONE = "+91 7358882822"
-CONSULTANT_TITLE = "Independent Financial Consultant & IEPF Recovery Specialist"
-CONSULTANT_LOC = "Chennai & Ranipet, Tamil Nadu"
+CONSULTANT_TITLE = "Principal Advisor – Shareholder Rights & IEPF Recovery"
+CONSULTANT_LOC = "Ranipet District & Chennai, Tamil Nadu - 632509"
 
 def extract_email(contact_info):
     if not contact_info:
@@ -77,7 +77,7 @@ Location: {CONSULTANT_LOC}
 
 def send_all_dossiers(dry_run=True):
     if not os.path.exists(DB_PATH):
-        print(f"[ERROR] Database not found at: {DB_PATH}")
+        print(f"[ERROR] Database not found at: {DB_PATH}", flush=True)
         return
 
     conn = sqlite3.connect(DB_PATH)
@@ -87,22 +87,20 @@ def send_all_dossiers(dry_run=True):
     customers = cursor.fetchall()
     conn.close()
 
-    print("=" * 80)
-    print(f"CustomerVault Batch Email Sender | Mode: {'DRY RUN (Simulated)' if dry_run else 'LIVE DISPATCH'}")
-    print(f"Sender: {SENDER_NAME} <{SENDER_EMAIL}>")
-    print("=" * 80)
+    print("=" * 80, flush=True)
+    print(f"CustomerVault Batch Email Sender | Mode: {'DRY RUN (Simulated)' if dry_run else 'LIVE DISPATCH'}", flush=True)
+    print(f"Sender: {SENDER_NAME} <{SENDER_EMAIL}>", flush=True)
+    print("=" * 80, flush=True)
 
     server = None
     if not dry_run:
         if not SENDER_PASSWORD:
-            print("[ERROR] SMTP_PASSWORD environment variable is not set. Cannot authenticate.")
-            print("To generate an app password, go to: Google Account > Security > App Passwords.")
+            print("[ERROR] SMTP_PASSWORD environment variable is not set. Cannot authenticate.", flush=True)
             return
-        print(f"Connecting to SMTP server {SMTP_HOST}:{SMTP_PORT}...")
-        server = smtplib.SMTP(SMTP_HOST, SMTP_PORT)
-        server.starttls()
+        print(f"Connecting to SMTP server {SMTP_HOST}:{SMTP_PORT} via SSL...", flush=True)
+        server = smtplib.SMTP_SSL(SMTP_HOST, SMTP_PORT)
         server.login(SENDER_EMAIL, SENDER_PASSWORD)
-        print("SMTP authentication successful!\n")
+        print("SMTP authentication successful!\n", flush=True)
 
     sent_count = 0
     skipped_count = 0

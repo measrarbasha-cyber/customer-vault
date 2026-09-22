@@ -1,0 +1,494 @@
+{
+  "whatsapp_delivered_clients": [
+    {
+      "id": 6,
+      "name": "Miten Ashwin Mehta",
+      "phone": "919820222028",
+      "pdf": "Executive_Dossier_Miten_Mehta_Astral.pdf"
+    },
+    {
+      "id": 7,
+      "name": "Dr. Sanjeev Ratnakar Phatak & Sanu Phatak",
+      "phone": "919426311101",
+      "pdf": "Executive_Dossier_Dr_Sanjeev_Phatak_Astral.pdf"
+    },
+    {
+      "id": 8,
+      "name": "T. Syed Kabiruddin & I. Syed Ameeruddin",
+      "phone": "919443058881",
+      "pdf": "Executive_Dossier_Syed_Family_Hosur_Astral.pdf"
+    },
+    {
+      "id": 9,
+      "name": "Shri S. Yugandhar",
+      "phone": "919965511562",
+      "pdf": "Executive_Dossier_S_Yugandhar_Coimbatore_Astral.pdf"
+    },
+    {
+      "id": 10,
+      "name": "Smt. B. Malarvizhi",
+      "phone": "919965305105",
+      "pdf": "Digital_Advisory_B_Malarvizhi_Astral.pdf"
+    },
+    {
+      "id": 12,
+      "name": "Ramkant Gangaram Walke & Rajani Walke",
+      "phone": "919820514780",
+      "pdf": "Executive_Dossier_Ramkant_Walke_Astral.pdf"
+    },
+    {
+      "id": 13,
+      "name": "Yusuf Kadir Malgundkar & Sayeeda Malgundkar",
+      "phone": "919821158940",
+      "pdf": "Executive_Dossier_Yusuf_Malgundkar_Astral.pdf"
+    },
+    {
+      "id": 15,
+      "name": "Smt. Bhawari Bai",
+      "phone": "919444494565",
+      "pdf": "Executive_Dossier_Bhawari_Bai_Astral.pdf"
+    },
+    {
+      "id": 19,
+      "name": "Rameshkumar & Kishorkumar Pansuriya",
+      "phone": "919925079009",
+      "pdf": "Executive_Dossier_Pansuriya_Junagadh_Astral.pdf"
+    },
+    {
+      "id": 21,
+      "name": "Pramod Kumar Garodia & Sajjan Garodia",
+      "phone": "919334144844",
+      "pdf": "Executive_Dossier_Pramod_Garodia_Ranchi_Astral.pdf"
+    },
+    {
+      "id": 23,
+      "name": "Naniklal Bhatia / Shyam Bhatia",
+      "phone": "919826082720",
+      "pdf": "Executive_Dossier_Naniklal_Bhatia_Indore_Astral.pdf"
+    },
+    {
+      "id": 27,
+      "name": "Arun Vijaay Malli",
+      "phone": "919489531976",
+      "pdf": "Executive_Dossier_Arun_Vijaay_Malli_Astral.pdf"
+    },
+    {
+      "id": 28,
+      "name": "Pramodkumar Dhirajlal Rughani",
+      "phone": "918866313904",
+      "pdf": "Executive_Dossier_Pramodkumar_Rughani_Astral.pdf"
+    },
+    {
+      "id": 29,
+      "name": "Babita Agarwal",
+      "phone": "919381013271",
+      "pdf": "Executive_Dossier_Babita_Agarwal_Astral.pdf"
+    },
+    {
+      "id": 30,
+      "name": "Bimal Santlal Patel",
+      "phone": "919825017714",
+      "pdf": "Executive_Dossier_Bimal_Patel_Astral.pdf"
+    },
+    {
+      "id": 31,
+      "name": "Champa Lal Rampuria",
+      "phone": "917903869075",
+      "pdf": "Executive_Dossier_Champalal_Rampuria_Astral.pdf"
+    },
+    {
+      "id": 32,
+      "name": "CA Prakash Tekwani & Udhawdas Tekwani",
+      "phone": "919426014576",
+      "pdf": "Executive_Dossier_Tekwani_Family_Astral.pdf"
+    },
+    {
+      "id": 33,
+      "name": "Dr. Ashish Jain",
+      "phone": "919599949945",
+      "pdf": "Executive_Dossier_Dr_Ashish_Jain_Astral.pdf"
+    },
+    {
+      "id": 39,
+      "name": "Dr. Anil Kalba Walse",
+      "phone": "919960634474",
+      "pdf": "Executive_Dossier_Dr_Anil_Walse_Astral.pdf"
+    },
+    {
+      "id": 44,
+      "name": "Vishal Kumar Gupta",
+      "phone": "919811042780",
+      "pdf": "Executive_Dossier_Vishal_Gupta_Astral.pdf"
+    },
+    {
+      "id": 46,
+      "name": "Nita Gautam Advani",
+      "phone": "919820048720",
+      "pdf": "Executive_Dossier_Nita_Gautam_Advani_Astral.pdf"
+    },
+    {
+      "id": 48,
+      "name": "Rakeshbhai Keshavlal Patel",
+      "phone": "919825174210",
+      "pdf": "Executive_Dossier_Rakeshbhai_Patel_Astral.pdf"
+    },
+    {
+      "id": 50,
+      "name": "Rama Venkatesh Kulkarni",
+      "phone": "919845067120",
+      "pdf": "Executive_Dossier_Rama_Kulkarni_Astral.pdf"
+    },
+    {
+      "id": 51,
+      "name": "Bhadani Gordhanbhai Bhagvanbhai",
+      "phone": "919825214580",
+      "pdf": "Executive_Dossier_Gordhanbhai_Bhadani_Astral.pdf"
+    },
+    {
+      "id": 52,
+      "name": "Nand Kishore Nangalia",
+      "phone": "919434018230",
+      "pdf": "Executive_Dossier_Nand_Kishore_Nangalia_Astral.pdf"
+    },
+    {
+      "id": 58,
+      "name": "Chander Mohan Sharma",
+      "phone": "919814123670",
+      "pdf": "Executive_Dossier_Chander_Mohan_Sharma_Astral.pdf"
+    },
+    {
+      "id": 59,
+      "name": "Arun Kumar Agarwal",
+      "phone": "919830045190",
+      "pdf": "Executive_Dossier_Arun_Kumar_Agarwal_Astral.pdf"
+    },
+    {
+      "id": 63,
+      "name": "Nagarathna Chikkaballapur",
+      "phone": "919845128940",
+      "pdf": "Executive_Dossier_Nagarathna_Chikkaballapur_Astral.pdf"
+    },
+    {
+      "id": 65,
+      "name": "Arun Devidas Jadhav",
+      "phone": "919822145890",
+      "pdf": "Executive_Dossier_Arun_Devidas_Jadhav_Astral.pdf"
+    },
+    {
+      "id": 66,
+      "name": "Dionysious Alexis Quadros",
+      "phone": "919845014820",
+      "pdf": "Executive_Dossier_Dionysious_Quadros_Astral.pdf"
+    },
+    {
+      "id": 67,
+      "name": "Krishnan Ramanathan",
+      "phone": "919845132910",
+      "pdf": "Executive_Dossier_Krishnan_Ramanathan_Astral.pdf"
+    },
+    {
+      "id": 68,
+      "name": "Asima Barik",
+      "phone": "919880154720",
+      "pdf": "Executive_Dossier_Asima_Barik_Astral.pdf"
+    },
+    {
+      "id": 70,
+      "name": "Balakrishna Yadav Nasoni",
+      "phone": "919849127850",
+      "pdf": "Executive_Dossier_Balakrishna_Yadav_Astral.pdf"
+    },
+    {
+      "id": 71,
+      "name": "Ramesh Chandra Rastogi",
+      "phone": "919415128940",
+      "pdf": "Executive_Dossier_Ramesh_Chandra_Rastogi_Astral.pdf"
+    },
+    {
+      "id": 75,
+      "name": "Lavanya Dhara",
+      "phone": "919440032810",
+      "pdf": "Executive_Dossier_Lavanya_Dhara_Astral.pdf"
+    },
+    {
+      "id": 76,
+      "name": "Krishna Kumar Sharma",
+      "phone": "919412054890",
+      "pdf": "Executive_Dossier_Krishna_Kumar_Sharma_Astral.pdf"
+    }
+  ],
+  "whatsapp_count": 36,
+  "email_delivered_clients": {
+    "arcotasgharbasha@gmail.com": {
+      "subject": "Re:",
+      "date": "Sun, 28 Sep 2025 10:40:44 +0530"
+    },
+    "olympictr9de@gmail.com": {
+      "subject": "Fwd: Your account has been closed",
+      "date": "Sun, 26 Oct 2025 14:29:12 +0530"
+    },
+    "gulsoninternational@gmail.com": {
+      "subject": "Fwd: Your IndiGo Itinerary - DEMBKE",
+      "date": "Fri, 13 Mar 2026 23:28:57 +0530"
+    },
+    "neetug2026@nta.ac.in": {
+      "subject": "=?UTF-8?Q?Still_didn=E2=80=99t_receive_the_refund_amount?=",
+      "date": "Sat, 13 Jun 2026 23:01:50 +0530"
+    },
+    "immu.asghar@gmail.com": {
+      "subject": "Notes_260724_215605 (1)",
+      "date": "Fri, 24 Jul 2026 22:03:58 +0530"
+    },
+    "miten@bellwethercapital.in": {
+      "subject": "Confidential: IEPF Equity Recovery Dossier - Astral Ltd (Folio:\r\n 1201170000029668) - Miten Ashwin Mehta",
+      "date": "Tue, 22 Sep 2026 00:42:13 -0700 (PDT)"
+    },
+    "sanjeevphatak@hotmail.com": {
+      "subject": "Confidential: IEPF Equity Recovery Dossier - Astral Ltd (Folio:\r\n IN30034310432220) - Dr. Sanjeev Ratnakar Phatak & Sanu Phatak",
+      "date": "Tue, 22 Sep 2026 00:41:47 -0700 (PDT)"
+    },
+    "gst.bhatia2017@gmail.com": {
+      "subject": "Re: Confidential: IEPF Equity Recovery Dossier - Astral Ltd -\r\n Naniklal Bhatia",
+      "date": "Thu, 17 Sep 2026 12:53:49 +0530"
+    },
+    "arunvijaaymalli@gmail.com": {
+      "subject": "Confidential: IEPF Equity Recovery Dossier - Astral Ltd (Folio:\r\n 1201090001629322) - Arun Vijaay Malli",
+      "date": "Mon, 21 Sep 2026 23:10:12 -0700 (PDT)"
+    },
+    "ca.loveseema@gmail.com": {
+      "subject": "Confidential: IEPF Equity Recovery Dossier - Astral Ltd (Folio:\r\n IN30296010013727) - CA Loveseema Kukreja",
+      "date": "Tue, 22 Sep 2026 00:41:16 -0700 (PDT)"
+    },
+    "norma@bellwethercapital.in": {
+      "subject": "=?UTF-8?Q?Sincere_Apology_for_the_Inconvenience_=26_Unintended_C?=\r\n =?UTF-8?Q?all_=E2=80=93_Clarification_Regarding_Shareholder_Inquiry?=",
+      "date": "Fri, 18 Sep 2026 12:26:48 +0530"
+    },
+    "info@madhuvan.com": {
+      "subject": "Confidential: IEPF Equity Recovery Dossier - Astral Ltd (Folio:\r\n IN30308510001700 / IN30308510011449) - Madhuram Traders Pvt Ltd & Madhuvan\r\n Commodities Brokers Pvt Ltd",
+      "date": "Tue, 22 Sep 2026 00:42:07 -0700 (PDT)"
+    },
+    "contact@endoworldhospital.com": {
+      "subject": "Confidential: IEPF Equity Recovery Dossier - Astral Ltd (Folio:\r\n IN30302876058863) - Endoworld Hospital Private Limited",
+      "date": "Mon, 21 Sep 2026 23:10:30 -0700 (PDT)"
+    },
+    "priyadarshini_polysacks@yahoo.com": {
+      "subject": "Confidential: IEPF Equity Recovery Dossier - Astral Ltd (Folio:\r\n 1201091900023821) - Pritam Nemchand Sanghvi (Priyadarshini Polysacks Limited)",
+      "date": "Tue, 22 Sep 2026 00:42:37 -0700 (PDT)"
+    },
+    "export@priyabags.com": {
+      "subject": "Confidential: IEPF Equity Share Recovery Dossier - Astral Ltd (Folio:\r\n 1201091900023821) - Pritam Nemchand Sanghvi (Priyadarshini Polysacks Limited)",
+      "date": "Sat, 19 Sep 2026 11:36:29 +0530"
+    },
+    "pn@sfplcorp.com": {
+      "subject": "Confidential: IEPF Equity Recovery Dossier - Astral Ltd (Folio:\r\n 1204620000015413) - Dipak Agarwalla (Dipak Agarwalla HUF / Saurashtra Fuels\r\n Pvt Ltd)",
+      "date": "Tue, 22 Sep 2026 00:41:30 -0700 (PDT)"
+    },
+    "mumbai@saurashtracorp.com": {
+      "subject": "Confidential: IEPF Equity Share Recovery Dossier - Astral Ltd (Folio:\r\n 1204620000015413) - Dipak Agarwalla (Dipak Agarwalla HUF / Saurashtra Fuels\r\n Pvt Ltd)",
+      "date": "Sat, 19 Sep 2026 11:39:38 +0530"
+    },
+    "prakashtekwani@yahoo.com": {
+      "subject": "Confidential: IEPF Equity Recovery Dossier - Astral Ltd (Folio:\r\n IN30127630282977 / IN30127630282985) - CA Prakash Udhawdas Tekwani & Udhawdas\r\n Isardas Tekwani",
+      "date": "Mon, 21 Sep 2026 23:10:19 -0700 (PDT)"
+    },
+    "kavish@stones2milestones.com": {
+      "subject": "Confidential: IEPF Equity Recovery Dossier - Astral Ltd (Folio:\r\n IN30154918973633) - Kavish Sarawgi (Kavish Kumar Gadia)",
+      "date": "Tue, 22 Sep 2026 00:42:03 -0700 (PDT)"
+    },
+    "rama.kulkarni@gmail.com": {
+      "subject": "Confidential: IEPF Equity Recovery Dossier - Astral Ltd (Folio:\r\n IN30611490445597) - Rama Venkatesh Kulkarni",
+      "date": "Tue, 22 Sep 2026 00:42:51 -0700 (PDT)"
+    },
+    "aniket.desai@gmail.com": {
+      "subject": "Confidential: IEPF Equity Recovery Dossier - Astral Ltd (Folio:\r\n IN30133019531306) - Aniket R Desai",
+      "date": "Tue, 22 Sep 2026 00:40:42 -0700 (PDT)"
+    },
+    "arunkumar.agarwal@gmail.com": {
+      "subject": "Confidential: IEPF Equity Recovery Dossier - Astral Ltd (Folio:\r\n IN30371910811298) - Arun Kumar Agarwal",
+      "date": "Tue, 22 Sep 2026 00:40:52 -0700 (PDT)"
+    },
+    "arunvijaay.malli@gmail.com": {
+      "subject": "Confidential: IEPF Equity Recovery Dossier - Astral Ltd (Folio:\r\n 1201090001629322) - Arun Vijaay Malli",
+      "date": "Tue, 22 Sep 2026 00:40:56 -0700 (PDT)"
+    },
+    "babita.agarwal@gmail.com": {
+      "subject": "Confidential: IEPF Equity Recovery Dossier - Astral Ltd (Folio:\r\n 0000202) - Babita Agarwal",
+      "date": "Tue, 22 Sep 2026 00:41:06 -0700 (PDT)"
+    },
+    "gordhanbhai.bhadani@gmail.com": {
+      "subject": "Confidential: IEPF Equity Recovery Dossier - Astral Ltd (Folio:\r\n IN30115121202283) - Bhadani Gordhanbhai Bhagvanbhai",
+      "date": "Tue, 22 Sep 2026 00:41:10 -0700 (PDT)"
+    },
+    "prakash.tekwani@gmail.com": {
+      "subject": "Confidential: IEPF Equity Recovery Dossier - Astral Ltd (Folio:\r\n IN30127630282977 / IN30127630282985) - CA Prakash Udhawdas Tekwani & Udhawdas\r\n Isardas Tekwani",
+      "date": "Tue, 22 Sep 2026 00:41:20 -0700 (PDT)"
+    },
+    "champalal.rampuria@gmail.com": {
+      "subject": "Confidential: IEPF Equity Recovery Dossier - Astral Ltd (Folio:\r\n IN30039412428353) - Champa Lal Rampuria",
+      "date": "Tue, 22 Sep 2026 00:41:23 -0700 (PDT)"
+    },
+    "dranilwalse@gmail.com": {
+      "subject": "Confidential: IEPF Equity Recovery Dossier - Astral Ltd (Folio:\r\n 1203600002726765) - Dr. Anil Kalba Walse (Walse Hospital & Maternity Home)",
+      "date": "Tue, 22 Sep 2026 00:41:33 -0700 (PDT)"
+    },
+    "dr.ashishjain.max@gmail.com": {
+      "subject": "Confidential: IEPF Equity Recovery Dossier - Astral Ltd (Folio:\r\n IN30051310633302) - Dr. Ashish Jain (Max Super Speciality Hospital)",
+      "date": "Tue, 22 Sep 2026 00:41:37 -0700 (PDT)"
+    },
+    "drnitingandhi@gmail.com": {
+      "subject": "Confidential: IEPF Equity Recovery Dossier - Astral Ltd (Folio:\r\n IN30051386209833) - Dr. Nitin Ratilal Gandhi (Nitin Ratilal Gandhi HUF)",
+      "date": "Tue, 22 Sep 2026 00:41:43 -0700 (PDT)"
+    },
+    "endoworldhospital@gmail.com": {
+      "subject": "Confidential: IEPF Equity Recovery Dossier - Astral Ltd (Folio:\r\n IN30302876058863) - Endoworld Hospital Private Limited",
+      "date": "Tue, 22 Sep 2026 00:41:50 -0700 (PDT)"
+    },
+    "ganapathirao.m@gmail.com": {
+      "subject": "Confidential: IEPF Equity Recovery Dossier - Astral Ltd (Folio:\r\n IN30302866060892) - Ganapathirao M",
+      "date": "Tue, 22 Sep 2026 00:41:53 -0700 (PDT)"
+    },
+    "pramod.garodia@gmail.com": {
+      "subject": "Confidential: IEPF Equity Recovery Dossier - Astral Ltd (Folio:\r\n IN30051311165733) - Pramod Kumar Garodia & Sajjan Garodia",
+      "date": "Tue, 22 Sep 2026 00:42:30 -0700 (PDT)"
+    },
+    "pramod.rughani@gmail.com": {
+      "subject": "Confidential: IEPF Equity Recovery Dossier - Astral Ltd (Folio:\r\n IN30097410102417) - Pramodkumar Dhirajlal Rughani & Alkesh P. Rughani",
+      "date": "Tue, 22 Sep 2026 00:42:34 -0700 (PDT)"
+    },
+    "shalini.shete@gmail.com": {
+      "subject": "Confidential: IEPF Equity Recovery Dossier - Astral Ltd (Folio:\r\n 1201090700026154) - Shalini Atmaram Shete",
+      "date": "Tue, 22 Sep 2026 00:43:07 -0700 (PDT)"
+    },
+    "smruti.pancholi@gmail.com": {
+      "subject": "Confidential: IEPF Equity Recovery Dossier - Astral Ltd (Folio:\r\n 1301670000225543) - Smruti Shailesh Pancholi",
+      "date": "Tue, 22 Sep 2026 00:43:18 -0700 (PDT)"
+    },
+    "yusuf.malgundkar@gmail.com": {
+      "subject": "Confidential: IEPF Equity Recovery Dossier - Astral Ltd (Folio:\r\n IN30075711147162) - Yusuf Kadir Malgundkar & Sayeeda Malgundkar",
+      "date": "Tue, 22 Sep 2026 00:43:38 -0700 (PDT)"
+    },
+    "dionysious.quadros@gmail.com": {
+      "id": 66,
+      "name": "Dionysious Alexis Quadros",
+      "subject": "Confidential: IEPF Equity Recovery Dossier - Astral Ltd (Folio: IN30023911940182) - Dionysious Alexis Quadros",
+      "date": "Tue, 22 Sep 2026 17:55:46 +0530"
+    },
+    "krishnan.ramanathan@gmail.com": {
+      "id": 67,
+      "name": "Krishnan Ramanathan",
+      "subject": "Confidential: IEPF Equity Recovery Dossier - Astral Ltd (Folio: 0000205) - Krishnan Ramanathan",
+      "date": "Tue, 22 Sep 2026 17:55:49 +0530"
+    },
+    "asima.barik@gmail.com": {
+      "id": 68,
+      "name": "Asima Barik",
+      "subject": "Confidential: IEPF Equity Recovery Dossier - Astral Ltd (Folio: IN30051318524326) - Asima Barik",
+      "date": "Tue, 22 Sep 2026 17:55:53 +0530"
+    },
+    "rajan.tripathy@gmail.com": {
+      "id": 69,
+      "name": "Rajan Kumar Tripathy",
+      "subject": "Confidential: IEPF Equity Recovery Dossier - Astral Ltd (Folio: IN30018312256137) - Rajan Kumar Tripathy",
+      "date": "Tue, 22 Sep 2026 17:55:56 +0530"
+    },
+    "balakrishna.nasoni@gmail.com": {
+      "id": 70,
+      "name": "Balakrishna Yadav Nasoni",
+      "subject": "Confidential: IEPF Equity Recovery Dossier - Astral Ltd (Folio: 1208180001003497) - Balakrishna Yadav Nasoni",
+      "date": "Tue, 22 Sep 2026 17:56:00 +0530"
+    },
+    "rcrastogi.farrukhabad@gmail.com": {
+      "id": 71,
+      "name": "Ramesh Chandra Rastogi",
+      "subject": "Confidential: IEPF Equity Recovery Dossier - Astral Ltd (Folio: IN30055610243236) - Ramesh Chandra Rastogi",
+      "date": "Tue, 22 Sep 2026 17:56:03 +0530"
+    },
+    "alkajha.junagadh@gmail.com": {
+      "id": 72,
+      "name": "Alka Mohan Jha",
+      "subject": "Confidential: IEPF Equity Recovery Dossier - Astral Ltd (Folio: IN30220110344584) - Alka Mohan Jha",
+      "date": "Tue, 22 Sep 2026 17:56:07 +0530"
+    },
+    "chandrabhanu.singh@gmail.com": {
+      "id": 73,
+      "name": "Chandra Bhanu Singh",
+      "subject": "Confidential: IEPF Equity Recovery Dossier - Astral Ltd (Folio: 1201320001321432) - Chandra Bhanu Singh",
+      "date": "Tue, 22 Sep 2026 17:56:11 +0530"
+    },
+    "avinash.bakhtiyarpur@gmail.com": {
+      "id": 74,
+      "name": "Avinash Kumar",
+      "subject": "Confidential: IEPF Equity Recovery Dossier - Astral Ltd (Folio: 1208160020426522) - Avinash Kumar",
+      "date": "Tue, 22 Sep 2026 17:56:14 +0530"
+    },
+    "lavanya.dhara@gmail.com": {
+      "id": 75,
+      "name": "Lavanya Dhara",
+      "subject": "Confidential: IEPF Equity Recovery Dossier - Astral Ltd (Folio: 1208160039592124) - Lavanya Dhara",
+      "date": "Tue, 22 Sep 2026 17:56:18 +0530"
+    },
+    "kksharma.dehradun@gmail.com": {
+      "id": 76,
+      "name": "Krishna Kumar Sharma",
+      "subject": "Confidential: IEPF Equity Recovery Dossier - Astral Ltd (Folio: 1201091000025460) - Krishna Kumar Sharma",
+      "date": "Tue, 22 Sep 2026 17:56:21 +0530"
+    },
+    "vimalkumar.dibai@gmail.com": {
+      "id": 77,
+      "name": "Vimal Kumar",
+      "subject": "Confidential: IEPF Equity Recovery Dossier - Astral Ltd (Folio: IN30177412960609) - Vimal Kumar",
+      "date": "Tue, 22 Sep 2026 17:56:25 +0530"
+    },
+    "manvi.goenka@gmail.com": {
+      "id": 78,
+      "name": "Manvi Goenka",
+      "subject": "Confidential: IEPF Equity Recovery Dossier - Astral Ltd (Folio: 0000222) - Manvi Goenka",
+      "date": "Tue, 22 Sep 2026 17:56:28 +0530"
+    },
+    "nareshgupta.patiala@gmail.com": {
+      "id": 79,
+      "name": "Naresh Kumar Gupta",
+      "subject": "Confidential: IEPF Equity Recovery Dossier - Astral Ltd (Folio: IN30133017348921) - Naresh Kumar Gupta",
+      "date": "Tue, 22 Sep 2026 17:56:31 +0530"
+    },
+    "rubeena.zainakote@gmail.com": {
+      "id": 80,
+      "name": "Rubeena Akhter",
+      "subject": "Confidential: IEPF Equity Recovery Dossier - Astral Ltd (Folio: IN30177412801018) - Rubeena Akhter",
+      "date": "Tue, 22 Sep 2026 17:56:35 +0530"
+    }
+  },
+  "email_count": 52,
+  "bounced_emails": [
+    "satwinderkaur.delhi@gmail.com",
+    "nita.advani@bellwethercapital.in",
+    "ramkant.walke@gmail.com",
+    "royninan.koruth@gmail.com",
+    "kbvaghela.junagadh@gmail.com",
+    "ankit.shah@bellwethercapital.in",
+    "ashish.shahibag@gmail.com",
+    "ahmedhusain.bhopal@gmail.com",
+    "yugandhar.balu@gmail.com",
+    "meera.nagda@gmail.com",
+    "nagarathna.cbpur@gmail.com",
+    "nandkishore.nangalia@gmail.com",
+    "malarvizhi.cheyyar@gmail.com",
+    "rajendra.agarwal.ranchi@gmail.com",
+    "syedkabiruddin.hosur@gmail.com",
+    "vishalgupta.delhi@gmail.com",
+    "bimalpatel.ahmedabad@gmail.com",
+    "bhawaribai.chennai@gmail.com",
+    "drpansuriya.junagadh@gmail.com",
+    "rajeshwari.hooja@gmail.com",
+    "gitasuresh.modi@gmail.com",
+    "arun.jadhav.nashik@gmail.com",
+    "shyambhatia.ca@gmail.com",
+    "rakeshpatel.tragad@gmail.com",
+    "drlenin.pinnamaneni@gmail.com",
+    "cmsharma.patiala@gmail.com",
+    "anuj.mahruwala@gmail.com",
+    "rajeshwari.gopalan@gmail.com",
+    "ashakumari.kangra@gmail.com"
+  ],
+  "bounced_count": 29
+}
