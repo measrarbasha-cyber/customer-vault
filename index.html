@@ -988,7 +988,7 @@
       }
     }
 
-    let currentTab = 'All';
+    let currentTab = localStorage.getItem('customerVault_activeTab') || 'All';
 
     function safeSetText(id, text) {
       const el = document.getElementById(id);
@@ -1030,9 +1030,7 @@
       safeSetText('tabCountRejected', rejectedCount);
     }
 
-    function switchTab(tab) {
-      currentTab = tab;
-      
+    function updateTabNavUI() {
       const tabBtns = {
         'All': document.getElementById('tabBtnAll'),
         'Pending': document.getElementById('tabBtnPending'),
@@ -1056,7 +1054,14 @@
           btn.className = "py-2.5 px-3 rounded-xl font-bold text-xs sm:text-sm transition flex items-center justify-center space-x-1.5 cursor-pointer text-slate-600 hover:bg-white/60";
         }
       }
+    }
 
+    function switchTab(tab) {
+      currentTab = tab;
+      try {
+        localStorage.setItem('customerVault_activeTab', tab);
+      } catch (e) {}
+      updateTabNavUI();
       applyFilterAndRender();
     }
 
@@ -1092,13 +1097,19 @@
 
       renderCustomerList(filtered, q);
 
-      // Auto select first client in view if current selection is not visible
+      // ALWAYS KEEP ACTIVE CUSTOMER PROFILE OPEN: Do not kick user off or switch away
+      if (selectedCustomerId) {
+        const activeCust = customers.find(c => c.id === selectedCustomerId);
+        if (activeCust) {
+          // Client profile remains open and preserved!
+          return;
+        }
+      }
+
+      // If no customer is currently open, select the first in current list
       if (filtered.length > 0) {
-        const exists = filtered.some(c => c.id === selectedCustomerId);
-        if (!exists) {
-          if (window.innerWidth >= 1024 || q) {
-            selectCustomer(filtered[0].id, false);
-          }
+        if (window.innerWidth >= 1024 || q) {
+          selectCustomer(filtered[0].id, false);
         }
       } else {
         deselectCustomer();
@@ -1114,13 +1125,27 @@
       const oldStatus = cust.status || 'Pending';
       cust.status = newStatus;
 
+      // Keep this customer selected and remembered permanently
+      selectedCustomerId = id;
+      try {
+        localStorage.setItem('customerVault_selectedCustomerId', id);
+      } catch (e) {}
+
+      // If moved while viewing a specific category tab, smoothly switch current tab to match the new category
+      // so the user sees the client in their new page without losing their place
+      if (currentTab !== 'All' && currentTab !== newStatus) {
+        currentTab = newStatus;
+        try {
+          localStorage.setItem('customerVault_activeTab', newStatus);
+        } catch (e) {}
+        updateTabNavUI();
+      }
+
       updateTabCounters();
       applyFilterAndRender();
 
-      if (selectedCustomerId === id) {
-        updateProfileStatusUI(newStatus);
-      }
-
+      // Keep profile header status UI updated
+      updateProfileStatusUI(newStatus);
       showToast(`Moved ${cust.name.split(' ')[0]} to ${newStatus}!`);
 
       try {
@@ -1135,6 +1160,7 @@
         cust.status = oldStatus;
         updateTabCounters();
         applyFilterAndRender();
+        updateProfileStatusUI(oldStatus);
         showToast(`Failed to update status on server`, 'error');
       }
     }
@@ -1178,12 +1204,28 @@
         const data = await res.json();
         customers = Array.isArray(data) ? data : [];
 
+        // Restore saved tab navigation UI
+        const savedTab = localStorage.getItem('customerVault_activeTab');
+        if (savedTab && ['All', 'Pending', 'Completed', 'Rejected'].includes(savedTab)) {
+          currentTab = savedTab;
+        }
+        updateTabNavUI();
         updateTabCounters();
         applyFilterAndRender();
 
         if (customers.length > 0) {
-          const currentExists = customers.some(c => c.id === selectedCustomerId);
-          if (!currentExists || searchQuery) {
+          const savedCustId = parseInt(localStorage.getItem('customerVault_selectedCustomerId'));
+          let targetId = null;
+
+          if (savedCustId && customers.some(c => c.id === savedCustId)) {
+            targetId = savedCustId;
+          } else if (selectedCustomerId && customers.some(c => c.id === selectedCustomerId)) {
+            targetId = selectedCustomerId;
+          }
+
+          if (targetId) {
+            selectCustomer(targetId, false);
+          } else {
             const filtered = getFilteredCustomers(searchQuery);
             if (filtered.length > 0 && (window.innerWidth >= 1024 || searchQuery)) {
               selectCustomer(filtered[0].id, false);
@@ -1307,6 +1349,9 @@
 
     function selectCustomer(id, isUserClick = false) {
       selectedCustomerId = id;
+      try {
+        localStorage.setItem('customerVault_selectedCustomerId', id);
+      } catch (e) {}
       const cust = customers.find(c => c.id === id);
       if (!cust) return;
 

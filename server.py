@@ -24,11 +24,46 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 import webbrowser
 import threading
 import time
+import shutil
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DB_PATH = os.path.join(BASE_DIR, "customers.db")
 UPLOAD_DIR = os.path.join(BASE_DIR, "uploads")
+os.makedirs(UPLOAD_DIR, exist_ok=True)
+
+# Render mounts persistent disk to /app/uploads. We store customers.db and status backup registry there
+PERSISTENT_DB = os.path.join(UPLOAD_DIR, "customers.db")
+DEFAULT_DB = os.path.join(BASE_DIR, "customers.db")
+STATUS_BACKUP_FILE = os.path.join(UPLOAD_DIR, "client_status_registry.json")
+
+# If persistent DB does not exist on disk, seed it from base repository DB
+if not os.path.exists(PERSISTENT_DB) and os.path.exists(DEFAULT_DB):
+    try:
+        shutil.copyfile(DEFAULT_DB, PERSISTENT_DB)
+    except Exception as e:
+        print(f"Notice: Could not seed persistent DB: {e}")
+
+DB_PATH = PERSISTENT_DB if os.path.exists(PERSISTENT_DB) else DEFAULT_DB
 STATIC_DIR = BASE_DIR
+
+def load_status_backup():
+    """Loads backup dictionary of customer statuses from disk."""
+    if os.path.exists(STATUS_BACKUP_FILE):
+        try:
+            with open(STATUS_BACKUP_FILE, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except Exception:
+            return {}
+    return {}
+
+def save_status_backup(cust_id, status):
+    """Saves status update to persistent JSON registry on disk."""
+    try:
+        registry = load_status_backup()
+        registry[str(cust_id)] = status
+        with open(STATUS_BACKUP_FILE, "w", encoding="utf-8") as f:
+            json.dump(registry, f, indent=2)
+    except Exception as e:
+        print(f"Notice: Failed to save status backup: {e}")
 
 def get_local_ip():
     """Dynamically detects the local network IP address of this machine."""
@@ -281,6 +316,17 @@ def init_db():
                 pdf1_filename, pdf1_path, pdf2_filename, pdf2_path
             ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """, verified_clients)
+        conn.commit()
+
+    # Apply saved status registry backup if available
+    backup = load_status_backup()
+    if backup:
+        for cid_str, stat in backup.items():
+            try:
+                cid = int(cid_str)
+                cursor.execute("UPDATE customers SET status = ? WHERE id = ?", (stat, cid))
+            except Exception:
+                pass
         conn.commit()
 
     conn.close()
@@ -569,6 +615,19 @@ class CustomerHandler(BaseHTTPRequestHandler):
                 cursor.execute("SELECT * FROM customers WHERE id = ?", (cust_id,))
                 row = cursor.fetchone()
                 conn.close()
+
+                # Persist to disk backup and sync base DB
+                save_status_backup(cust_id, new_status)
+                if os.path.exists(DEFAULT_DB) and DEFAULT_DB != DB_PATH:
+                    try:
+                        d_conn = sqlite3.connect(DEFAULT_DB)
+                        d_cur = d_conn.cursor()
+                        d_cur.execute("UPDATE customers SET status = ? WHERE id = ?", (new_status, cust_id))
+                        d_conn.commit()
+                        d_conn.close()
+                    except Exception:
+                        pass
+
                 if row:
                     self._set_headers(200)
                     self.wfile.write(json.dumps(dict(row)).encode("utf-8"))
@@ -739,6 +798,18 @@ class CustomerHandler(BaseHTTPRequestHandler):
                 cursor.execute("SELECT * FROM customers WHERE id = ?", (cust_id,))
                 updated_row = dict(cursor.fetchone())
                 conn.close()
+
+                if status:
+                    save_status_backup(cust_id, status)
+                if os.path.exists(DEFAULT_DB) and DEFAULT_DB != DB_PATH:
+                    try:
+                        d_conn = sqlite3.connect(DEFAULT_DB)
+                        d_cur = d_conn.cursor()
+                        d_cur.execute("UPDATE customers SET status = ? WHERE id = ?", (status, cust_id))
+                        d_conn.commit()
+                        d_conn.close()
+                    except Exception:
+                        pass
 
                 self._set_headers(200)
                 self.wfile.write(json.dumps(updated_row).encode("utf-8"))
