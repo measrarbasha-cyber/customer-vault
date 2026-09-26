@@ -89,7 +89,7 @@ def load_delivery_records():
 
     return bounced, delivered
 
-def audit_and_preview_dispatch(dry_run=True):
+def execute_email_dispatch(dry_run=True):
     bounced_emails, delivered_emails = load_delivery_records()
 
     conn = sqlite3.connect(DB_PATH)
@@ -144,13 +144,89 @@ def audit_and_preview_dispatch(dry_run=True):
     print(f"Skipped (No Email / Direct Phone Primary): {len(skipped_no_email)}")
     print("-" * 80)
 
-    for idx, item in enumerate(queue, 1):
-        print(f"[{idx:02d}/{len(queue)}] ID {item['id']:02d}: {item['name']}")
-        print(f"     Email: {item['email']}")
-        print(f"     Subject: {item['subject']}")
-        print(f"     Attached: {os.path.basename(item['pdf_path'])}")
+    if dry_run:
+        for idx, item in enumerate(queue, 1):
+            print(f"[{idx:02d}/{len(queue)}] ID {item['id']:02d}: {item['name']}")
+            print(f"     Email: {item['email']}")
+            print(f"     Subject: {item['subject']}")
+            print(f"     Attached: {os.path.basename(item['pdf_path'])}")
+        return queue
 
-    return queue
+    # LIVE DISPATCH
+    print(f"\nConnecting to SMTP server {SMTP_HOST}:{SMTP_PORT} via SSL...")
+    server = smtplib.SMTP_SSL(SMTP_HOST, SMTP_PORT)
+    server.login(SENDER_EMAIL, SENDER_PASSWORD)
+    print("SMTP authentication successful!\n")
+
+    dispatched = []
+    errors = []
+
+    for idx, item in enumerate(queue, 1):
+        cid = item["id"]
+        cname = item["name"]
+        to_email = item["email"]
+        subj = item["subject"]
+        pdf_file = item["pdf_path"]
+
+        try:
+            msg = MIMEMultipart()
+            msg["From"] = f"{SENDER_NAME} <{SENDER_EMAIL}>"
+            msg["To"] = to_email
+            msg["Subject"] = subj
+            msg.attach(MIMEText(item["body"], "plain", "utf-8"))
+
+            with open(pdf_file, "rb") as f_pdf:
+                part = MIMEApplication(f_pdf.read(), Name=os.path.basename(pdf_file))
+                part['Content-Disposition'] = f'attachment; filename="{os.path.basename(pdf_file)}"'
+                msg.attach(part)
+
+            server.send_message(msg)
+            dispatched.append(item)
+            print(f"[{idx:02d}/{len(queue)}] [DISPATCHED 200] ID {cid:02d}: {cname} -> {to_email}")
+            time.sleep(2.0)  # Safe cadence
+        except Exception as e:
+            print(f"[{idx:02d}/{len(queue)}] [ERROR] ID {cid:02d}: {cname} -> {e}")
+            errors.append((cid, cname, to_email, str(e)))
+
+    server.quit()
+    print("\nSMTP connection closed.")
+
+    # Record newly dispatched emails in audit registries
+    if dispatched:
+        cur_time = time.strftime("%a, %d %b %Y %H:%M:%S +0530")
+        if os.path.exists(AUDIT_PATH):
+            with open(AUDIT_PATH, "r", encoding="utf-8") as f:
+                audit_dict = json.load(f)
+            deliv_dict = audit_dict.setdefault("delivered_valid_emails", {})
+            for d in dispatched:
+                deliv_dict[d["email"]] = {
+                    "subject": d["subject"],
+                    "date": cur_time,
+                    "client_id": d["id"],
+                    "client_name": d["name"]
+                }
+            with open(AUDIT_PATH, "w", encoding="utf-8") as f:
+                json.dump(audit_dict, f, indent=2, ensure_ascii=False)
+            print(f"Updated {AUDIT_PATH} with {len(dispatched)} deliveries.")
+
+        if os.path.exists(REGISTRY_PATH):
+            with open(REGISTRY_PATH, "r", encoding="utf-8") as f:
+                reg_dict = json.load(f)
+            em_deliv = reg_dict.setdefault("email_delivered_clients", {})
+            for d in dispatched:
+                em_deliv[d["email"]] = {
+                    "subject": d["subject"],
+                    "date": cur_time,
+                    "client_id": d["id"],
+                    "client_name": d["name"]
+                }
+            with open(REGISTRY_PATH, "w", encoding="utf-8") as f:
+                json.dump(reg_dict, f, indent=2, ensure_ascii=False)
+            print(f"Updated {REGISTRY_PATH} with {len(dispatched)} deliveries.")
+
+    print(f"\nDISPATCH COMPLETE: {len(dispatched)} sent successfully, {len(errors)} errors.")
+    return dispatched
 
 if __name__ == "__main__":
-    audit_and_preview_dispatch(dry_run=True)
+    is_live = ("--live" in sys.argv)
+    execute_email_dispatch(dry_run=(not is_live))

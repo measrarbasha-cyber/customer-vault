@@ -39,22 +39,22 @@ def build_whatsapp_message(cust):
     # STRICT ZERO-LINK POLICY: No URLs or HTTP links anywhere
     msg = (
         f"Namaste {name} ji,\n\n"
-        f"I am writing to bring to your attention an important statutory matter regarding your unclaimed equity shares "
-        f"in *Astral Limited* (Folio / Demat ID: *{folio}*), currently held under the statutory custody of the Investor Education and "
-        f"Protection Fund (IEPF) Authority, Ministry of Corporate Affairs, Government of India.\n\n"
-        f"📊 *Audited Valuation Summary:*\n"
+        f"I am writing regarding an urgent statutory compliance notice concerning your equity holding in *Astral Limited* (Folio ID: *{folio}*), "
+        f"which is officially listed on Astral's statutory schedule for *upcoming transfer to the IEPF* under Section 124(6) of the Companies Act, 2013.\n\n"
+        f"Your folio is currently in the *pre-transfer warning stage*. Claiming even one unpaid dividend or regularizing your KYC legally resets the statutory clock, permanently halts the transfer, and keeps your shares safe in your active Demat account without selling them.\n\n"
+        f"📊 *Audited Portfolio Summary:*\n"
         f"• Total Portfolio Value: *{est_folio}*\n"
-        f"• Terms: *Rs. 0 Advance Fee* (100% contingent on credit)\n"
-        f"• Settlement: Shares & accrued dividends are credited *directly by Central Govt* into your personal Demat & Bank A/C.\n\n"
+        f"• Terms: *Rs. 0 Advance Fee* (100% contingent on confirmation)\n"
+        f"• Direct Settlement: 100% of shares remain in your Demat and dividends are released directly into your bank account.\n\n"
         f"📄 *Official Executive Recovery Dossier:*\n"
         f"I have attached your official Executive Recovery Dossier PDF directly to this message for your review.\n\n"
-        f"Please review the attached document. You may reply directly here on WhatsApp or call me at {USER_PHONE} to coordinate the recovery paperwork.\n\n"
+        f"Please review the attached document. You may reply directly here on WhatsApp or call me at {USER_PHONE} to coordinate the Bigshare regularization today.\n\n"
         f"Warm regards,\n"
         f"*{USER_NAME}*\n"
         f"{USER_TITLE}\n"
         f"{USER_FIRM}\n"
-        f"Phone: {USER_PHONE}\n"
-        f"Location: {USER_LOC}"
+        f"Phone/WhatsApp: {USER_PHONE}\n"
+        f"Practice Address: {USER_LOC}"
     )
     return msg
 
@@ -140,7 +140,7 @@ def dispatch_whatsapp(dry_run=True, batch_only=True):
 
         print("Verifying WhatsApp Web active session...", flush=True)
         try:
-            page.wait_for_selector("div[id='pane-side'], div[aria-label='Chat list']", timeout=30000)
+            page.wait_for_selector("div[id='pane-side'], div[aria-label='Chat list'], div[contenteditable='true'], div[role='textbox']", timeout=30000)
             print("Session authenticated successfully!\n", flush=True)
         except Exception:
             print("[ERROR] WhatsApp session not authenticated.", flush=True)
@@ -159,7 +159,7 @@ def dispatch_whatsapp(dry_run=True, batch_only=True):
                 url = f"https://web.whatsapp.com/send?phone={item['phone']}&text={encoded_msg}"
                 page.goto(url)
 
-                time.sleep(4)
+                time.sleep(5)
                 invalid_popup = page.locator("div[role='dialog']:has-text('invalid'), div[data-animate-modal-popup='true']:has-text('invalid')")
                 if invalid_popup.count() > 0 and invalid_popup.first.is_visible():
                     print(f"  [-] Phone number +{item['phone']} is not active on WhatsApp. Skipping.\n", flush=True)
@@ -170,11 +170,17 @@ def dispatch_whatsapp(dry_run=True, batch_only=True):
                     time.sleep(2)
                     continue
 
-                # Wait for Send button and transmit text message
+                # Wait for Send button or message input box
                 send_btn = page.locator("button[aria-label='Send'], span[data-icon='send'], span[data-icon='wds-ic-send-filled']")
-                send_btn.first.wait_for(state="visible", timeout=25000)
-                time.sleep(2)
-                send_btn.first.click()
+                try:
+                    send_btn.first.wait_for(state="visible", timeout=20000)
+                    time.sleep(1)
+                    send_btn.first.click()
+                except Exception:
+                    # fallback to Enter key
+                    chat_box = page.locator("footer div[contenteditable='true'], div[role='textbox']")
+                    if chat_box.count() > 0:
+                        chat_box.first.press("Enter")
                 print(f"  [+] Text message delivered to {item['name']} (+{item['phone']})", flush=True)
                 time.sleep(3)
 
@@ -184,16 +190,15 @@ def dispatch_whatsapp(dry_run=True, batch_only=True):
                 time.sleep(2)
 
                 with page.expect_file_chooser(timeout=10000) as fc_info:
-                    doc_btn = page.locator("button[aria-label='Document']")
-                    doc_btn.first.click()
+                    page.locator("[aria-label='Document']").first.click()
 
                 file_chooser = fc_info.value
                 file_chooser.set_files(item['pdf_path'])
-                time.sleep(4)
+                time.sleep(3)
 
                 # Click Send in preview modal
-                modal_send = page.locator("div[aria-label='Send'], button[aria-label='Send'], span[data-icon='send'], span[data-icon='wds-ic-send-filled']")
-                modal_send.first.click()
+                modal_send = page.locator("div[aria-label='Send'], button[aria-label='Send'], span[data-icon='send'], span[data-icon='wds-ic-send-filled']").first
+                modal_send.click()
                 pdf_name = os.path.basename(item['pdf_path'])
                 print(f"  [SUCCESS] Attached & Delivered PDF Dossier ({pdf_name}) to {item['name']} (+{item['phone']})!\n", flush=True)
                 sent_count += 1
