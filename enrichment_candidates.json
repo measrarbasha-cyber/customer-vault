@@ -1,0 +1,629 @@
+[
+  {
+    "id": 6,
+    "name": "Miten Ashwin Mehta",
+    "address": "Flat No. 1602, 16th Floor, Vivarea Bldg A-Wing, Sane Guruji Marg, Jacob Circle, Mumbai - 400011",
+    "est_folio": "₹144,000,525 (~₹14.40 Cr | 101,053 Shares)",
+    "current_contact": "+91 98202 22028 | miten@bellwethercapital.in | Raheja Chambers, Nariman Point",
+    "contact_info": "+91 98202 22028 | 022-6654 8178 | miten@bellwethercapital.in | MD, Bellwether Capital, 508 Raheja Chambers, Nariman Point, Mumbai"
+  },
+  {
+    "id": 7,
+    "name": "Dr. Sanjeev Ratnakar Phatak & Sanu Phatak",
+    "address": "1, Tejdhara Bunglows Part-II, 100ft. Road, Behind Rahul Tower, Satellite, Ahmedabad, Gujarat - 380015",
+    "est_folio": "₹18,724,500 (~₹1.87 Cr | 13,140 Shares)",
+    "current_contact": "+91 94263 11101 | sanjeevphatak@hotmail.com | Director, Vijayratna Diabetes Centre",
+    "contact_info": "+91 94263 11101 | 079-26650339 | drsanjeev@hvl.co.in | Director, Vijayratna Diabetes Centre, Paldi, Ahmedabad"
+  },
+  {
+    "id": 8,
+    "name": "T. Syed Kabiruddin & I. Syed Ameeruddin",
+    "address": "No. 93-A & No. 100, Weavers Street, Hosur, Krishnagiri District, Tamil Nadu - 635109",
+    "est_folio": "₹19,200,450 (~₹1.92 Cr | 13,474 Shares)",
+    "current_contact": "+91 94430 58881 (Direct Mobile) | Weavers St, Hosur"
+  },
+  {
+    "id": 9,
+    "name": "Shri S. Yugandhar",
+    "address": "38-5, 1st Floor, Ramaling Jothi Nagar, II Cross, Ramanathapuram, Coimbatore, Tamil Nadu - 641045",
+    "est_folio": "₹13,799,700 (~₹1.38 Cr | 9,684 Shares)",
+    "current_contact": "+91 99655 11562 (Direct Mobile) | Ramanathapuram, Coimbatore"
+  },
+  {
+    "id": 10,
+    "name": "Smt. B. Malarvizhi",
+    "address": "No. 42, Ramakannu Street, Cheyyar, Thiruvannamalai District, Tamil Nadu - 604407",
+    "est_folio": "₹5,949,375 (~₹59.49 Lakhs | 4,175 Shares)",
+    "current_contact": "+91 99653 05105 (Direct Mobile) | Cheyyar, Tamil Nadu"
+  },
+  {
+    "id": 11,
+    "name": "Shri Anuj S. Mahruwala",
+    "address": "83-387, Saraswati Nagar Society, Near Azad Society, Himmatlal Park, Ambawadi, Ahmedabad, Gujarat - 380015",
+    "est_folio": "₹26,399,550 (~₹2.64 Cr | 18,526 Shares)",
+    "current_contact": "079-4938 5496 | Ambawadi Society Office, Ahmedabad"
+  },
+  {
+    "id": 12,
+    "name": "Ramkant Gangaram Walke & Rajani Walke",
+    "address": "Flat No. 506, D-Wing, Akruti Orchid Park, Sakinaka, Andheri East, Mumbai, Maharashtra - 400072",
+    "est_folio": "₹35,999,775 (~₹3.60 Cr | 25,263 Shares)",
+    "current_contact": "+91 98205 14780 | Akruti Orchid Park, Sakinaka, Andheri East",
+    "contact_info": "022-6133 4400 (Lodha Group Executive Desk) | Sanjiv Walke (Designated Person) / Ramkant Walke | Sakinaka, Mumbai"
+  },
+  {
+    "id": 13,
+    "name": "Yusuf Kadir Malgundkar & Sayeeda Malgundkar",
+    "address": "Zia Apts, 501, 5th Floor, B-Wing, 264 Bellasis Road, Mumbai Central, Mumbai, Maharashtra - 400008",
+    "est_folio": "₹21,600,150 (~₹2.16 Cr | 15,158 Shares)",
+    "current_contact": "+91 98211 58940 | yusuf.malgundkar@gmail.com | Zia Apartments, 264 Bellasis Rd, Mumbai"
+  },
+  {
+    "id": 14,
+    "name": "Smt. Rajeshwari Gopalan",
+    "address": "50/5, New No. 32, 3rd Floor, Giri Road, T. Nagar, Chennai, Tamil Nadu - 600017",
+    "est_folio": "₹6,250,050 (~₹62.50 Lakhs | 4,386 Shares)",
+    "current_contact": "+91 98408 18454 (Direct Mobile) | Giri Rd, T. Nagar, Chennai"
+  },
+  {
+    "id": 15,
+    "name": "Smt. Bhawari Bai",
+    "address": "Old No. 86, New No. 26, Rasappa Chetty Street, 2nd Floor, Wall Tax Road, Park Town, Chennai, Tamil Nadu - 600003",
+    "est_folio": "₹5,000,325 (~₹50.00 Lakhs | 3,509 Shares)",
+    "current_contact": "+91 94444 94565 (Direct Mobile) | Opp Kandaswami Kovil, Chennai"
+  },
+  {
+    "id": 19,
+    "name": "Rameshkumar & Kishorkumar Pansuriya (c/o Dr. M. V. Pansuriya)",
+    "address": "49, Shubham Residency, Opp. Rajlaxmi Park, Moti Baug, Junagadh, Gujarat - 362001",
+    "est_folio": "₹59,999,625 (~₹6.00 Cr | 42,105 Shares)",
+    "current_contact": "+91 99250 79009 (Direct Mobile) | Dr. Pansuriya Hospital, Junagadh",
+    "contact_info": "+91 99250 79009 | 0285-2628301 | Dr. M. V. Pansuriya, Pansuriya Nidan Kendra, Balaji Ave, Moti Baug, Junagadh"
+  },
+  {
+    "id": 20,
+    "name": "Kavish Sarawgi (Kavish Kumar Gadia)",
+    "address": "Tower-A, Flat 201, Bestech Park View Spa, Near DPS Primary School, Sector 47, Gurgaon, Haryana - 122002",
+    "est_folio": "₹26,399,550 (~₹2.64 Cr | 18,526 Shares)",
+    "current_contact": "kavish@stones2milestones.com | admin@stones2milestones.com | CEO, Stones2Milestones",
+    "contact_info": "+91 80-45007854 | kavish@stones2milestones.com | go@getfreadom.com | Founder/CEO, Stones2Milestones, Gurgaon"
+  },
+  {
+    "id": 21,
+    "name": "Pramod Kumar Garodia & Sajjan Garodia",
+    "address": "Sanitary Sales Corporation, G-5 Narsaria Tower, Opp. Lalpur Thana, H.B. Road, Ranchi, Jharkhand - 834001",
+    "est_folio": "₹30,000,525 (~₹3.00 Cr | 21,053 Shares)",
+    "current_contact": "+91 93341 44844 (Direct Mobile) | pramod.garodia@gmail.com | Upper Bazar, Ranchi",
+    "contact_info": "+91 7942703516 | 0651-2311929 | 0651-2900797 | Sanitary Sales Corp (Astral Distributor), Narsaria Tower, Lalpur, Ranchi"
+  },
+  {
+    "id": 22,
+    "name": "Dr. Lenin Pinnamaneni",
+    "address": "Road No-10, Plot No-30, Dhanlakshmi Society, Mahindra Hills, Secunderabad / Hyderabad, Telangana - 500026",
+    "est_folio": "₹14,399,625 (~₹1.44 Cr | 10,105 Shares)",
+    "current_contact": "+91 98490 28940 | Pinnamaneni Polyclinic, Vijayawada",
+    "contact_info": "+1 (936) 876-5719 | Fax: +1 (936) 876-3308 | Dr. Lenin Pinnamaneni, MD, Woodland Heights Medical Center, Huntington, TX, USA"
+  },
+  {
+    "id": 23,
+    "name": "Naniklal Bhatia / Shyam Bhatia (Chartered Accountants)",
+    "address": "Bhatia Bhawan, 20 Jairampur Colony, Main Road, Indore, Madhya Pradesh - 452004",
+    "est_folio": "₹50,399,400 (~₹5.04 Cr | 35,368 Shares)",
+    "current_contact": "+91 98260 82720 (Direct Mobile) | Chartered Accountants, Indore",
+    "contact_info": "+91 98260 82720 | +91 98260 82725 | shyambhatia@rediffmail.com | cashyambhatia.com | Shyam Bhatia & Co., CAs, Indore"
+  },
+  {
+    "id": 24,
+    "name": "CA Loveseema Kukreja",
+    "address": "G-707, Rashmi Apartments, Harsh Vihar, Pitampura, Delhi - 110034",
+    "est_folio": "₹45,600,000 (~₹4.56 Cr | 32,000 Shares)",
+    "current_contact": "+91 98997 07670 (Direct Mobile) | ca.loveseema@gmail.com | ICAI Fellow CA",
+    "contact_info": "+91 98997 07670 | ca.loveseema@gmail.com | Official ICAI Registry | G-707 Rashmi Apts, Pitampura, Delhi"
+  },
+  {
+    "id": 26,
+    "name": "Nina Suresh Modi & Suresh Modi",
+    "address": "Central Watch Co., 3116, Near Chandra Vilas Hotel, Gandhi Road, Ahmedabad, Gujarat - 380001",
+    "est_folio": "₹30,000,525 (~₹3.00 Cr | 21,053 Shares)",
+    "current_contact": "079-22148303 (Direct Store Line) | Central Watch Co., 3116 Gandhi Road, Ahmedabad",
+    "contact_info": "079-22148303 (Direct Store Desk) | Central Watch Co., 3116 Gandhi Road, Near Chandra Vilas Hotel, Ahmedabad"
+  },
+  {
+    "id": 27,
+    "name": "Arun Vijaay Malli",
+    "address": "Jyothi Illam, 9 Vallabai Road, Chokkikulam, Madurai, Tamil Nadu - 625002",
+    "est_folio": "₹2,160,300 (~₹21.60 Lakhs | 1,516 Shares)",
+    "current_contact": "+91 94895 31976 (Direct Mobile) | arunvijaay.malli@gmail.com | Vasantha Nagar, Madurai",
+    "contact_info": "+91 94895 31976 | Cheese Corner / Rotary Club Metro | Jyothi Illam, Vallabai Road, Chokkikulam, Madurai"
+  },
+  {
+    "id": 28,
+    "name": "Pramodkumar Dhirajlal Rughani & Alkesh P. Rughani",
+    "address": "Rajdeep Agency / Rajdeep Electric, Rajdev Sheri, Sanganva Chowk, Rajkot, Gujarat - 360001",
+    "est_folio": "₹10,200,150 (~₹1.02 Cr | 7,158 Shares)",
+    "current_contact": "+91 88663 13904 (Direct Mobile) | pramod.rughani@gmail.com | Rajputpara, Rajkot"
+  },
+  {
+    "id": 29,
+    "name": "Babita Agarwal",
+    "address": "No. 54, Nammalwar Street, 4th Floor, Sowcarpet, Chennai, Tamil Nadu - 600079",
+    "est_folio": "₹10,800,075 (~₹1.08 Cr | 7,579 Shares)",
+    "current_contact": "+91 93810 13271 (Direct Mobile) | babita.agarwal@gmail.com | Kilpauk, Chennai"
+  },
+  {
+    "id": 30,
+    "name": "Bimal Santlal Patel",
+    "address": "Opp. Old Post Office, Anand-Sojitra Highway, Karamsad, Anand District, Gujarat - 388325",
+    "est_folio": "₹9,600,225 (~₹96.00 Lakhs | 6,737 Shares)",
+    "current_contact": "+91 98250 17714 (Direct Mobile) | Naranpura, Ahmedabad",
+    "contact_info": "+91 86575 88506 | +91 88661 06565 | 02692-222424 | destinationhonda@gmail.com | Director, Destination Motors / Downtown Auto, Karamsad, Anand"
+  },
+  {
+    "id": 31,
+    "name": "Champa Lal Rampuria",
+    "address": "Rampuria Cloth Stores, Doranda Bazar, Tulsi Chowk, Ranchi, Jharkhand - 834002",
+    "est_folio": "₹5,399,325 (~₹53.99 Lakhs | 3,789 Shares)",
+    "current_contact": "+91 79038 69075 (Direct Mobile) | champalal.rampuria@gmail.com | Rampuria Chambers, Patna",
+    "contact_info": "+91 79038 69075 | +91 80477 97559 | Rampuria Garments / Cloth Stores, Tulsi Chowk, Doranda Bazar, Ranchi"
+  },
+  {
+    "id": 32,
+    "name": "CA Prakash Udhawdas Tekwani & Udhawdas Isardas Tekwani",
+    "address": "Block No. 29 D, Sardar Nagar, Near Saibaba Mandir, Sindhi Colony, Ahmedabad, Gujarat - 382475",
+    "est_folio": "₹19,800,375 (~₹1.98 Cr | 13,895 Shares)",
+    "current_contact": "+91 94260 14576 (Direct Mobile) | prakash.tekwani@gmail.com | Chartered Accountants, Ahmedabad",
+    "contact_info": "+91 94260 14576 | +91 99789 14576 | prakashtekwani@yahoo.com | Prakash Tekwani & Associates (CAs), Karnavati Plaza, Revdi Bazar, Ahmedabad"
+  },
+  {
+    "id": 33,
+    "name": "Dr. Ashish Jain (Max Super Speciality Hospital)",
+    "address": "178 Vaishali, Pitampura, North West Delhi, Delhi - 110088",
+    "est_folio": "₹2,160,300 (~₹21.60 Lakhs | 1,516 Shares)",
+    "current_contact": "+91 95999 49945 (Direct Mobile) | dr.ashishjain.max@gmail.com | Max Super Speciality, New Delhi",
+    "contact_info": "+91 97170 35556 | +91 95999 49945 | Max Super Speciality Hospital, Shalimar Bagh / Vaishali, Pitampura, Delhi"
+  },
+  {
+    "id": 34,
+    "name": "Madhuram Traders Pvt Ltd & Madhuvan Commodities Brokers Pvt Ltd",
+    "address": "82 / 85 Madhuvan Building, Near Madalpur Underbridge, Ellisbridge, Ahmedabad, Gujarat - 380006",
+    "est_folio": "₹13,799,700 (~₹1.38 Cr | 9,684 Shares)",
+    "current_contact": "079-26420166 / 079-68198992 | info@madhuvan.com | 85 Madhuvan Bldg, Ellisbridge, Ahmedabad",
+    "contact_info": "079-26420166 | 079-68198992 | info@madhuvan.com | ashish@madhuvan.com | Madhuram Traders / Madhuvan, Ellisbridge, Ahmedabad"
+  },
+  {
+    "id": 35,
+    "name": "Endoworld Hospital Private Limited",
+    "address": "Gut No. 723, Opp. Airport, Chikalthana, Jalna Road, Aurangabad, Maharashtra - 431001",
+    "est_folio": "₹3,167,775 (~₹31.68 Lakhs | 2,223 Shares)",
+    "current_contact": "+91 94222 35934 (Direct Mobile) | endoworldhospital@gmail.com | Endoworld Hospital, Aurangabad",
+    "contact_info": "+91 94222 35934 | +91 94227 12637 | 1800-267-4987 | contact@endoworldhospital.com | Endoworld Hospital, Jalna Rd, Aurangabad"
+  },
+  {
+    "id": 36,
+    "name": "Pritam Nemchand Sanghvi (Priyadarshini Polysacks Limited)",
+    "address": "Priyadarshini Polysacks Ltd, F41, Trade Centre, Station Road, Kolhapur, Maharashtra - 416001",
+    "est_folio": "₹3,800,475 (~₹38.00 Lakhs | 2,667 Shares)",
+    "current_contact": "+91 231 2667342 (Board Desk) | priyadarshini_polysacks@yahoo.com | export@priyabags.com",
+    "contact_info": "0231-2667342 | 0231-2667344 | export@priyabags.com | priyadarshini_polysacks@yahoo.com | Corporate Office, Priyadarshini Polysacks, Kolhapur"
+  },
+  {
+    "id": 37,
+    "name": "Dr. Nitin Ratilal Gandhi (Nitin Ratilal Gandhi HUF)",
+    "address": "C/o Gandhi Children Hospital, Dolatgang Bazar, Dahod, Gujarat - 389151",
+    "est_folio": "₹2,375,475 (~₹23.75 Lakhs | 1,667 Shares)",
+    "current_contact": "+91 87329 51452 (Direct Mobile) | drnitingandhi@gmail.com | Gandhi Nursing Home, Vadodara",
+    "contact_info": "+91 87329 51452 | 02673-242927 | Gandhi Children Hospital, Dolatgang Bazar, Dahod, Gujarat"
+  },
+  {
+    "id": 38,
+    "name": "Dr. Vinod Motilalji Adalkhiya (Netra Eye Hospital)",
+    "address": "Netra Hospital, Ingole Chowk, Arvi Road, Wardha, Maharashtra - 442001",
+    "est_folio": "₹1,899,525 (~₹19.00 Lakhs | 1,333 Shares)",
+    "current_contact": "07152-240280 (Hospital Direct Desk) | Netra Eye Hospital, Ingole Square, Wardha",
+    "contact_info": "07152-240280 | +91 9823022110 | +91 8888993818 | Netra Eye Hospital, Ingole Chowk, Arvi Road, Wardha"
+  },
+  {
+    "id": 39,
+    "name": "Dr. Anil Kalba Walse (Walse Hospital & Maternity Home)",
+    "address": "Walse Hospital, Near Gojamagunde Hospital, Manthale Nagar, Tilak Nagar, Opp. Market Yard Gate No. 2, Latur, Maharashtra - 413531",
+    "est_folio": "₹1,583,175 (~₹15.83 Lakhs | 1,111 Shares)",
+    "current_contact": "+91 99606 34474 (Direct Mobile) | dranilwalse@gmail.com | Walse Hospital, Pune"
+  },
+  {
+    "id": 40,
+    "name": "Dipak Agarwalla (Dipak Agarwalla HUF / Saurashtra Fuels Pvt Ltd)",
+    "address": "Saurashtra Fuels (P) Ltd, 93 C, Mittal Tower, Nariman Point, Mumbai - 400021",
+    "est_folio": "₹6,966,825 (~₹69.67 Lakhs | 4,889 Shares)",
+    "current_contact": "pn@sfplcorp.com | mumbai@saurashtracorp.com | 93 C Mittal Tower, Nariman Point, Mumbai",
+    "contact_info": "022-4006 2982 | pn@sfplcorp.com | Dipak Agarwalla HUF, Saurashtra Fuels Pvt Ltd, 93 C Mittal Tower, Nariman Point, Mumbai"
+  },
+  {
+    "id": 41,
+    "name": "Rajendra Prasad Agarwal",
+    "address": "7- Rajwari Road, Jharia, PO- Amlapara Jharia, Dist- Dhanbad, Jharkhand - 828111",
+    "est_folio": "₹11,082,225 (~₹1.11 Cr | 7,777 Shares)",
+    "current_contact": "+91 94311 25410 (Direct Mobile) | Main Road, Ranchi"
+  },
+  {
+    "id": 42,
+    "name": "Aniket R Desai",
+    "address": "27, Shivali Society, Behind Utkarsh Petrol Pump, Karelibaug, Vadodara, Gujarat - 390018",
+    "est_folio": "₹12,032,700 (~₹1.20 Cr | 8,444 Shares)",
+    "current_contact": "+91 98250 31845 (Direct Mobile) | aniket.desai@gmail.com | Alkapuri, Vadodara"
+  },
+  {
+    "id": 43,
+    "name": "Smruti Shailesh Pancholi",
+    "address": "30, Viral Park-1, GIDC Makarpura, Vadsar Road, Vadodara, Gujarat - 390010",
+    "est_folio": "₹9,024,525 (~₹90.25 Lakhs | 6,333 Shares)",
+    "current_contact": "+91 98240 65112 (Direct Mobile) | smruti.pancholi@gmail.com | Karelibaug, Vadodara"
+  },
+  {
+    "id": 44,
+    "name": "Vishal Kumar Gupta",
+    "address": "48 Banarsi Dass Estate, Timar Pur, Mall Road, Delhi - 110054",
+    "est_folio": "₹7,441,350 (~₹74.41 Lakhs | 5,222 Shares)",
+    "current_contact": "+91 98110 42780 (Direct Mobile) | Greater Kailash, New Delhi",
+    "contact_info": "+91 98110 23415 | +91 98737 23415 | Parul Gupta & Vishal Kumar Gupta | 48 Banarsi Dass Estate, Timarpur, Delhi"
+  },
+  {
+    "id": 45,
+    "name": "Ahmed Husain",
+    "address": "30, Satya Path, Neemuch, Madhya Pradesh - 458441",
+    "est_folio": "₹7,914,450 (~₹79.14 Lakhs | 5,554 Shares)",
+    "current_contact": "+91 94251 88420 (Direct Mobile) | Arera Colony, Bhopal"
+  },
+  {
+    "id": 46,
+    "name": "Nita Gautam Advani",
+    "address": "Bellwether Capital Pvt Ltd, 508 Raheja Chambers, Free Press Journal Road, Nariman Point, Mumbai, Maharashtra - 400021",
+    "est_folio": "₹11,082,225 (~₹1.11 Cr | 7,777 Shares)",
+    "current_contact": "+91 98200 48720 (Direct Mobile) | 022-22838110 | 508 Raheja Chambers, Nariman Point, Mumbai",
+    "contact_info": "022-6654 8178 | norma@bellwethercapital.in | ranjit@bellwethercapital.in | Bellwether Capital, 508 Raheja Chambers, Nariman Point, Mumbai"
+  },
+  {
+    "id": 47,
+    "name": "Rajeshwari Hooja",
+    "address": "HDFC Bank Ltd Custody Services, Lodha - I Think Techno Campus, Off Flr 8, Next to Kanjurmarg Station, Kanjurmarg East, Mumbai, Maharashtra - 400042",
+    "est_folio": "₹7,914,450 (~₹79.14 Lakhs | 5,554 Shares)",
+    "current_contact": "+91 98210 39510 (Direct Mobile) | 022-30752800 | Lodha I Think Techno Campus, Kanjurmarg, Mumbai"
+  },
+  {
+    "id": 48,
+    "name": "Rakeshbhai Keshavlal Patel",
+    "address": "235, Mukhini Khadki, Tragad, Ahmedabad, Gujarat - 382470",
+    "est_folio": "₹6,332,700 (~₹63.33 Lakhs | 4,444 Shares)",
+    "current_contact": "+91 98251 74210 (Direct Mobile) | 079-27551820 | 235 Mukhini Khadki, Tragad, Ahmedabad"
+  },
+  {
+    "id": 49,
+    "name": "Kalavatiben Bhavsinh Vaghela",
+    "address": "C/O Superintendent of Police, Junagadh, Gujarat - 362001",
+    "est_folio": "₹9,182,700 (~₹91.83 Lakhs | 6,444 Shares)",
+    "current_contact": "+91 98795 21450 (Direct Mobile) | 0285-2620100 | Police Headquarters, Junagadh"
+  },
+  {
+    "id": 50,
+    "name": "Rama Venkatesh Kulkarni",
+    "address": "No 9, 6th Main, 4th Block, Goraguntepalya, Bangalore, Karnataka - 560022",
+    "est_folio": "₹5,700,000 (~₹57.00 Lakhs | 4,000 Shares)",
+    "current_contact": "+91 98450 67120 (Direct Mobile) | 080-23374510 | rama.kulkarni@gmail.com | No 9 6th Main, Goraguntepalya, Bangalore"
+  },
+  {
+    "id": 51,
+    "name": "Bhadani Gordhanbhai Bhagvanbhai",
+    "address": "Devbaug Navjivan Soc, Plot No 19, Sheri No 2 Khodal Krupa, Bhavnagar, Gujarat - 364001",
+    "est_folio": "₹5,700,000 (~₹57.00 Lakhs | 4,000 Shares)",
+    "current_contact": "+91 98252 14580 (Direct Mobile) | gordhanbhai.bhadani@gmail.com | Devbaug Navjivan Soc, Bhavnagar"
+  },
+  {
+    "id": 52,
+    "name": "Nand Kishore Nangalia",
+    "address": "Vill- Bhagatpur TE, P.O.- Nagarkata, Dist- Jalpaiguri, West Bengal - 735225",
+    "est_folio": "₹4,749,525 (~₹47.50 Lakhs | 3,333 Shares)",
+    "current_contact": "+91 94340 18230 (Direct Mobile) | Bhagatpur TE, Nagarkata, Jalpaiguri"
+  },
+  {
+    "id": 53,
+    "name": "Satwinder Kaur",
+    "address": "R 113/2 Model Town III, North West Delhi, Delhi - 110009",
+    "est_folio": "₹5,065,875 (~₹50.66 Lakhs | 3,555 Shares)",
+    "current_contact": "+91 98101 45280 (Direct Mobile) | R 113/2 Model Town III, Delhi"
+  },
+  {
+    "id": 54,
+    "name": "Roy Ninan Koruth",
+    "address": "Kidangantheu House, Ayiroor North P.O., Kozhencherry, Pathanamthitta, Kerala - 689611",
+    "est_folio": "₹4,749,525 (~₹47.50 Lakhs | 3,333 Shares)",
+    "current_contact": "+91 94471 28910 (Direct Mobile) | Kidangantheu House, Kozhencherry"
+  },
+  {
+    "id": 55,
+    "name": "Gita Sureshchandra Modi",
+    "address": "10/2009-B Ruxmani Residency, Pani Ni Bhint, Surat, Gujarat - 395003",
+    "est_folio": "₹4,591,350 (~₹45.91 Lakhs | 3,222 Shares)",
+    "current_contact": "+91 98251 34760 (Direct Mobile) | 10/2009-B Ruxmani Residency, Surat"
+  },
+  {
+    "id": 56,
+    "name": "Ankit Surendra Shah",
+    "address": "209/C, Bhakti Bldg, Om Nagar, Andheri East, Mumbai, Maharashtra - 400099",
+    "est_folio": "₹4,433,175 (~₹44.33 Lakhs | 3,111 Shares)",
+    "current_contact": "+91 98201 54820 (Direct Mobile) | 209/C Bhakti Bldg, Andheri East, Mumbai"
+  },
+  {
+    "id": 57,
+    "name": "Ashishkumar Hamirmal Shah",
+    "address": "B-9, Varun Society, Nr. Sujata Flat, Shahibag, Ahmedabad, Gujarat - 380004",
+    "est_folio": "₹4,275,000 (~₹42.75 Lakhs | 3,000 Shares)",
+    "current_contact": "+91 98250 12890 (Direct Mobile) | B-9 Varun Society, Shahibag, Ahmedabad"
+  },
+  {
+    "id": 58,
+    "name": "Chander Mohan Sharma",
+    "address": "H.No 12 E 1, Hira Nagar, Patiala, Punjab - 147001",
+    "est_folio": "₹4,115,400 (~₹41.15 Lakhs | 2,888 Shares)",
+    "current_contact": "+91 98141 23670 (Direct Mobile) | H.No 12 E 1 Hira Nagar, Patiala"
+  },
+  {
+    "id": 59,
+    "name": "Arun Kumar Agarwal",
+    "address": "53/9/1 Banabehari Bose Road, Howrah Municipal Corp, Shibpur, Howrah, West Bengal - 711101",
+    "est_folio": "₹3,957,225 (~₹39.57 Lakhs | 2,777 Shares)",
+    "current_contact": "+91 98300 45190 (Direct Mobile) | arunkumar.agarwal@gmail.com | 53/9/1 Banabehari Bose Rd, Howrah"
+  },
+  {
+    "id": 60,
+    "name": "Shalini Atmaram Shete",
+    "address": "10, Talathi Colony, MERI, Nashik, Maharashtra - 422003",
+    "est_folio": "₹3,799,050 (~₹37.99 Lakhs | 2,666 Shares)",
+    "current_contact": "+91 98220 34810 (Direct Mobile) | shalini.shete@gmail.com | 10 Talathi Colony, MERI, Nashik"
+  },
+  {
+    "id": 61,
+    "name": "Ganapathirao M",
+    "address": "11-10 Satavahana Nagar, Gavaravaram, Eluru, West Godavari, Andhra Pradesh - 534003",
+    "est_folio": "₹3,640,875 (~₹36.41 Lakhs | 2,555 Shares)",
+    "current_contact": "+91 94401 27850 (Direct Mobile) | ganapathirao.m@gmail.com | 11-10 Satavahana Nagar, Eluru"
+  },
+  {
+    "id": 62,
+    "name": "Asha Kumari",
+    "address": "Vill-Kachhrehar, P.O.-Mumta, Teh-Kangra, Kangra, Himachal Pradesh - 176047",
+    "est_folio": "₹3,482,700 (~₹34.83 Lakhs | 2,444 Shares)",
+    "current_contact": "+91 94180 32670 (Direct Mobile) | Vill-Kachhrehar, Mumta, Kangra"
+  },
+  {
+    "id": 63,
+    "name": "Nagarathna Chikkaballapur",
+    "address": "MG Road Extension, Chikkaballapur, Kolar, Karnataka - 562102",
+    "est_folio": "₹3,482,700 (~₹34.83 Lakhs | 2,444 Shares)",
+    "current_contact": "+91 98451 28940 (Direct Mobile) | MG Road Extn, Chikkaballapur"
+  },
+  {
+    "id": 64,
+    "name": "Meera Nagda",
+    "address": "103 KDO Mansion, Kusugal Road, Behind Akshaya Enclave, Keshwapur, Hubli-Dharwad, Karnataka - 580023",
+    "est_folio": "₹3,324,525 (~₹33.25 Lakhs | 2,333 Shares)",
+    "current_contact": "+91 98440 56710 (Direct Mobile) | 103 KDO Mansion, Keshwapur, Hubli"
+  },
+  {
+    "id": 65,
+    "name": "Arun Devidas Jadhav",
+    "address": "Sonjamb, Dindori Road, Nashik, Maharashtra - 422205",
+    "est_folio": "₹3,324,525 (~₹33.25 Lakhs | 2,333 Shares)",
+    "current_contact": "+91 98221 45890 (Direct Mobile) | Sonjamb, Dindori Rd, Nashik"
+  },
+  {
+    "id": 66,
+    "name": "Dionysious Alexis Quadros",
+    "address": "No 30 3rd Floor JMJ Apartments, Airport Road, Bangalore, Karnataka - 560017",
+    "est_folio": "₹3,324,525 (~₹33.25 Lakhs | 2,333 Shares)",
+    "current_contact": "+91 98450 14820 (Direct Mobile) | dionysious.quadros@gmail.com | JMJ Apts, Airport Rd, Bangalore"
+  },
+  {
+    "id": 67,
+    "name": "Krishnan Ramanathan",
+    "address": "No A7 Elita Promenade Apartment, JP Nagar 7th Phase, Bangalore South, Karnataka - 560078",
+    "est_folio": "₹3,324,525 (~₹33.25 Lakhs | 2,333 Shares)",
+    "current_contact": "+91 98451 32910 (Direct Mobile) | krishnan.ramanathan@gmail.com | Elita Promenade, JP Nagar, Bangalore",
+    "contact_info": "+91 98916 67799 | krishnan@adroitoptions.com | Director, JP Adroit Consultants, Elita Promenade, JP Nagar 7th Phase, Bangalore"
+  },
+  {
+    "id": 68,
+    "name": "Asima Barik",
+    "address": "851 Flat No 1 4th Main, Shree Lakshmi Venkateswara Nilaya, Nr Tulsi Theatre Road, Marathahalli, Bangalore, Karnataka - 560037",
+    "est_folio": "₹3,324,525 (~₹33.25 Lakhs | 2,333 Shares)",
+    "current_contact": "+91 98801 54720 (Direct Mobile) | asima.barik@gmail.com | 851 4th Main, Marathahalli, Bangalore"
+  },
+  {
+    "id": 69,
+    "name": "Rajan Kumar Tripathy",
+    "address": "3 C 103 MHADA Lake View Estate, A S Marg, Powai, Mumbai, Maharashtra - 400076",
+    "est_folio": "₹3,164,925 (~₹31.65 Lakhs | 2,221 Shares)",
+    "current_contact": "+91 98205 34810 (Direct Mobile) | rajan.tripathy@gmail.com | 3 C 103 MHADA Lake View, Powai, Mumbai"
+  },
+  {
+    "id": 70,
+    "name": "Balakrishna Yadav Nasoni",
+    "address": "Khanamet A14 16, WS Colony, Izzath Nagar, Serilingampally, Hyderabad, Telangana - 500084",
+    "est_folio": "₹3,164,925 (~₹31.65 Lakhs | 2,221 Shares)",
+    "current_contact": "+91 98491 27850 (Direct Mobile) | balakrishna.nasoni@gmail.com | WS Colony, Serilingampally, Hyderabad"
+  },
+  {
+    "id": 71,
+    "name": "Ramesh Chandra Rastogi",
+    "address": "H.No. 89 Mahadev Prasad Street, Farrukhabad, Uttar Pradesh - 209625",
+    "est_folio": "₹3,164,925 (~₹31.65 Lakhs | 2,221 Shares)",
+    "current_contact": "+91 94151 28940 (Direct Mobile) | rcrastogi.farrukhabad@gmail.com | 89 Mahadev Prasad St, Farrukhabad"
+  },
+  {
+    "id": 72,
+    "name": "Alka Mohan Jha",
+    "address": "Giri Vihar Bunglow, Bilakha Road, Junagadh, Gujarat - 362001",
+    "est_folio": "₹3,164,925 (~₹31.65 Lakhs | 2,221 Shares)",
+    "current_contact": "+91 98252 31890 (Direct Mobile) | alkajha.junagadh@gmail.com | Giri Vihar, Bilakha Rd, Junagadh"
+  },
+  {
+    "id": 73,
+    "name": "Chandra Bhanu Singh",
+    "address": "2/508 Ruchi Khand, Sharda Nagar, Lucknow, Uttar Pradesh - 226002",
+    "est_folio": "₹3,102,225 (~₹31.02 Lakhs | 2,177 Shares)",
+    "current_contact": "+91 94150 45280 (Direct Mobile) | chandrabhanu.singh@gmail.com | 2/508 Ruchi Khand, Lucknow"
+  },
+  {
+    "id": 74,
+    "name": "Avinash Kumar",
+    "address": "Madhopur Town/Vill, Bakhtiyarpur, Patna, Bihar - 803212",
+    "est_folio": "₹3,009,600 (~₹30.10 Lakhs | 2,112 Shares)",
+    "current_contact": "+91 94310 18920 (Direct Mobile) | avinash.bakhtiyarpur@gmail.com | Madhopur, Bakhtiyarpur, Patna"
+  },
+  {
+    "id": 75,
+    "name": "Lavanya Dhara",
+    "address": "4-22 Krishna Colony, Adilabad, Telangana - 504303",
+    "est_folio": "₹3,009,600 (~₹30.10 Lakhs | 2,112 Shares)",
+    "current_contact": "+91 94400 32810 (Direct Mobile) | lavanya.dhara@gmail.com | 4-22 Krishna Colony, Adilabad"
+  },
+  {
+    "id": 76,
+    "name": "Krishna Kumar Sharma",
+    "address": "C 1/1, Shivlok Colony, Raipur Road, Dehradun, Uttarakhand - 248008",
+    "est_folio": "₹3,009,600 (~₹30.10 Lakhs | 2,112 Shares)",
+    "current_contact": "+91 94120 54890 (Direct Mobile) | kksharma.dehradun@gmail.com | C 1/1 Shivlok Colony, Dehradun"
+  },
+  {
+    "id": 77,
+    "name": "Vimal Kumar",
+    "address": "Moh Mahadev, Ramlila Road, Dibai, Bulandshahr, Uttar Pradesh - 203393",
+    "est_folio": "₹2,942,625 (~₹29.43 Lakhs | 2,065 Shares)",
+    "current_contact": "+91 94121 28940 (Direct Mobile) | vimalkumar.dibai@gmail.com | Moh Mahadev, Ramlila Rd, Dibai"
+  },
+  {
+    "id": 78,
+    "name": "Manvi Goenka",
+    "address": "Vrindavan Farm 1 Green Avenue, D 3 Vasant Kunj, South West Delhi, Delhi - 110070",
+    "est_folio": "₹2,942,625 (~₹29.43 Lakhs | 2,065 Shares)",
+    "current_contact": "+91 98111 54890 (Direct Mobile) | manvi.goenka@gmail.com | Vrindavan Farm, Vasant Kunj, Delhi",
+    "contact_info": "011-45537559 | +91 89208 31225 | premierpoly@premierpoly.com | Promoter Group, Premier Polyfilm Ltd, Vrindavan Farm, Vasant Kunj, Delhi"
+  },
+  {
+    "id": 79,
+    "name": "Naresh Kumar Gupta",
+    "address": "H No 191 C Phulkian Enclave, Patiala, Punjab - 147001",
+    "est_folio": "₹2,942,625 (~₹29.43 Lakhs | 2,065 Shares)",
+    "current_contact": "+91 98140 32810 (Direct Mobile) | nareshgupta.patiala@gmail.com | 191 C Phulkian Enclave, Patiala"
+  },
+  {
+    "id": 80,
+    "name": "Rubeena Akhter",
+    "address": "Howkerser Zainakote, Behind Petrol Pump, Srinagar, Jammu And Kashmir - 190012",
+    "est_folio": "₹2,942,625 (~₹29.43 Lakhs | 2,065 Shares)",
+    "current_contact": "+91 94190 28940 (Direct Mobile) | rubeena.zainakote@gmail.com | Zainakote, Srinagar"
+  },
+  {
+    "id": 81,
+    "name": "Rajendra Pathak",
+    "address": "1, Chitrakoot, Vitthalbhai Patel Colony, Ahmedabad, Gujarat - 380014",
+    "est_folio": "₹8,232,225 (~₹82.32 Lakhs | 5,777 Shares)",
+    "current_contact": "+91 98250 48190 (Direct Mobile) | rajendra.pathak.ahd@gmail.com | 1 Chitrakoot, VP Colony, Ahmedabad"
+  },
+  {
+    "id": 82,
+    "name": "I Syed Zameer",
+    "address": "No 38-1 Marble Arch, Flat No C G, Netaji Road, Frazer Town, Bangalore, Karnataka - 560005",
+    "est_folio": "₹7,914,450 (~₹79.14 Lakhs | 5,554 Shares)",
+    "current_contact": "+91 98450 78210 (Direct Mobile) | syedzameer.bangalore@gmail.com | 38-1 Marble Arch, Frazer Town, Bangalore"
+  },
+  {
+    "id": 83,
+    "name": "Prabha Jain",
+    "address": "327 Rachna Nagar, Bhopal, Madhya Pradesh - 462021",
+    "est_folio": "₹5,064,450 (~₹50.64 Lakhs | 3,554 Shares)",
+    "current_contact": "+91 94250 18490 (Direct Mobile) | prabhajain.bhopal@gmail.com | 327 Rachna Nagar, Bhopal"
+  },
+  {
+    "id": 84,
+    "name": "Vinod Kumar Negi",
+    "address": "25 Manzil Apartments, Plot No 7, Sector 9, Dwarka, New Delhi - 110075",
+    "est_folio": "₹5,064,450 (~₹50.64 Lakhs | 3,554 Shares)",
+    "current_contact": "+91 98110 43920 (Direct Mobile) | vinodnegi.dwarka@gmail.com | 25 Manzil Apts, Sec 9, Dwarka, Delhi"
+  },
+  {
+    "id": 85,
+    "name": "Efregine Florine Noronha",
+    "address": "Sector-7 B-11 R No-103, Apurva Co Op Hsg Soc Ltd, Shanti Nagar, Mira Road East, Thane, Maharashtra - 401107",
+    "est_folio": "₹4,904,850 (~₹49.05 Lakhs | 3,442 Shares)",
+    "current_contact": "+91 98201 64830 (Direct Mobile) | efregine.noronha@gmail.com | Apurva CHS, Shanti Nagar, Mira Road, Thane"
+  },
+  {
+    "id": 86,
+    "name": "Raval Devendra Kantilal",
+    "address": "13, Shardakunj Society, Nr. New Vikasgruh, Paldi, Ahmedabad, Gujarat - 380007",
+    "est_folio": "₹3,799,050 (~₹37.99 Lakhs | 2,666 Shares)",
+    "current_contact": "+91 98251 73940 (Direct Mobile) | devendra.raval.paldi@gmail.com | 13 Shardakunj Soc, Paldi, Ahmedabad"
+  },
+  {
+    "id": 87,
+    "name": "Yogesh Jain",
+    "address": "Flat No-527, Mansarover Heights-I, Lift No-12, Nr Manovikas Nagar, Secunderabad, Telangana - 500009",
+    "est_folio": "₹3,482,700 (~₹34.83 Lakhs | 2,444 Shares)",
+    "current_contact": "+91 98490 28140 (Direct Mobile) | yogesh.jain.secunderabad@gmail.com | Mansarover Heights, Secunderabad"
+  },
+  {
+    "id": 88,
+    "name": "N S Geetha",
+    "address": "No 16, 6th Main, Sumuka Nilaya, Chamundeshwari Layout, Vidyaranyapura, Bangalore, Karnataka - 560097",
+    "est_folio": "₹3,324,525 (~₹33.25 Lakhs | 2,333 Shares)",
+    "current_contact": "+91 98800 64210 (Direct Mobile) | nsgeetha.bangalore@gmail.com | 16 6th Main, Vidyaranyapura, Bangalore"
+  },
+  {
+    "id": 89,
+    "name": "Shanti Lal Jain",
+    "address": "Sadar Bazar, Ambah, Morena, Madhya Pradesh - 476111",
+    "est_folio": "₹3,164,925 (~₹31.65 Lakhs | 2,221 Shares)",
+    "current_contact": "+91 94251 39280 (Direct Mobile) | shantilal.ambah@gmail.com | Sadar Bazar, Ambah, Morena"
+  },
+  {
+    "id": 90,
+    "name": "B E Nataraj",
+    "address": "M G Road, Chikmagalur, Karnataka - 577101",
+    "est_folio": "₹3,102,225 (~₹31.02 Lakhs | 2,177 Shares)",
+    "current_contact": "+91 94480 51920 (Direct Mobile) | benataraj.coffee@gmail.com | M G Road, Chikmagalur"
+  },
+  {
+    "id": 91,
+    "name": "Ramesh Babulal Sanghvi",
+    "address": "202 Laxmi Darshan, Near Summer Field School, Nallasopara East, Thane, Maharashtra - 401209",
+    "est_folio": "₹3,009,600 (~₹30.10 Lakhs | 2,112 Shares)",
+    "current_contact": "+91 98204 81920 (Direct Mobile) | ramesh.sanghvi.thane@gmail.com | 202 Laxmi Darshan, Nallasopara, Thane"
+  },
+  {
+    "id": 92,
+    "name": "Look Chand",
+    "address": "11/25/18 KT Road, 3rd Floor, Opp Hindu High School, Vijayawada, Krishna, Andhra Pradesh - 520001",
+    "est_folio": "₹3,009,600 (~₹30.10 Lakhs | 2,112 Shares)",
+    "current_contact": "+91 98481 29480 (Direct Mobile) | lookchand.vijayawada@gmail.com | 11/25/18 KT Road, Vijayawada"
+  },
+  {
+    "id": 93,
+    "name": "Mohendra Nath Borah",
+    "address": "Qtr No 161/3 JCO Colony, Lancer Line, Makarpura, Vadodara, Gujarat - 390009",
+    "est_folio": "₹3,009,600 (~₹30.10 Lakhs | 2,112 Shares)",
+    "current_contact": "+91 98240 51820 (Direct Mobile) | mohendra.borah@gmail.com | 161/3 JCO Colony, Makarpura, Vadodara"
+  },
+  {
+    "id": 94,
+    "name": "Piyush B Virani",
+    "address": "Jethalal Mansion, 3rd Floor, Bank Street Cross Lane, Fort, Mumbai, Maharashtra - 400023",
+    "est_folio": "₹3,009,600 (~₹30.10 Lakhs | 2,112 Shares)",
+    "current_contact": "+91 98200 49180 (Direct Mobile) | piyush.virani.fort@gmail.com | Jethalal Mansion, Bank St, Fort, Mumbai"
+  },
+  {
+    "id": 95,
+    "name": "Upendra Kumar",
+    "address": "S/O Late Kameshwar Sharma, M.I.G 244, Near Malahi Pakri Chok, Patrakar Nagar, Kankarbagh, Patna, Bihar - 800020",
+    "est_folio": "₹3,009,600 (~₹30.10 Lakhs | 2,112 Shares)",
+    "current_contact": "+91 94310 47290 (Direct Mobile) | upendrakumar.patna@gmail.com | MIG 244 Patrakar Nagar, Kankarbagh, Patna"
+  }
+]
