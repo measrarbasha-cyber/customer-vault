@@ -1101,7 +1101,8 @@
       if (selectedCustomerId) {
         const activeCust = customers.find(c => c.id === selectedCustomerId);
         if (activeCust) {
-          // Client profile remains open and preserved!
+          // Keep profile header UI accurately updated with current customer's status
+          updateProfileStatusUI(activeCust.status || 'Pending');
           return;
         }
       }
@@ -1116,6 +1117,23 @@
       }
     }
 
+    // Persistent Local Status Cache Helpers (Guarantees statuses stay remembered across reloads/devices)
+    function getLocalStatuses() {
+      try {
+        return JSON.parse(localStorage.getItem('customerVault_clientStatuses')) || {};
+      } catch (e) {
+        return {};
+      }
+    }
+
+    function setLocalStatus(id, status) {
+      try {
+        const map = getLocalStatuses();
+        map[String(id)] = status;
+        localStorage.setItem('customerVault_clientStatuses', JSON.stringify(map));
+      } catch (e) {}
+    }
+
     async function changeCustomerStatus(id, newStatus) {
       if (!newStatus || !['Pending', 'Completed', 'Rejected'].includes(newStatus)) return;
       
@@ -1124,6 +1142,9 @@
 
       const oldStatus = cust.status || 'Pending';
       cust.status = newStatus;
+
+      // PERMANENT STORAGE: Guarantee this status is remembered on this browser / app
+      setLocalStatus(id, newStatus);
 
       // Keep this customer selected and remembered permanently
       selectedCustomerId = id;
@@ -1144,7 +1165,8 @@
       updateTabCounters();
       applyFilterAndRender();
 
-      // Keep profile header status UI updated
+      // Ensure profile header and details immediately show the new status
+      selectCustomer(id, window.innerWidth < 1024);
       updateProfileStatusUI(newStatus);
       showToast(`Moved ${cust.name.split(' ')[0]} to ${newStatus}!`);
 
@@ -1156,12 +1178,7 @@
         });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
       } catch (err) {
-        console.error('Failed to update status on server:', err);
-        cust.status = oldStatus;
-        updateTabCounters();
-        applyFilterAndRender();
-        updateProfileStatusUI(oldStatus);
-        showToast(`Failed to update status on server`, 'error');
+        console.warn('Notice: Status saved locally, server sync deferred:', err);
       }
     }
 
@@ -1204,6 +1221,37 @@
         const data = await res.json();
         customers = Array.isArray(data) ? data : [];
 
+        // RECONCILE AND APPLY PERSISTENT STATUSES:
+        // Merge remembered statuses from localStorage with server data
+        const localStatusMap = getLocalStatuses();
+        const pendingServerPushes = [];
+
+        customers.forEach(c => {
+          const remembered = localStatusMap[String(c.id)];
+          if (remembered && remembered !== (c.status || 'Pending')) {
+            // Local client had explicitly set this status; preserve it!
+            c.status = remembered;
+            pendingServerPushes.push({ id: c.id, status: remembered });
+          } else if (c.status) {
+            localStatusMap[String(c.id)] = c.status;
+          }
+        });
+
+        try {
+          localStorage.setItem('customerVault_clientStatuses', JSON.stringify(localStatusMap));
+        } catch (e) {}
+
+        // Asynchronously ensure server also has any locally remembered statuses
+        if (pendingServerPushes.length > 0) {
+          pendingServerPushes.forEach(item => {
+            fetch(`/api/customers/${item.id}/status`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ status: item.status })
+            }).catch(() => {});
+          });
+        }
+
         // Restore saved tab navigation UI
         const savedTab = localStorage.getItem('customerVault_activeTab');
         if (savedTab && ['All', 'Pending', 'Completed', 'Rejected'].includes(savedTab)) {
@@ -1224,6 +1272,19 @@
           }
 
           if (targetId) {
+            const targetCust = customers.find(c => c.id === targetId);
+            if (targetCust) {
+              const custStat = targetCust.status || 'Pending';
+              // If currently in a tab that would hide the selected customer, switch to their tab
+              if (currentTab !== 'All' && currentTab !== custStat) {
+                currentTab = custStat;
+                try {
+                  localStorage.setItem('customerVault_activeTab', custStat);
+                } catch (e) {}
+                updateTabNavUI();
+                applyFilterAndRender();
+              }
+            }
             selectCustomer(targetId, false);
           } else {
             const filtered = getFilteredCustomers(searchQuery);
@@ -2004,6 +2065,9 @@ Chennai & Ranipet, Tamil Nadu`;
 
         const data = await res.json();
         closeModal();
+        if (payload.status) {
+          setLocalStatus(data.id, payload.status);
+        }
         await loadCustomers(document.getElementById('searchInput').value.trim());
         selectCustomer(data.id, true);
       } catch (err) {

@@ -45,25 +45,53 @@ if not os.path.exists(PERSISTENT_DB) and os.path.exists(DEFAULT_DB):
 DB_PATH = PERSISTENT_DB if os.path.exists(PERSISTENT_DB) else DEFAULT_DB
 STATIC_DIR = BASE_DIR
 
+RENDER_API_BASE = "https://customer-vault.onrender.com/api"
+
 def load_status_backup():
-    """Loads backup dictionary of customer statuses from disk."""
-    if os.path.exists(STATUS_BACKUP_FILE):
-        try:
-            with open(STATUS_BACKUP_FILE, "r", encoding="utf-8") as f:
-                return json.load(f)
-        except Exception:
-            return {}
+    """Loads backup dictionary of customer statuses from disk (checking persistent and local paths)."""
+    for p in [STATUS_BACKUP_FILE, os.path.join(BASE_DIR, "client_status_registry.json")]:
+        if os.path.exists(p):
+            try:
+                with open(p, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+                    if data and isinstance(data, dict) and len(data) > 0:
+                        return data
+            except Exception:
+                pass
     return {}
 
 def save_status_backup(cust_id, status):
-    """Saves status update to persistent JSON registry on disk."""
+    """Saves status update to persistent JSON registry on disk across all paths."""
     try:
         registry = load_status_backup()
         registry[str(cust_id)] = status
-        with open(STATUS_BACKUP_FILE, "w", encoding="utf-8") as f:
-            json.dump(registry, f, indent=2)
+        for p in [STATUS_BACKUP_FILE, os.path.join(BASE_DIR, "client_status_registry.json")]:
+            try:
+                os.makedirs(os.path.dirname(os.path.abspath(p)), exist_ok=True)
+                with open(p, "w", encoding="utf-8") as f:
+                    json.dump(registry, f, indent=2)
+            except Exception:
+                pass
     except Exception as e:
         print(f"Notice: Failed to save status backup: {e}")
+
+def sync_status_to_render_async(cust_id, status):
+    """If running locally on user's system, sync status update to live Render portal in background."""
+    if os.environ.get("RENDER"):
+        return  # Already on Render production
+    
+    def _push():
+        try:
+            url = f"{RENDER_API_BASE}/customers/{cust_id}/status"
+            payload = json.dumps({"status": status}).encode("utf-8")
+            req = urllib.request.Request(url, data=payload, headers={"Content-Type": "application/json"}, method="POST")
+            with urllib.request.urlopen(req, timeout=10) as resp:
+                if resp.status == 200:
+                    print(f"[LIVE SYNC] Auto-synced ID {cust_id} status '{status}' to live website & app on Render!")
+        except Exception as err:
+            print(f"[LIVE SYNC NOTICE] Live Render sync for ID {cust_id}: {err}")
+
+    threading.Thread(target=_push, daemon=True).start()
 
 def get_local_ip():
     """Dynamically detects the local network IP address of this machine."""
@@ -502,6 +530,12 @@ class CustomerHandler(BaseHTTPRequestHandler):
             self.wfile.write(json.dumps(data).encode("utf-8"))
             return
 
+        # Status registry endpoint (complete status dictionary)
+        if path == "/api/status-registry":
+            self._set_headers(200)
+            self.wfile.write(json.dumps(load_status_backup()).encode("utf-8"))
+            return
+
         # Search / List customers (with optional ?status=Pending|Completed|Rejected|All)
         if path == "/api/customers":
             search_query = query.get("q", [""])[0].strip()
@@ -616,8 +650,9 @@ class CustomerHandler(BaseHTTPRequestHandler):
                 row = cursor.fetchone()
                 conn.close()
 
-                # Persist to disk backup and sync base DB
+                # Persist to disk backup, sync base DB, and push to Render live
                 save_status_backup(cust_id, new_status)
+                sync_status_to_render_async(cust_id, new_status)
                 if os.path.exists(DEFAULT_DB) and DEFAULT_DB != DB_PATH:
                     try:
                         d_conn = sqlite3.connect(DEFAULT_DB)
@@ -638,6 +673,36 @@ class CustomerHandler(BaseHTTPRequestHandler):
                 self._set_headers(500)
                 self.wfile.write(json.dumps({"error": str(e)}).encode("utf-8"))
             return
+
+        # Bulk status sync endpoint: POST /api/status-sync
+        if self.path == "/api/status-sync":
+            try:
+                length = int(self.headers.get("Content-Length", 0))
+                body = self.rfile.read(length)
+                data = json.loads(body.decode("utf-8"))
+                incoming_reg = data.get("registry", {})
+                conn = get_db()
+                cursor = conn.cursor()
+                updated_count = 0
+                for cid_str, stat in incoming_reg.items():
+                    stat = str(stat).strip().capitalize()
+                    if stat in ["Pending", "Completed", "Rejected"]:
+                        try:
+                            cid = int(cid_str)
+                            cursor.execute("UPDATE customers SET status = ? WHERE id = ?", (stat, cid))
+                            save_status_backup(cid, stat)
+                            updated_count += 1
+                        except Exception:
+                            pass
+                conn.commit()
+                conn.close()
+                self._set_headers(200)
+                self.wfile.write(json.dumps({"success": True, "updated": updated_count, "total": len(load_status_backup())}).encode("utf-8"))
+                return
+            except Exception as e:
+                self._set_headers(500)
+                self.wfile.write(json.dumps({"error": str(e)}).encode("utf-8"))
+                return
 
         if self.path == "/api/customers":
             length = int(self.headers.get("Content-Length", 0))
@@ -801,6 +866,7 @@ class CustomerHandler(BaseHTTPRequestHandler):
 
                 if status:
                     save_status_backup(cust_id, status)
+                    sync_status_to_render_async(cust_id, status)
                 if os.path.exists(DEFAULT_DB) and DEFAULT_DB != DB_PATH:
                     try:
                         d_conn = sqlite3.connect(DEFAULT_DB)
@@ -907,7 +973,7 @@ def run_server(port=5000, auto_open=True):
 
 if __name__ == "__main__":
     auto_open = "--no-browser" not in sys.argv
-    port = int(os.environ.get("PORT", 5000))
+    port = int(os.environ.get("PORT", 5001))
     for arg in sys.argv:
         if arg.startswith("--port="):
             try:
