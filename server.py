@@ -482,11 +482,59 @@ class CustomerHandler(BaseHTTPRequestHandler):
             self.wfile.write(json.dumps(data).encode("utf-8"))
             return
 
+        # Direct static serving of uploads folder (/uploads/<path> e.g. PDFs, proof cards)
+        if path.startswith("/uploads/"):
+            rel_path = path[len("/uploads/"):].strip("/")
+            candidate_paths = [
+                os.path.join(UPLOAD_DIR, rel_path),
+                os.path.join(BASE_DIR, "uploads", rel_path)
+            ]
+            file_path = None
+            for cp in candidate_paths:
+                if os.path.exists(cp) and os.path.isfile(cp):
+                    file_path = cp
+                    break
+            
+            if file_path:
+                ext = file_path.split(".")[-1].lower()
+                mime = "application/pdf" if ext == "pdf" else ("image/png" if ext == "png" else ("image/jpeg" if ext in ["jpg", "jpeg"] else "application/octet-stream"))
+                try:
+                    with open(file_path, "rb") as f:
+                        content = f.read()
+                    self.send_response(200)
+                    self.send_header("Content-Type", mime)
+                    self.send_header("Cache-Control", "no-cache, no-store, must-revalidate, max-age=0")
+                    self.send_header("Pragma", "no-cache")
+                    self.send_header("Expires", "0")
+                    self.send_header("Content-Disposition", f'inline; filename="{os.path.basename(file_path)}"')
+                    self.send_header("Content-Length", str(len(content)))
+                    self.send_header("Access-Control-Allow-Origin", "*")
+                    self.end_headers()
+                    self.wfile.write(content)
+                    return
+                except Exception as e:
+                    self._set_headers(500)
+                    self.wfile.write(json.dumps({"error": str(e)}).encode("utf-8"))
+                    return
+            else:
+                self._set_headers(404)
+                self.wfile.write(json.dumps({"error": f"File '{rel_path}' not found in uploads"}).encode("utf-8"))
+                return
+
         # View / Download uploaded PDF document
         if path.startswith("/api/documents/"):
             filename = os.path.basename(path.replace("/api/documents/", ""))
-            file_path = os.path.join(UPLOAD_DIR, filename)
-            if os.path.exists(file_path) and os.path.isfile(file_path):
+            candidate_paths = [
+                os.path.join(UPLOAD_DIR, filename),
+                os.path.join(BASE_DIR, "uploads", filename)
+            ]
+            file_path = None
+            for cp in candidate_paths:
+                if os.path.exists(cp) and os.path.isfile(cp):
+                    file_path = cp
+                    break
+            
+            if file_path:
                 try:
                     with open(file_path, "rb") as f:
                         content = f.read()
