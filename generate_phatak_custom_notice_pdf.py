@@ -27,9 +27,9 @@ USER_PHONE = "+91 7358882822"
 USER_EMAIL = "amdasrarbasha@gmail.com"
 USER_PORTAL = "https://customer-vault.onrender.com"
 
-proof_card_path = os.path.join(upload_dir, "proof_cards", "client_7_iepf_proof.png")
+proof_card_path = os.path.join(upload_dir, "proof_cards", "phatak_dual_exact_proof.png")
 if not os.path.exists(proof_card_path):
-    proof_card_path = os.path.join(artifact_dir, "proof_cards", "client_7_iepf_proof.png")
+    proof_card_path = os.path.join(artifact_dir, "proof_cards", "phatak_dual_exact_proof.png")
 
 output_filename = "Dr_Sanjeev_Phatak_IEPF_Transfer_Notice_and_Recovery_Guide.pdf"
 out_pdf_brain = os.path.join(artifact_dir, output_filename)
@@ -140,37 +140,52 @@ def build_pdf():
     story.append(Spacer(1, 3))
 
     # Portfolio Valuation Grid
-    story.append(Paragraph("<b>AUDITED EQUITY HOLDING &amp; UNCLAIMED DIVIDENDS SUMMARY</b>", h1_style))
+    story.append(Paragraph("<b>AUDITED EQUITY HOLDING &amp; UNCLAIMED DIVIDENDS SUMMARY (OFFICIAL MCA RECORD)</b>", h1_style))
     story.append(Spacer(1, 1.5))
     portfolio_grid = [
         [
-            Paragraph("<b>TARGET ASSET</b>", body_bold),
-            Paragraph("<b>REGISTERED FOLIO IDs</b>", body_bold),
-            Paragraph("<b>SHARE QUANTITY</b>", body_bold),
-            Paragraph("<b>CURRENT VALUATION</b>", body_bold),
-            Paragraph("<b>UNCLAIMED DIVIDENDS</b>", body_bold)
+            Paragraph("<b>BENEFICIARY / HOLDER</b>", body_bold),
+            Paragraph("<b>FOLIO NUMBER</b>", body_bold),
+            Paragraph("<b>GAZETTE CITATION</b>", body_bold),
+            Paragraph("<b>TRANSFERRED CASH (03-SEP-26)</b>", body_bold),
+            Paragraph("<b>TOTAL ACCRUED DIVIDENDS</b>", body_bold)
         ],
         [
-            Paragraph("<b>Astral Limited</b><br/><font size='5.5' color='#64748B'>CIN: L25200GJ1996PLC029134<br/>ISIN: INE006I01046</font>", body_text),
-            Paragraph("<b>IN30034310432220</b><br/><b>IN30034310432238</b>", body_bold),
-            Paragraph("<b>13,140 Equity Shares</b><br/><font size='5.5' color='#0D9488'>(Expanded via 1:4 &amp; 1:3 Bonus)</font>", body_bold),
-            Paragraph("<b>Rs. 18,724,500</b><br/><font size='5.5' color='#047857'>(~Rs. 1.87 Crores @ Rs. 1,425)</font>", ParagraphStyle('V1', fontName='Helvetica-Bold', fontSize=7.2, textColor=colors.HexColor("#047857"))),
-            Paragraph("<b>Rs. 57,755.20</b><br/><font size='5.5' color='#B45309'>(Accrued Cash Dividends)</font>", ParagraphStyle('V2', fontName='Helvetica-Bold', fontSize=7.2, textColor=colors.HexColor("#B45309")))
+            Paragraph("<b>Dr. Sanjeev Ratnakar Phatak</b>", body_text),
+            Paragraph("<b>IN30034310432238</b>", body_bold),
+            Paragraph("Astral Gazette Page <b>29</b>", body_text),
+            Paragraph("<b>Rs. 570.66</b> <font color='#991B1B'>[Transferred]</font>", ParagraphStyle('V01', fontName='Helvetica-Bold', fontSize=6.5, textColor=colors.HexColor("#991B1B"))),
+            Paragraph("<b>Rs. 10,368.31</b> <font size='5'>(8 Tranches)</font>", body_bold)
+        ],
+        [
+            Paragraph("<b>Mrs. Sanu Sanjeev Phatak</b>", body_text),
+            Paragraph("<b>IN30034310432220</b>", body_bold),
+            Paragraph("Astral Gazette Page <b>30</b>", body_text),
+            Paragraph("<b>Rs. 856.00</b> <font color='#991B1B'>[Transferred]</font>", ParagraphStyle('V02', fontName='Helvetica-Bold', fontSize=6.5, textColor=colors.HexColor("#991B1B"))),
+            Paragraph("<b>Rs. 57,755.20</b> <font size='5'>(9 Tranches)</font>", body_bold)
+        ],
+        [
+            Paragraph("<b>TOTAL RECOVERABLE PORTFOLIO<br/>(13,140 Astral Equity Shares)</b>", ParagraphStyle('VTOT', fontName='Helvetica-Bold', fontSize=6.5, textColor=colors.HexColor("#047857"))),
+            Paragraph("<b>Both Folios Combined</b>", body_bold),
+            Paragraph("<b>Valuation: Rs. 18,724,500</b><br/><font size='5' color='#047857'>(~Rs. 1.87 Cr @ Rs. 1,425)</font>", ParagraphStyle('VTOT2', fontName='Helvetica-Bold', fontSize=6.5, textColor=colors.HexColor("#047857"))),
+            Paragraph("<b>Rs. 1,426.66</b><br/><font size='5' color='#991B1B'>[In IEPF Custody]</font>", ParagraphStyle('VTOT3', fontName='Helvetica-Bold', fontSize=6.5, textColor=colors.HexColor("#991B1B"))),
+            Paragraph("<b>Rs. 68,123.51</b><br/><font size='5' color='#0F2942'>Total Claim: <b>Rs. 1.88 Cr</b></font>", ParagraphStyle('VTOT4', fontName='Helvetica-Bold', fontSize=6.5, textColor=colors.HexColor("#0F2942")))
         ]
     ]
-    t_grid = Table(portfolio_grid, colWidths=[110, 110, 110, 110, 100])
+    t_grid = Table(portfolio_grid, colWidths=[115, 105, 110, 110, 100])
     t_grid.setStyle(TableStyle([
         ('BACKGROUND', (0,0), (-1,0), colors.HexColor("#0F2942")),
-        ('TEXTCOLOR', (0,0), (-1,0), colors.white),
-        ('BACKGROUND', (0,1), (-1,1), colors.HexColor("#FEF2F2")),
-        ('BOX', (0,0), (-1,-1), 1, colors.HexColor("#FCA5A5")),
-        ('INNERGRID', (0,0), (-1,-1), 0.5, colors.HexColor("#FECACA")),
-        ('TOPPADDING', (0,0), (-1,-1), 2.5),
-        ('BOTTOMPADDING', (0,0), (-1,-1), 2.5),
+        ('BACKGROUND', (0,1), (-1,1), colors.HexColor("#FFFFFF")),
+        ('BACKGROUND', (0,2), (-1,2), colors.HexColor("#F8FAFC")),
+        ('BACKGROUND', (0,3), (-1,3), colors.HexColor("#FEF2F2")),
+        ('BOX', (0,0), (-1,-1), 1, colors.HexColor("#CBD5E1")),
+        ('INNERGRID', (0,0), (-1,-1), 0.5, colors.HexColor("#E2E8F0")),
+        ('TOPPADDING', (0,0), (-1,-1), 2),
+        ('BOTTOMPADDING', (0,0), (-1,-1), 2),
         ('LEFTPADDING', (0,0), (-1,-1), 4),
         ('RIGHTPADDING', (0,0), (-1,-1), 4),
     ]))
-    for i, title in enumerate(["TARGET ASSET", "REGISTERED FOLIO IDs", "SHARE QUANTITY", "CURRENT VALUATION", "UNCLAIMED DIVIDENDS"]):
+    for i in range(5):
         t_grid.setStyle(TableStyle([('TEXTCOLOR', (i,0), (i,0), colors.white)]))
     story.append(t_grid)
     story.append(Spacer(1, 3))
@@ -179,9 +194,11 @@ def build_pdf():
     story.append(Paragraph("<b>1. STATUTORY NOTICE: YOUR ASSETS HAVE BEEN TRANSFERRED TO THE IEPF AUTHORITY</b>", h1_style))
     p1_statutory = (
         "This official notice is to inform you that following a forensic compliance audit of Astral Limited's regulatory filings under Section 124(6) of the Companies Act, 2013, "
-        "your equity folio registered at <b>1, Tejdhara Bunglows, Satellite, Ahmedabad</b> was <b>formally debited and transferred to the IEPF Authority Demat Account (Ministry of Corporate Affairs, New Delhi)</b>.<br/>"
+        "the equity folios registered in the names of <b>Dr. Sanjeev Ratnakar Phatak (Folio: IN30034310432238)</b> and <b>Mrs. Sanu Sanjeev Phatak (Folio: IN30034310432220)</b> "
+        "at <b>1, Tejdhara Bunglows, Satellite, Ahmedabad</b> were <b>formally debited and transferred to the IEPF Authority Demat Account (Ministry of Corporate Affairs, New Delhi)</b>.<br/>"
         "Under the statutory 7-year clock, because dividend warrants declared between 2018 and 2019 remained uncashed in statutory escrow, Astral Limited was legally mandated by the Central Government to execute a corporate action "
-        "transferring your underlying equity holding (now expanded to <b>13,140 shares valued at Rs. 1.87 Crores</b>) and uncashed cash dividends of <b>Rs. 57,755.20</b> into government custody on <b>03-Sep-2026</b>."
+        "transferring your underlying equity holding (now expanded to <b>13,140 shares valued at Rs. 1.87 Crores</b>) along with initial transferred cash dividends of <b>Rs. 1,426.66</b> into government custody on <b>03-Sep-2026</b>. "
+        "The total accrued cash dividends across all 17 historical filings stand at <b>Rs. 68,123.51</b>, making the total recoverable claim <b>Rs. 1,87,92,623.51 (~Rs. 1.88 Crores)</b>."
     )
     story.append(Paragraph(p1_statutory, body_text))
     story.append(Spacer(1, 2.5))
@@ -232,7 +249,10 @@ def build_pdf():
         story.append(RLImage(proof_card_path, width=tw, height=th))
         story.append(Spacer(1, 1.5))
         story.append(Paragraph(
-            "<b>&bull; OFFICIAL RECORD CITATION:</b> Astral Limited Statutory Unpaid Dividend Gazette (Sec 124(6), Companies Act) &bull; Page: <b>30</b> &bull; Statutory Transfer Effective: <b><font color='#991B1B'>03-Sep-2026 [TRANSFERRED TO IEPF DEMAT]</font></b> &bull; Folio: <b>IN30034310432220</b>",
+            "<b>&bull; OFFICIAL RECORD CITATIONS &amp; EXACT STATUTORY TRANSFERS:</b><br/>"
+            "&bull; <b>Record 1 (Dr. Sanjeev Ratnakar Phatak):</b> Folio: <b>IN30034310432238</b> &bull; Official Gazette Page: <b>29</b> &bull; Transferred Cash Dividend: <b>Rs. 570.66</b> &bull; Status: <b><font color='#991B1B'>TRANSFERRED [03-Sep-2026]</font></b><br/>"
+            "&bull; <b>Record 2 (Mrs. Sanu Sanjeev Phatak):</b> Folio: <b>IN30034310432220</b> &bull; Official Gazette Page: <b>30</b> &bull; Transferred Cash Dividend: <b>Rs. 856.00</b> &bull; Status: <b><font color='#991B1B'>TRANSFERRED [03-Sep-2026]</font></b><br/>"
+            "&bull; <b>Statutory Action Summary:</b> Initial transferred cash: <b>Rs. 1,426.66</b> + <b>13,140 underlying equity shares (valued at Rs. 18,724,500.00 / Rs. 1.87+ Cr)</b> debited and transferred to IEPF Authority Demat Account under Section 124(6). Total accrued dividends across all 17 filings: <b>Rs. 68,123.51</b>.",
             callout_text
         ))
     story.append(Spacer(1, 3))
@@ -302,7 +322,7 @@ def build_pdf():
         (
             "2. DIRECT GOVERNMENT SETTLEMENT (WE NEVER TOUCH CLIENT FUNDS)",
             "Under MCA and SEBI statutory regulations, neither our practice nor any third party ever touches your shares or money. "
-            "The Central Government IEPF Authority executes an electronic Corporate Action credit <b>directly into Dr. Phatak's own active Demat account</b>, and credits the accumulated cash dividends (Rs. 57,755.20) directly into your linked bank account via PFMS/DBT."
+            "The Central Government IEPF Authority executes an electronic Corporate Action credit <b>directly into Dr. Phatak's own active Demat account</b>, and credits the accumulated cash dividends (Rs. 68,123.51) directly into your linked bank account via PFMS/DBT."
         ),
         (
             "3. OVERCOMING THE 80% REJECTION TRAP (ZERO DEFICIENCY MEMO)",
