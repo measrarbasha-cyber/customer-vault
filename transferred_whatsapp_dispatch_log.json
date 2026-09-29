@@ -1,0 +1,485 @@
+{
+  "last_update": "2026-09-29 16:50:11",
+  "total_attempted": 48,
+  "success": 27,
+  "failed": 21,
+  "logs": [
+    {
+      "client_id": 7,
+      "name": "Dr. Sanjeev Ratnakar Phatak & Sanu Phatak",
+      "phone": "919426311101",
+      "pdf": "Dr_Sanjeev_Phatak_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 16:14:25",
+      "status": "delivered",
+      "error": null
+    },
+    {
+      "client_id": 8,
+      "name": "T. Syed Kabiruddin & I. Syed Ameeruddin",
+      "phone": "919443058881",
+      "pdf": "T_Syed_Kabiruddin_I_Syed_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 16:15:32",
+      "status": "delivered",
+      "error": null
+    },
+    {
+      "client_id": 9,
+      "name": "Shri S. Yugandhar",
+      "phone": "919965511562",
+      "pdf": "S_Yugandhar_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 16:16:04",
+      "status": "delivered",
+      "error": null
+    },
+    {
+      "client_id": 10,
+      "name": "Smt. B. Malarvizhi",
+      "phone": "919965305105",
+      "pdf": "B_Malarvizhi_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 16:16:33",
+      "status": "delivered",
+      "error": null
+    },
+    {
+      "client_id": 15,
+      "name": "Smt. Bhawari Bai",
+      "phone": "919444494565",
+      "pdf": "Bhawari_Bai_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 16:17:02",
+      "status": "delivered",
+      "error": null
+    },
+    {
+      "client_id": 19,
+      "name": "Rameshkumar & Kishorkumar Pansuriya (c/o Dr. M. V. Pansuriya)",
+      "phone": "919925079009",
+      "pdf": "Rameshkumar_Kishorkumar_Pansuriya_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 16:17:32",
+      "status": "delivered",
+      "error": null
+    },
+    {
+      "client_id": 21,
+      "name": "Pramod Kumar Garodia & Sajjan Garodia",
+      "phone": "917942703516",
+      "pdf": "Pramod_Kumar_Garodia_Sajjan_Garodia_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 16:17:56",
+      "status": "failed",
+      "error": "Locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator(\"footer button[aria-label='Attach'], footer span[data-icon='plus'], footer div[role='button']:has(span[data-icon='plus'])\").first\n"
+    },
+    {
+      "client_id": 23,
+      "name": "Naniklal Bhatia / Shyam Bhatia (Chartered Accountants)",
+      "phone": "919826082720",
+      "pdf": "Naniklal_Bhatia_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 16:18:54",
+      "status": "delivered",
+      "error": null
+    },
+    {
+      "client_id": 23,
+      "name": "Naniklal Bhatia / Shyam Bhatia (Chartered Accountants)",
+      "phone": "919826082725",
+      "pdf": "Naniklal_Bhatia_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 16:19:17",
+      "status": "delivered",
+      "error": null
+    },
+    {
+      "client_id": 24,
+      "name": "CA Loveseema Kukreja",
+      "phone": "919899707670",
+      "pdf": "CA_Loveseema_Kukreja_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 16:19:41",
+      "status": "failed",
+      "error": "Locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator(\"footer button[aria-label='Attach'], footer span[data-icon='plus'], footer div[role='button']:has(span[data-icon='plus'])\").first\n"
+    },
+    {
+      "client_id": 27,
+      "name": "Arun Vijaay Malli",
+      "phone": "919489531976",
+      "pdf": "Arun_Vijaay_Malli_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 16:20:39",
+      "status": "delivered",
+      "error": null
+    },
+    {
+      "client_id": 31,
+      "name": "Champa Lal Rampuria",
+      "phone": "917903869075",
+      "pdf": "Champa_Lal_Rampuria_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 16:21:05",
+      "status": "delivered",
+      "error": null
+    },
+    {
+      "client_id": 31,
+      "name": "Champa Lal Rampuria",
+      "phone": "918047797559",
+      "pdf": "Champa_Lal_Rampuria_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 16:21:41",
+      "status": "failed",
+      "error": "Locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator(\"footer button[aria-label='Attach'], footer span[data-icon='plus'], footer div[role='button']:has(span[data-icon='plus'])\").first\n"
+    },
+    {
+      "client_id": 32,
+      "name": "CA Prakash Udhawdas Tekwani & Udhawdas Isardas Tekwani",
+      "phone": "919426014576",
+      "pdf": "Prakash_Udhawdas_Tekwani_Udhawdas_Isardas_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 16:22:43",
+      "status": "delivered",
+      "error": null
+    },
+    {
+      "client_id": 32,
+      "name": "CA Prakash Udhawdas Tekwani & Udhawdas Isardas Tekwani",
+      "phone": "919978914576",
+      "pdf": "Prakash_Udhawdas_Tekwani_Udhawdas_Isardas_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 16:23:05",
+      "status": "delivered",
+      "error": null
+    },
+    {
+      "client_id": 41,
+      "name": "Rajendra Prasad Agarwal",
+      "phone": "919431125410",
+      "pdf": "Rajendra_Prasad_Agarwal_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 16:23:39",
+      "status": "failed",
+      "error": "Locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator(\"footer button[aria-label='Attach'], footer span[data-icon='plus'], footer div[role='button']:has(span[data-icon='plus'])\").first\n"
+    },
+    {
+      "client_id": 42,
+      "name": "Aniket R Desai",
+      "phone": "916351019359",
+      "pdf": "Aniket_R_Desai_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 16:24:38",
+      "status": "delivered",
+      "error": null
+    },
+    {
+      "client_id": 43,
+      "name": "Smruti Shailesh Pancholi",
+      "phone": "919824065112",
+      "pdf": "Smruti_Shailesh_Pancholi_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 16:25:06",
+      "status": "failed",
+      "error": "Locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator(\"footer button[aria-label='Attach'], footer span[data-icon='plus'], footer div[role='button']:has(span[data-icon='plus'])\").first\n"
+    },
+    {
+      "client_id": 44,
+      "name": "Vishal Kumar Gupta",
+      "phone": "919811023415",
+      "pdf": "Vishal_Kumar_Gupta_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 16:26:04",
+      "status": "failed",
+      "error": "Locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator(\"div[aria-label='Send'], button[aria-label='Send'], span[data-icon='send'], span[data-icon='wds-ic-send-filled']\").first\n    - locator resolved to <button tabindex=\"0\" data-tab=\"11\" type=\"button\" aria-label=\"Send\" aria-disabled=\"false\" class=\"html-button xdj266r x14z9mp xat24cr x1lziwak xexx8yu xyri2b x18d9i69 x1c1uobl x178xt8z x1lun4ml xso031l xpilrb4 x1n2onr6 x1ejq31n x18oe1m7 x1sy0etr xstzfhl x1so62im x1syfmzz x1ja2u2z x1ypdohk x1s928wv x1j6awrg x4eaejv x1wsn0xg x1r0yslu x2q1x1w xapdjt xr6f91l x5rv0tg x1akc3lz xikp0eg x1xl5mkn x1mfml39 x1l5mzlr xgmdoj8 x1f1wgk5 x1x3ic1u xfn3atn x1pse0pq x1yxkqql xtnn1bt x9v5kkp xmw7ebm xrdum7p x3oybdh x13t8fm\u2026>\u2026</button>\n  - attempting click action\n    2 \u00d7 waiting for element to be visible, enabled and stable\n      - element is visible, enabled and stable\n      - scrolling into view if needed\n      - done scrolling\n      - <div class=\"x78zum5 x1c4vz4f x2lah0s x1helyrv x6s0dn4 x1qughib x178xt8z x13fuv20 xx42vgk x16ovd2e x12xbjc7 xdx6fka xvtqlqk\"></div> from <div class=\"x10l6tqk x13vifvy x1o0tod x78zum5 xh8yej3 x5yr21d x6ikm8r x10wlt62 x47corl\">\u2026</div> subtree intercepts pointer events\n    - retrying click action\n    - waiting 20ms\n    - waiting for element to be visible, enabled and stable\n    - element is visible, enabled and stable\n    - scrolling into view if needed\n    - done scrolling\n    - <div class=\"x78zum5 x1c4vz4f x2lah0s x1helyrv x6s0dn4 x1qughib x178xt8z x13fuv20 xx42vgk x16ovd2e x12xbjc7 xdx6fka xvtqlqk\"></div> from <div class=\"x10l6tqk x13vifvy x1o0tod x78zum5 xh8yej3 x5yr21d x6ikm8r x10wlt62 x47corl\">\u2026</div> subtree intercepts pointer events\n  2 \u00d7 retrying click action\n      - waiting 100ms\n      - waiting for element to be visible, enabled and stable\n      - element is visible, enabled and stable\n      - scrolling into view if needed\n      - done scrolling\n      - <span class=\"\" aria-hidden=\"true\" data-icon=\"wds-ic-send-filled\" data-testid=\"wds-ic-send-filled\">\u2026</span> from <div class=\"x10l6tqk x13vifvy x1o0tod x78zum5 xh8yej3 x5yr21d x6ikm8r x10wlt62 x47corl\">\u2026</div> subtree intercepts pointer events\n  51 \u00d7 retrying click action\n       - waiting 500ms\n       - waiting for element to be visible, enabled and stable\n       - element is visible, enabled and stable\n       - scrolling into view if needed\n       - done scrolling\n       - <span class=\"\" aria-hidden=\"true\" data-icon=\"wds-ic-send-filled\" data-testid=\"wds-ic-send-filled\">\u2026</span> from <div class=\"x10l6tqk x13vifvy x1o0tod x78zum5 xh8yej3 x5yr21d x6ikm8r x10wlt62 x47corl\">\u2026</div> subtree intercepts pointer events\n  - retrying click action\n    - waiting 500ms\n"
+    },
+    {
+      "client_id": 44,
+      "name": "Vishal Kumar Gupta",
+      "phone": "919873723415",
+      "pdf": "Vishal_Kumar_Gupta_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 16:27:07",
+      "status": "failed",
+      "error": "Locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator(\"[aria-label='Document']\").first\n"
+    },
+    {
+      "client_id": 45,
+      "name": "Ahmed Husain",
+      "phone": "919425188420",
+      "pdf": "Ahmed_Husain_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 16:28:37",
+      "status": "failed",
+      "error": "Locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator(\"footer button[aria-label='Attach'], footer span[data-icon='plus'], footer div[role='button']:has(span[data-icon='plus'])\").first\n"
+    },
+    {
+      "client_id": 48,
+      "name": "Rakeshbhai Keshavlal Patel",
+      "phone": "919825174210",
+      "pdf": "Rakeshbhai_Keshavlal_Patel_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 16:29:35",
+      "status": "delivered",
+      "error": null
+    },
+    {
+      "client_id": 50,
+      "name": "Rama Venkatesh Kulkarni",
+      "phone": "919845067120",
+      "pdf": "Rama_Venkatesh_Kulkarni_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 16:30:00",
+      "status": "delivered",
+      "error": null
+    },
+    {
+      "client_id": 51,
+      "name": "Bhadani Gordhanbhai Bhagvanbhai",
+      "phone": "919825214580",
+      "pdf": "Bhadani_Gordhanbhai_Bhagvanbhai_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 16:30:24",
+      "status": "delivered",
+      "error": null
+    },
+    {
+      "client_id": 52,
+      "name": "Nand Kishore Nangalia",
+      "phone": "919434018230",
+      "pdf": "Nand_Kishore_Nangalia_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 16:30:48",
+      "status": "delivered",
+      "error": null
+    },
+    {
+      "client_id": 53,
+      "name": "Satwinder Kaur",
+      "phone": "919810145280",
+      "pdf": "Satwinder_Kaur_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 16:31:11",
+      "status": "failed",
+      "error": "Locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator(\"footer button[aria-label='Attach'], footer span[data-icon='plus'], footer div[role='button']:has(span[data-icon='plus'])\").first\n"
+    },
+    {
+      "client_id": 54,
+      "name": "Roy Ninan Koruth",
+      "phone": "919447128910",
+      "pdf": "Roy_Ninan_Koruth_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 16:32:08",
+      "status": "failed",
+      "error": "Locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator(\"footer button[aria-label='Attach'], footer span[data-icon='plus'], footer div[role='button']:has(span[data-icon='plus'])\").first\n"
+    },
+    {
+      "client_id": 55,
+      "name": "Gita Sureshchandra Modi",
+      "phone": "919825134760",
+      "pdf": "Gita_Sureshchandra_Modi_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 16:33:06",
+      "status": "failed",
+      "error": "Locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator(\"footer button[aria-label='Attach'], footer span[data-icon='plus'], footer div[role='button']:has(span[data-icon='plus'])\").first\n"
+    },
+    {
+      "client_id": 59,
+      "name": "Arun Kumar Agarwal",
+      "phone": "919830045190",
+      "pdf": "Arun_Kumar_Agarwal_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 16:34:04",
+      "status": "delivered",
+      "error": null
+    },
+    {
+      "client_id": 62,
+      "name": "Asha Kumari",
+      "phone": "919418032670",
+      "pdf": "Asha_Kumari_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 16:34:27",
+      "status": "failed",
+      "error": "Locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator(\"footer button[aria-label='Attach'], footer span[data-icon='plus'], footer div[role='button']:has(span[data-icon='plus'])\").first\n"
+    },
+    {
+      "client_id": 64,
+      "name": "Meera Nagda",
+      "phone": "919740089897",
+      "pdf": "Meera_Nagda_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 16:35:25",
+      "status": "failed",
+      "error": "Locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator(\"div[aria-label='Send'], button[aria-label='Send'], span[data-icon='send'], span[data-icon='wds-ic-send-filled']\").first\n    - locator resolved to <button tabindex=\"0\" data-tab=\"11\" type=\"button\" aria-label=\"Send\" aria-disabled=\"false\" class=\"html-button xdj266r x14z9mp xat24cr x1lziwak xexx8yu xyri2b x18d9i69 x1c1uobl x178xt8z x1lun4ml xso031l xpilrb4 x1n2onr6 x1ejq31n x18oe1m7 x1sy0etr xstzfhl x1so62im x1syfmzz x1ja2u2z x1ypdohk x1s928wv x1j6awrg x4eaejv x1wsn0xg x1r0yslu x2q1x1w xapdjt xr6f91l x5rv0tg x1akc3lz xikp0eg x1xl5mkn x1mfml39 x1l5mzlr xgmdoj8 x1f1wgk5 x1x3ic1u xfn3atn x1pse0pq x1yxkqql xtnn1bt x9v5kkp xmw7ebm xrdum7p x3oybdh x13t8fm\u2026>\u2026</button>\n  - attempting click action\n    2 \u00d7 waiting for element to be visible, enabled and stable\n      - element is visible, enabled and stable\n      - scrolling into view if needed\n      - done scrolling\n      - <div class=\"x78zum5 x1c4vz4f x2lah0s x1helyrv x6s0dn4 x1qughib x178xt8z x13fuv20 xx42vgk x16ovd2e x12xbjc7 xdx6fka xvtqlqk\"></div> from <div class=\"x10l6tqk x13vifvy x1o0tod x78zum5 xh8yej3 x5yr21d x6ikm8r x10wlt62 x47corl\">\u2026</div> subtree intercepts pointer events\n    - retrying click action\n    - waiting 20ms\n    2 \u00d7 waiting for element to be visible, enabled and stable\n      - element is visible, enabled and stable\n      - scrolling into view if needed\n      - done scrolling\n      - <div class=\"x78zum5 x1c4vz4f x2lah0s x1helyrv x6s0dn4 x1qughib x178xt8z x13fuv20 xx42vgk x16ovd2e x12xbjc7 xdx6fka xvtqlqk\"></div> from <div class=\"x10l6tqk x13vifvy x1o0tod x78zum5 xh8yej3 x5yr21d x6ikm8r x10wlt62 x47corl\">\u2026</div> subtree intercepts pointer events\n    - retrying click action\n      - waiting 100ms\n    55 \u00d7 waiting for element to be visible, enabled and stable\n       - element is visible, enabled and stable\n       - scrolling into view if needed\n       - done scrolling\n       - <span class=\"\" aria-hidden=\"true\" data-icon=\"wds-ic-send-filled\" data-testid=\"wds-ic-send-filled\">\u2026</span> from <div class=\"x10l6tqk x13vifvy x1o0tod x78zum5 xh8yej3 x5yr21d x6ikm8r x10wlt62 x47corl\">\u2026</div> subtree intercepts pointer events\n     - retrying click action\n       - waiting 500ms\n"
+    },
+    {
+      "client_id": 71,
+      "name": "Ramesh Chandra Rastogi",
+      "phone": "919415128940",
+      "pdf": "Ramesh_Chandra_Rastogi_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 16:36:34",
+      "status": "delivered",
+      "error": null
+    },
+    {
+      "client_id": 72,
+      "name": "Alka Mohan Jha",
+      "phone": "919825231890",
+      "pdf": "Alka_Mohan_Jha_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 16:36:57",
+      "status": "failed",
+      "error": "Locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator(\"footer button[aria-label='Attach'], footer span[data-icon='plus'], footer div[role='button']:has(span[data-icon='plus'])\").first\n"
+    },
+    {
+      "client_id": 73,
+      "name": "Chandra Bhanu Singh",
+      "phone": "919415045280",
+      "pdf": "Chandra_Bhanu_Singh_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 16:37:55",
+      "status": "failed",
+      "error": "Locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator(\"footer button[aria-label='Attach'], footer span[data-icon='plus'], footer div[role='button']:has(span[data-icon='plus'])\").first\n"
+    },
+    {
+      "client_id": 76,
+      "name": "Krishna Kumar Sharma",
+      "phone": "919412054890",
+      "pdf": "Krishna_Kumar_Sharma_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 16:38:53",
+      "status": "delivered",
+      "error": null
+    },
+    {
+      "client_id": 82,
+      "name": "I Syed Zameer",
+      "phone": "919845078210",
+      "pdf": "I_Syed_Zameer_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 16:39:16",
+      "status": "failed",
+      "error": "Locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator(\"footer button[aria-label='Attach'], footer span[data-icon='plus'], footer div[role='button']:has(span[data-icon='plus'])\").first\n"
+    },
+    {
+      "client_id": 83,
+      "name": "Prabha Jain",
+      "phone": "919425018490",
+      "pdf": "Prabha_Jain_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 16:40:14",
+      "status": "delivered",
+      "error": null
+    },
+    {
+      "client_id": 84,
+      "name": "Vinod Kumar Negi",
+      "phone": "919811043920",
+      "pdf": "Vinod_Kumar_Negi_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 16:40:36",
+      "status": "delivered",
+      "error": null
+    },
+    {
+      "client_id": 85,
+      "name": "Efregine Florine Noronha",
+      "phone": "919702015015",
+      "pdf": "Efregine_Florine_Noronha_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 16:41:00",
+      "status": "failed",
+      "error": "Locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator(\"div[aria-label='Send'], button[aria-label='Send'], span[data-icon='send'], span[data-icon='wds-ic-send-filled']\").first\n    - locator resolved to <button tabindex=\"0\" data-tab=\"11\" type=\"button\" aria-label=\"Send\" aria-disabled=\"false\" class=\"html-button xdj266r x14z9mp xat24cr x1lziwak xexx8yu xyri2b x18d9i69 x1c1uobl x178xt8z x1lun4ml xso031l xpilrb4 x1n2onr6 x1ejq31n x18oe1m7 x1sy0etr xstzfhl x1so62im x1syfmzz x1ja2u2z x1ypdohk x1s928wv x1j6awrg x4eaejv x1wsn0xg x1r0yslu x2q1x1w xapdjt xr6f91l x5rv0tg x1akc3lz xikp0eg x1xl5mkn x1mfml39 x1l5mzlr xgmdoj8 x1f1wgk5 x1x3ic1u xfn3atn x1pse0pq x1yxkqql xtnn1bt x9v5kkp xmw7ebm xrdum7p x3oybdh x13t8fm\u2026>\u2026</button>\n  - attempting click action\n    2 \u00d7 waiting for element to be visible, enabled and stable\n      - element is visible, enabled and stable\n      - scrolling into view if needed\n      - done scrolling\n      - <div class=\"x78zum5 x1c4vz4f x2lah0s x1helyrv x6s0dn4 x1qughib x178xt8z x13fuv20 xx42vgk x16ovd2e x12xbjc7 xdx6fka xvtqlqk\"></div> from <div class=\"x10l6tqk x13vifvy x1o0tod x78zum5 xh8yej3 x5yr21d x6ikm8r x10wlt62 x47corl\">\u2026</div> subtree intercepts pointer events\n    - retrying click action\n    - waiting 20ms\n    2 \u00d7 waiting for element to be visible, enabled and stable\n      - element is visible, enabled and stable\n      - scrolling into view if needed\n      - done scrolling\n      - <div class=\"x78zum5 x1c4vz4f x2lah0s x1helyrv x6s0dn4 x1qughib x178xt8z x13fuv20 xx42vgk x16ovd2e x12xbjc7 xdx6fka xvtqlqk\"></div> from <div class=\"x10l6tqk x13vifvy x1o0tod x78zum5 xh8yej3 x5yr21d x6ikm8r x10wlt62 x47corl\">\u2026</div> subtree intercepts pointer events\n    - retrying click action\n      - waiting 100ms\n    54 \u00d7 waiting for element to be visible, enabled and stable\n       - element is visible, enabled and stable\n       - scrolling into view if needed\n       - done scrolling\n       - <span class=\"\" aria-hidden=\"true\" data-icon=\"wds-ic-send-filled\" data-testid=\"wds-ic-send-filled\">\u2026</span> from <div class=\"x10l6tqk x13vifvy x1o0tod x78zum5 xh8yej3 x5yr21d x6ikm8r x10wlt62 x47corl\">\u2026</div> subtree intercepts pointer events\n     - retrying click action\n       - waiting 500ms\n"
+    },
+    {
+      "client_id": 87,
+      "name": "Yogesh Jain",
+      "phone": "919849028140",
+      "pdf": "Yogesh_Jain_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 16:42:12",
+      "status": "delivered",
+      "error": null
+    },
+    {
+      "client_id": 88,
+      "name": "N S Geetha",
+      "phone": "919880064210",
+      "pdf": "N_S_Geetha_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 16:42:34",
+      "status": "delivered",
+      "error": null
+    },
+    {
+      "client_id": 89,
+      "name": "Shanti Lal Jain",
+      "phone": "919425139280",
+      "pdf": "Shanti_Lal_Jain_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 16:42:58",
+      "status": "delivered",
+      "error": null
+    },
+    {
+      "client_id": 90,
+      "name": "B E Nataraj",
+      "phone": "919448051920",
+      "pdf": "B_E_Nataraj_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 16:43:23",
+      "status": "failed",
+      "error": "Locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator(\"footer button[aria-label='Attach'], footer span[data-icon='plus'], footer div[role='button']:has(span[data-icon='plus'])\").first\n"
+    },
+    {
+      "client_id": 91,
+      "name": "Ramesh Babulal Sanghvi",
+      "phone": "919820481920",
+      "pdf": "Ramesh_Babulal_Sanghvi_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 16:44:21",
+      "status": "delivered",
+      "error": null
+    },
+    {
+      "client_id": 92,
+      "name": "Look Chand",
+      "phone": "919032882838",
+      "pdf": "Look_Chand_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 16:44:47",
+      "status": "failed",
+      "error": "Locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator(\"div[aria-label='Send'], button[aria-label='Send'], span[data-icon='send'], span[data-icon='wds-ic-send-filled']\").first\n    - locator resolved to <button tabindex=\"0\" data-tab=\"11\" type=\"button\" aria-label=\"Send\" aria-disabled=\"false\" class=\"html-button xdj266r x14z9mp xat24cr x1lziwak xexx8yu xyri2b x18d9i69 x1c1uobl x178xt8z x1lun4ml xso031l xpilrb4 x1n2onr6 x1ejq31n x18oe1m7 x1sy0etr xstzfhl x1so62im x1syfmzz x1ja2u2z x1ypdohk x1s928wv x1j6awrg x4eaejv x1wsn0xg x1r0yslu x2q1x1w xapdjt xr6f91l x5rv0tg x1akc3lz xikp0eg x1xl5mkn x1mfml39 x1l5mzlr xgmdoj8 x1f1wgk5 x1x3ic1u xfn3atn x1pse0pq x1yxkqql xtnn1bt x9v5kkp xmw7ebm xrdum7p x3oybdh x13t8fm\u2026>\u2026</button>\n  - attempting click action\n    2 \u00d7 waiting for element to be visible, enabled and stable\n      - element is visible, enabled and stable\n      - scrolling into view if needed\n      - done scrolling\n      - <div class=\"x78zum5 x1c4vz4f x2lah0s x1helyrv x6s0dn4 x1qughib x178xt8z x13fuv20 xx42vgk x16ovd2e x12xbjc7 xdx6fka xvtqlqk\"></div> from <div class=\"x10l6tqk x13vifvy x1o0tod x78zum5 xh8yej3 x5yr21d x6ikm8r x10wlt62 x47corl\">\u2026</div> subtree intercepts pointer events\n    - retrying click action\n    - waiting 20ms\n    2 \u00d7 waiting for element to be visible, enabled and stable\n      - element is visible, enabled and stable\n      - scrolling into view if needed\n      - done scrolling\n      - <div class=\"x78zum5 x1c4vz4f x2lah0s x1helyrv x6s0dn4 x1qughib x178xt8z x13fuv20 xx42vgk x16ovd2e x12xbjc7 xdx6fka xvtqlqk\"></div> from <div class=\"x10l6tqk x13vifvy x1o0tod x78zum5 xh8yej3 x5yr21d x6ikm8r x10wlt62 x47corl\">\u2026</div> subtree intercepts pointer events\n    - retrying click action\n      - waiting 100ms\n    54 \u00d7 waiting for element to be visible, enabled and stable\n       - element is visible, enabled and stable\n       - scrolling into view if needed\n       - done scrolling\n       - <span class=\"\" aria-hidden=\"true\" data-icon=\"wds-ic-send-filled\" data-testid=\"wds-ic-send-filled\">\u2026</span> from <div class=\"x10l6tqk x13vifvy x1o0tod x78zum5 xh8yej3 x5yr21d x6ikm8r x10wlt62 x47corl\">\u2026</div> subtree intercepts pointer events\n     - retrying click action\n       - waiting 500ms\n"
+    },
+    {
+      "client_id": 93,
+      "name": "Mohendra Nath Borah",
+      "phone": "919824051820",
+      "pdf": "Mohendra_Nath_Borah_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 16:45:56",
+      "status": "delivered",
+      "error": null
+    },
+    {
+      "client_id": 43,
+      "name": "Smruti Shailesh Pancholi",
+      "phone": "919824065112",
+      "pdf": "Smruti_Shailesh_Pancholi_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 16:47:24",
+      "status": "failed",
+      "error": "Locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator(\"footer button[aria-label='Attach'], footer span[data-icon='plus'], footer div[role='button']:has(span[data-icon='plus'])\").first\n"
+    },
+    {
+      "client_id": 43,
+      "name": "Smruti Shailesh Pancholi",
+      "phone": "919824065112",
+      "pdf": "Smruti_Shailesh_Pancholi_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 16:49:00",
+      "status": "failed",
+      "error": "Locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-icon='plus'], [aria-label='Attach'], button[title='Attach'], div[title='Attach']\").first\n"
+    },
+    {
+      "client_id": 44,
+      "name": "Vishal Kumar Gupta",
+      "phone": "919811023415",
+      "pdf": "Vishal_Kumar_Gupta_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 16:54:17",
+      "status": "delivered",
+      "error": null
+    },
+    {
+      "client_id": 44,
+      "name": "Vishal Kumar Gupta",
+      "phone": "919873723415",
+      "pdf": "Vishal_Kumar_Gupta_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 16:54:47",
+      "status": "delivered",
+      "error": null
+    },
+    {
+      "client_id": 64,
+      "name": "Meera Nagda",
+      "phone": "919740089897",
+      "pdf": "Meera_Nagda_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 17:00:23",
+      "status": "delivered",
+      "error": null
+    },
+    {
+      "client_id": 85,
+      "name": "Efregine Florine Noronha",
+      "phone": "919702015015",
+      "pdf": "Efregine_Florine_Noronha_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 17:03:55",
+      "status": "delivered",
+      "error": null
+    },
+    {
+      "client_id": 92,
+      "name": "Look Chand",
+      "phone": "919032882838",
+      "pdf": "Look_Chand_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "timestamp": "2026-09-29 17:05:27",
+      "status": "delivered",
+      "error": null
+    }
+  ]
+}

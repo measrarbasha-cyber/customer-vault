@@ -1,0 +1,418 @@
+{
+  "timestamp": "2026-09-29 16:13:30",
+  "dry_run": false,
+  "total": 27,
+  "sent": 27,
+  "failed": 0,
+  "records": [
+    {
+      "id": 7,
+      "name": "Dr. Sanjeev Ratnakar Phatak & Sanu Phatak",
+      "folio_id": "IN30034310432220",
+      "address": "1, Tejdhara Bunglows Part-II, 100ft. Road, Behind Rahul Tower, Satellite, Ahmedabad, Gujarat - 380015",
+      "emails": [
+        "drsanjeev@hvl.co.in"
+      ],
+      "shares": 13140,
+      "valuation_str": "~Rs. 1.87 Cr",
+      "valuation_full": "Rs. 18,724,500.00",
+      "pdf_fn": "Dr_Sanjeev_Phatak_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "pdf_path": "C:\\Users\\ASRAR BASHA\\.gemini\\antigravity\\scratch\\customer-vault\\uploads\\Dr_Sanjeev_Phatak_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "fee_pct": 8
+    },
+    {
+      "id": 20,
+      "name": "Kavish Sarawgi (Kavish Kumar Gadia)",
+      "folio_id": "IN30154918973633",
+      "address": "Tower-A, Flat 201, Bestech Park View Spa, Near DPS Primary School, Sector 47, Gurgaon, Haryana - 122002",
+      "emails": [
+        "kavish@stones2milestones.com",
+        "go@getfreadom.com"
+      ],
+      "shares": 18526,
+      "valuation_str": "~Rs. 2.64 Cr",
+      "valuation_full": "Rs. 26,399,550.00",
+      "pdf_fn": "Kavish_Sarawgi_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "pdf_path": "C:\\Users\\ASRAR BASHA\\.gemini\\antigravity\\scratch\\customer-vault\\uploads\\Kavish_Sarawgi_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "fee_pct": 8
+    },
+    {
+      "id": 23,
+      "name": "Naniklal Bhatia / Shyam Bhatia (Chartered Accountants)",
+      "folio_id": "IN30048411367040",
+      "address": "Bhatia Bhawan, 20 Jairampur Colony, Main Road, Indore, Madhya Pradesh - 452004",
+      "emails": [
+        "shyambhatia@rediffmail.com",
+        "Gst.bhatia2017@gmail.com"
+      ],
+      "shares": 35368,
+      "valuation_str": "~Rs. 5.04 Cr",
+      "valuation_full": "Rs. 50,399,400.00",
+      "pdf_fn": "Naniklal_Bhatia_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "pdf_path": "C:\\Users\\ASRAR BASHA\\.gemini\\antigravity\\scratch\\customer-vault\\uploads\\Naniklal_Bhatia_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "fee_pct": 8
+    },
+    {
+      "id": 24,
+      "name": "CA Loveseema Kukreja",
+      "folio_id": "IN30296010013727",
+      "address": "G-707, Rashmi Apartments, Harsh Vihar, Pitampura, Delhi - 110034",
+      "emails": [
+        "ca.loveseema@gmail.com"
+      ],
+      "shares": 32000,
+      "valuation_str": "~Rs. 4.56 Cr",
+      "valuation_full": "Rs. 45,600,000.00",
+      "pdf_fn": "CA_Loveseema_Kukreja_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "pdf_path": "C:\\Users\\ASRAR BASHA\\.gemini\\antigravity\\scratch\\customer-vault\\uploads\\CA_Loveseema_Kukreja_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "fee_pct": 8
+    },
+    {
+      "id": 32,
+      "name": "CA Prakash Udhawdas Tekwani & Udhawdas Isardas Tekwani",
+      "folio_id": "IN30127630282977 / IN30127630282985",
+      "address": "Block No. 29 D, Sardar Nagar, Near Saibaba Mandir, Sindhi Colony, Ahmedabad, Gujarat - 382475",
+      "emails": [
+        "prakashtekwani@yahoo.com"
+      ],
+      "shares": 13895,
+      "valuation_str": "~Rs. 1.98 Cr",
+      "valuation_full": "Rs. 19,800,375.00",
+      "pdf_fn": "Prakash_Udhawdas_Tekwani_Udhawdas_Isardas_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "pdf_path": "C:\\Users\\ASRAR BASHA\\.gemini\\antigravity\\scratch\\customer-vault\\uploads\\Prakash_Udhawdas_Tekwani_Udhawdas_Isardas_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "fee_pct": 8
+    },
+    {
+      "id": 34,
+      "name": "Madhuram Traders Pvt Ltd & Madhuvan Commodities Brokers Pvt Ltd",
+      "folio_id": "IN30308510001700 / IN30308510011449",
+      "address": "82 / 85 Madhuvan Building, Near Madalpur Underbridge, Ellisbridge, Ahmedabad, Gujarat - 380006",
+      "emails": [
+        "info@madhuvan.com",
+        "ashish@madhuvan.com"
+      ],
+      "shares": 9684,
+      "valuation_str": "~Rs. 1.38 Cr",
+      "valuation_full": "Rs. 13,799,700.00",
+      "pdf_fn": "Madhuram_Traders_Pvt_Ltd_Madhuvan_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "pdf_path": "C:\\Users\\ASRAR BASHA\\.gemini\\antigravity\\scratch\\customer-vault\\uploads\\Madhuram_Traders_Pvt_Ltd_Madhuvan_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "fee_pct": 8
+    },
+    {
+      "id": 42,
+      "name": "Aniket R Desai",
+      "folio_id": "IN30133019531306",
+      "address": "27, Shivali Society, Behind Utkarsh Petrol Pump, Karelibaug, Vadodara, Gujarat - 390018",
+      "emails": [
+        "aniket@saatchifinancials.com"
+      ],
+      "shares": 8444,
+      "valuation_str": "~Rs. 1.20 Cr",
+      "valuation_full": "Rs. 12,032,700.00",
+      "pdf_fn": "Aniket_R_Desai_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "pdf_path": "C:\\Users\\ASRAR BASHA\\.gemini\\antigravity\\scratch\\customer-vault\\uploads\\Aniket_R_Desai_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "fee_pct": 8
+    },
+    {
+      "id": 43,
+      "name": "Smruti Shailesh Pancholi",
+      "folio_id": "1301670000225543",
+      "address": "30, Viral Park-1, GIDC Makarpura, Vadsar Road, Vadodara, Gujarat - 390010",
+      "emails": [
+        "smruti.pancholi@gmail.com"
+      ],
+      "shares": 6333,
+      "valuation_str": "~Rs. 90.25 Lakhs",
+      "valuation_full": "Rs. 9,024,525.00",
+      "pdf_fn": "Smruti_Shailesh_Pancholi_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "pdf_path": "C:\\Users\\ASRAR BASHA\\.gemini\\antigravity\\scratch\\customer-vault\\uploads\\Smruti_Shailesh_Pancholi_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "fee_pct": 8
+    },
+    {
+      "id": 46,
+      "name": "Nita Gautam Advani",
+      "folio_id": "0000201",
+      "address": "Bellwether Capital Pvt Ltd, 508 Raheja Chambers, Free Press Journal Road, Nariman Point, Mumbai, Maharashtra - 400021",
+      "emails": [
+        "norma@bellwethercapital.in",
+        "ranjit@bellwethercapital.in"
+      ],
+      "shares": 7777,
+      "valuation_str": "~Rs. 1.11 Cr",
+      "valuation_full": "Rs. 11,082,225.00",
+      "pdf_fn": "Nita_Gautam_Advani_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "pdf_path": "C:\\Users\\ASRAR BASHA\\.gemini\\antigravity\\scratch\\customer-vault\\uploads\\Nita_Gautam_Advani_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "fee_pct": 8
+    },
+    {
+      "id": 47,
+      "name": "Rajeshwari Hooja",
+      "folio_id": "IN30115127598200",
+      "address": "HDFC Bank Ltd Custody Services, Lodha - I Think Techno Campus, Off Flr 8, Next to Kanjurmarg Station, Kanjurmarg East, Mumbai, Maharashtra - 400042",
+      "emails": [
+        "siddharth.jadhav@hdfcbank.com"
+      ],
+      "shares": 5554,
+      "valuation_str": "~Rs. 79.14 Lakhs",
+      "valuation_full": "Rs. 7,914,450.00",
+      "pdf_fn": "Rajeshwari_Hooja_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "pdf_path": "C:\\Users\\ASRAR BASHA\\.gemini\\antigravity\\scratch\\customer-vault\\uploads\\Rajeshwari_Hooja_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "fee_pct": 8
+    },
+    {
+      "id": 50,
+      "name": "Rama Venkatesh Kulkarni",
+      "folio_id": "IN30611490445597",
+      "address": "No 9, 6th Main, 4th Block, Goraguntepalya, Bangalore, Karnataka - 560022",
+      "emails": [
+        "rama.kulkarni@gmail.com"
+      ],
+      "shares": 4000,
+      "valuation_str": "~Rs. 57.00 Lakhs",
+      "valuation_full": "Rs. 5,700,000.00",
+      "pdf_fn": "Rama_Venkatesh_Kulkarni_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "pdf_path": "C:\\Users\\ASRAR BASHA\\.gemini\\antigravity\\scratch\\customer-vault\\uploads\\Rama_Venkatesh_Kulkarni_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "fee_pct": 8
+    },
+    {
+      "id": 51,
+      "name": "Bhadani Gordhanbhai Bhagvanbhai",
+      "folio_id": "IN30115121202283",
+      "address": "Devbaug Navjivan Soc, Plot No 19, Sheri No 2 Khodal Krupa, Bhavnagar, Gujarat - 364001",
+      "emails": [
+        "gordhanbhai.bhadani@gmail.com"
+      ],
+      "shares": 4000,
+      "valuation_str": "~Rs. 57.00 Lakhs",
+      "valuation_full": "Rs. 5,700,000.00",
+      "pdf_fn": "Bhadani_Gordhanbhai_Bhagvanbhai_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "pdf_path": "C:\\Users\\ASRAR BASHA\\.gemini\\antigravity\\scratch\\customer-vault\\uploads\\Bhadani_Gordhanbhai_Bhagvanbhai_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "fee_pct": 8
+    },
+    {
+      "id": 59,
+      "name": "Arun Kumar Agarwal",
+      "folio_id": "IN30371910811298",
+      "address": "53/9/1 Banabehari Bose Road, Howrah Municipal Corp, Shibpur, Howrah, West Bengal - 711101",
+      "emails": [
+        "arunkumar.agarwal@gmail.com"
+      ],
+      "shares": 2777,
+      "valuation_str": "~Rs. 39.57 Lakhs",
+      "valuation_full": "Rs. 3,957,225.00",
+      "pdf_fn": "Arun_Kumar_Agarwal_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "pdf_path": "C:\\Users\\ASRAR BASHA\\.gemini\\antigravity\\scratch\\customer-vault\\uploads\\Arun_Kumar_Agarwal_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "fee_pct": 8
+    },
+    {
+      "id": 71,
+      "name": "Ramesh Chandra Rastogi",
+      "folio_id": "IN30055610243236",
+      "address": "H.No. 89 Mahadev Prasad Street, Farrukhabad, Uttar Pradesh - 209625",
+      "emails": [
+        "rcrastogi.farrukhabad@gmail.com"
+      ],
+      "shares": 2221,
+      "valuation_str": "~Rs. 31.65 Lakhs",
+      "valuation_full": "Rs. 3,164,925.00",
+      "pdf_fn": "Ramesh_Chandra_Rastogi_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "pdf_path": "C:\\Users\\ASRAR BASHA\\.gemini\\antigravity\\scratch\\customer-vault\\uploads\\Ramesh_Chandra_Rastogi_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "fee_pct": 8
+    },
+    {
+      "id": 72,
+      "name": "Alka Mohan Jha",
+      "folio_id": "IN30220110344584",
+      "address": "Giri Vihar Bunglow, Bilakha Road, Junagadh, Gujarat - 362001",
+      "emails": [
+        "alkajha.junagadh@gmail.com"
+      ],
+      "shares": 2221,
+      "valuation_str": "~Rs. 31.65 Lakhs",
+      "valuation_full": "Rs. 3,164,925.00",
+      "pdf_fn": "Alka_Mohan_Jha_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "pdf_path": "C:\\Users\\ASRAR BASHA\\.gemini\\antigravity\\scratch\\customer-vault\\uploads\\Alka_Mohan_Jha_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "fee_pct": 8
+    },
+    {
+      "id": 73,
+      "name": "Chandra Bhanu Singh",
+      "folio_id": "1201320001321432",
+      "address": "2/508 Ruchi Khand, Sharda Nagar, Lucknow, Uttar Pradesh - 226002",
+      "emails": [
+        "chandrabhanu.singh@gmail.com"
+      ],
+      "shares": 2177,
+      "valuation_str": "~Rs. 31.02 Lakhs",
+      "valuation_full": "Rs. 3,102,225.00",
+      "pdf_fn": "Chandra_Bhanu_Singh_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "pdf_path": "C:\\Users\\ASRAR BASHA\\.gemini\\antigravity\\scratch\\customer-vault\\uploads\\Chandra_Bhanu_Singh_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "fee_pct": 8
+    },
+    {
+      "id": 76,
+      "name": "Krishna Kumar Sharma",
+      "folio_id": "1201091000025460",
+      "address": "C 1/1, Shivlok Colony, Raipur Road, Dehradun, Uttarakhand - 248008",
+      "emails": [
+        "kksharma.dehradun@gmail.com"
+      ],
+      "shares": 2112,
+      "valuation_str": "~Rs. 30.10 Lakhs",
+      "valuation_full": "Rs. 3,009,600.00",
+      "pdf_fn": "Krishna_Kumar_Sharma_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "pdf_path": "C:\\Users\\ASRAR BASHA\\.gemini\\antigravity\\scratch\\customer-vault\\uploads\\Krishna_Kumar_Sharma_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "fee_pct": 8
+    },
+    {
+      "id": 82,
+      "name": "I Syed Zameer",
+      "folio_id": "IN30192630450994",
+      "address": "No 38-1 Marble Arch, Flat No C G, Netaji Road, Frazer Town, Bangalore, Karnataka - 560005",
+      "emails": [
+        "syedzameer.bangalore@gmail.com"
+      ],
+      "shares": 5554,
+      "valuation_str": "~Rs. 79.14 Lakhs",
+      "valuation_full": "Rs. 7,914,450.00",
+      "pdf_fn": "I_Syed_Zameer_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "pdf_path": "C:\\Users\\ASRAR BASHA\\.gemini\\antigravity\\scratch\\customer-vault\\uploads\\I_Syed_Zameer_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "fee_pct": 8
+    },
+    {
+      "id": 83,
+      "name": "Prabha Jain",
+      "folio_id": "IN30039413642098",
+      "address": "327 Rachna Nagar, Bhopal, Madhya Pradesh - 462021",
+      "emails": [
+        "prabhajain.bhopal@gmail.com"
+      ],
+      "shares": 3554,
+      "valuation_str": "~Rs. 50.64 Lakhs",
+      "valuation_full": "Rs. 5,064,450.00",
+      "pdf_fn": "Prabha_Jain_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "pdf_path": "C:\\Users\\ASRAR BASHA\\.gemini\\antigravity\\scratch\\customer-vault\\uploads\\Prabha_Jain_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "fee_pct": 8
+    },
+    {
+      "id": 84,
+      "name": "Vinod Kumar Negi",
+      "folio_id": "IN30323710146164",
+      "address": "25 Manzil Apartments, Plot No 7, Sector 9, Dwarka, New Delhi - 110075",
+      "emails": [
+        "vinodnegi.dwarka@gmail.com"
+      ],
+      "shares": 3554,
+      "valuation_str": "~Rs. 50.64 Lakhs",
+      "valuation_full": "Rs. 5,064,450.00",
+      "pdf_fn": "Vinod_Kumar_Negi_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "pdf_path": "C:\\Users\\ASRAR BASHA\\.gemini\\antigravity\\scratch\\customer-vault\\uploads\\Vinod_Kumar_Negi_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "fee_pct": 8
+    },
+    {
+      "id": 87,
+      "name": "Yogesh Jain",
+      "folio_id": "IN30226912530334",
+      "address": "Flat No-527, Mansarover Heights-I, Lift No-12, Nr Manovikas Nagar, Secunderabad, Telangana - 500009",
+      "emails": [
+        "yogesh.jain.secunderabad@gmail.com"
+      ],
+      "shares": 2444,
+      "valuation_str": "~Rs. 34.83 Lakhs",
+      "valuation_full": "Rs. 3,482,700.00",
+      "pdf_fn": "Yogesh_Jain_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "pdf_path": "C:\\Users\\ASRAR BASHA\\.gemini\\antigravity\\scratch\\customer-vault\\uploads\\Yogesh_Jain_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "fee_pct": 8
+    },
+    {
+      "id": 88,
+      "name": "N S Geetha",
+      "folio_id": "IN30061010932504",
+      "address": "No 16, 6th Main, Sumuka Nilaya, Chamundeshwari Layout, Vidyaranyapura, Bangalore, Karnataka - 560097",
+      "emails": [
+        "nsgeetha.bangalore@gmail.com"
+      ],
+      "shares": 2333,
+      "valuation_str": "~Rs. 33.25 Lakhs",
+      "valuation_full": "Rs. 3,324,525.00",
+      "pdf_fn": "N_S_Geetha_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "pdf_path": "C:\\Users\\ASRAR BASHA\\.gemini\\antigravity\\scratch\\customer-vault\\uploads\\N_S_Geetha_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "fee_pct": 8
+    },
+    {
+      "id": 89,
+      "name": "Shanti Lal Jain",
+      "folio_id": "IN30226910749937",
+      "address": "Sadar Bazar, Ambah, Morena, Madhya Pradesh - 476111",
+      "emails": [
+        "shantilal.ambah@gmail.com"
+      ],
+      "shares": 2221,
+      "valuation_str": "~Rs. 31.65 Lakhs",
+      "valuation_full": "Rs. 3,164,925.00",
+      "pdf_fn": "Shanti_Lal_Jain_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "pdf_path": "C:\\Users\\ASRAR BASHA\\.gemini\\antigravity\\scratch\\customer-vault\\uploads\\Shanti_Lal_Jain_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "fee_pct": 8
+    },
+    {
+      "id": 90,
+      "name": "B E Nataraj",
+      "folio_id": "IN30061010194610",
+      "address": "M G Road, Chikmagalur, Karnataka - 577101",
+      "emails": [
+        "benataraj.coffee@gmail.com"
+      ],
+      "shares": 2177,
+      "valuation_str": "~Rs. 31.02 Lakhs",
+      "valuation_full": "Rs. 3,102,225.00",
+      "pdf_fn": "B_E_Nataraj_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "pdf_path": "C:\\Users\\ASRAR BASHA\\.gemini\\antigravity\\scratch\\customer-vault\\uploads\\B_E_Nataraj_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "fee_pct": 8
+    },
+    {
+      "id": 91,
+      "name": "Ramesh Babulal Sanghvi",
+      "folio_id": "IN30090710371266",
+      "address": "202 Laxmi Darshan, Near Summer Field School, Nallasopara East, Thane, Maharashtra - 401209",
+      "emails": [
+        "ramesh.sanghvi.thane@gmail.com"
+      ],
+      "shares": 2112,
+      "valuation_str": "~Rs. 30.10 Lakhs",
+      "valuation_full": "Rs. 3,009,600.00",
+      "pdf_fn": "Ramesh_Babulal_Sanghvi_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "pdf_path": "C:\\Users\\ASRAR BASHA\\.gemini\\antigravity\\scratch\\customer-vault\\uploads\\Ramesh_Babulal_Sanghvi_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "fee_pct": 8
+    },
+    {
+      "id": 93,
+      "name": "Mohendra Nath Borah",
+      "folio_id": "1301670000425336",
+      "address": "Qtr No 161/3 JCO Colony, Lancer Line, Makarpura, Vadodara, Gujarat - 390009",
+      "emails": [
+        "mohendra.borah@gmail.com"
+      ],
+      "shares": 2112,
+      "valuation_str": "~Rs. 30.10 Lakhs",
+      "valuation_full": "Rs. 3,009,600.00",
+      "pdf_fn": "Mohendra_Nath_Borah_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "pdf_path": "C:\\Users\\ASRAR BASHA\\.gemini\\antigravity\\scratch\\customer-vault\\uploads\\Mohendra_Nath_Borah_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "fee_pct": 8
+    },
+    {
+      "id": 94,
+      "name": "Piyush B Virani",
+      "folio_id": "IN30133019052258",
+      "address": "Jethalal Mansion, 3rd Floor, Bank Street Cross Lane, Fort, Mumbai, Maharashtra - 400023",
+      "emails": [
+        "vkakar@kaplegal.com"
+      ],
+      "shares": 2112,
+      "valuation_str": "~Rs. 30.10 Lakhs",
+      "valuation_full": "Rs. 3,009,600.00",
+      "pdf_fn": "Piyush_B_Virani_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "pdf_path": "C:\\Users\\ASRAR BASHA\\.gemini\\antigravity\\scratch\\customer-vault\\uploads\\Piyush_B_Virani_IEPF_Transfer_Notice_and_Recovery_Guide.pdf",
+      "fee_pct": 8
+    }
+  ]
+}
