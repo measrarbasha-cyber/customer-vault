@@ -354,6 +354,13 @@ def dispatch_all_emails(dry_run=True):
     print(f"Audit log saved to: {log_path}")
     print("=" * 80)
 
+    # Automatic Post-Dispatch Undelivered & Bounce Purge
+    if not dry_run:
+        print("\nWaiting 10 seconds for initial recipient mail server handshakes...", flush=True)
+        time.sleep(10)
+        from auto_clean_undelivered_emails import clean_undelivered_and_bounced_emails
+        clean_undelivered_and_bounced_emails()
+
 if __name__ == "__main__":
     is_live = "--live" in sys.argv
     dispatch_all_emails(dry_run=not is_live)
