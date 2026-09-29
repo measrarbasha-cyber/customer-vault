@@ -597,6 +597,35 @@
                   </div>
                 </div>
 
+                <!-- PDF 6 CARD: Statutory IEPF Restitution Notice & Recovery Guide (ONLY FOR TRANSFERRED CLIENTS) -->
+                <div id="pdf6Card" class="hidden p-3.5 sm:p-4 rounded-xl border border-rose-300 bg-gradient-to-br from-rose-50/70 to-red-50/40 flex flex-col justify-between shadow-2xs hover:border-rose-400 transition sm:col-span-2">
+                  <div class="flex items-start space-x-3">
+                    <div class="p-2 rounded-lg bg-rose-200 text-rose-900 shrink-0">
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                      </svg>
+                    </div>
+                    <div class="min-w-0 flex-1">
+                      <div class="flex items-center space-x-2">
+                        <span id="pdf6Badge" class="text-[10px] font-black text-rose-900 uppercase tracking-wider">Doc 6 &bull; Statutory IEPF Restitution Notice &amp; Recovery Guide</span>
+                        <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-black bg-rose-700 text-white uppercase tracking-wider">IEPF Transferred</span>
+                      </div>
+                      <p id="pdf6Title" class="text-xs font-bold text-slate-900 truncate mt-0.5">No document uploaded</p>
+                    </div>
+                  </div>
+
+                  <div id="pdf6Actions" class="no-print mt-3 pt-2.5 border-t border-rose-200 flex items-center space-x-2">
+                    <a id="pdf6ViewBtn" href="#" target="_blank" class="flex-1 py-1.5 px-3 text-center text-xs font-bold text-white bg-rose-700 hover:bg-rose-800 rounded-md shadow-xs transition">
+                      View Statutory Transfer Notice &amp; Recovery Guide
+                    </a>
+                    <a id="pdf6DownloadBtn" href="#" download class="p-1.5 text-rose-800 hover:text-rose-950 rounded-md hover:bg-rose-200 transition" title="Download">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+
               </div>
             </div>
 
@@ -1335,7 +1364,7 @@
         const isSelected = cust.id === selectedCustomerId;
         const initials = getInitials(cust.name);
         const bgGrad = getGradient(cust.name);
-        const hasPdf = (cust.pdf1_path ? 1 : 0) + (cust.pdf2_path ? 1 : 0) + (cust.pdf3_path ? 1 : 0) + (cust.pdf4_path ? 1 : 0) + (cust.pdf5_path ? 1 : 0);
+        const hasPdf = (cust.pdf1_path ? 1 : 0) + (cust.pdf2_path ? 1 : 0) + (cust.pdf3_path ? 1 : 0) + (cust.pdf4_path ? 1 : 0) + (cust.pdf5_path ? 1 : 0) + (cust.pdf6_path ? 1 : 0);
         const custStatus = cust.status || 'Pending';
 
         let badgeBg = 'bg-amber-100 text-amber-800 border-amber-200';
@@ -1372,6 +1401,7 @@
                   ${cust.my_est_value ? `<span class="text-[10px] sm:text-[11px] font-black text-amber-950 bg-amber-100 border border-amber-300 px-1.5 py-0.5 rounded-md shadow-2xs">💰 Fee: ${cust.my_est_value}</span>` : ''}
                   ${cust.contact_info ? `<span class="truncate text-[11px]">${cust.contact_info}</span>` : '<span class="text-slate-400">No contact info</span>'}
                   ${hasPdf > 0 ? `<span class="text-[10px] font-bold text-rose-600 bg-rose-50 px-1.5 py-0.5 rounded border border-rose-100 shrink-0">📄 ${hasPdf} PDFs</span>` : ''}
+                  ${cust.pdf6_path ? `<span class="text-[10px] font-extrabold text-rose-800 bg-rose-100 border border-rose-300 px-1.5 py-0.5 rounded shadow-2xs shrink-0">🏛️ IEPF Notice (Doc 6)</span>` : ''}
                 </div>
               </div>
             </div>
@@ -1617,6 +1647,27 @@
       } else {
         if (pdf5Title) pdf5Title.innerText = 'No share certificate generated';
         if (pdf5Actions) pdf5Actions.classList.add('hidden');
+      }
+
+      // PDF 6 (Statutory IEPF Restitution Notice & Recovery Guide - ONLY FOR TRANSFERRED CLIENTS)
+      const pdf6Card = document.getElementById('pdf6Card');
+      const pdf6Actions = document.getElementById('pdf6Actions');
+      const pdf6Title = document.getElementById('pdf6Title');
+      const pdf6View = document.getElementById('pdf6ViewBtn');
+      const pdf6Dl = document.getElementById('pdf6DownloadBtn');
+
+      if (cust.pdf6_path) {
+        const p6Url = `/api/documents/${cust.pdf6_path}?t=${Date.now()}`;
+        if (pdf6Title) pdf6Title.innerText = cust.pdf6_filename || 'Statutory_IEPF_Transfer_Notice_and_Recovery_Guide.pdf';
+        if (pdf6View) pdf6View.href = p6Url;
+        if (pdf6Dl) {
+          pdf6Dl.href = p6Url;
+          pdf6Dl.setAttribute('download', cust.pdf6_filename || 'Statutory_IEPF_Transfer_Notice_and_Recovery_Guide.pdf');
+        }
+        if (pdf6Actions) pdf6Actions.classList.remove('hidden');
+        if (pdf6Card) pdf6Card.classList.remove('hidden');
+      } else {
+        if (pdf6Card) pdf6Card.classList.add('hidden');
       }
     }
 

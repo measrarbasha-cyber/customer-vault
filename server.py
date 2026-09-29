@@ -155,6 +155,9 @@ def init_db():
         if "pdf5_filename" not in columns:
             cursor.execute("ALTER TABLE customers ADD COLUMN pdf5_filename TEXT")
             cursor.execute("ALTER TABLE customers ADD COLUMN pdf5_path TEXT")
+        if "pdf6_filename" not in columns:
+            cursor.execute("ALTER TABLE customers ADD COLUMN pdf6_filename TEXT")
+            cursor.execute("ALTER TABLE customers ADD COLUMN pdf6_path TEXT")
         if "status" not in columns:
             cursor.execute("ALTER TABLE customers ADD COLUMN status TEXT DEFAULT 'Pending'")
             cursor.execute("UPDATE customers SET status = 'Pending' WHERE status IS NULL OR status = ''")
@@ -179,6 +182,8 @@ def init_db():
             pdf4_path TEXT,
             pdf5_filename TEXT,
             pdf5_path TEXT,
+            pdf6_filename TEXT,
+            pdf6_path TEXT,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
     """)
@@ -651,7 +656,7 @@ class CustomerHandler(BaseHTTPRequestHandler):
             cursor = conn.cursor()
             cursor.execute("""
                 SELECT id, status, name, folio_id, est_folio, my_est_value, contact_info, address, 
-                       pdf1_filename, pdf2_filename, pdf3_filename, pdf4_filename, pdf5_filename, created_at 
+                       pdf1_filename, pdf2_filename, pdf3_filename, pdf4_filename, pdf5_filename, pdf6_filename, created_at 
                 FROM customers ORDER BY name ASC
             """)
             rows = cursor.fetchall()
@@ -660,7 +665,7 @@ class CustomerHandler(BaseHTTPRequestHandler):
             output = io.StringIO()
             output.write('\ufeff') # UTF-8 BOM for Excel
             writer = csv.writer(output)
-            writer.writerow(["ID", "Status", "Name", "Folio ID", "EST. Folio", "My Est. Value", "Contact Info", "Address", "PDF 1 (Dossier)", "PDF 2 (Agreement)", "PDF 3 (Call Playbook EN)", "PDF 4 (Call Playbook Regional)", "PDF 5 (Share Audit & Trust Dossier)", "Created At"])
+            writer.writerow(["ID", "Status", "Name", "Folio ID", "EST. Folio", "My Est. Value", "Contact Info", "Address", "PDF 1 (Dossier)", "PDF 2 (Agreement)", "PDF 3 (Call Playbook EN)", "PDF 4 (Call Playbook Regional)", "PDF 5 (Share Audit & Trust Dossier)", "PDF 6 (Statutory IEPF Notice & Recovery Guide)", "Created At"])
             for row in rows:
                 writer.writerow(list(row))
 
@@ -772,12 +777,13 @@ class CustomerHandler(BaseHTTPRequestHandler):
                 if status not in ["Pending", "Completed", "Rejected"]:
                     status = "Pending"
 
-                # Handle PDF 1, 2, 3, 4, 5 uploads
+                # Handle PDF 1, 2, 3, 4, 5, 6 uploads
                 pdf1_name, pdf1_file = save_uploaded_file("pdf1", data.get("pdf1"))
                 pdf2_name, pdf2_file = save_uploaded_file("pdf2", data.get("pdf2"))
                 pdf3_name, pdf3_file = save_uploaded_file("pdf3", data.get("pdf3"))
                 pdf4_name, pdf4_file = save_uploaded_file("pdf4", data.get("pdf4"))
                 pdf5_name, pdf5_file = save_uploaded_file("pdf5", data.get("pdf5"))
+                pdf6_name, pdf6_file = save_uploaded_file("pdf6", data.get("pdf6"))
 
                 conn = get_db()
                 cursor = conn.cursor()
@@ -786,12 +792,12 @@ class CustomerHandler(BaseHTTPRequestHandler):
                         name, address, folio_id, est_folio, my_est_value, contact_info, status,
                         pdf1_filename, pdf1_path, pdf2_filename, pdf2_path,
                         pdf3_filename, pdf3_path, pdf4_filename, pdf4_path,
-                        pdf5_filename, pdf5_path
-                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                        pdf5_filename, pdf5_path, pdf6_filename, pdf6_path
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """, (name, address, folio_id, est_folio, my_est_value, contact_info, status,
                       pdf1_name, pdf1_file, pdf2_name, pdf2_file,
                       pdf3_name, pdf3_file, pdf4_name, pdf4_file,
-                      pdf5_name, pdf5_file))
+                      pdf5_name, pdf5_file, pdf6_name, pdf6_file))
                 new_id = cursor.lastrowid
                 conn.commit()
 
@@ -849,6 +855,8 @@ class CustomerHandler(BaseHTTPRequestHandler):
                 pdf4_file = existing["pdf4_path"] if "pdf4_path" in existing.keys() else None
                 pdf5_name = existing["pdf5_filename"] if "pdf5_filename" in existing.keys() else None
                 pdf5_file = existing["pdf5_path"] if "pdf5_path" in existing.keys() else None
+                pdf6_name = existing["pdf6_filename"] if "pdf6_filename" in existing.keys() else None
+                pdf6_file = existing["pdf6_path"] if "pdf6_path" in existing.keys() else None
 
                 # PDF 1
                 if data.get("pdf1"):
@@ -887,6 +895,17 @@ class CustomerHandler(BaseHTTPRequestHandler):
                     new_n5, new_f5 = save_uploaded_file(f"c{cust_id}_p5", data.get("pdf5"))
                     if new_f5:
                         pdf5_name, pdf5_file = new_n5, new_f5
+                elif data.get("pdf5_delete"):
+                    pdf5_name, pdf5_file = None, None
+
+                # PDF 6
+                if data.get("pdf6"):
+                    new_n6, new_f6 = save_uploaded_file(f"c{cust_id}_p6", data.get("pdf6"))
+                    if new_f6:
+                        pdf6_name, pdf6_file = new_n6, new_f6
+                elif data.get("pdf6_delete"):
+                    pdf6_name, pdf6_file = None, None
+
                 status = data.get("status")
                 if status:
                     status = status.strip().capitalize()
@@ -900,12 +919,12 @@ class CustomerHandler(BaseHTTPRequestHandler):
                     SET name = ?, address = ?, folio_id = ?, est_folio = ?, my_est_value = ?, contact_info = ?, status = ?,
                         pdf1_filename = ?, pdf1_path = ?, pdf2_filename = ?, pdf2_path = ?,
                         pdf3_filename = ?, pdf3_path = ?, pdf4_filename = ?, pdf4_path = ?,
-                        pdf5_filename = ?, pdf5_path = ?
+                        pdf5_filename = ?, pdf5_path = ?, pdf6_filename = ?, pdf6_path = ?
                     WHERE id = ?
                 """, (name, address, folio_id, est_folio, my_est_value, contact_info, status,
                       pdf1_name, pdf1_file, pdf2_name, pdf2_file,
                       pdf3_name, pdf3_file, pdf4_name, pdf4_file,
-                      pdf5_name, pdf5_file, cust_id))
+                      pdf5_name, pdf5_file, pdf6_name, pdf6_file, cust_id))
                 conn.commit()
 
                 cursor.execute("SELECT * FROM customers WHERE id = ?", (cust_id,))
@@ -944,7 +963,7 @@ class CustomerHandler(BaseHTTPRequestHandler):
                 cursor.execute("SELECT * FROM customers WHERE id = ?", (cust_id,))
                 row = cursor.fetchone()
                 if row:
-                    for key in ["pdf1_path", "pdf2_path", "pdf3_path", "pdf4_path", "pdf5_path"]:
+                    for key in ["pdf1_path", "pdf2_path", "pdf3_path", "pdf4_path", "pdf5_path", "pdf6_path"]:
                         if key in row.keys() and row[key]:
                             fp = os.path.join(UPLOAD_DIR, row[key])
                             if os.path.exists(fp):
