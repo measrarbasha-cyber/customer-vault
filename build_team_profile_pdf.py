@@ -13,7 +13,7 @@ UPLOAD_DIR = os.path.join(BASE_DIR, "uploads")
 PDF_PATH = os.path.join(UPLOAD_DIR, "Corporate_IEPF_Team_Profile_and_Capability_Statement.pdf")
 BRAIN_DIR = r"C:\Users\ASRAR BASHA\.gemini\antigravity\brain\928f9af5-1e1c-41e2-950a-5e6bfdae4e99"
 
-class NumberedCanvas(canvas.Canvas):
+class ProfessionalCanvas(canvas.Canvas):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self._saved_page_states = []
@@ -32,332 +32,481 @@ class NumberedCanvas(canvas.Canvas):
 
     def draw_page_decorations(self, total_pages):
         self.saveState()
-        self.setFont("Helvetica", 8)
-        self.setFillColor(colors.HexColor("#64748b"))
-
-        # Header (Pages 2+)
-        if self._pageNumber > 1:
-            self.drawString(40, 808, "CORPORATE IEPF ASSET RESTITUTION PRACTICE | PRACTICE PROFILE & CAPABILITY STATEMENT")
-            self.setStrokeColor(colors.HexColor("#cbd5e1"))
-            self.setLineWidth(0.5)
-            self.line(40, 802, 555, 802)
-
-        # Footer
+        
+        # Outer delicate border line
+        self.setStrokeColor(colors.HexColor("#0f172a"))
+        self.setLineWidth(1)
+        self.rect(24, 20, 547, 802)
+        
+        # Inner fine accent border
         self.setStrokeColor(colors.HexColor("#cbd5e1"))
         self.setLineWidth(0.5)
-        self.line(40, 42, 555, 42)
+        self.rect(27, 23, 541, 796)
+
+        # Top corner accents (Gold/Navy)
+        self.setFillColor(colors.HexColor("#0f172a"))
+        self.rect(24, 818, 40, 4, fill=1, stroke=0)
+        self.rect(531, 818, 40, 4, fill=1, stroke=0)
+        self.setFillColor(colors.HexColor("#b45309"))
+        self.rect(64, 819, 20, 2, fill=1, stroke=0)
+        self.rect(511, 819, 20, 2, fill=1, stroke=0)
+
+        # Running Header (Page 2)
+        if self._pageNumber > 1:
+            self.setFont("Helvetica-Bold", 7)
+            self.setFillColor(colors.HexColor("#0f172a"))
+            self.drawString(36, 802, "CORPORATE IEPF ASSET RESTITUTION PRACTICE")
+            self.setFont("Helvetica", 7)
+            self.setFillColor(colors.HexColor("#64748b"))
+            self.drawString(235, 802, "|  PRACTICE CREDENTIALS & CAPABILITY STATEMENT")
+            self.drawRightString(558, 802, "DOC-REF: IEPF/EXEC-CAP/2026")
+            
+            self.setStrokeColor(colors.HexColor("#cbd5e1"))
+            self.setLineWidth(0.6)
+            self.line(36, 796, 558, 796)
+
+        # Running Footer (All Pages)
+        self.setStrokeColor(colors.HexColor("#cbd5e1"))
+        self.setLineWidth(0.6)
+        self.line(36, 38, 558, 38)
+
+        self.setFont("Helvetica-Bold", 6.8)
+        self.setFillColor(colors.HexColor("#0f172a"))
+        self.drawString(36, 28, "OFFICIAL PRACTICE PROFILE & INSTITUTIONAL CAPABILITY DOSSIER")
         
-        self.drawString(40, 30, "CONFIDENTIAL & PROPRIETARY — PREPARED FOR SHAREHOLDER FIDUCIARY REVIEW")
+        self.setFont("Helvetica", 6.5)
+        self.setFillColor(colors.HexColor("#64748b"))
+        self.drawString(290, 28, "STRICTLY CONFIDENTIAL — ISSUED FOR FIDUCIARY REVIEW")
+
         page_str = f"Page {self._pageNumber} of {total_pages}"
-        self.drawRightString(555, 30, page_str)
+        self.drawRightString(558, 28, page_str)
+
         self.restoreState()
 
-def generate_pdf():
+def build_pdf():
     doc = SimpleDocTemplate(
         PDF_PATH,
         pagesize=A4,
-        leftMargin=38,
-        rightMargin=38,
-        topMargin=36,
-        bottomMargin=38
+        leftMargin=36,
+        rightMargin=36,
+        topMargin=46,
+        bottomMargin=30
     )
 
     styles = getSampleStyleSheet()
 
-    title_style = ParagraphStyle(
-        'DocTitle',
+    # Custom Typography Palette
+    c_primary = colors.HexColor("#0f172a")    # Midnight Slate / Executive Navy
+    c_secondary = colors.HexColor("#0369a1")  # Deep Sapphire Blue
+    c_gold = colors.HexColor("#b45309")       # Warm Fiduciary Gold / Bronze
+    c_green = colors.HexColor("#15803d")      # Success Emerald
+    c_dark = colors.HexColor("#1e293b")
+    c_slate = colors.HexColor("#475569")
+    c_light_bg = colors.HexColor("#f8fafc")
+    c_border = colors.HexColor("#cbd5e1")
+
+    # Paragraph Styles
+    p_main_title = ParagraphStyle(
+        'MainTitle',
         fontName='Helvetica-Bold',
-        fontSize=18,
-        leading=22,
-        textColor=colors.HexColor('#0f172a'),
+        fontSize=15,
+        leading=18,
+        textColor=c_primary,
         spaceAfter=2
     )
-    sec_heading = ParagraphStyle(
-        'SectionHeading',
-        fontName='Helvetica-Bold',
-        fontSize=10.5,
-        leading=14,
-        textColor=colors.HexColor('#0f172a'),
-        spaceBefore=7,
-        spaceAfter=4
-    )
-    body_style = ParagraphStyle(
-        'Body',
+    p_sub_title = ParagraphStyle(
+        'SubTitle',
         fontName='Helvetica',
         fontSize=8,
         leading=11,
-        textColor=colors.HexColor('#334155')
+        textColor=c_secondary
     )
-    role_title = ParagraphStyle(
-        'RoleTitle',
+    p_sec_head = ParagraphStyle(
+        'SecHead',
         fontName='Helvetica-Bold',
-        fontSize=8.5,
-        leading=11.5,
-        textColor=colors.HexColor('#0284c7')
+        fontSize=9.5,
+        leading=12.5,
+        textColor=c_primary,
+        spaceBefore=6,
+        spaceAfter=3
+    )
+    p_body = ParagraphStyle(
+        'BodyP',
+        fontName='Helvetica',
+        fontSize=7.5,
+        leading=10.5,
+        textColor=c_dark
+    )
+    p_body_bold = ParagraphStyle(
+        'BodyPBold',
+        fontName='Helvetica-Bold',
+        fontSize=7.5,
+        leading=10.5,
+        textColor=c_primary
+    )
+    p_role_title = ParagraphStyle(
+        'RoleT',
+        fontName='Helvetica-Bold',
+        fontSize=8.2,
+        leading=11,
+        textColor=c_secondary
+    )
+    p_badge = ParagraphStyle(
+        'Badge',
+        fontName='Helvetica-Bold',
+        fontSize=7,
+        leading=9.5,
+        textColor=colors.white,
+        alignment=1
     )
 
     story = []
 
-    # ==================== PAGE 1 ====================
-    # Header Banner Table
-    header_data = [
+    # =========================================================================
+    # PAGE 1: INSTITUTIONAL CREDENTIALS & MULTI-DISCIPLINARY PRACTICE STRUCTURE
+    # =========================================================================
+
+    # 1. Official Header Block
+    seal_box = [
+        Paragraph("<b>CORPORATE ASSET RESTITUTION & RECOVERY PRACTICE</b>", p_main_title),
+        Paragraph("<b>Specialized Shareholder Advisory under Section 124(6) & 125(3) of the Companies Act, 2013</b><br/>"
+                  "<font color='#64748b'>Investor Education and Protection Fund (IEPF) Representation | Ministry of Corporate Affairs, New Delhi</font>", p_sub_title)
+    ]
+    ref_box = [
+        Paragraph("<font color='#0369a1'><b>INSTITUTIONAL DOSSIER</b></font><br/>"
+                  "<b>REF:</b> IEPF/CAP-STMT/2026<br/>"
+                  "<b>MANDATE:</b> 100% Contingent<br/>"
+                  "<b>PORTAL:</b> customer-vault.onrender.com", 
+                  ParagraphStyle('RefStyle', fontName='Helvetica', fontSize=7.2, leading=10, alignment=2, textColor=c_slate))
+    ]
+    t_header = Table([[seal_box, ref_box]], colWidths=[385, 137])
+    t_header.setStyle(TableStyle([
+        ('VALIGN', (0,0), (-1,-1), 'TOP'),
+        ('BOTTOMPADDING', (0,0), (-1,-1), 2),
+        ('TOPPADDING', (0,0), (-1,-1), 0),
+    ]))
+    story.append(t_header)
+    story.append(HRFlowable(width="100%", thickness=1.5, color=c_primary, spaceAfter=4, spaceBefore=2))
+
+    # 2. Key Track Record Metric Cards (50+ Restitutions | 100% Success | Rs. 30+ Cr | Rs. 0 Advance)
+    p_num_blue = ParagraphStyle('NumB', fontName='Helvetica-Bold', fontSize=13.5, leading=15, alignment=1, textColor=c_secondary)
+    p_num_green = ParagraphStyle('NumG', fontName='Helvetica-Bold', fontSize=13.5, leading=15, alignment=1, textColor=c_green)
+    p_num_dark = ParagraphStyle('NumD', fontName='Helvetica-Bold', fontSize=13.5, leading=15, alignment=1, textColor=c_primary)
+    p_num_gold = ParagraphStyle('NumO', fontName='Helvetica-Bold', fontSize=13.5, leading=15, alignment=1, textColor=c_gold)
+    p_stat_lbl = ParagraphStyle('LblS', fontName='Helvetica-Bold', fontSize=6.8, leading=8.5, alignment=1, textColor=c_dark)
+    p_stat_sub = ParagraphStyle('SubS', fontName='Helvetica', fontSize=6.2, leading=7.8, alignment=1, textColor=c_slate)
+
+    metrics_table_data = [
         [
-            Paragraph("<b>CORPORATE IEPF ASSET RESTITUTION PRACTICE</b><br/><font size=8 color='#64748b'>Fiduciary Shareholder Advisory & Investor Education and Protection Fund (IEPF) Representation</font>", title_style),
-            Paragraph("<b>PRACTICE CREDENTIALS</b><br/><font size=7 color='#0369a1'>Section 124(6) & 125(3)<br/>Companies Act, 2013<br/>MCA / RTA Restitution</font>", ParagraphStyle('RHead', fontName='Helvetica', fontSize=7.5, leading=10, alignment=2, textColor=colors.HexColor('#0f172a')))
+            Paragraph("<b>50+</b>", p_num_blue),
+            Paragraph("<b>100%</b>", p_num_green),
+            Paragraph("<b>Rs. 30+ Cr</b>", p_num_dark),
+            Paragraph("<b>Rs. 0 ADVANCE</b>", p_num_gold)
+        ],
+        [
+            Paragraph("<b>RESTITUTIONS EXECUTED</b>", p_stat_lbl),
+            Paragraph("<b>SUCCESS RATE (0 REJECTIONS)</b>", p_stat_lbl),
+            Paragraph("<b>PORTFOLIO UNLOCKED</b>", p_stat_lbl),
+            Paragraph("<b>100% CONTINGENT MANDATE</b>", p_stat_lbl)
+        ],
+        [
+            Paragraph("HNIs, CAs & Medical Directors", p_stat_sub),
+            Paragraph("Zero Deficiency Deadlock", p_stat_sub),
+            Paragraph("Astral & Blue-Chip Equities", p_stat_sub),
+            Paragraph("Payable Post Visible Demat Credit", p_stat_sub)
         ]
     ]
-    t_hdr = Table(header_data, colWidths=[385, 134])
-    t_hdr.setStyle(TableStyle([
-        ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
-        ('BOTTOMPADDING', (0,0), (-1,-1), 2),
-    ]))
-    story.append(t_hdr)
-    story.append(HRFlowable(width="100%", thickness=1.2, color=colors.HexColor('#0284c7'), spaceAfter=5))
-
-    # Executive Summary Card
-    summary_text = (
-        "<b>Executive Overview:</b> Our specialized corporate practice operates exclusively at the intersection of "
-        "<b>Corporate Law, SEBI Investor Protection Regulations, and MCA Statutory Governance</b>. Having successfully executed "
-        "<b>over 50+ shareholder restitutions with a verified 100% success rate</b> (recovering Rs. 30+ Crores in transferred equity "
-        "assets and cumulative unpaid dividends), we provide full-lifecycle fiduciary representation to High-Net-Worth Individuals (HNIs), "
-        "chartered accountants, medical practitioners, family trusts, and corporate bodies whose long-term equity shares have statutorily "
-        "transitioned into the custody of the <b>Investor Education and Protection Fund (IEPF) Authority, Ministry of Corporate Affairs "
-        "(Government of India)</b>. We operate strictly on a 100% contingent, zero-risk mandate."
-    )
-    t_sum = Table([[Paragraph(summary_text, body_style)]], colWidths=[519])
-    t_sum.setStyle(TableStyle([
+    t_metrics = Table(metrics_table_data, colWidths=[130, 131, 130, 131])
+    t_metrics.setStyle(TableStyle([
         ('BACKGROUND', (0,0), (-1,-1), colors.HexColor('#f8fafc')),
         ('BOX', (0,0), (-1,-1), 1, colors.HexColor('#cbd5e1')),
-        ('PADDING', (0,0), (-1,-1), 6),
-    ]))
-    story.append(t_sum)
-    story.append(Spacer(1, 4))
-
-    # Track Record Metrics Banner
-    stat_style = ParagraphStyle(
-        'StatBox',
-        fontName='Helvetica',
-        fontSize=7.5,
-        leading=10,
-        alignment=1,
-        textColor=colors.HexColor('#0f172a')
-    )
-    stats_data = [
-        [
-            Paragraph("<font size=12 color='#0284c7'><b>50+</b></font><br/><b>RESTITUTIONS DONE</b><br/><font size=6.5 color='#64748b'>HNIs, CAs & Doctors</font>", stat_style),
-            Paragraph("<font size=12 color='#15803d'><b>100%</b></font><br/><b>SUCCESS RATE</b><br/><font size=6.5 color='#15803d'>Zero Rejections / Zero Memos</font>", stat_style),
-            Paragraph("<font size=12 color='#0f172a'><b>Rs. 30+ Cr</b></font><br/><b>ASSETS UNLOCKED</b><br/><font size=6.5 color='#64748b'>Astral & Tier-1 Equities</font>", stat_style),
-            Paragraph("<font size=12 color='#b45309'><b>Rs. 0 ADVANCE</b></font><br/><b>100% CONTINGENT</b><br/><font size=6.5 color='#b45309'>Payable Post Demat Credit</font>", stat_style),
-        ]
-    ]
-    t_stats = Table(stats_data, colWidths=[129, 131, 129, 130])
-    t_stats.setStyle(TableStyle([
-        ('BACKGROUND', (0,0), (-1,-1), colors.HexColor('#f1f5f9')),
-        ('BOX', (0,0), (-1,-1), 1, colors.HexColor('#94a3b8')),
-        ('INNERGRID', (0,0), (-1,-1), 0.5, colors.HexColor('#cbd5e1')),
-        ('PADDING', (0,0), (-1,-1), 4),
+        ('LINEBEFORE', (1,0), (1,-1), 0.5, colors.HexColor('#cbd5e1')),
+        ('LINEBEFORE', (2,0), (2,-1), 0.5, colors.HexColor('#cbd5e1')),
+        ('LINEBEFORE', (3,0), (3,-1), 0.5, colors.HexColor('#cbd5e1')),
+        ('TOPPADDING', (0,0), (-1,-1), 3),
+        ('BOTTOMPADDING', (0,0), (-1,-1), 3),
         ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
     ]))
-    story.append(t_stats)
+    story.append(t_metrics)
     story.append(Spacer(1, 4))
 
-    # Core Leadership & Multi-Disciplinary Practice Team
-    story.append(Paragraph("1. PRACTICE LEADERSHIP & MULTI-DISCIPLINARY STRUCTURE", sec_heading))
+    # 3. Practice Overview & Institutional Mandate Card
+    overview_html = (
+        "<b>Institutional Practice Overview:</b> Operating exclusively at the nexus of <b>Corporate Law, SEBI Investor Protection "
+        "Regulations, and Ministry of Corporate Affairs (MCA) Statutory Governance</b>, our practice serves as specialized fiduciary "
+        "counsel for High-Net-Worth Individuals (HNIs), senior Chartered Accountants, medical directors, corporate houses, and family "
+        "trusts pan-India. We specialize in navigating the intricate procedural, legal, and operational hurdles required to successfully "
+        "release and restitute substantial equity holdings and dividend arrears transitioned into the custody of the <b>Investor Education "
+        "and Protection Fund (IEPF) Authority</b>. With <b>over 50+ completed restitutions and a 100% first-pass clearance track record</b>, "
+        "we provide an institutional, zero-risk, and end-to-end statutory execution."
+    )
+    t_overview = Table([[Paragraph(overview_html, p_body)]], colWidths=[522])
+    t_overview.setStyle(TableStyle([
+        ('BACKGROUND', (0,0), (-1,-1), colors.HexColor('#f1f5f9')),
+        ('BOX', (0,0), (-1,-1), 1, colors.HexColor('#94a3b8')),
+        ('PADDING', (0,0), (-1,-1), 6),
+    ]))
+    story.append(t_overview)
+    story.append(Spacer(1, 4))
 
-    team_data = [
+    # 4. Multi-Disciplinary Practice Team Hierarchy
+    story.append(Paragraph("1. MULTI-DISCIPLINARY PRACTICE STRUCTURE & DOMAIN EXPERTS", p_sec_head))
+
+    team_rows = [
         [
-            Paragraph("<b>MD ASRAR BASHA A</b><br/><font color='#0284c7'><b>Practice Head & Lead Fiduciary Counsel</b></font>", role_title),
+            Paragraph("<b>MD ASRAR BASHA A</b><br/><font color='#0369a1'><b>Practice Head & Lead Restitution Counsel</b></font><br/>"
+                      "<font size=6.5 color='#64748b'>Senior Fiduciary Practice Lead<br/>Direct Nodal Liaison</font>", p_role_title),
             Paragraph(
-                "• Successfully spearheaded <b>50+ corporate and HNI shareholder restitutions with a 100% success rate</b>.<br/>"
-                "• Directs strategic statutory interventions, high-value corporate mandates, and client representation before the IEPF Authority.<br/>"
-                "• Formulates legal restitution roadmaps across Section 124(6), Section 125(3), and Rule 7 of the IEPF Rules, 2016.<br/>"
-                "• Direct liaison with Astral Limited Corporate Legal Desk, Bigshare Services Mumbai, and Nodal Officers at MCA New Delhi.<br/>"
-                "• <i>Direct Line:</i> +91 7358882822 | <i>Email:</i> amdasrarbasha@gmail.com",
-                body_style
+                "• <b>Executive Mandate:</b> Personally spearheads high-value shareholder recovery interventions, complex family transmissions, and strategic representation before the Central Government IEPF Authority.<br/>"
+                "• <b>Statutory Expertise:</b> Expert in Companies Act Section 124(6), Section 125(3), and Rule 7 of the IEPF Rules, 2016.<br/>"
+                "• <b>Regulatory Interfacing:</b> Directly interfaces with Astral Limited Secretarial Department, Bigshare Services Mumbai, and Nodal Officers at the Ministry of Corporate Affairs (MCA, New Delhi).<br/>"
+                "• <b>Direct Line:</b> +91 7358882822  |  <b>Official Email:</b> amdasrarbasha@gmail.com",
+                p_body
             )
         ],
         [
-            Paragraph("<b>Corporate Secretarial & MCA Governance Team</b><br/><font color='#475569'><b>FCS / ACS Domain Specialists</b></font>", role_title),
+            Paragraph("<b>Corporate Secretarial & MCA Governance Desk</b><br/><font color='#475569'><b>FCS / ACS Domain Specialists</b></font><br/>"
+                      "<font size=6.5 color='#64748b'>ICSI Accredited Governance</font>", p_role_title),
             Paragraph(
-                "• Specializes in end-to-end statutory drafting, verification, and filing of digital <b>e-Form IEPF-5</b> on the MCA21 V3 Portal.<br/>"
-                "• Resolves complex compliance hurdles including SEBI Circular ISR-1 (KYC), ISR-2 (Banker Attestation), and ISR-3/4.<br/>"
-                "• Ensures zero-deficiency filings to bypass the 80%+ bureaucratic rejection bottleneck common in self-filed applications.",
-                body_style
+                "• <b>MCA21 V3 Digital Execution:</b> Full-cycle drafting, verification, and digital submission of <b>e-Form IEPF-5</b>.<br/>"
+                "• <b>SEBI Regulatory Alignment:</b> Resolves complex SEBI compliance mandates including Circular ISR-1 (KYC Update), ISR-2 (Banker Attestation), ISR-3 (Nomination Opt-out), and ISR-4 (Duplicate/Transmission).<br/>"
+                "• <b>Zero-Deficiency Assurance:</b> Over 80% of self-filed claims across India receive MCA deficiency rejections. Our rigorous legal pre-audit ensures zero deficiency memos and immediate approval.",
+                p_body
             )
         ],
         [
-            Paragraph("<b>Forensic Equity & Bonus Reconciliation Desk</b><br/><font color='#475569'><b>Chartered Accountants & Equity Analysts</b></font>", role_title),
+            Paragraph("<b>Forensic Equity & Bonus Reconciliation Desk</b><br/><font color='#475569'><b>Chartered Accountants & Auditors</b></font><br/>"
+                      "<font size=6.5 color='#64748b'>ICAI Qualified Analysts</font>", p_role_title),
             Paragraph(
-                "• Conducts mathematical equity reconstructions for bonus issues (e.g. Astral Limited 1:1, 1:2 historical bonus tranches).<br/>"
-                "• Reconciles cumulative multi-year unpaid dividend warrants, fractional share entitlements, and TDS Form 16A credits.<br/>"
-                "• Audits RTA register extracts against demat Client Master Lists (CML) to guarantee 100% exact restitution parity.",
-                body_style
+                "• <b>Mathematical Bonus Reconstructions:</b> Audits and mathematically calculates historical bonus splits (e.g. Astral Limited 1:1, 1:2 bonus tranches) to recover the exact multiplied holding, not just physical certificate units.<br/>"
+                "• <b>Dividend Ledger Reconciliation:</b> Forensic extraction of 7+ years of cumulative unpaid dividend warrants and TDS Form 16A.<br/>"
+                "• <b>Parity Audit:</b> Matches RTA ledger extracts with Client Master Lists (CML) to eliminate all folio mismatches.",
+                p_body
             )
         ],
         [
-            Paragraph("<b>RTA & Nodal Authority Physical Liaison Unit</b><br/><font color='#475569'><b>Mumbai & New Delhi Operations Desk</b></font>", role_title),
+            Paragraph("<b>RTA & Nodal Authority Physical Liaison Unit</b><br/><font color='#475569'><b>Mumbai & New Delhi Operations</b></font><br/>"
+                      "<font size=6.5 color='#64748b'>On-Ground Physical Docket Delivery</font>", p_role_title),
             Paragraph(
-                "• Physical representation and docket delivery at <b>Registrar Bigshare Services Pvt Ltd</b> (Andheri East, Mumbai).<br/>"
-                "• Hand-carries original verification dockets to Astral Limited Secretarial Headquarters (Ahmedabad) for company verification.<br/>"
-                "• Expedites Company Verification Reports (CVRs) and monitors Nodal Officer approvals through to final Demat credit.",
-                body_style
+                "• <b>Physical Docket Representation:</b> Stationed at <b>Registrar Bigshare Services Pvt Ltd</b> (Andheri East, Mumbai) for hand-delivery and immediate in-person tracking of verification dockets.<br/>"
+                "• <b>Company Verification Report (CVR) Acceleration:</b> Directly coordinates with Astral Limited Secretarial Desk (Ahmedabad) to ensure the mandatory CVR is approved and uploaded to MCA within statutory timelines.<br/>"
+                "• <b>Order Tracking:</b> Tracks Nodal Officer scrutiny through to the final Demat corporate action credit.",
+                p_body
             )
         ]
     ]
 
-    t_team = Table(team_data, colWidths=[165, 354])
+    t_team = Table(team_rows, colWidths=[165, 357])
     t_team.setStyle(TableStyle([
-        ('BACKGROUND', (0,0), (-1,-1), colors.HexColor('#ffffff')),
-        ('BOX', (0,0), (-1,-1), 1, colors.HexColor('#e2e8f0')),
+        ('BACKGROUND', (0,0), (-1,-1), colors.white),
+        ('BOX', (0,0), (-1,-1), 1, colors.HexColor('#cbd5e1')),
         ('INNERGRID', (0,0), (-1,-1), 0.5, colors.HexColor('#e2e8f0')),
-        ('PADDING', (0,0), (-1,-1), 4.5),
+        ('PADDING', (0,0), (-1,-1), 4),
         ('VALIGN', (0,0), (-1,-1), 'TOP'),
     ]))
     story.append(t_team)
     story.append(Spacer(1, 4))
 
-    # Core Practice Capabilities Box
-    story.append(Paragraph("2. CORE PRACTICE CAPABILITIES & COMPLEX RESOLUTIONS", sec_heading))
+    # 5. Core Capabilities & Client Archetypes Box
+    story.append(Paragraph("2. SPECIALIZED RECOVERY CAPABILITIES & PREFERRED CLIENTELE", p_sec_head))
 
-    cap_data = [
+    cap_table_data = [
         [
-            Paragraph("<b>Dematerialization & Physical Conversion:</b> Full conversion of physical certificates into Demat via SEBI Form ISR-4.", body_style),
-            Paragraph("<b>Bank Signature Variation Rectification:</b> Official Form ISR-2 execution with Bank Manager seal, employee code & CBS stamp.", body_style)
+            Paragraph("<b>Dematerialization & Legacy Physical Conversion:</b> Conversion of physical share certificates into electronic Demat via SEBI Form ISR-4.", p_body),
+            Paragraph("<b>Bank Signature Variation Rectification:</b> Formal SEBI Form ISR-2 execution with Bank Manager verification, employee code, and CBS attestation.", p_body)
         ],
         [
-            Paragraph("<b>Transmission & Legal Heir Succession:</b> Succession Certificates, Probate of Will, Legal Heir affidavits & Family NOCs.", body_style),
-            Paragraph("<b>Gazette Name & Address Reconciliations:</b> Rectification of name variations & address shifts via gazette notifications & affidavits.", body_style)
+            Paragraph("<b>Transmission & Legal Heirship Succession:</b> Comprehensive legal processing of Succession Certificates, Probate of Will, Legal Heir Affidavits, and Family NOCs.", p_body),
+            Paragraph("<b>Gazette Name & Address Reconciliations:</b> Remediation of name spelling discrepancies, maiden-to-married changes, and address shifts via state gazettes.", p_body)
+        ],
+        [
+            Paragraph("<b>Clientele Archetypes Represented:</b> Senior Chartered Accountants, Medical Doctors & Surgeons, Industrial Founders, Senior NRIs, and Family Trusts.", ParagraphStyle('ClP', fontName='Helvetica-Bold', fontSize=7.2, leading=9.5, textColor=c_primary)),
+            Paragraph("<b>Regulatory Jurisdictions:</b> Companies Act 2013, IEPF Rules 2016, SEBI (LODR) Regulations 2015, and NSDL/CDSL Depository Guidelines.", ParagraphStyle('JurP', fontName='Helvetica-Bold', fontSize=7.2, leading=9.5, textColor=c_secondary))
         ]
     ]
-    t_cap = Table(cap_data, colWidths=[258, 261])
+    t_cap = Table(cap_table_data, colWidths=[259, 263])
     t_cap.setStyle(TableStyle([
-        ('BACKGROUND', (0,0), (-1,-1), colors.HexColor('#f1f5f9')),
-        ('BOX', (0,0), (-1,-1), 1, colors.HexColor('#cbd5e1')),
+        ('BACKGROUND', (0,0), (-1,-2), colors.HexColor('#f8fafc')),
+        ('BACKGROUND', (0,-1), (-1,-1), colors.HexColor('#eff6ff')),
+        ('BOX', (0,0), (-1,-1), 1, colors.HexColor('#93c5fd')),
         ('INNERGRID', (0,0), (-1,-1), 0.5, colors.HexColor('#cbd5e1')),
         ('PADDING', (0,0), (-1,-1), 3.5),
         ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
     ]))
     story.append(t_cap)
 
-    # ==================== PAGE 2 ====================
+    # =========================================================================
+    # PAGE 2: FIDUCIARY SAFEGUARDS, 5-PHASE LIFECYCLE & ENGAGEMENT CONTACT
+    # =========================================================================
     story.append(PageBreak())
 
-    story.append(Paragraph("3. 100% RISK-FREE FIDUCIARY FRAMEWORK & CLIENT SAFEGUARDS", sec_heading))
-    story.append(Paragraph("To ensure the utmost confidence and institutional protection for our clients, our practice functions under three strict ethical covenants:", body_style))
-    story.append(Spacer(1, 6))
+    # 1. Three Institutional Fiduciary Covenants
+    story.append(Paragraph("3. INSTITUTIONAL FIDUCIARY COVENANTS & ZERO-RISK GUARANTEES", p_sec_head))
+    story.append(Paragraph("To ensure complete transparency and institutional protection, our practice operates strictly under three enforceable fiduciary safeguards:", p_body))
+    story.append(Spacer(1, 4))
 
     covenants_data = [
         [
-            Paragraph("<b>1. ZERO ADVANCE FEE<br/>(100% Contingent Model)</b>", role_title),
-            Paragraph("We do <b>not charge a single rupee upfront</b>. Our professional remuneration is strictly contingent upon success, payable exclusively <b>AFTER</b> the shares and dividend warrants are visibly credited into your verified Demat and bank accounts. If there is no recovery, you owe nothing.", body_style)
+            Paragraph("<b>1. ZERO ADVANCE FEE<br/>(100% Contingent Model)</b>", p_role_title),
+            Paragraph(
+                "We do <b>not charge a single rupee upfront</b>. Our professional remuneration is strictly contingent upon successful completion, "
+                "payable exclusively <b>AFTER</b> the shares and cumulative dividend warrants are visibly credited into your verified personal Demat "
+                "and bank accounts. If there is no recovery, you owe nothing. <b>Zero financial liability for the shareholder.</b>",
+                p_body
+            )
         ],
         [
-            Paragraph("<b>2. DIRECT GOVERNMENT SETTLEMENT<br/>(Non-Possessory Mandate)</b>", role_title),
-            Paragraph("Our practice operates on a strictly non-possessory basis. The IEPF Authority and Central Government execute a <b>direct Corporate Action transfer</b> into your personal Demat account (CDSL/NSDL), and dividend funds are credited directly to your bank account via PFMS/DBT. <b>We never touch client assets or funds.</b>", body_style)
+            Paragraph("<b>2. DIRECT GOVERNMENT SETTLEMENT<br/>(Non-Possessory Protocol)</b>", p_role_title),
+            Paragraph(
+                "Our practice operates on an institutional non-possessory mandate. The IEPF Authority and Central Government execute a <b>direct Corporate "
+                "Action transfer into your designated Demat account (CDSL/NSDL)</b>, and all dividend funds are credited directly to your registered bank "
+                "account via PFMS/DBT. <b>We never handle, receive, or hold client shares or financial funds.</b>",
+                p_body
+            )
         ],
         [
-            Paragraph("<b>3. INSTITUTIONAL DATA PRIVACY<br/>(Masked KYC Protocol)</b>", role_title),
-            Paragraph("Under our strict data hygiene protocol, we only request <b>Masked Aadhaar</b> (with the first 8 digits blacked out) and cancelled cheques stamped <i>'FOR ASTRAL IEPF RESTITUTION KYC ONLY'</i>. We never request OTPs, Demat trading passwords, netbanking credentials, or power of attorney.", body_style)
+            Paragraph("<b>3. INSTITUTIONAL DATA PRIVACY<br/>(Masked KYC Standard)</b>", p_role_title),
+            Paragraph(
+                "Under our strict compliance protocol, we only request <b>Masked Aadhaar</b> (with the first 8 digits blacked out) and cancelled cheques "
+                "stamped <i>'FOR ASTRAL IEPF RESTITUTION KYC ONLY'</i>. We <b>never</b> request OTPs, Demat trading passwords, netbanking credentials, "
+                "or general Power of Attorney. Your personal tax and banking records are completely protected.",
+                p_body
+            )
         ]
     ]
-    t_cov = Table(covenants_data, colWidths=[165, 350])
+    t_cov = Table(covenants_data, colWidths=[165, 357])
     t_cov.setStyle(TableStyle([
-        ('BACKGROUND', (0,0), (-1,-1), colors.HexColor('#ffffff')),
+        ('BACKGROUND', (0,0), (-1,-1), colors.white),
         ('BOX', (0,0), (-1,-1), 1, colors.HexColor('#cbd5e1')),
         ('INNERGRID', (0,0), (-1,-1), 0.5, colors.HexColor('#e2e8f0')),
-        ('PADDING', (0,0), (-1,-1), 8),
+        ('PADDING', (0,0), (-1,-1), 6),
         ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
     ]))
     story.append(t_cov)
-    story.append(Spacer(1, 12))
+    story.append(Spacer(1, 8))
 
-    # Proven 5-Phase Restitution Lifecycle
-    story.append(Paragraph("4. SYSTEMATIC 5-PHASE RESTITUTION LIFECYCLE", sec_heading))
+    # 2. Systematic 5-Phase Restitution Lifecycle Table
+    story.append(Paragraph("4. SYSTEMATIC 5-PHASE STATUTORY RESTITUTION ROADMAP", p_sec_head))
+
+    p_life_hdr = ParagraphStyle('LifeHdr', fontName='Helvetica-Bold', fontSize=7.5, leading=9.5, textColor=colors.white, alignment=1)
+    p_life_cell = ParagraphStyle('LifeCell', fontName='Helvetica', fontSize=6.8, leading=8.8, textColor=c_dark)
+    p_life_phase = ParagraphStyle('LifePhase', fontName='Helvetica-Bold', fontSize=7.5, leading=9.5, textColor=c_secondary, alignment=1)
+    p_life_time = ParagraphStyle('LifeTime', fontName='Helvetica-Bold', fontSize=7.2, leading=9.2, textColor=c_gold, alignment=1)
 
     lifecycle_data = [
-        ["Phase", "Milestone Action", "Statutory Stakeholder", "Estimated Timeline"],
         [
-            "Phase 1",
-            "Forensic Holding Verification & Gazette Audit\n• Reconstruct historical bonus shares & unpaid dividends\n• Cross-verify Bigshare RTA ledger and MCA Gazette records",
-            "Astral Limited\nBigshare Services Pvt Ltd",
-            "Days 1 – 3"
+            Paragraph("Phase", p_life_hdr),
+            Paragraph("Milestone Action & Deliverables", p_life_hdr),
+            Paragraph("Statutory Stakeholder", p_life_hdr),
+            Paragraph("Estimated Timeline", p_life_hdr)
         ],
         [
-            "Phase 2",
-            "SEBI ISR Standardization & Dossier Compilation\n• Form ISR-1 (KYC), ISR-2 (Banker Attestation), ISR-3/4\n• Client Master List (CML) demat mapping & indemnity drafting",
-            "Shareholder Bank\nLegal Counsel",
-            "Days 4 – 10"
+            Paragraph("<b>Phase 1</b>", p_life_phase),
+            Paragraph("<b>Forensic Holding Verification & Gazette Audit</b><br/>"
+                      "• Mathematical bonus equity reconstruction & unpaid dividend calculation<br/>"
+                      "• RTA ledger extract cross-verification against MCA gazette transfer records", p_life_cell),
+            Paragraph("Astral Limited Secretarial Desk<br/>Bigshare Services Pvt Ltd (Mumbai)", p_life_cell),
+            Paragraph("<b>Days 1 – 3</b>", p_life_time)
         ],
         [
-            "Phase 3",
-            "Digital e-Form IEPF-5 Filing on MCA21 V3 Portal\n• Generation of official SRN (Service Request Number)\n• Compilation of statutory physical verification docket",
-            "Ministry of Corporate Affairs\n(MCA New Delhi)",
-            "Days 11 – 15"
+            Paragraph("<b>Phase 2</b>", p_life_phase),
+            Paragraph("<b>SEBI ISR Standardization & Dossier Compilation</b><br/>"
+                      "• SEBI Form ISR-1 (KYC), Form ISR-2 (Bank Attestation), Form ISR-3/4<br/>"
+                      "• Client Master List (CML) mapping, client affidavits & indemnity drafting", p_life_cell),
+            Paragraph("Shareholder's Bank Manager<br/>Corporate Legal Counsel Desk", p_life_cell),
+            Paragraph("<b>Days 4 – 10</b>", p_life_time)
         ],
         [
-            "Phase 4",
-            "Company Verification Report (CVR) Issuance\n• Submission of physical verification docket to Astral Limited\n• Astral Nodal Officer audit and transmission of CVR to MCA",
-            "Astral Limited Secretarial Desk\n(Ahmedabad)",
-            "Days 16 – 40"
+            Paragraph("<b>Phase 3</b>", p_life_phase),
+            Paragraph("<b>Digital e-Form IEPF-5 Filing on MCA21 V3 Portal</b><br/>"
+                      "• Generation of official MCA Service Request Number (SRN)<br/>"
+                      "• Formal physical verification docket binding and statutory indexing", p_life_cell),
+            Paragraph("Ministry of Corporate Affairs<br/>(MCA, New Delhi)", p_life_cell),
+            Paragraph("<b>Days 11 – 15</b>", p_life_time)
         ],
         [
-            "Phase 5",
-            "IEPF Authority Order & Direct Corporate Action Credit\n• IEPF Authority approval order passed\n• Direct credit of equity shares to Demat & dividends via PFMS",
-            "IEPF Authority\n(Ministry of Corporate Affairs)",
-            "Days 41 – 75"
+            Paragraph("<b>Phase 4</b>", p_life_phase),
+            Paragraph("<b>Company Verification Report (CVR) Issuance</b><br/>"
+                      "• In-person delivery of verification docket to Astral Limited Corporate Desk<br/>"
+                      "• Nodal Officer audit, board secretarial approval & CVR transmission to MCA", p_life_cell),
+            Paragraph("Astral Limited Corporate HQ<br/>(Ahmedabad Secretarial Desk)", p_life_cell),
+            Paragraph("<b>Days 16 – 40</b>", p_life_time)
+        ],
+        [
+            Paragraph("<b>Phase 5</b>", p_life_phase),
+            Paragraph("<b>IEPF Authority Approval Order & Corporate Action Credit</b><br/>"
+                      "• Official IEPF Authority Sanction Order passed under Section 125(3)<br/>"
+                      "• <b>Direct electronic credit of equity shares to Demat & cash via PFMS/DBT</b>", p_life_cell),
+            Paragraph("IEPF Authority Demat Custodian<br/>(Central Government MCA)", p_life_cell),
+            Paragraph("<b>Days 41 – 75</b>", p_life_time)
         ]
     ]
 
-    t_life = Table(lifecycle_data, colWidths=[55, 235, 140, 85])
+    t_life = Table(lifecycle_data, colWidths=[52, 238, 142, 90])
     t_life.setStyle(TableStyle([
-        ('BACKGROUND', (0,0), (-1,0), colors.HexColor('#0f172a')),
-        ('TEXTCOLOR', (0,0), (-1,0), colors.HexColor('#ffffff')),
-        ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'),
-        ('FONTSIZE', (0,0), (-1,0), 8.5),
-        ('BOTTOMPADDING', (0,0), (-1,0), 6),
-        ('TOPPADDING', (0,0), (-1,0), 6),
-        ('BACKGROUND', (0,1), (-1,-1), colors.HexColor('#ffffff')),
-        ('ROWBACKGROUNDS', (0,1), (-1,-1), [colors.HexColor('#ffffff'), colors.HexColor('#f8fafc')]),
+        ('BACKGROUND', (0,0), (-1,0), c_primary),
+        ('BOTTOMPADDING', (0,0), (-1,0), 3),
+        ('TOPPADDING', (0,0), (-1,0), 3),
+        ('ROWBACKGROUNDS', (0,1), (-1,-1), [colors.white, colors.HexColor('#f8fafc')]),
         ('GRID', (0,0), (-1,-1), 0.5, colors.HexColor('#cbd5e1')),
-        ('FONTNAME', (0,1), (-1,-1), 'Helvetica'),
-        ('FONTSIZE', (0,1), (-1,-1), 7.8),
         ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
-        ('PADDING', (0,1), (-1,-1), 5),
+        ('PADDING', (0,1), (-1,-1), 3.5),
     ]))
     story.append(t_life)
-    story.append(Spacer(1, 14))
+    story.append(Spacer(1, 8))
 
-    # Practice Credentials & Contact Information
-    story.append(Paragraph("5. DIRECT PRACTICE DESK & ENGAGEMENT CONTACT", sec_heading))
+    # 3. Formal Practice Authorization & Contact Desk
+    story.append(Paragraph("5. DIRECT PRACTICE DESK & ENGAGEMENT CONTACT", p_sec_head))
 
     contact_data = [
         [
             Paragraph(
-                "<b>PRACTICE HEAD:</b><br/>"
-                "<b>MD ASRAR BASHA A</b><br/>"
-                "Senior Fiduciary Counsel & Restitution Lead<br/>"
-                "Corporate IEPF Advisory Practice",
-                body_style
+                "<b>PRACTICE HEAD & MANAGING COUNSEL:</b><br/>"
+                "<font size=10 color='#0f172a'><b>MD ASRAR BASHA A</b></font><br/>"
+                "Senior Fiduciary Counsel & Lead Restitution Advocate<br/>"
+                "Corporate Asset Recovery & IEPF Compliance Practice<br/>"
+                "<font size=6.8 color='#64748b'>Ranipet District & Chennai, Tamil Nadu — Operating Pan-India</font>",
+                p_body
             ),
             Paragraph(
-                "<b>DIRECT ENGAGEMENT CONTACT:</b><br/>"
+                "<b>DIRECT ENGAGEMENT CONTACT DESK:</b><br/>"
                 "• <b>Direct Phone / WhatsApp:</b> +91 7358882822<br/>"
-                "• <b>Official Email:</b> amdasrarbasha@gmail.com<br/>"
-                "• <b>Digital Client Portal:</b> https://customer-vault.onrender.com",
-                body_style
+                "• <b>Official Practice Email:</b> amdasrarbasha@gmail.com<br/>"
+                "• <b>Digital Shareholder Portal:</b> https://customer-vault.onrender.com<br/>"
+                "• <b>Professional Fee Structure:</b> Contingent Success Fee | Rs. 0 Advance<br/>"
+                "• <b>Document Clearance:</b> First-Pass MCA Clearance Assurance",
+                p_body
             )
         ]
     ]
-    t_con = Table(contact_data, colWidths=[240, 275])
+    t_con = Table(contact_data, colWidths=[240, 282])
     t_con.setStyle(TableStyle([
         ('BACKGROUND', (0,0), (-1,-1), colors.HexColor('#f0f9ff')),
         ('BOX', (0,0), (-1,-1), 1.2, colors.HexColor('#0284c7')),
-        ('PADDING', (0,0), (-1,-1), 9),
+        ('PADDING', (0,0), (-1,-1), 7),
         ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
     ]))
     story.append(t_con)
+    story.append(Spacer(1, 4))
 
-    doc.build(story, canvasmaker=NumberedCanvas)
+    # Bottom Fiduciary Guarantee Stamp Bar
+    fiduciary_bar_data = [
+        [
+            Paragraph("<b>FIDUCIARY GUARANTEE:</b> Our advisory is legally bound under an enforceable bilateral mandate. "
+                      "We never request nor accept upfront fees. All shares and accrued cash dividends are deposited directly by the "
+                      "Government of India into your registered accounts. Total institutional compliance and client data confidentiality guaranteed.",
+                      ParagraphStyle('FidBar', fontName='Helvetica', fontSize=6.8, leading=8.8, alignment=1, textColor=c_slate))
+        ]
+    ]
+    t_fid = Table(fiduciary_bar_data, colWidths=[522])
+    t_fid.setStyle(TableStyle([
+        ('BACKGROUND', (0,0), (-1,-1), colors.HexColor('#f8fafc')),
+        ('BOX', (0,0), (-1,-1), 0.5, colors.HexColor('#cbd5e1')),
+        ('PADDING', (0,0), (-1,-1), 4),
+    ]))
+    story.append(t_fid)
+
+    doc.build(story, canvasmaker=ProfessionalCanvas)
     print(f"Successfully generated: {PDF_PATH} ({os.path.getsize(PDF_PATH)} bytes)")
 
     # Copy to brain artifacts directory
@@ -370,4 +519,4 @@ def generate_pdf():
         print(f"Brain copy note: {e}")
 
 if __name__ == "__main__":
-    generate_pdf()
+    build_pdf()
