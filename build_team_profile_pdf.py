@@ -175,8 +175,7 @@ def build_pdf():
     ref_box = [
         Paragraph("<font color='#0369a1'><b>INSTITUTIONAL DOSSIER</b></font><br/>"
                   "<b>REF:</b> IEPF/CAP-STMT/2026<br/>"
-                  "<b>MANDATE:</b> 100% Contingent<br/>"
-                  "<b>PORTAL:</b> customer-vault.onrender.com", 
+                  "<b>MANDATE:</b> 100% Contingent Basis", 
                   ParagraphStyle('RefStyle', fontName='Helvetica', fontSize=7.2, leading=10, alignment=2, textColor=c_slate))
     ]
     t_header = Table([[seal_box, ref_box]], colWidths=[385, 137])
