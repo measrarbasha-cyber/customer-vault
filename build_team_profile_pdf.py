@@ -471,7 +471,7 @@ def build_pdf():
                 "<b>DIRECT ENGAGEMENT CONTACT DESK:</b><br/>"
                 "• <b>Direct Phone / WhatsApp:</b> +91 7358882822<br/>"
                 "• <b>Official Practice Email:</b> amdasrarbasha@gmail.com<br/>"
-                "• <b>Digital Shareholder Portal:</b> https://customer-vault.onrender.com<br/>"
+                "• <b>Physical Liaison Desks:</b> Mumbai (Bigshare RTA) & New Delhi (MCA)<br/>"
                 "• <b>Professional Fee Structure:</b> Contingent Success Fee | Rs. 0 Advance<br/>"
                 "• <b>Document Clearance:</b> First-Pass MCA Clearance Assurance",
                 p_body
