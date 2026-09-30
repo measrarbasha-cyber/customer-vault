@@ -56,10 +56,10 @@ def generate_pdf():
     doc = SimpleDocTemplate(
         PDF_PATH,
         pagesize=A4,
-        leftMargin=40,
-        rightMargin=40,
-        topMargin=46,
-        bottomMargin=52
+        leftMargin=38,
+        rightMargin=38,
+        topMargin=36,
+        bottomMargin=38
     )
 
     styles = getSampleStyleSheet()
@@ -67,57 +67,33 @@ def generate_pdf():
     title_style = ParagraphStyle(
         'DocTitle',
         fontName='Helvetica-Bold',
-        fontSize=20,
-        leading=24,
+        fontSize=18,
+        leading=22,
         textColor=colors.HexColor('#0f172a'),
-        spaceAfter=4
-    )
-    subtitle_style = ParagraphStyle(
-        'DocSubtitle',
-        fontName='Helvetica',
-        fontSize=10,
-        leading=14,
-        textColor=colors.HexColor('#0369a1'),
-        spaceAfter=14
+        spaceAfter=2
     )
     sec_heading = ParagraphStyle(
         'SectionHeading',
         fontName='Helvetica-Bold',
-        fontSize=12,
-        leading=16,
+        fontSize=10.5,
+        leading=14,
         textColor=colors.HexColor('#0f172a'),
-        spaceBefore=12,
-        spaceAfter=6
+        spaceBefore=7,
+        spaceAfter=4
     )
     body_style = ParagraphStyle(
         'Body',
         fontName='Helvetica',
-        fontSize=8.5,
-        leading=12.5,
+        fontSize=8,
+        leading=11,
         textColor=colors.HexColor('#334155')
-    )
-    body_bold = ParagraphStyle(
-        'BodyBold',
-        fontName='Helvetica-Bold',
-        fontSize=8.5,
-        leading=12.5,
-        textColor=colors.HexColor('#0f172a')
     )
     role_title = ParagraphStyle(
         'RoleTitle',
         fontName='Helvetica-Bold',
-        fontSize=9.5,
-        leading=13,
+        fontSize=8.5,
+        leading=11.5,
         textColor=colors.HexColor('#0284c7')
-    )
-    bullet_style = ParagraphStyle(
-        'Bullet',
-        fontName='Helvetica',
-        fontSize=8.2,
-        leading=12,
-        textColor=colors.HexColor('#334155'),
-        leftIndent=12,
-        firstLineIndent=-12
     )
 
     story = []
@@ -126,35 +102,64 @@ def generate_pdf():
     # Header Banner Table
     header_data = [
         [
-            Paragraph("<b>CORPORATE IEPF ASSET RESTITUTION PRACTICE</b><br/><font size=8.5 color='#64748b'>Fiduciary Shareholder Advisory & Investor Education and Protection Fund (IEPF) Representation</font>", title_style),
-            Paragraph("<b>PRACTICE CREDENTIALS</b><br/><font size=7.5 color='#0369a1'>Section 124(6) & 125(3)<br/>Companies Act, 2013<br/>MCA / RTA Restitution</font>", ParagraphStyle('RHead', fontName='Helvetica', fontSize=8, leading=11, alignment=2, textColor=colors.HexColor('#0f172a')))
+            Paragraph("<b>CORPORATE IEPF ASSET RESTITUTION PRACTICE</b><br/><font size=8 color='#64748b'>Fiduciary Shareholder Advisory & Investor Education and Protection Fund (IEPF) Representation</font>", title_style),
+            Paragraph("<b>PRACTICE CREDENTIALS</b><br/><font size=7 color='#0369a1'>Section 124(6) & 125(3)<br/>Companies Act, 2013<br/>MCA / RTA Restitution</font>", ParagraphStyle('RHead', fontName='Helvetica', fontSize=7.5, leading=10, alignment=2, textColor=colors.HexColor('#0f172a')))
         ]
     ]
-    t_hdr = Table(header_data, colWidths=[380, 135])
+    t_hdr = Table(header_data, colWidths=[385, 134])
     t_hdr.setStyle(TableStyle([
         ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
-        ('BOTTOMPADDING', (0,0), (-1,-1), 6),
+        ('BOTTOMPADDING', (0,0), (-1,-1), 2),
     ]))
     story.append(t_hdr)
-    story.append(HRFlowable(width="100%", thickness=1.5, color=colors.HexColor('#0284c7'), spaceAfter=10))
+    story.append(HRFlowable(width="100%", thickness=1.2, color=colors.HexColor('#0284c7'), spaceAfter=5))
 
     # Executive Summary Card
     summary_text = (
         "<b>Executive Overview:</b> Our specialized corporate practice operates exclusively at the intersection of "
-        "<b>Corporate Law, SEBI Investor Protection Regulations, and MCA Statutory Governance</b>. We provide full-lifecycle "
-        "fiduciary representation to High-Net-Worth Individuals (HNIs), chartered accountants, medical practitioners, family trusts, "
-        "and corporate bodies whose long-term equity shares and accumulated dividend assets have matured past the 7-year "
-        "unclaimed period and statutorily transitioned into the custody of the <b>Investor Education and Protection Fund (IEPF) "
-        "Authority, Ministry of Corporate Affairs (Government of India)</b>. We maintain a 100% contingent, risk-free mandate."
+        "<b>Corporate Law, SEBI Investor Protection Regulations, and MCA Statutory Governance</b>. Having successfully executed "
+        "<b>over 50+ shareholder restitutions with a verified 100% success rate</b> (recovering Rs. 30+ Crores in transferred equity "
+        "assets and cumulative unpaid dividends), we provide full-lifecycle fiduciary representation to High-Net-Worth Individuals (HNIs), "
+        "chartered accountants, medical practitioners, family trusts, and corporate bodies whose long-term equity shares have statutorily "
+        "transitioned into the custody of the <b>Investor Education and Protection Fund (IEPF) Authority, Ministry of Corporate Affairs "
+        "(Government of India)</b>. We operate strictly on a 100% contingent, zero-risk mandate."
     )
-    t_sum = Table([[Paragraph(summary_text, body_style)]], colWidths=[515])
+    t_sum = Table([[Paragraph(summary_text, body_style)]], colWidths=[519])
     t_sum.setStyle(TableStyle([
         ('BACKGROUND', (0,0), (-1,-1), colors.HexColor('#f8fafc')),
         ('BOX', (0,0), (-1,-1), 1, colors.HexColor('#cbd5e1')),
-        ('PADDING', (0,0), (-1,-1), 10),
+        ('PADDING', (0,0), (-1,-1), 6),
     ]))
     story.append(t_sum)
-    story.append(Spacer(1, 10))
+    story.append(Spacer(1, 4))
+
+    # Track Record Metrics Banner
+    stat_style = ParagraphStyle(
+        'StatBox',
+        fontName='Helvetica',
+        fontSize=7.5,
+        leading=10,
+        alignment=1,
+        textColor=colors.HexColor('#0f172a')
+    )
+    stats_data = [
+        [
+            Paragraph("<font size=12 color='#0284c7'><b>50+</b></font><br/><b>RESTITUTIONS DONE</b><br/><font size=6.5 color='#64748b'>HNIs, CAs & Doctors</font>", stat_style),
+            Paragraph("<font size=12 color='#15803d'><b>100%</b></font><br/><b>SUCCESS RATE</b><br/><font size=6.5 color='#15803d'>Zero Rejections / Zero Memos</font>", stat_style),
+            Paragraph("<font size=12 color='#0f172a'><b>Rs. 30+ Cr</b></font><br/><b>ASSETS UNLOCKED</b><br/><font size=6.5 color='#64748b'>Astral & Tier-1 Equities</font>", stat_style),
+            Paragraph("<font size=12 color='#b45309'><b>Rs. 0 ADVANCE</b></font><br/><b>100% CONTINGENT</b><br/><font size=6.5 color='#b45309'>Payable Post Demat Credit</font>", stat_style),
+        ]
+    ]
+    t_stats = Table(stats_data, colWidths=[129, 131, 129, 130])
+    t_stats.setStyle(TableStyle([
+        ('BACKGROUND', (0,0), (-1,-1), colors.HexColor('#f1f5f9')),
+        ('BOX', (0,0), (-1,-1), 1, colors.HexColor('#94a3b8')),
+        ('INNERGRID', (0,0), (-1,-1), 0.5, colors.HexColor('#cbd5e1')),
+        ('PADDING', (0,0), (-1,-1), 4),
+        ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
+    ]))
+    story.append(t_stats)
+    story.append(Spacer(1, 4))
 
     # Core Leadership & Multi-Disciplinary Practice Team
     story.append(Paragraph("1. PRACTICE LEADERSHIP & MULTI-DISCIPLINARY STRUCTURE", sec_heading))
@@ -163,6 +168,7 @@ def generate_pdf():
         [
             Paragraph("<b>MD ASRAR BASHA A</b><br/><font color='#0284c7'><b>Practice Head & Lead Fiduciary Counsel</b></font>", role_title),
             Paragraph(
+                "• Successfully spearheaded <b>50+ corporate and HNI shareholder restitutions with a 100% success rate</b>.<br/>"
                 "• Directs strategic statutory interventions, high-value corporate mandates, and client representation before the IEPF Authority.<br/>"
                 "• Formulates legal restitution roadmaps across Section 124(6), Section 125(3), and Rule 7 of the IEPF Rules, 2016.<br/>"
                 "• Direct liaison with Astral Limited Corporate Legal Desk, Bigshare Services Mumbai, and Nodal Officers at MCA New Delhi.<br/>"
@@ -199,36 +205,36 @@ def generate_pdf():
         ]
     ]
 
-    t_team = Table(team_data, colWidths=[165, 350])
+    t_team = Table(team_data, colWidths=[165, 354])
     t_team.setStyle(TableStyle([
         ('BACKGROUND', (0,0), (-1,-1), colors.HexColor('#ffffff')),
         ('BOX', (0,0), (-1,-1), 1, colors.HexColor('#e2e8f0')),
         ('INNERGRID', (0,0), (-1,-1), 0.5, colors.HexColor('#e2e8f0')),
-        ('PADDING', (0,0), (-1,-1), 7),
+        ('PADDING', (0,0), (-1,-1), 4.5),
         ('VALIGN', (0,0), (-1,-1), 'TOP'),
     ]))
     story.append(t_team)
-    story.append(Spacer(1, 10))
+    story.append(Spacer(1, 4))
 
     # Core Practice Capabilities Box
     story.append(Paragraph("2. CORE PRACTICE CAPABILITIES & COMPLEX RESOLUTIONS", sec_heading))
 
     cap_data = [
         [
-            Paragraph("<b>Dematerialization & Legacy Physical Folio Conversion:</b> Full conversion of physical share certificates into Demat format via SEBI Form ISR-4.", body_style),
-            Paragraph("<b>Bank Signature Variation Rectification:</b> Official Form ISR-2 execution with Bank Manager seal, employee code, and CBS verification.", body_style)
+            Paragraph("<b>Dematerialization & Physical Conversion:</b> Full conversion of physical certificates into Demat via SEBI Form ISR-4.", body_style),
+            Paragraph("<b>Bank Signature Variation Rectification:</b> Official Form ISR-2 execution with Bank Manager seal, employee code & CBS stamp.", body_style)
         ],
         [
-            Paragraph("<b>Transmission & Legal Heir Succession:</b> Execution of Succession Certificates, Probate of Will, Legal Heirship affidavits, and Family NOCs.", body_style),
-            Paragraph("<b>Gazette Name & Address Reconciliations:</b> Rectification of spelling variations and address shifts via state gazette notifications and notarized affidavits.", body_style)
+            Paragraph("<b>Transmission & Legal Heir Succession:</b> Succession Certificates, Probate of Will, Legal Heir affidavits & Family NOCs.", body_style),
+            Paragraph("<b>Gazette Name & Address Reconciliations:</b> Rectification of name variations & address shifts via gazette notifications & affidavits.", body_style)
         ]
     ]
-    t_cap = Table(cap_data, colWidths=[255, 260])
+    t_cap = Table(cap_data, colWidths=[258, 261])
     t_cap.setStyle(TableStyle([
         ('BACKGROUND', (0,0), (-1,-1), colors.HexColor('#f1f5f9')),
         ('BOX', (0,0), (-1,-1), 1, colors.HexColor('#cbd5e1')),
         ('INNERGRID', (0,0), (-1,-1), 0.5, colors.HexColor('#cbd5e1')),
-        ('PADDING', (0,0), (-1,-1), 6),
+        ('PADDING', (0,0), (-1,-1), 3.5),
         ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
     ]))
     story.append(t_cap)
