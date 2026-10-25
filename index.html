@@ -1250,45 +1250,79 @@
       }
     }
 
+    let isSilentSyncing = false;
+    async function syncCustomersSilent() {
+      const modal = document.getElementById('customerModal');
+      if (modal && !modal.classList.contains('hidden')) return;
+      if (isSilentSyncing) return;
+
+      isSilentSyncing = true;
+      try {
+        const res = await fetch('/api/customers?_t=' + Date.now(), { cache: 'no-cache' });
+        if (!res.ok) return;
+        const freshData = await res.json();
+        if (!Array.isArray(freshData) || freshData.length === 0) return;
+
+        let hasChanges = freshData.length !== customers.length;
+        if (!hasChanges) {
+          for (let i = 0; i < freshData.length; i++) {
+            const fresh = freshData[i];
+            const current = customers.find(c => c.id === fresh.id);
+            if (!current || (current.status || 'Pending') !== (fresh.status || 'Pending')) {
+              hasChanges = true;
+              break;
+            }
+          }
+        }
+
+        if (hasChanges) {
+          customers = freshData;
+          const localStatusMap = {};
+          customers.forEach(c => {
+            if (!c.status) c.status = 'Pending';
+            localStatusMap[String(c.id)] = c.status;
+          });
+          try {
+            localStorage.setItem('customerVault_clientStatuses', JSON.stringify(localStatusMap));
+          } catch (e) {}
+
+          updateTabCounters();
+          applyFilterAndRender();
+
+          if (selectedCustomerId) {
+            const currentCust = customers.find(c => c.id === selectedCustomerId);
+            if (currentCust) {
+              updateProfileStatusUI(currentCust.status || 'Pending');
+            }
+          }
+        }
+      } catch (e) {
+        // Silent sync failure is non-fatal
+      } finally {
+        isSilentSyncing = false;
+      }
+    }
+
     async function loadCustomers(searchQuery = '', retryCount = 0) {
       const container = document.getElementById('customerList');
       try {
-        const url = '/api/customers';
-        const res = await fetch(url);
+        const url = '/api/customers' + (searchQuery ? `?q=${encodeURIComponent(searchQuery)}&_t=${Date.now()}` : `?_t=${Date.now()}`);
+        const res = await fetch(url, { cache: 'no-cache' });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
         customers = Array.isArray(data) ? data : [];
 
-        // RECONCILE AND APPLY PERSISTENT STATUSES:
-        // Merge remembered statuses from localStorage with server data
-        const localStatusMap = getLocalStatuses();
-        const pendingServerPushes = [];
-
+        // SERVER IS THE AUTHORITATIVE SINGLE SOURCE OF TRUTH:
+        // Cache server statuses for offline access; never override server data with stale local cache
+        const localStatusMap = {};
         customers.forEach(c => {
-          const remembered = localStatusMap[String(c.id)];
-          if (remembered && remembered !== (c.status || 'Pending')) {
-            // Local client had explicitly set this status; preserve it!
-            c.status = remembered;
-            pendingServerPushes.push({ id: c.id, status: remembered });
-          } else if (c.status) {
-            localStatusMap[String(c.id)] = c.status;
-          }
+          if (!c.status) c.status = 'Pending';
+          localStatusMap[String(c.id)] = c.status;
         });
 
         try {
           localStorage.setItem('customerVault_clientStatuses', JSON.stringify(localStatusMap));
         } catch (e) {}
-
-        // Asynchronously ensure server also has any locally remembered statuses
-        if (pendingServerPushes.length > 0) {
-          pendingServerPushes.forEach(item => {
-            fetch(`/api/customers/${item.id}/status`, {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ status: item.status })
-            }).catch(() => {});
-          });
-        }
 
         // Restore saved tab navigation UI
         const savedTab = localStorage.getItem('customerVault_activeTab');
@@ -2290,16 +2324,33 @@ Chennai & Ranipet, Tamil Nadu`;
       }
     }
 
-    // Register Service Worker for Android PWA with cache invalidation
+    // Register Service Worker for Mobile PWA with cache invalidation
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js?v=5').then((reg) => {
+        navigator.serviceWorker.register('/sw.js?v=6').then((reg) => {
           reg.update();
         }).catch((err) => {
           console.log('Service Worker skipped:', err);
         });
       });
     }
+
+    // Instant Multi-Device Live Sync
+    // Refreshes when switching between system and mobile or returning to tab
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') {
+        syncCustomersSilent();
+      }
+    });
+    window.addEventListener('focus', () => {
+      syncCustomersSilent();
+    });
+    // Silent background poll every 5 seconds
+    setInterval(() => {
+      if (document.visibilityState === 'visible') {
+        syncCustomersSilent();
+      }
+    }, 5000);
 
     // Init
     fetchNetworkInfo();

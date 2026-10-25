@@ -27,6 +27,18 @@ import time
 import shutil
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+if sys.stdout is None:
+    try:
+        sys.stdout = open(os.path.join(BASE_DIR, "server.log"), "a", encoding="utf-8")
+    except Exception:
+        pass
+if sys.stderr is None:
+    try:
+        sys.stderr = open(os.path.join(BASE_DIR, "server_err.log"), "a", encoding="utf-8")
+    except Exception:
+        pass
+
 UPLOAD_DIR = os.path.join(BASE_DIR, "uploads")
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
@@ -48,17 +60,20 @@ STATIC_DIR = BASE_DIR
 RENDER_API_BASE = "https://customer-vault.onrender.com/api"
 
 def load_status_backup():
-    """Loads backup dictionary of customer statuses from disk (checking persistent and local paths)."""
+    """Loads backup dictionary of customer statuses from disk, merging persistent and local paths."""
+    merged = {}
     for p in [STATUS_BACKUP_FILE, os.path.join(BASE_DIR, "client_status_registry.json")]:
         if os.path.exists(p):
             try:
                 with open(p, "r", encoding="utf-8") as f:
                     data = json.load(f)
-                    if data and isinstance(data, dict) and len(data) > 0:
-                        return data
+                    if data and isinstance(data, dict):
+                        for k, v in data.items():
+                            if k not in merged or (v in ["Completed", "Rejected"] and merged.get(k) == "Pending"):
+                                merged[k] = v
             except Exception:
                 pass
-    return {}
+    return merged
 
 def save_status_backup(cust_id, status):
     """Saves status update to persistent JSON registry on disk across all paths."""
@@ -361,6 +376,20 @@ def init_db():
             except Exception:
                 pass
         conn.commit()
+
+        if os.path.exists(DEFAULT_DB) and DEFAULT_DB != DB_PATH:
+            try:
+                d_conn = sqlite3.connect(DEFAULT_DB)
+                d_cur = d_conn.cursor()
+                for cid_str, stat in backup.items():
+                    try:
+                        d_cur.execute("UPDATE customers SET status = ? WHERE id = ?", (stat, int(cid_str)))
+                    except Exception:
+                        pass
+                d_conn.commit()
+                d_conn.close()
+            except Exception:
+                pass
 
     conn.close()
 
