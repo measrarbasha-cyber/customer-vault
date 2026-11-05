@@ -1010,15 +1010,15 @@
       <!-- Right: Action Buttons (Zoom Controls, Download, Open in New Tab, Close 'X' Button) -->
       <div class="flex items-center space-x-1.5 sm:space-x-2 shrink-0">
         <!-- Zoom Controls (for Canvas view) -->
-        <div id="pdfZoomControls" class="hidden sm:flex items-center space-x-1 bg-slate-800/80 px-2 py-1 rounded-xl border border-slate-700/60 text-xs">
-          <button type="button" onclick="changePdfZoom(-0.2)" title="Zoom Out" class="p-1 text-slate-300 hover:text-white rounded hover:bg-slate-700 transition cursor-pointer">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>
+        <div id="pdfZoomControls" class="flex items-center space-x-1 bg-slate-800/80 px-2 py-1 rounded-xl border border-slate-700/60 text-xs">
+          <button type="button" onclick="changePdfZoom(-0.25)" title="Zoom Out" class="p-1 text-slate-300 hover:text-white rounded hover:bg-slate-700 transition cursor-pointer">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M20 12H4"/></svg>
           </button>
-          <span id="pdfZoomLabel" class="text-[11px] font-mono text-slate-300 px-1">100%</span>
-          <button type="button" onclick="changePdfZoom(0.2)" title="Zoom In" class="p-1 text-slate-300 hover:text-white rounded hover:bg-slate-700 transition cursor-pointer">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+          <button type="button" onclick="resetPdfZoom()" id="pdfZoomLabel" title="Click to fit screen" class="text-[11px] font-mono text-slate-200 px-1.5 hover:text-indigo-300 transition cursor-pointer">100%</button>
+          <button type="button" onclick="changePdfZoom(0.25)" title="Zoom In" class="p-1 text-slate-300 hover:text-white rounded hover:bg-slate-700 transition cursor-pointer">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
           </button>
-          <button type="button" onclick="resetPdfZoom()" title="Fit to Screen" class="px-1.5 py-0.5 text-[10px] font-semibold text-slate-400 hover:text-white rounded hover:bg-slate-700 transition cursor-pointer">Fit</button>
+          <button type="button" onclick="resetPdfZoom()" title="Fit to Screen" class="hidden sm:inline-block px-1.5 py-0.5 text-[10px] font-semibold text-slate-400 hover:text-white rounded hover:bg-slate-700 transition cursor-pointer">Fit</button>
         </div>
 
         <!-- Download Button -->
@@ -1063,8 +1063,8 @@
 
     </div>
 
-    <!-- Viewer Body: Scrollable Canvas/Iframe Container -->
-    <div id="pdfViewerBody" class="flex-1 w-full h-full relative overflow-y-auto bg-slate-900/95 flex flex-col items-center justify-start p-2 sm:p-4 touch-pan-y">
+    <!-- Viewer Body: Scrollable Canvas/Iframe Container (Supports Touch Panning & Pinch) -->
+    <div id="pdfViewerBody" class="flex-1 w-full h-full relative overflow-auto bg-slate-900/95 flex flex-col items-center justify-start p-2 sm:p-4 touch-pan-x touch-pan-y select-none">
       
       <!-- Loading State -->
       <div id="pdfLoadingSpinner" class="flex flex-col items-center justify-center my-auto py-12 text-slate-400">
@@ -1077,10 +1077,27 @@
       </div>
 
       <!-- Rendered PDF Pages Container (when using PDF.js) -->
-      <div id="pdfPagesContainer" class="w-full flex flex-col items-center space-y-4 max-w-4xl pb-16"></div>
+      <div id="pdfPagesContainer" class="flex flex-col items-center space-y-4 pb-28 origin-top"></div>
 
       <!-- Fallback Direct Iframe Container (for native browser fallback) -->
       <iframe id="pdfFallbackIframe" class="hidden w-full h-full border-0 rounded-none bg-slate-800" src="" title="PDF Document Viewer"></iframe>
+
+      <!-- Floating Mobile Pinch Zoom Pill (Always accessible at bottom) -->
+      <div id="pdfMobileZoomBar" class="fixed bottom-5 z-30 flex items-center bg-slate-900/90 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-slate-700/80 shadow-2xl space-x-2 text-white sm:hidden pointer-events-auto">
+        <button type="button" onclick="changePdfZoom(-0.25)" class="p-1 text-slate-300 hover:text-white active:scale-90 transition rounded-full hover:bg-slate-800" title="Zoom Out">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M20 12H4"/></svg>
+        </button>
+        <button type="button" onclick="resetPdfZoom()" id="pdfMobileZoomLabel" class="text-xs font-mono font-bold text-slate-200 px-2 py-0.5 rounded-md hover:bg-slate-800 transition" title="Tap to fit width">
+          100%
+        </button>
+        <button type="button" onclick="changePdfZoom(0.25)" class="p-1 text-slate-300 hover:text-white active:scale-90 transition rounded-full hover:bg-slate-800" title="Zoom In">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
+        </button>
+        <span class="text-slate-600">|</span>
+        <button type="button" onclick="resetPdfZoom()" class="text-[11px] font-bold text-indigo-400 hover:text-indigo-300 px-1 py-0.5 rounded transition">
+          Fit
+        </button>
+      </div>
 
     </div>
   </div>
@@ -1876,10 +1893,21 @@
     let currentPdfFilename = 'document.pdf';
     let currentPdfDoc = null;
     let currentPdfScale = 1.0;
-    let isRenderingPdf = false;
+    let pdfRenderCounter = 0;
+    let activeRenderTasks = [];
+    let pdfGesturesInitialized = false;
 
     if (window.pdfjsLib) {
       pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    }
+
+    function cancelActivePdfRenders() {
+      if (activeRenderTasks && activeRenderTasks.length > 0) {
+        activeRenderTasks.forEach(task => {
+          try { task.cancel(); } catch (e) {}
+        });
+        activeRenderTasks = [];
+      }
     }
 
     async function openPdfViewer(url, docTitle, clientName, fileName) {
@@ -1888,12 +1916,13 @@
       const subTitleEl = document.getElementById('pdfViewerSubTitle');
       const dlBtn = document.getElementById('pdfViewerDownloadBtn');
       const extBtn = document.getElementById('pdfViewerExternalBtn');
+      const mobZoomBar = document.getElementById('pdfMobileZoomBar');
 
       currentPdfUrl = url;
       currentPdfFilename = fileName || 'document.pdf';
 
       if (docTitleEl) docTitleEl.innerText = docTitle || 'Client Document';
-      if (subTitleEl) subTitleEl.innerText = clientName ? `${clientName}` : 'CustomerVault Document';
+      if (subTitleEl) subTitleEl.innerText = clientName ? clientName : 'CustomerVault Document';
       if (dlBtn) {
         dlBtn.href = url;
         dlBtn.setAttribute('download', currentPdfFilename);
@@ -1902,6 +1931,7 @@
 
       modal.classList.remove('hidden');
       document.body.classList.add('overflow-hidden');
+      if (mobZoomBar) mobZoomBar.classList.remove('hidden');
 
       // Seamless Mobile Back Gesture & Hardware Back Button Integration
       try {
@@ -1918,11 +1948,18 @@
       modal.classList.add('hidden');
       document.body.classList.remove('overflow-hidden');
 
+      cancelActivePdfRenders();
+
       // Clear memory on mobile
       const pagesContainer = document.getElementById('pdfPagesContainer');
-      if (pagesContainer) pagesContainer.innerHTML = '';
+      if (pagesContainer) {
+        pagesContainer.innerHTML = '';
+        pagesContainer.style.transform = '';
+      }
       const fallbackIframe = document.getElementById('pdfFallbackIframe');
       if (fallbackIframe) fallbackIframe.src = '';
+      const mobZoomBar = document.getElementById('pdfMobileZoomBar');
+      if (mobZoomBar) mobZoomBar.classList.add('hidden');
 
       currentPdfDoc = null;
       currentPdfUrl = null;
@@ -1950,21 +1987,110 @@
       openPdfViewer(p1Url, 'Doc 1 • Recovery Dossier', cust.name, cust.pdf1_filename || 'Recovery_Dossier.pdf');
     }
 
+    function initPdfTouchGestures() {
+      if (pdfGesturesInitialized) return;
+      const viewerBody = document.getElementById('pdfViewerBody');
+      const pagesContainer = document.getElementById('pdfPagesContainer');
+      if (!viewerBody || !pagesContainer) return;
+      pdfGesturesInitialized = true;
+
+      let isPinching = false;
+      let startDistance = 0;
+      let startScale = 1.0;
+      let currentScaleMultiplier = 1.0;
+      let lastTapTime = 0;
+
+      viewerBody.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 2) {
+          isPinching = true;
+          const t1 = e.touches[0];
+          const t2 = e.touches[1];
+          startDistance = Math.hypot(t2.clientX - t1.clientX, t2.clientY - t1.clientY);
+          startScale = currentPdfScale;
+          currentScaleMultiplier = 1.0;
+          pagesContainer.style.transition = 'none';
+        } else if (e.touches.length === 1) {
+          // Double-tap zoom detection
+          const now = Date.now();
+          if (now - lastTapTime < 320) {
+            e.preventDefault();
+            if (currentPdfScale > 1.2) {
+              resetPdfZoom();
+            } else {
+              changePdfZoom(0.6);
+            }
+            lastTapTime = 0;
+            return;
+          }
+          lastTapTime = now;
+        }
+      }, { passive: false });
+
+      viewerBody.addEventListener('touchmove', (e) => {
+        if (isPinching && e.touches.length === 2) {
+          e.preventDefault(); // Prevent full-page scroll while pinching
+          const t1 = e.touches[0];
+          const t2 = e.touches[1];
+          const dist = Math.hypot(t2.clientX - t1.clientX, t2.clientY - t1.clientY);
+          if (startDistance > 10) {
+            currentScaleMultiplier = dist / startDistance;
+            const liveScale = Math.max(0.5, Math.min(3.5, startScale * currentScaleMultiplier));
+            pagesContainer.style.transform = `scale(${liveScale / startScale})`;
+            pagesContainer.style.transformOrigin = 'top center';
+
+            // Real-time responsive zoom label update
+            const pct = Math.round(liveScale * 100) + '%';
+            const label = document.getElementById('pdfZoomLabel');
+            if (label) label.innerText = pct;
+            const mobLabel = document.getElementById('pdfMobileZoomLabel');
+            if (mobLabel) mobLabel.innerText = pct;
+          }
+        }
+      }, { passive: false });
+
+      const onTouchEnd = async (e) => {
+        if (isPinching) {
+          isPinching = false;
+          pagesContainer.style.transform = '';
+          pagesContainer.style.transformOrigin = '';
+          if (Math.abs(currentScaleMultiplier - 1.0) > 0.05) {
+            const finalScale = Math.max(0.6, Math.min(3.5, Math.round(startScale * currentScaleMultiplier * 20) / 20));
+            currentPdfScale = finalScale;
+            updateZoomLabel();
+            const spinner = document.getElementById('pdfLoadingSpinner');
+            if (spinner) spinner.classList.remove('hidden');
+            await renderAllPdfPages();
+            if (spinner) spinner.classList.add('hidden');
+          } else {
+            updateZoomLabel();
+          }
+          currentScaleMultiplier = 1.0;
+        }
+      };
+
+      viewerBody.addEventListener('touchend', onTouchEnd);
+      viewerBody.addEventListener('touchcancel', onTouchEnd);
+    }
+
     async function loadAndRenderPdf(url) {
       const spinner = document.getElementById('pdfLoadingSpinner');
       const pagesContainer = document.getElementById('pdfPagesContainer');
       const fallbackIframe = document.getElementById('pdfFallbackIframe');
       const zoomControls = document.getElementById('pdfZoomControls');
+      const mobZoomBar = document.getElementById('pdfMobileZoomBar');
 
       if (spinner) spinner.classList.remove('hidden');
       if (pagesContainer) {
         pagesContainer.innerHTML = '';
         pagesContainer.classList.remove('hidden');
+        pagesContainer.style.transform = '';
       }
       if (fallbackIframe) {
         fallbackIframe.classList.add('hidden');
         fallbackIframe.src = '';
       }
+
+      initPdfTouchGestures();
 
       if (window.pdfjsLib) {
         try {
@@ -1976,14 +2102,16 @@
           const pdf = await loadingTask.promise;
           currentPdfDoc = pdf;
 
-          // Responsive zoom: fit mobile or desktop screen width
+          // Responsive initial zoom: fit mobile or desktop screen width
           const page1 = await pdf.getPage(1);
           const defaultViewport = page1.getViewport({ scale: 1.0 });
-          const viewerWidth = Math.min(window.innerWidth - (window.innerWidth < 640 ? 20 : 48), 860);
-          currentPdfScale = Math.max(0.6, Math.min(2.0, (viewerWidth / defaultViewport.width)));
+          const padding = window.innerWidth < 640 ? 16 : 48;
+          const viewerWidth = Math.max(280, window.innerWidth - padding);
+          currentPdfScale = Math.max(0.6, Math.min(2.0, Math.round((viewerWidth / defaultViewport.width) * 20) / 20));
           updateZoomLabel();
 
           if (zoomControls) zoomControls.classList.remove('hidden');
+          if (mobZoomBar) mobZoomBar.classList.remove('hidden');
 
           await renderAllPdfPages();
           if (spinner) spinner.classList.add('hidden');
@@ -1995,6 +2123,7 @@
 
       // Fallback direct iframe if PDF.js is unavailable
       if (zoomControls) zoomControls.classList.add('hidden');
+      if (mobZoomBar) mobZoomBar.classList.add('hidden');
       if (pagesContainer) pagesContainer.classList.add('hidden');
       if (fallbackIframe) {
         fallbackIframe.src = url;
@@ -2007,45 +2136,91 @@
       if (!currentPdfDoc) return;
       const pagesContainer = document.getElementById('pdfPagesContainer');
       if (!pagesContainer) return;
-      pagesContainer.innerHTML = '';
 
+      cancelActivePdfRenders();
+      const currentToken = ++pdfRenderCounter;
+
+      pagesContainer.innerHTML = '';
       const numPages = currentPdfDoc.numPages;
+
+      // HiDPI / Retina Crisp rendering multiplier
+      // Clamping minimum DPR to 2.0 guarantees crystal-clear, ultra-sharp vector rendering on all screens
+      const dpr = Math.max(window.devicePixelRatio || 1, 2.0);
+
       for (let pageNum = 1; pageNum <= numPages; pageNum++) {
+        if (pdfRenderCounter !== currentToken) return;
+
         const page = await currentPdfDoc.getPage(pageNum);
-        const viewport = page.getViewport({ scale: currentPdfScale });
+        if (pdfRenderCounter !== currentToken) return;
+
+        const baseViewport = page.getViewport({ scale: 1.0 });
+
+        // Calculate rendered pixel scale vs CSS displayed dimensions
+        let renderScale = currentPdfScale * dpr;
+        // Limit max canvas pixel dimension to 3600px to protect mobile GPU memory
+        const maxDim = Math.max(baseViewport.width, baseViewport.height);
+        if (maxDim * renderScale > 3600) {
+          renderScale = 3600 / maxDim;
+        }
+
+        const renderViewport = page.getViewport({ scale: renderScale });
+        const cssViewport = page.getViewport({ scale: currentPdfScale });
 
         const pageWrapper = document.createElement('div');
-        pageWrapper.className = 'flex flex-col items-center w-full';
+        pageWrapper.className = 'flex flex-col items-center shrink-0 my-2';
 
         const canvas = document.createElement('canvas');
-        canvas.className = 'max-w-full shadow-2xl rounded-lg bg-white border border-slate-700/50';
-        canvas.height = viewport.height;
-        canvas.width = viewport.width;
+        canvas.className = 'shadow-2xl rounded-lg bg-white border border-slate-700/50 block';
+        
+        // Physical buffer size (ultra-high pixel density)
+        canvas.width = Math.floor(renderViewport.width);
+        canvas.height = Math.floor(renderViewport.height);
+
+        // Logical CSS display size (expandable past viewport for touch panning)
+        canvas.style.width = Math.floor(cssViewport.width) + 'px';
+        canvas.style.height = Math.floor(cssViewport.height) + 'px';
+        canvas.style.maxWidth = 'none';
 
         const pageNumBadge = document.createElement('div');
-        pageNumBadge.className = 'text-[11px] font-mono font-semibold text-slate-400 py-1.5 flex items-center justify-between w-full max-w-[850px] px-2';
+        pageNumBadge.className = 'text-[11px] font-mono font-semibold text-slate-400 py-1.5 flex items-center justify-between w-full px-2';
+        pageNumBadge.style.maxWidth = Math.floor(cssViewport.width) + 'px';
         pageNumBadge.innerHTML = `<span>Page ${pageNum} of ${numPages}</span><span class="text-[10px] text-slate-500 font-sans">Official Client Vault Record</span>`;
 
         pageWrapper.appendChild(canvas);
         pageWrapper.appendChild(pageNumBadge);
         pagesContainer.appendChild(pageWrapper);
 
+        const ctx = canvas.getContext('2d', { alpha: false });
         const renderContext = {
-          canvasContext: canvas.getContext('2d'),
-          viewport: viewport
+          canvasContext: ctx,
+          viewport: renderViewport
         };
-        await page.render(renderContext).promise;
+
+        const renderTask = page.render(renderContext);
+        activeRenderTasks.push(renderTask);
+
+        try {
+          await renderTask.promise;
+        } catch (err) {
+          if (err && err.name === 'RenderingCancelledException') {
+            return;
+          }
+          console.warn('Page render notice:', err);
+        }
       }
     }
 
     function updateZoomLabel() {
+      const pct = Math.round(currentPdfScale * 100) + '%';
       const label = document.getElementById('pdfZoomLabel');
-      if (label) label.innerText = Math.round(currentPdfScale * 100) + '%';
+      if (label) label.innerText = pct;
+      const mobLabel = document.getElementById('pdfMobileZoomLabel');
+      if (mobLabel) mobLabel.innerText = pct;
     }
 
     async function changePdfZoom(delta) {
       if (!currentPdfDoc) return;
-      const newScale = Math.max(0.5, Math.min(2.5, currentPdfScale + delta));
+      const newScale = Math.max(0.5, Math.min(3.5, Math.round((currentPdfScale + delta) * 20) / 20));
       if (Math.abs(newScale - currentPdfScale) < 0.01) return;
       currentPdfScale = newScale;
       updateZoomLabel();
@@ -2059,8 +2234,9 @@
       if (!currentPdfDoc) return;
       const page1 = await currentPdfDoc.getPage(1);
       const defaultViewport = page1.getViewport({ scale: 1.0 });
-      const viewerWidth = Math.min(window.innerWidth - (window.innerWidth < 640 ? 20 : 48), 860);
-      currentPdfScale = Math.max(0.6, Math.min(2.0, (viewerWidth / defaultViewport.width)));
+      const padding = window.innerWidth < 640 ? 16 : 48;
+      const viewerWidth = Math.max(280, window.innerWidth - padding);
+      currentPdfScale = Math.max(0.6, Math.min(2.0, Math.round((viewerWidth / defaultViewport.width) * 20) / 20));
       updateZoomLabel();
       const spinner = document.getElementById('pdfLoadingSpinner');
       if (spinner) spinner.classList.remove('hidden');
@@ -2698,7 +2874,7 @@ Chennai & Ranipet, Tamil Nadu`;
     // Register Service Worker for Mobile PWA with cache invalidation
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js?v=7').then((reg) => {
+        navigator.serviceWorker.register('/sw.js?v=13').then((reg) => {
           reg.update();
         }).catch((err) => {
           console.log('Service Worker skipped:', err);
