@@ -427,6 +427,14 @@
                 </div>
 
                 <div class="flex flex-wrap items-center gap-2">
+                  <!-- Universal Share Dossier Button (Insta, WA, Snap, SMS) -->
+                  <button id="dispatchShareBtn" onclick="shareSelectedDossier()" class="inline-flex items-center justify-center px-3 py-2 text-xs font-bold text-white bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-700 hover:to-indigo-700 active:scale-95 rounded-lg transition shadow-sm shadow-indigo-200 cursor-pointer" title="Share PDF via WhatsApp, Instagram, Snapchat, SMS, or any app">
+                    <svg class="w-4 h-4 mr-1.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+                    </svg>
+                    <span>Share (Insta, WA, Snap, SMS)</span>
+                  </button>
+
                   <!-- WhatsApp Dossier Button -->
                   <button id="dispatchWhatsAppBtn" onclick="dispatchWhatsAppDirect()" class="inline-flex items-center justify-center px-3 py-2 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 active:scale-95 rounded-lg transition shadow-sm shadow-emerald-200 cursor-pointer">
                     <svg class="w-4 h-4 mr-1.5 shrink-0" fill="currentColor" viewBox="0 0 24 24">
@@ -496,6 +504,9 @@
                     <a id="pdf1ViewBtn" href="javascript:void(0)" class="flex-1 py-1 px-2 text-center text-xs font-bold text-rose-700 bg-rose-100/80 hover:bg-rose-200/80 rounded-md transition cursor-pointer">
                       View Dossier
                     </a>
+                    <button type="button" id="pdf1ShareBtn" onclick="shareDoc(1)" class="p-1 text-rose-600 hover:text-rose-900 rounded-md hover:bg-rose-100 transition cursor-pointer" title="Share Doc 1 via WhatsApp, Instagram, Snapchat, etc.">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" /></svg>
+                    </button>
                     <a id="pdf1DownloadBtn" href="#" download class="p-1 text-slate-500 hover:text-slate-800 rounded-md hover:bg-slate-200 transition" title="Download">
                       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
@@ -522,6 +533,9 @@
                     <a id="pdf2ViewBtn" href="javascript:void(0)" class="flex-1 py-1 px-2 text-center text-xs font-bold text-indigo-700 bg-indigo-100/80 hover:bg-indigo-200/80 rounded-md transition cursor-pointer">
                       View Agreement
                     </a>
+                    <button type="button" id="pdf2ShareBtn" onclick="shareDoc(2)" class="p-1 text-indigo-600 hover:text-indigo-900 rounded-md hover:bg-indigo-100 transition cursor-pointer" title="Share Doc 2 via WhatsApp, Instagram, Snapchat, etc.">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" /></svg>
+                    </button>
                     <a id="pdf2DownloadBtn" href="#" download class="p-1 text-slate-500 hover:text-slate-800 rounded-md hover:bg-slate-200 transition" title="Download">
                       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
@@ -548,6 +562,9 @@
                     <a id="pdf3ViewBtn" href="javascript:void(0)" class="flex-1 py-1 px-2 text-center text-xs font-bold text-emerald-800 bg-emerald-100 hover:bg-emerald-200 rounded-md transition cursor-pointer">
                       View Playbook (EN)
                     </a>
+                    <button type="button" id="pdf3ShareBtn" onclick="shareDoc(3)" class="p-1 text-emerald-600 hover:text-emerald-900 rounded-md hover:bg-emerald-100 transition cursor-pointer" title="Share Doc 3 via WhatsApp, Instagram, Snapchat, etc.">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" /></svg>
+                    </button>
                     <a id="pdf3DownloadBtn" href="#" download class="p-1 text-slate-500 hover:text-slate-800 rounded-md hover:bg-slate-200 transition" title="Download">
                       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
@@ -574,6 +591,9 @@
                     <a id="pdf4ViewBtn" href="javascript:void(0)" class="flex-1 py-1 px-2 text-center text-xs font-bold text-amber-900 bg-amber-100 hover:bg-amber-200 rounded-md transition cursor-pointer">
                       View Playbook (Regional)
                     </a>
+                    <button type="button" id="pdf4ShareBtn" onclick="shareDoc(4)" class="p-1 text-amber-600 hover:text-amber-900 rounded-md hover:bg-amber-100 transition cursor-pointer" title="Share Doc 4 via WhatsApp, Instagram, Snapchat, etc.">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" /></svg>
+                    </button>
                     <a id="pdf4DownloadBtn" href="#" download class="p-1 text-slate-500 hover:text-slate-800 rounded-md hover:bg-slate-200 transition" title="Download">
                       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
@@ -600,6 +620,9 @@
                     <a id="pdf5ViewBtn" href="javascript:void(0)" class="flex-1 py-1 px-2 text-center text-xs font-bold text-teal-900 bg-teal-100 hover:bg-teal-200 rounded-md transition cursor-pointer">
                       View Share Certificate & Trust FAQ
                     </a>
+                    <button type="button" id="pdf5ShareBtn" onclick="shareDoc(5)" class="p-1 text-teal-600 hover:text-teal-900 rounded-md hover:bg-teal-100 transition cursor-pointer" title="Share Doc 5 via WhatsApp, Instagram, Snapchat, etc.">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" /></svg>
+                    </button>
                     <a id="pdf5DownloadBtn" href="#" download class="p-1 text-slate-500 hover:text-slate-800 rounded-md hover:bg-slate-200 transition" title="Download">
                       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
@@ -629,6 +652,9 @@
                     <a id="pdf6ViewBtn" href="javascript:void(0)" class="flex-1 py-1.5 px-3 text-center text-xs font-bold text-white bg-rose-700 hover:bg-rose-800 rounded-md shadow-xs transition cursor-pointer">
                       View Statutory Transfer Notice &amp; Recovery Guide
                     </a>
+                    <button type="button" id="pdf6ShareBtn" onclick="shareDoc(6)" class="p-1.5 text-rose-800 hover:text-rose-950 rounded-md hover:bg-rose-200 transition cursor-pointer" title="Share Doc 6 via WhatsApp, Instagram, Snapchat, etc.">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" /></svg>
+                    </button>
                     <a id="pdf6DownloadBtn" href="#" download class="p-1.5 text-rose-800 hover:text-rose-950 rounded-md hover:bg-rose-200 transition" title="Download">
                       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
@@ -976,6 +1002,133 @@
     </div>
   </div>
 
+  <!-- MODAL: UNIVERSAL SHARE PDF WITH CLIENT (WHATSAPP, INSTAGRAM, SNAPCHAT, SMS, EMAIL) -->
+  <div id="universalShareModal" class="fixed inset-0 z-50 hidden bg-slate-950/70 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4 animate-fadeIn">
+    <div class="bg-white rounded-3xl max-w-md w-full p-5 sm:p-6 shadow-2xl border border-slate-200 flex flex-col relative max-h-[92vh] overflow-y-auto">
+      
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between pb-3.5 border-b border-slate-100">
+        <div class="flex items-center space-x-3">
+          <div class="p-2.5 rounded-2xl bg-indigo-50 text-indigo-600 border border-indigo-100">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-slate-900 leading-tight">Share Document</h3>
+            <p class="text-xs text-slate-500">Send PDF to client via any app or medium</p>
+          </div>
+        </div>
+        <button type="button" onclick="closeUniversalShareModal()" class="p-2 text-slate-400 hover:text-slate-600 rounded-xl hover:bg-slate-100 transition cursor-pointer" title="Close">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Document Info Preview -->
+      <div class="my-3.5 p-3 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center font-bold text-xs shrink-0 shadow-xs">
+          PDF
+        </div>
+        <div class="min-w-0 flex-1">
+          <h4 id="universalShareTitle" class="text-xs font-bold text-slate-900 truncate">Recovery Dossier</h4>
+          <p id="universalShareClient" class="text-[11px] font-semibold text-indigo-700 truncate">Client Name</p>
+          <p id="universalShareFilename" class="text-[10px] text-slate-400 truncate font-mono">document.pdf</p>
+        </div>
+      </div>
+
+      <!-- Medium / Channel Buttons Grid -->
+      <div class="grid grid-cols-2 gap-2.5 my-1">
+        
+        <!-- WhatsApp -->
+        <button type="button" onclick="shareToChannel('whatsapp')" class="flex items-center space-x-2.5 p-3 rounded-2xl bg-emerald-50 hover:bg-emerald-100/80 border border-emerald-200 text-emerald-800 transition active:scale-95 cursor-pointer text-left">
+          <div class="p-2 bg-emerald-600 text-white rounded-xl shrink-0 shadow-xs">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+          </div>
+          <div class="min-w-0">
+            <span class="block text-xs font-bold text-slate-900">WhatsApp</span>
+            <span class="block text-[10px] text-emerald-700">Chat & PDF link</span>
+          </div>
+        </button>
+
+        <!-- Instagram -->
+        <button type="button" onclick="shareToChannel('instagram')" class="flex items-center space-x-2.5 p-3 rounded-2xl bg-gradient-to-r from-pink-50 to-purple-50 hover:from-pink-100 hover:to-purple-100 border border-pink-200 text-pink-900 transition active:scale-95 cursor-pointer text-left">
+          <div class="p-2 bg-gradient-to-tr from-amber-500 via-pink-600 to-purple-600 text-white rounded-xl shrink-0 shadow-xs">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </div>
+          <div class="min-w-0">
+            <span class="block text-xs font-bold text-slate-900">Instagram</span>
+            <span class="block text-[10px] text-pink-700">Direct Message</span>
+          </div>
+        </button>
+
+        <!-- Snapchat -->
+        <button type="button" onclick="shareToChannel('snapchat')" class="flex items-center space-x-2.5 p-3 rounded-2xl bg-amber-50 hover:bg-amber-100/80 border border-amber-200 text-amber-900 transition active:scale-95 cursor-pointer text-left">
+          <div class="p-2 bg-yellow-400 text-slate-900 rounded-xl shrink-0 shadow-xs">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12.001 2c-3.791 0-6.425 2.73-6.425 5.856 0 1.259.431 2.378 1.157 3.238.21.25.32.571.21.895-.12.353-.38.742-.781 1.144-.45.452-.89.653-1.341.653-.3 0-.58-.09-.84-.27-.29-.2-.68-.19-.94.03-.28.23-.37.6-.22.92.51 1.07 1.54 1.83 2.82 2.13.19.04.35.15.44.32.1.18.1.39.02.58-.29.68-.86 1.41-1.57 2.01-.32.27-.42.72-.25 1.09.18.38.58.62 1 .6.74-.03 1.57-.25 2.39-.62.33-.15.71-.12 1.01.08.79.52 1.94.88 3.36.88 1.41 0 2.57-.36 3.36-.88.3-.2.68-.23 1.01-.08.82.37 1.65.59 2.39.62.42.02.82-.22 1-.6.17-.37.07-.82-.25-1.09-.71-.6-1.28-1.33-1.57-2.01-.08-.19-.08-.4.02-.58.09-.17.25-.28.44-.32 1.28-.3 2.31-1.06 2.82-2.13.15-.32.06-.69-.22-.92-.26-.22-.65-.23-.94-.03-.26.18-.54.27-.84.27-.45 0-.89-.2-1.34-.65-.4-.4-.66-.79-.78-1.14-.11-.32 0-.64.21-.89.73-.86 1.16-1.98 1.16-3.24 0-3.13-2.63-5.86-6.42-5.86z"/></svg>
+          </div>
+          <div class="min-w-0">
+            <span class="block text-xs font-bold text-slate-900">Snapchat</span>
+            <span class="block text-[10px] text-amber-700">Snap or Chat</span>
+          </div>
+        </button>
+
+        <!-- Messages / SMS -->
+        <button type="button" onclick="shareToChannel('sms')" class="flex items-center space-x-2.5 p-3 rounded-2xl bg-blue-50 hover:bg-blue-100/80 border border-blue-200 text-blue-900 transition active:scale-95 cursor-pointer text-left">
+          <div class="p-2 bg-blue-600 text-white rounded-xl shrink-0 shadow-xs">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+          </div>
+          <div class="min-w-0">
+            <span class="block text-xs font-bold text-slate-900">Messages (SMS)</span>
+            <span class="block text-[10px] text-blue-700">Phone text message</span>
+          </div>
+        </button>
+
+        <!-- Gmail / Email -->
+        <button type="button" onclick="shareToChannel('email')" class="flex items-center space-x-2.5 p-3 rounded-2xl bg-rose-50 hover:bg-rose-100/80 border border-rose-200 text-rose-900 transition active:scale-95 cursor-pointer text-left">
+          <div class="p-2 bg-rose-600 text-white rounded-xl shrink-0 shadow-xs">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          </div>
+          <div class="min-w-0">
+            <span class="block text-xs font-bold text-slate-900">Email</span>
+            <span class="block text-[10px] text-rose-700">Draft with PDF link</span>
+          </div>
+        </button>
+
+        <!-- Download File Direct -->
+        <button type="button" onclick="shareToChannel('download')" class="flex items-center space-x-2.5 p-3 rounded-2xl bg-slate-100 hover:bg-slate-200/80 border border-slate-300 text-slate-900 transition active:scale-95 cursor-pointer text-left">
+          <div class="p-2 bg-slate-700 text-white rounded-xl shrink-0 shadow-xs">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+          </div>
+          <div class="min-w-0">
+            <span class="block text-xs font-bold text-slate-900">Download File</span>
+            <span class="block text-[10px] text-slate-600">Save offline PDF</span>
+          </div>
+        </button>
+
+      </div>
+
+      <!-- Quick Copy Link Box -->
+      <div class="mt-3 pt-3 border-t border-slate-100">
+        <label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1.5">Direct Document Link</label>
+        <div class="flex items-center space-x-2">
+          <input type="text" id="universalShareLinkInput" readonly class="flex-1 px-3 py-2 text-xs bg-slate-100 border border-slate-200 rounded-xl font-mono text-slate-700 select-all focus:outline-none">
+          <button type="button" onclick="shareToChannel('copy')" class="px-3.5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-xl shadow-xs transition active:scale-95 shrink-0 flex items-center space-x-1 cursor-pointer">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
+            <span>Copy</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="mt-3 p-2.5 rounded-xl bg-indigo-50/60 border border-indigo-100/80 text-[11px] text-indigo-900 flex items-start space-x-2">
+        <span class="text-indigo-600 font-bold shrink-0">📲</span>
+        <span><strong>Mobile App / PWA Tip:</strong> On your mobile phone, tapping <em>Share</em> opens your phone's native Share Sheet to share the actual PDF file directly into WhatsApp, Instagram, Snapchat, and any messaging app.</span>
+      </div>
+
+    </div>
+  </div>
+
   <!-- MODAL: IN-APP PDF VIEWER (WITH CLOSE 'X' & BACK BUTTON FOR MOBILE & PWA) -->
   <div id="pdfViewerModal" class="fixed inset-0 z-50 hidden bg-slate-950/95 backdrop-blur-md flex flex-col overflow-hidden animate-fadeIn">
     <!-- Top Header Navigation Bar (Fixed & Sticky - Safe Area Aware) -->
@@ -1020,6 +1173,19 @@
           </button>
           <button type="button" onclick="resetPdfZoom()" title="Fit to Screen" class="hidden sm:inline-block px-1.5 py-0.5 text-[10px] font-semibold text-slate-400 hover:text-white rounded hover:bg-slate-700 transition cursor-pointer">Fit</button>
         </div>
+
+        <!-- Share PDF Button (Insta, WA, Snap, SMS, Email) -->
+        <button 
+          type="button" 
+          onclick="shareCurrentPdf()" 
+          id="pdfViewerShareBtn" 
+          class="inline-flex items-center p-2 text-indigo-300 hover:text-white bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-xl transition active:scale-95 shadow-xs cursor-pointer"
+          title="Share PDF via WhatsApp, Instagram, Snapchat, Message, or Email"
+        >
+          <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+          </svg>
+        </button>
 
         <!-- Download Button -->
         <a 
@@ -1096,6 +1262,10 @@
         <span class="text-slate-600">|</span>
         <button type="button" onclick="resetPdfZoom()" class="text-[11px] font-bold text-indigo-400 hover:text-indigo-300 px-1 py-0.5 rounded transition">
           Fit
+        </button>
+        <span class="text-slate-600">|</span>
+        <button type="button" onclick="shareCurrentPdf()" class="p-1 text-indigo-300 hover:text-white active:scale-90 transition rounded-full hover:bg-slate-800" title="Share PDF (WhatsApp, Instagram, Snapchat, SMS)">
+          <svg class="w-4 h-4 text-indigo-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" /></svg>
         </button>
       </div>
 
@@ -1891,6 +2061,9 @@
 
     let currentPdfUrl = null;
     let currentPdfFilename = 'document.pdf';
+    let currentPdfDocTitle = 'Client Document';
+    let currentPdfClientName = '';
+    let activeShareData = null;
     let currentPdfDoc = null;
     let currentPdfScale = 1.0;
     let pdfRenderCounter = 0;
@@ -1920,6 +2093,8 @@
 
       currentPdfUrl = url;
       currentPdfFilename = fileName || 'document.pdf';
+      currentPdfDocTitle = docTitle || 'Client Document';
+      currentPdfClientName = clientName || '';
 
       if (docTitleEl) docTitleEl.innerText = docTitle || 'Client Document';
       if (subTitleEl) subTitleEl.innerText = clientName ? clientName : 'CustomerVault Document';
@@ -2264,6 +2439,228 @@
     // ==========================================
     // CLIENT DOSSIER OUTREACH & DISPATCH SYSTEM
     // ==========================================
+
+
+    // ==========================================
+    // UNIVERSAL DOCUMENT SHARING ENGINE
+    // (Native Web Share API + WhatsApp, Instagram, Snapchat, SMS, Email)
+    // ==========================================
+
+    function shareCurrentPdf() {
+      if (!currentPdfUrl) {
+        showToast('No document loaded to share', 'error');
+        return;
+      }
+      shareDocument(currentPdfUrl, currentPdfFilename, currentPdfDocTitle, currentPdfClientName);
+    }
+
+    function shareSelectedDossier() {
+      const cust = customers.find(c => c.id === selectedCustomerId);
+      if (!cust || !cust.pdf1_path) {
+        showToast('No dossier document available for this client', 'error');
+        return;
+      }
+      const p1Url = `/api/documents/${cust.pdf1_path}?t=${Date.now()}`;
+      const p1Name = cust.pdf1_filename || `${cust.name.replace(/[^a-zA-Z0-9]/g, '_')}_Recovery_Dossier.pdf`;
+      shareDocument(p1Url, p1Name, 'Doc 1 • Recovery Dossier', cust.name);
+    }
+
+    function shareDoc(num) {
+      const cust = customers.find(c => c.id === selectedCustomerId);
+      if (!cust) return;
+      const path = cust[`pdf${num}_path`];
+      if (!path) {
+        showToast(`Doc ${num} is not uploaded for this client`, 'error');
+        return;
+      }
+      const titles = {
+        1: 'Doc 1 • Recovery Dossier',
+        2: 'Doc 2 • Service Agreement',
+        3: 'Doc 3 • Call Script (English)',
+        4: 'Doc 4 • Call Script (Regional)',
+        5: 'Doc 5 • Statutory Share Certificate & Trust Dossier',
+        6: 'Doc 6 • Statutory IEPF Restitution Notice & Recovery Guide'
+      };
+      const url = `/api/documents/${path}?t=${Date.now()}`;
+      const filename = cust[`pdf${num}_filename`] || `Document_${num}.pdf`;
+      shareDocument(url, filename, titles[num] || `Document ${num}`, cust.name);
+    }
+
+    async function shareDocument(url, fileName, docTitle, clientName) {
+      if (!url) {
+        showToast('No document available to share', 'error');
+        return;
+      }
+
+      const nameToUse = fileName || 'CustomerVault_Document.pdf';
+      const titleToUse = docTitle || 'Client Document';
+      const clientToUse = clientName || (customers.find(c => c.id === selectedCustomerId)?.name) || 'Client';
+      const absoluteUrl = new URL(url, window.location.origin).href;
+
+      activeShareData = {
+        url: absoluteUrl,
+        relativeUrl: url,
+        fileName: nameToUse,
+        docTitle: titleToUse,
+        clientName: clientToUse
+      };
+
+      // 1. Try Native Web Share Level 2 (Direct PDF file sharing into WhatsApp, Insta, Snapchat, etc.)
+      if (navigator.canShare) {
+        try {
+          showToast('Preparing document for sharing...', 'info');
+          const response = await fetch(url);
+          if (response.ok) {
+            const blob = await response.blob();
+            const file = new File([blob], nameToUse, { type: 'application/pdf' });
+
+            if (navigator.canShare({ files: [file] })) {
+              await navigator.share({
+                files: [file],
+                title: titleToUse,
+                text: `Official IEPF recovery document for ${clientToUse}.`
+              });
+              showToast('Shared successfully!', 'success');
+              return;
+            }
+          }
+        } catch (err) {
+          if (err.name === 'AbortError') {
+            return; // User dismissed share sheet
+          }
+          console.warn('Native file share skipped:', err);
+        }
+      }
+
+      // 2. Try standard navigator.share (Text & URL)
+      if (navigator.share) {
+        try {
+          await navigator.share({
+            title: titleToUse,
+            text: `Official IEPF recovery document for ${clientToUse}:
+${absoluteUrl}`,
+            url: absoluteUrl
+          });
+          showToast('Shared successfully!', 'success');
+          return;
+        } catch (err) {
+          if (err.name === 'AbortError') return;
+          console.warn('Navigator text share skipped:', err);
+        }
+      }
+
+      // 3. Fallback: Universal Share Modal with 1-click WhatsApp, Instagram, Snapchat, SMS, Email
+      openUniversalShareModal();
+    }
+
+    function openUniversalShareModal() {
+      if (!activeShareData) return;
+      const modal = document.getElementById('universalShareModal');
+      const titleEl = document.getElementById('universalShareTitle');
+      const clientEl = document.getElementById('universalShareClient');
+      const filenameEl = document.getElementById('universalShareFilename');
+      const linkInput = document.getElementById('universalShareLinkInput');
+
+      if (titleEl) titleEl.innerText = activeShareData.docTitle;
+      if (clientEl) clientEl.innerText = activeShareData.clientName;
+      if (filenameEl) filenameEl.innerText = activeShareData.fileName;
+      if (linkInput) linkInput.value = activeShareData.url;
+
+      if (modal) modal.classList.remove('hidden');
+    }
+
+    function closeUniversalShareModal() {
+      const modal = document.getElementById('universalShareModal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    async function shareToChannel(channel) {
+      if (!activeShareData) return;
+      const { url, relativeUrl, fileName, docTitle, clientName } = activeShareData;
+      const messageText = `*CONFIDENTIAL: ${docTitle.toUpperCase()}*\nClient: ${clientName}\n\nPlease find your official recovery document here:\n${url}`;
+
+      switch (channel) {
+        case 'whatsapp': {
+          const cust = customers.find(c => c.id === selectedCustomerId);
+          const details = cust ? extractContactDetails(cust.contact_info) : { phone: null };
+          const waUrl = details.phone 
+            ? `https://api.whatsapp.com/send?phone=${details.phone}&text=${encodeURIComponent(messageText)}`
+            : `https://api.whatsapp.com/send?text=${encodeURIComponent(messageText)}`;
+          window.open(waUrl, '_blank');
+          showToast('Opening WhatsApp...', 'success');
+          break;
+        }
+        case 'instagram': {
+          try {
+            await navigator.clipboard.writeText(messageText);
+            showToast('Document link copied! Opening Instagram...', 'success');
+          } catch (e) {
+            showToast('Opening Instagram...', 'info');
+          }
+          setTimeout(() => {
+            window.open('https://www.instagram.com/direct/inbox/', '_blank');
+          }, 400);
+          break;
+        }
+        case 'snapchat': {
+          try {
+            await navigator.clipboard.writeText(messageText);
+            showToast('Document link copied! Opening Snapchat...', 'success');
+          } catch (e) {
+            showToast('Opening Snapchat...', 'info');
+          }
+          setTimeout(() => {
+            window.open('https://web.snapchat.com/', '_blank');
+          }, 400);
+          break;
+        }
+        case 'sms': {
+          const cust = customers.find(c => c.id === selectedCustomerId);
+          const details = cust ? extractContactDetails(cust.contact_info) : { phone: null };
+          const smsPhone = details.phone ? details.phone : '';
+          const smsUrl = `sms:${smsPhone}?body=${encodeURIComponent(messageText)}`;
+          window.location.href = smsUrl;
+          showToast('Opening Messages...', 'success');
+          break;
+        }
+        case 'email': {
+          const cust = customers.find(c => c.id === selectedCustomerId);
+          const details = cust ? extractContactDetails(cust.contact_info) : { email: null };
+          const subject = `Official Document: ${docTitle} - ${clientName}`;
+          const body = `Dear ${clientName},\n\nPlease access your official document (${docTitle}) via the secure link below:\n\n${url}\n\nWarm regards,\nCustomerVault`;
+          const mailUrl = details.email
+            ? `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(details.email)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+            : `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+          window.open(mailUrl, '_blank');
+          showToast('Opening Email...', 'success');
+          break;
+        }
+        case 'copy': {
+          try {
+            await navigator.clipboard.writeText(url);
+            showToast('Document link copied to clipboard!', 'success');
+          } catch (e) {
+            const input = document.getElementById('universalShareLinkInput');
+            if (input) {
+              input.select();
+              document.execCommand('copy');
+              showToast('Link copied to clipboard!', 'success');
+            }
+          }
+          break;
+        }
+        case 'download': {
+          const a = document.createElement('a');
+          a.href = relativeUrl;
+          a.download = fileName;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          showToast('Downloading PDF file...', 'success');
+          break;
+        }
+      }
+    }
 
     function extractContactDetails(contactInfo) {
       if (!contactInfo) return { phone: null, email: null };
@@ -2874,7 +3271,7 @@ Chennai & Ranipet, Tamil Nadu`;
     // Register Service Worker for Mobile PWA with cache invalidation
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js?v=13').then((reg) => {
+        navigator.serviceWorker.register('/sw.js?v=14').then((reg) => {
           reg.update();
         }).catch((err) => {
           console.log('Service Worker skipped:', err);
