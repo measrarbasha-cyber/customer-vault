@@ -18,6 +18,8 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Lightweight QR Code Generator -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <!-- Mozilla PDF.js for Universal Cross-Platform PDF Viewer (iOS & Android Mobile Safe) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -491,7 +493,7 @@
                   </div>
 
                   <div id="pdf1Actions" class="no-print mt-3 pt-2.5 border-t border-rose-100 flex items-center space-x-2">
-                    <a id="pdf1ViewBtn" href="#" target="_blank" class="flex-1 py-1 px-2 text-center text-xs font-bold text-rose-700 bg-rose-100/80 hover:bg-rose-200/80 rounded-md transition">
+                    <a id="pdf1ViewBtn" href="javascript:void(0)" class="flex-1 py-1 px-2 text-center text-xs font-bold text-rose-700 bg-rose-100/80 hover:bg-rose-200/80 rounded-md transition cursor-pointer">
                       View Dossier
                     </a>
                     <a id="pdf1DownloadBtn" href="#" download class="p-1 text-slate-500 hover:text-slate-800 rounded-md hover:bg-slate-200 transition" title="Download">
@@ -517,7 +519,7 @@
                   </div>
 
                   <div id="pdf2Actions" class="no-print mt-3 pt-2.5 border-t border-indigo-100 flex items-center space-x-2">
-                    <a id="pdf2ViewBtn" href="#" target="_blank" class="flex-1 py-1 px-2 text-center text-xs font-bold text-indigo-700 bg-indigo-100/80 hover:bg-indigo-200/80 rounded-md transition">
+                    <a id="pdf2ViewBtn" href="javascript:void(0)" class="flex-1 py-1 px-2 text-center text-xs font-bold text-indigo-700 bg-indigo-100/80 hover:bg-indigo-200/80 rounded-md transition cursor-pointer">
                       View Agreement
                     </a>
                     <a id="pdf2DownloadBtn" href="#" download class="p-1 text-slate-500 hover:text-slate-800 rounded-md hover:bg-slate-200 transition" title="Download">
@@ -543,7 +545,7 @@
                   </div>
 
                   <div id="pdf3Actions" class="no-print mt-3 pt-2.5 border-t border-emerald-100 flex items-center space-x-2">
-                    <a id="pdf3ViewBtn" href="#" target="_blank" class="flex-1 py-1 px-2 text-center text-xs font-bold text-emerald-800 bg-emerald-100 hover:bg-emerald-200 rounded-md transition">
+                    <a id="pdf3ViewBtn" href="javascript:void(0)" class="flex-1 py-1 px-2 text-center text-xs font-bold text-emerald-800 bg-emerald-100 hover:bg-emerald-200 rounded-md transition cursor-pointer">
                       View Playbook (EN)
                     </a>
                     <a id="pdf3DownloadBtn" href="#" download class="p-1 text-slate-500 hover:text-slate-800 rounded-md hover:bg-slate-200 transition" title="Download">
@@ -569,7 +571,7 @@
                   </div>
 
                   <div id="pdf4Actions" class="no-print mt-3 pt-2.5 border-t border-amber-100 flex items-center space-x-2">
-                    <a id="pdf4ViewBtn" href="#" target="_blank" class="flex-1 py-1 px-2 text-center text-xs font-bold text-amber-900 bg-amber-100 hover:bg-amber-200 rounded-md transition">
+                    <a id="pdf4ViewBtn" href="javascript:void(0)" class="flex-1 py-1 px-2 text-center text-xs font-bold text-amber-900 bg-amber-100 hover:bg-amber-200 rounded-md transition cursor-pointer">
                       View Playbook (Regional)
                     </a>
                     <a id="pdf4DownloadBtn" href="#" download class="p-1 text-slate-500 hover:text-slate-800 rounded-md hover:bg-slate-200 transition" title="Download">
@@ -595,7 +597,7 @@
                   </div>
 
                   <div id="pdf5Actions" class="no-print mt-3 pt-2.5 border-t border-teal-100 flex items-center space-x-2">
-                    <a id="pdf5ViewBtn" href="#" target="_blank" class="flex-1 py-1 px-2 text-center text-xs font-bold text-teal-900 bg-teal-100 hover:bg-teal-200 rounded-md transition">
+                    <a id="pdf5ViewBtn" href="javascript:void(0)" class="flex-1 py-1 px-2 text-center text-xs font-bold text-teal-900 bg-teal-100 hover:bg-teal-200 rounded-md transition cursor-pointer">
                       View Share Certificate & Trust FAQ
                     </a>
                     <a id="pdf5DownloadBtn" href="#" download class="p-1 text-slate-500 hover:text-slate-800 rounded-md hover:bg-slate-200 transition" title="Download">
@@ -624,7 +626,7 @@
                   </div>
 
                   <div id="pdf6Actions" class="no-print mt-3 pt-2.5 border-t border-rose-200 flex items-center space-x-2">
-                    <a id="pdf6ViewBtn" href="#" target="_blank" class="flex-1 py-1.5 px-3 text-center text-xs font-bold text-white bg-rose-700 hover:bg-rose-800 rounded-md shadow-xs transition">
+                    <a id="pdf6ViewBtn" href="javascript:void(0)" class="flex-1 py-1.5 px-3 text-center text-xs font-bold text-white bg-rose-700 hover:bg-rose-800 rounded-md shadow-xs transition cursor-pointer">
                       View Statutory Transfer Notice &amp; Recovery Guide
                     </a>
                     <a id="pdf6DownloadBtn" href="#" download class="p-1.5 text-rose-800 hover:text-rose-950 rounded-md hover:bg-rose-200 transition" title="Download">
@@ -970,6 +972,115 @@
         </div>
 
       </div>
+
+    </div>
+  </div>
+
+  <!-- MODAL: IN-APP PDF VIEWER (WITH CLOSE 'X' & BACK BUTTON FOR MOBILE & PWA) -->
+  <div id="pdfViewerModal" class="fixed inset-0 z-50 hidden bg-slate-950/95 backdrop-blur-md flex flex-col overflow-hidden animate-fadeIn">
+    <!-- Top Header Navigation Bar (Fixed & Sticky - Safe Area Aware) -->
+    <div class="shrink-0 bg-slate-900 border-b border-slate-800 text-white px-3 sm:px-5 py-2 sm:py-3 flex items-center justify-between gap-2 shadow-lg z-20">
+      
+      <!-- Left: Prominent Back Button (Crucial for Mobile & PWA) -->
+      <div class="flex items-center space-x-2 shrink-0">
+        <button 
+          type="button" 
+          onclick="closePdfViewer()" 
+          id="pdfViewerBackBtn"
+          class="inline-flex items-center px-3 py-1.5 sm:px-3.5 sm:py-2 text-xs sm:text-sm font-bold text-white bg-slate-800 hover:bg-slate-700 active:scale-95 border border-slate-700 rounded-xl transition shadow-xs cursor-pointer group"
+          title="Go back to customer profile"
+        >
+          <svg class="w-4 h-4 mr-1 sm:mr-1.5 text-indigo-400 group-hover:-translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          <span>&larr; Back</span>
+        </button>
+      </div>
+
+      <!-- Center: Document Title & Customer Name -->
+      <div class="min-w-0 flex-1 text-center px-2">
+        <h3 id="pdfViewerDocTitle" class="text-xs sm:text-sm font-bold text-slate-100 truncate">
+          Client Document
+        </h3>
+        <p id="pdfViewerSubTitle" class="text-[10px] sm:text-xs text-indigo-300 truncate font-mono">
+          Customer Vault Document Viewer
+        </p>
+      </div>
+
+      <!-- Right: Action Buttons (Zoom Controls, Download, Open in New Tab, Close 'X' Button) -->
+      <div class="flex items-center space-x-1.5 sm:space-x-2 shrink-0">
+        <!-- Zoom Controls (for Canvas view) -->
+        <div id="pdfZoomControls" class="hidden sm:flex items-center space-x-1 bg-slate-800/80 px-2 py-1 rounded-xl border border-slate-700/60 text-xs">
+          <button type="button" onclick="changePdfZoom(-0.2)" title="Zoom Out" class="p-1 text-slate-300 hover:text-white rounded hover:bg-slate-700 transition cursor-pointer">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>
+          </button>
+          <span id="pdfZoomLabel" class="text-[11px] font-mono text-slate-300 px-1">100%</span>
+          <button type="button" onclick="changePdfZoom(0.2)" title="Zoom In" class="p-1 text-slate-300 hover:text-white rounded hover:bg-slate-700 transition cursor-pointer">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+          </button>
+          <button type="button" onclick="resetPdfZoom()" title="Fit to Screen" class="px-1.5 py-0.5 text-[10px] font-semibold text-slate-400 hover:text-white rounded hover:bg-slate-700 transition cursor-pointer">Fit</button>
+        </div>
+
+        <!-- Download Button -->
+        <a 
+          id="pdfViewerDownloadBtn" 
+          href="#" 
+          download 
+          class="inline-flex items-center p-2 text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-xl transition active:scale-95 shadow-xs cursor-pointer"
+          title="Download PDF file"
+        >
+          <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+          </svg>
+        </a>
+
+        <!-- Open External / New Window Button -->
+        <a 
+          id="pdfViewerExternalBtn" 
+          href="#" 
+          target="_blank" 
+          class="inline-flex items-center p-2 text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-xl transition active:scale-95 shadow-xs cursor-pointer"
+          title="Open in new window / external browser"
+        >
+          <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          </svg>
+        </a>
+
+        <!-- Prominent Close 'X' Button -->
+        <button 
+          type="button" 
+          onclick="closePdfViewer()" 
+          id="pdfViewerCloseBtn"
+          class="inline-flex items-center justify-center p-2 text-rose-300 hover:text-white bg-rose-950/60 hover:bg-rose-900 border border-rose-500/40 rounded-xl transition active:scale-95 shadow-xs cursor-pointer"
+          title="Close PDF and return to customer profile"
+        >
+          <svg class="w-4 h-4 sm:w-5 sm:h-5 text-rose-400 hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Viewer Body: Scrollable Canvas/Iframe Container -->
+    <div id="pdfViewerBody" class="flex-1 w-full h-full relative overflow-y-auto bg-slate-900/95 flex flex-col items-center justify-start p-2 sm:p-4 touch-pan-y">
+      
+      <!-- Loading State -->
+      <div id="pdfLoadingSpinner" class="flex flex-col items-center justify-center my-auto py-12 text-slate-400">
+        <svg class="animate-spin h-8 w-8 text-indigo-500 mb-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+        </svg>
+        <p class="text-sm font-semibold text-slate-200">Loading Client PDF...</p>
+        <p class="text-xs text-slate-400 mt-1">Rendering high-resolution document pages</p>
+      </div>
+
+      <!-- Rendered PDF Pages Container (when using PDF.js) -->
+      <div id="pdfPagesContainer" class="w-full flex flex-col items-center space-y-4 max-w-4xl pb-16"></div>
+
+      <!-- Fallback Direct Iframe Container (for native browser fallback) -->
+      <iframe id="pdfFallbackIframe" class="hidden w-full h-full border-0 rounded-none bg-slate-800" src="" title="PDF Document Viewer"></iframe>
 
     </div>
   </div>
@@ -1594,11 +1705,18 @@
 
       if (cust.pdf1_path) {
         const p1Url = `/api/documents/${cust.pdf1_path}?t=${Date.now()}`;
-        if (pdf1Title) pdf1Title.innerText = cust.pdf1_filename || 'Recovery_Dossier.pdf';
-        if (pdf1View) pdf1View.href = p1Url;
+        const p1Name = cust.pdf1_filename || 'Recovery_Dossier.pdf';
+        if (pdf1Title) pdf1Title.innerText = p1Name;
+        if (pdf1View) {
+          pdf1View.href = p1Url;
+          pdf1View.onclick = (e) => {
+            e.preventDefault();
+            openPdfViewer(p1Url, 'Doc 1 • Recovery Dossier', cust.name, p1Name);
+          };
+        }
         if (pdf1Dl) {
           pdf1Dl.href = p1Url;
-          pdf1Dl.setAttribute('download', cust.pdf1_filename || 'Recovery_Dossier.pdf');
+          pdf1Dl.setAttribute('download', p1Name);
         }
         if (pdf1Actions) pdf1Actions.classList.remove('hidden');
       } else {
@@ -1614,11 +1732,18 @@
 
       if (cust.pdf2_path) {
         const p2Url = `/api/documents/${cust.pdf2_path}?t=${Date.now()}`;
-        if (pdf2Title) pdf2Title.innerText = cust.pdf2_filename || 'Service_Agreement.pdf';
-        if (pdf2View) pdf2View.href = p2Url;
+        const p2Name = cust.pdf2_filename || 'Service_Agreement.pdf';
+        if (pdf2Title) pdf2Title.innerText = p2Name;
+        if (pdf2View) {
+          pdf2View.href = p2Url;
+          pdf2View.onclick = (e) => {
+            e.preventDefault();
+            openPdfViewer(p2Url, 'Doc 2 • Service Agreement', cust.name, p2Name);
+          };
+        }
         if (pdf2Dl) {
           pdf2Dl.href = p2Url;
-          pdf2Dl.setAttribute('download', cust.pdf2_filename || 'Service_Agreement.pdf');
+          pdf2Dl.setAttribute('download', p2Name);
         }
         if (pdf2Actions) pdf2Actions.classList.remove('hidden');
       } else {
@@ -1634,11 +1759,18 @@
 
       if (cust.pdf3_path) {
         const p3Url = `/api/documents/${cust.pdf3_path}?t=${Date.now()}`;
-        if (pdf3Title) pdf3Title.innerText = cust.pdf3_filename || 'Call_Playbook_English.pdf';
-        if (pdf3View) pdf3View.href = p3Url;
+        const p3Name = cust.pdf3_filename || 'Call_Playbook_English.pdf';
+        if (pdf3Title) pdf3Title.innerText = p3Name;
+        if (pdf3View) {
+          pdf3View.href = p3Url;
+          pdf3View.onclick = (e) => {
+            e.preventDefault();
+            openPdfViewer(p3Url, 'Doc 3 • Call Script (English)', cust.name, p3Name);
+          };
+        }
         if (pdf3Dl) {
           pdf3Dl.href = p3Url;
-          pdf3Dl.setAttribute('download', cust.pdf3_filename || 'Call_Playbook_English.pdf');
+          pdf3Dl.setAttribute('download', p3Name);
         }
         if (pdf3Actions) pdf3Actions.classList.remove('hidden');
       } else {
@@ -1660,11 +1792,19 @@
 
       if (cust.pdf4_path) {
         const p4Url = `/api/documents/${cust.pdf4_path}?t=${Date.now()}`;
-        if (pdf4Title) pdf4Title.innerText = cust.pdf4_filename || (isTN ? 'Call_Playbook_Tanglish.pdf' : 'Call_Playbook_Hinglish.pdf');
-        if (pdf4View) pdf4View.href = p4Url;
+        const p4Name = cust.pdf4_filename || (isTN ? 'Call_Playbook_Tanglish.pdf' : 'Call_Playbook_Hinglish.pdf');
+        const p4Label = isTN ? 'Doc 4 • Call Script (Tanglish)' : 'Doc 4 • Call Script (Hinglish)';
+        if (pdf4Title) pdf4Title.innerText = p4Name;
+        if (pdf4View) {
+          pdf4View.href = p4Url;
+          pdf4View.onclick = (e) => {
+            e.preventDefault();
+            openPdfViewer(p4Url, p4Label, cust.name, p4Name);
+          };
+        }
         if (pdf4Dl) {
           pdf4Dl.href = p4Url;
-          pdf4Dl.setAttribute('download', cust.pdf4_filename || (isTN ? 'Call_Playbook_Tanglish.pdf' : 'Call_Playbook_Hinglish.pdf'));
+          pdf4Dl.setAttribute('download', p4Name);
         }
         if (pdf4Actions) pdf4Actions.classList.remove('hidden');
       } else {
@@ -1680,11 +1820,18 @@
 
       if (cust.pdf5_path) {
         const p5Url = `/api/documents/${cust.pdf5_path}?t=${Date.now()}`;
-        if (pdf5Title) pdf5Title.innerText = cust.pdf5_filename || 'Statutory_Share_Certificate_Trust_Dossier.pdf';
-        if (pdf5View) pdf5View.href = p5Url;
+        const p5Name = cust.pdf5_filename || 'Statutory_Share_Certificate_Trust_Dossier.pdf';
+        if (pdf5Title) pdf5Title.innerText = p5Name;
+        if (pdf5View) {
+          pdf5View.href = p5Url;
+          pdf5View.onclick = (e) => {
+            e.preventDefault();
+            openPdfViewer(p5Url, 'Doc 5 • Statutory Share Certificate & Trust Dossier', cust.name, p5Name);
+          };
+        }
         if (pdf5Dl) {
           pdf5Dl.href = p5Url;
-          pdf5Dl.setAttribute('download', cust.pdf5_filename || 'Statutory_Share_Certificate_Trust_Dossier.pdf');
+          pdf5Dl.setAttribute('download', p5Name);
         }
         if (pdf5Actions) pdf5Actions.classList.remove('hidden');
       } else {
@@ -1701,11 +1848,18 @@
 
       if (cust.pdf6_path) {
         const p6Url = `/api/documents/${cust.pdf6_path}?t=${Date.now()}`;
-        if (pdf6Title) pdf6Title.innerText = cust.pdf6_filename || 'Statutory_IEPF_Transfer_Notice_and_Recovery_Guide.pdf';
-        if (pdf6View) pdf6View.href = p6Url;
+        const p6Name = cust.pdf6_filename || 'Statutory_IEPF_Transfer_Notice_and_Recovery_Guide.pdf';
+        if (pdf6Title) pdf6Title.innerText = p6Name;
+        if (pdf6View) {
+          pdf6View.href = p6Url;
+          pdf6View.onclick = (e) => {
+            e.preventDefault();
+            openPdfViewer(p6Url, 'Doc 6 • Statutory IEPF Restitution Notice & Recovery Guide', cust.name, p6Name);
+          };
+        }
         if (pdf6Dl) {
           pdf6Dl.href = p6Url;
-          pdf6Dl.setAttribute('download', cust.pdf6_filename || 'Statutory_IEPF_Transfer_Notice_and_Recovery_Guide.pdf');
+          pdf6Dl.setAttribute('download', p6Name);
         }
         if (pdf6Actions) pdf6Actions.classList.remove('hidden');
         if (pdf6Card) pdf6Card.classList.remove('hidden');
@@ -1713,6 +1867,223 @@
         if (pdf6Card) pdf6Card.classList.add('hidden');
       }
     }
+
+    // ==========================================
+    // IN-APP PDF VIEWER (MOBILE & DESKTOP SAFE)
+    // ==========================================
+
+    let currentPdfUrl = null;
+    let currentPdfFilename = 'document.pdf';
+    let currentPdfDoc = null;
+    let currentPdfScale = 1.0;
+    let isRenderingPdf = false;
+
+    if (window.pdfjsLib) {
+      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    }
+
+    async function openPdfViewer(url, docTitle, clientName, fileName) {
+      const modal = document.getElementById('pdfViewerModal');
+      const docTitleEl = document.getElementById('pdfViewerDocTitle');
+      const subTitleEl = document.getElementById('pdfViewerSubTitle');
+      const dlBtn = document.getElementById('pdfViewerDownloadBtn');
+      const extBtn = document.getElementById('pdfViewerExternalBtn');
+
+      currentPdfUrl = url;
+      currentPdfFilename = fileName || 'document.pdf';
+
+      if (docTitleEl) docTitleEl.innerText = docTitle || 'Client Document';
+      if (subTitleEl) subTitleEl.innerText = clientName ? `${clientName}` : 'CustomerVault Document';
+      if (dlBtn) {
+        dlBtn.href = url;
+        dlBtn.setAttribute('download', currentPdfFilename);
+      }
+      if (extBtn) extBtn.href = url;
+
+      modal.classList.remove('hidden');
+      document.body.classList.add('overflow-hidden');
+
+      // Seamless Mobile Back Gesture & Hardware Back Button Integration
+      try {
+        history.pushState({ modal: 'pdfViewer' }, '');
+      } catch (e) {}
+
+      await loadAndRenderPdf(url);
+    }
+
+    function closePdfViewer(triggerHistoryBack = true) {
+      const modal = document.getElementById('pdfViewerModal');
+      if (!modal || modal.classList.contains('hidden')) return;
+
+      modal.classList.add('hidden');
+      document.body.classList.remove('overflow-hidden');
+
+      // Clear memory on mobile
+      const pagesContainer = document.getElementById('pdfPagesContainer');
+      if (pagesContainer) pagesContainer.innerHTML = '';
+      const fallbackIframe = document.getElementById('pdfFallbackIframe');
+      if (fallbackIframe) fallbackIframe.src = '';
+
+      currentPdfDoc = null;
+      currentPdfUrl = null;
+
+      if (triggerHistoryBack) {
+        if (history.state && history.state.modal === 'pdfViewer') {
+          history.back();
+        }
+      }
+    }
+
+    function openCurrentPdfExternal() {
+      if (currentPdfUrl) {
+        window.open(currentPdfUrl, '_blank');
+      }
+    }
+
+    function previewSelectedDossier() {
+      const cust = customers.find(c => c.id === selectedCustomerId);
+      if (!cust || !cust.pdf1_path) {
+        alert('No dossier PDF document available for this client.');
+        return;
+      }
+      const p1Url = `/api/documents/${cust.pdf1_path}?t=${Date.now()}`;
+      openPdfViewer(p1Url, 'Doc 1 • Recovery Dossier', cust.name, cust.pdf1_filename || 'Recovery_Dossier.pdf');
+    }
+
+    async function loadAndRenderPdf(url) {
+      const spinner = document.getElementById('pdfLoadingSpinner');
+      const pagesContainer = document.getElementById('pdfPagesContainer');
+      const fallbackIframe = document.getElementById('pdfFallbackIframe');
+      const zoomControls = document.getElementById('pdfZoomControls');
+
+      if (spinner) spinner.classList.remove('hidden');
+      if (pagesContainer) {
+        pagesContainer.innerHTML = '';
+        pagesContainer.classList.remove('hidden');
+      }
+      if (fallbackIframe) {
+        fallbackIframe.classList.add('hidden');
+        fallbackIframe.src = '';
+      }
+
+      if (window.pdfjsLib) {
+        try {
+          const loadingTask = pdfjsLib.getDocument({
+            url: url,
+            cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/cmaps/',
+            cMapPacked: true,
+          });
+          const pdf = await loadingTask.promise;
+          currentPdfDoc = pdf;
+
+          // Responsive zoom: fit mobile or desktop screen width
+          const page1 = await pdf.getPage(1);
+          const defaultViewport = page1.getViewport({ scale: 1.0 });
+          const viewerWidth = Math.min(window.innerWidth - (window.innerWidth < 640 ? 20 : 48), 860);
+          currentPdfScale = Math.max(0.6, Math.min(2.0, (viewerWidth / defaultViewport.width)));
+          updateZoomLabel();
+
+          if (zoomControls) zoomControls.classList.remove('hidden');
+
+          await renderAllPdfPages();
+          if (spinner) spinner.classList.add('hidden');
+          return;
+        } catch (err) {
+          console.warn('Notice: PDF.js rendering, falling back to direct viewer:', err);
+        }
+      }
+
+      // Fallback direct iframe if PDF.js is unavailable
+      if (zoomControls) zoomControls.classList.add('hidden');
+      if (pagesContainer) pagesContainer.classList.add('hidden');
+      if (fallbackIframe) {
+        fallbackIframe.src = url;
+        fallbackIframe.classList.remove('hidden');
+      }
+      if (spinner) spinner.classList.add('hidden');
+    }
+
+    async function renderAllPdfPages() {
+      if (!currentPdfDoc) return;
+      const pagesContainer = document.getElementById('pdfPagesContainer');
+      if (!pagesContainer) return;
+      pagesContainer.innerHTML = '';
+
+      const numPages = currentPdfDoc.numPages;
+      for (let pageNum = 1; pageNum <= numPages; pageNum++) {
+        const page = await currentPdfDoc.getPage(pageNum);
+        const viewport = page.getViewport({ scale: currentPdfScale });
+
+        const pageWrapper = document.createElement('div');
+        pageWrapper.className = 'flex flex-col items-center w-full';
+
+        const canvas = document.createElement('canvas');
+        canvas.className = 'max-w-full shadow-2xl rounded-lg bg-white border border-slate-700/50';
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+
+        const pageNumBadge = document.createElement('div');
+        pageNumBadge.className = 'text-[11px] font-mono font-semibold text-slate-400 py-1.5 flex items-center justify-between w-full max-w-[850px] px-2';
+        pageNumBadge.innerHTML = `<span>Page ${pageNum} of ${numPages}</span><span class="text-[10px] text-slate-500 font-sans">Official Client Vault Record</span>`;
+
+        pageWrapper.appendChild(canvas);
+        pageWrapper.appendChild(pageNumBadge);
+        pagesContainer.appendChild(pageWrapper);
+
+        const renderContext = {
+          canvasContext: canvas.getContext('2d'),
+          viewport: viewport
+        };
+        await page.render(renderContext).promise;
+      }
+    }
+
+    function updateZoomLabel() {
+      const label = document.getElementById('pdfZoomLabel');
+      if (label) label.innerText = Math.round(currentPdfScale * 100) + '%';
+    }
+
+    async function changePdfZoom(delta) {
+      if (!currentPdfDoc) return;
+      const newScale = Math.max(0.5, Math.min(2.5, currentPdfScale + delta));
+      if (Math.abs(newScale - currentPdfScale) < 0.01) return;
+      currentPdfScale = newScale;
+      updateZoomLabel();
+      const spinner = document.getElementById('pdfLoadingSpinner');
+      if (spinner) spinner.classList.remove('hidden');
+      await renderAllPdfPages();
+      if (spinner) spinner.classList.add('hidden');
+    }
+
+    async function resetPdfZoom() {
+      if (!currentPdfDoc) return;
+      const page1 = await currentPdfDoc.getPage(1);
+      const defaultViewport = page1.getViewport({ scale: 1.0 });
+      const viewerWidth = Math.min(window.innerWidth - (window.innerWidth < 640 ? 20 : 48), 860);
+      currentPdfScale = Math.max(0.6, Math.min(2.0, (viewerWidth / defaultViewport.width)));
+      updateZoomLabel();
+      const spinner = document.getElementById('pdfLoadingSpinner');
+      if (spinner) spinner.classList.remove('hidden');
+      await renderAllPdfPages();
+      if (spinner) spinner.classList.add('hidden');
+    }
+
+    // Keyboard ESC key and popstate listeners
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        const viewer = document.getElementById('pdfViewerModal');
+        if (viewer && !viewer.classList.contains('hidden')) {
+          closePdfViewer();
+        }
+      }
+    });
+
+    window.addEventListener('popstate', (e) => {
+      const viewer = document.getElementById('pdfViewerModal');
+      if (viewer && !viewer.classList.contains('hidden')) {
+        closePdfViewer(false);
+      }
+    });
 
     // ==========================================
     // CLIENT DOSSIER OUTREACH & DISPATCH SYSTEM
@@ -2327,7 +2698,7 @@ Chennai & Ranipet, Tamil Nadu`;
     // Register Service Worker for Mobile PWA with cache invalidation
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js?v=6').then((reg) => {
+        navigator.serviceWorker.register('/sw.js?v=7').then((reg) => {
           reg.update();
         }).catch((err) => {
           console.log('Service Worker skipped:', err);
